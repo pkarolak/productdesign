@@ -18,6 +18,24 @@ The round 4 page structure (hero, work, interlude, how I work, hobbies, contact)
 | 6 | Contact card, toast, footer with On repeat | [r7-06-contact.jpg](r7-06-contact.jpg) |
 | 7 | Case page: crisp, with only kudos added | [r7-07-case.jpg](r7-07-case.jpg) |
 
+## Minimal pass (r7b)
+
+The first pass read as too busy. The minimal pass keeps the structure and cuts the chrome:
+
+- one number per card, with the other stats moved into the activity sheet;
+- no avatar rows or stat columns; one grey meta line;
+- kudos as a small corner count, the lock as an icon next to the title;
+- the hero shows only the headline and one activity card, with no stats strip;
+- borderless cards, more whitespace, and orange only on the primary button, kudos and the route line.
+
+| # | Section | Image |
+| --- | --- | --- |
+| 1 | Hero | [r7b-01-hero.jpg](r7b-01-hero.jpg) |
+| 2 | Work feed | [r7b-02-work.jpg](r7b-02-work.jpg) |
+| 5 | Off the clock | [r7b-05-offclock.jpg](r7b-05-offclock.jpg) |
+
+The other sections follow the same reduction: training plan cards without icon circles or the week strip, a contact card without avatar, and a footer player kept to one line.
+
 ## Notes for the build
 
 - The comps invent metrics and company names; the build keeps the existing content.
