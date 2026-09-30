@@ -61,12 +61,16 @@ function Intro({ parts }: { parts: Hero["intro"] }) {
         <span className="whitespace-nowrap">
           {glued && `${glued} `}
           <SmartLink href={part.href} className="inline-pill focus-ring type-small">
-            <span
-              aria-hidden
-              className="grid size-4 place-items-center rounded-pill bg-accent/15 text-[10px] leading-none text-accent"
-            >
-              {part.pill[0]}
-            </span>
+            {part.logo ? (
+              <Image src={part.logo} alt="" width={16} height={16} className="size-4 object-contain" />
+            ) : (
+              <span
+                aria-hidden
+                className="grid size-4 place-items-center rounded-pill bg-accent/15 text-[10px] leading-none text-accent"
+              >
+                {part.pill[0]}
+              </span>
+            )}
             {part.pill}
           </SmartLink>
           {trailing}

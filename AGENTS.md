@@ -88,7 +88,7 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
   - No em-dashes in UI copy.
   - Never frame site copy around career level, titles or job moves. The work speaks.
   - No "elevate / seamless / passionate"-style filler, no Acme or Jane Doe placeholders.
-  - The placeholder designer name is **Patryk Karolak**. Companies and projects stay fictional.
+  - The placeholder designer name is **Patryk Karolak**. Companies and projects in case studies stay fictional; the hero intro names the owner's real employers with their logo marks (ADR 0022).
 - **Content budgets:**
   - Enforced by `content/schema.ts`. If content does not fit, cut it, never raise the limit.
   - The teaser depth is intentional (ADR 0003).

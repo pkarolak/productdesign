@@ -107,7 +107,11 @@ const slug = z.string().regex(/^[a-z0-9-]+$/);
 const year = z.number().int().min(1990).max(2100);
 
 /** Plain text runs and inline company pills, read as one sentence. */
-const introPart = z.union([z.string().min(1), z.object({ pill: z.string().min(2), href })]);
+const introPart = z.union([
+  z.string().min(1),
+  /** `logo`: a small square mark in `public/logos/`; without it the pill shows the name's first letter. */
+  z.object({ pill: z.string().min(2), href, logo: z.string().startsWith("/logos/").optional() }),
+]);
 
 /** A dictionary entry shown when a visitor hovers or taps a highlighted term in the tagline. */
 const glossaryEntry = z.object({

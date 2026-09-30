@@ -34,6 +34,15 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: real employers in the hero
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the intro now reads "By day I shape enterprise-grade experiences at Miro, before that at Egnyte and Allegro. After hours I run design at CoNaDzielni.pl. At night I DJ tango at milongas." ([ADR 0022](decisions/0022-real-employers-in-hero.md)).
+  - The pills carry the companies' logo marks from `public/logos/` and link to their sites.
+  - `hero.headline` follows the new copy.
+  - The AGENTS.md rule now keeps only case studies fictional.
+- **Verified:** lint, typecheck, build; desktop light and dark, 1024, iPhone 13; axe zero violations.
+
 ## 2026-09-30: one dictionary card on desktop, even on fast moves
 
 - **Agent:** Cursor agent (Claude)
