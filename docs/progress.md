@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: no watch on the pointing hand
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Edited the After hours stand-in so the pointing wrist is bare and the watch sits on the relaxed arm (`patryk-wink`, replaces `patryk-wink-point`). Cut out like the others.
+- **Verified:** build; the After hours card in dark and light.
+
 ## 2026-10-01: a side-on tango invitation for Night
 
 - **Agent:** Cursor agent (Claude)

@@ -77,8 +77,8 @@ export const site = siteSchema.parse({
         when: "After hours",
         icon: "sunset",
         photo: {
-          src: "/about/patryk-wink-point.jpg",
-          cutout: "/about/patryk-wink-point-cutout.png",
+          src: "/about/patryk-wink.jpg",
+          cutout: "/about/patryk-wink-cutout.png",
           alt: "Patryk Karolak winking and pointing at you with a grin.",
         },
         parts: ["My lovely wife and toddler, then head of design at", {
