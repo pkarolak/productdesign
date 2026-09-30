@@ -139,13 +139,13 @@ export const heroSchema = z.object({
 
 export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
 
-/** Card suits; each theme colours them with --suit-1 to --suit-5. The joker blends them all. */
+/** Card suits: red hearts and diamonds, ink spades and clubs, as on any deck. */
 export const suits = ["heart", "spade", "diamond", "club", "joker"] as const;
 
 const art = z.object({ src: z.string().startsWith("/"), srcDark: z.string().startsWith("/").optional() });
 
-/** Illustrated card art for the hand: the frame behind the aces, the joker and the back. Decorative. */
-export const deckSchema = z.object({ face: art, joker: art, back: art });
+/** Illustrated card art for the hand: the joker's centre emblem and the back. Decorative. */
+export const deckSchema = z.object({ joker: art, back: art });
 
 export const handSchema = z
   .array(z.object({ title: words(3), text: words(8), href, target: z.enum(handTargets), suit: z.enum(suits) }))

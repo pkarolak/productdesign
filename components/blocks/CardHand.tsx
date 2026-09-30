@@ -6,26 +6,19 @@ import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { CardZoom, type CardRect } from "./CardZoom";
 import { SmartLink } from "@/components/ui/SmartLink";
-import { FiletePip, JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
+import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
 import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
-function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean; framed: boolean }) {
+export function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean }) {
   const joker = suit === "joker";
-  const place = framed
-    ? flip
-      ? "right-[7%] bottom-[15%] rotate-180"
-      : "top-[15%] left-[7%]"
-    : flip
-      ? "right-2.5 bottom-2.5 rotate-180"
-      : "top-2.5 left-2.5";
   return (
     <span
       aria-hidden
       className={cn(
         "absolute z-10 flex flex-col items-center leading-none",
-        place,
+        flip ? "right-2 bottom-2 rotate-180" : "top-2 left-2",
         joker ? (flip ? "text-card-red" : "text-card-ink") : suitInk[suit],
       )}
     >
@@ -38,17 +31,15 @@ function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean
       ) : (
         <>
           <span className="font-display text-[1.375rem] font-semibold tracking-[-0.04em]">A</span>
-          {framed ? <FiletePip suit={suit} className="mt-1 size-3.5" /> : <Suit suit={suit} className="mt-1 size-3.5" />}
+          <Suit suit={suit} className="mt-0.5 size-3.5" />
         </>
       )}
     </span>
   );
 }
 
-function Art({ art }: { art: Deck["face"] }) {
-  return (
-    <Picture src={art.src} srcDark={art.srcDark} alt="" sizes="(min-width: 1280px) 212px, 220px" dim={false} className="object-fill" />
-  );
+function Art({ art, sizes, className }: { art: Deck["back"]; sizes: string; className?: string }) {
+  return <Picture src={art.src} srcDark={art.srcDark} alt="" sizes={sizes} dim={false} className={className} />;
 }
 
 function Card({
@@ -70,52 +61,29 @@ function Card({
   onBlur?: () => void;
 }) {
   const pip = "shrink-0 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
-  const joker = card.suit === "joker";
-  const framed = Boolean(deck);
   const classes = cn(
-    "focus-ring group/card playing-card relative flex flex-col items-center overflow-hidden rounded-inset text-center backface-hidden",
-    framed && joker ? "justify-between" : "justify-center",
-    framed ? "px-[13%] py-[16%]" : "px-8 py-14",
-    framed && joker && "px-[16%] pt-[8%] pb-[6%]",
+    "focus-ring group/card playing-card relative flex flex-col items-center justify-center overflow-hidden rounded-inset px-7 py-12 text-center backface-hidden",
     className,
   );
   const face = (
     <>
-      {deck && <Art art={joker ? deck.joker : deck.face} />}
-      <Corner suit={card.suit} framed={framed} />
-      {framed && joker ? (
-        <>
-          <span className="type-h3 filete-letter relative block font-semibold">{card.title}</span>
-          <span className="type-caption relative block text-[0.75rem]! leading-[1.3]! text-balance! text-card-ink/75!">
-            {card.text}
-          </span>
-        </>
-      ) : framed ? (
-        <>
-          <FiletePip suit={card.suit} className={cn("relative", card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14", pip)} />
-          <span className="type-h3 filete-letter relative mt-4 block font-semibold">{card.title}</span>
-          <span className="type-caption relative mt-1 block text-balance! text-card-ink/75!">{card.text}</span>
-        </>
+      <Corner suit={card.suit} />
+      {card.suit !== "joker" ? (
+        <Suit suit={card.suit} className={cn("relative size-13 xl:size-15", suitInk[card.suit], pip)} />
+      ) : deck ? (
+        <span className={cn("relative -my-2 block aspect-[3/2] w-[88%]", pip)}>
+          <Art
+            art={deck.joker}
+            sizes="(min-width: 1280px) 190px, 160px"
+            className="object-contain mix-blend-multiply dark:mix-blend-lighten"
+          />
+        </span>
       ) : (
-        <>
-          {joker ? (
-            <JokerEmblem className={cn("relative size-16 xl:size-20", pip)} />
-          ) : (
-            <Suit
-              suit={card.suit}
-              className={cn(
-                "relative",
-                suitInk[card.suit],
-                card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14",
-                pip,
-              )}
-            />
-          )}
-          <span className="type-h3 relative mt-4 block font-semibold text-card-ink!">{card.title}</span>
-          <span className="type-caption relative mt-1 block text-balance! text-card-ink/75!">{card.text}</span>
-        </>
+        <JokerEmblem className={cn("relative size-13 xl:size-15", pip)} />
       )}
-      <Corner suit={card.suit} framed={framed} flip />
+      <span className="type-h3 relative mt-4 block font-semibold text-card-ink!">{card.title}</span>
+      <span className="type-caption relative mt-1 block text-balance! text-card-ink/70!">{card.text}</span>
+      <Corner suit={card.suit} flip />
     </>
   );
   if (still) return <div className={classes}>{face}</div>;
@@ -139,7 +107,7 @@ function CardBack({ art }: { art: Deck["back"] }) {
       aria-hidden
       className="playing-card pointer-events-none absolute inset-0 overflow-hidden rounded-inset backface-hidden rotate-y-180"
     >
-      <Art art={art} />
+      <Art art={art} sizes="(min-width: 1280px) 212px, 220px" className="object-fill" />
     </span>
   );
 }
@@ -368,7 +336,12 @@ export function CardHand({
           from={picked.from}
           open={open}
           title={cards[picked.index].title}
-          deck={deck}
+          marks={
+            <>
+              <Corner suit={cards[picked.index].suit} />
+              <Corner suit={cards[picked.index].suit} flip />
+            </>
+          }
           front={<Card card={cards[picked.index]} deck={deck} still className="size-full" />}
           onClose={() => setOpen(false)}
           onClosed={() => setPicked(null)}

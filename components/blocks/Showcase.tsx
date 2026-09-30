@@ -7,7 +7,7 @@ import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
-import { FiletePip, JokerEmblem, suitInk } from "@/components/ui/Suit";
+import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
 import { suits, type Showcase as ShowcaseData, type ShowcaseItem, type Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
@@ -45,7 +45,7 @@ function Cover({
       {suit === "joker" ? (
         <JokerEmblem className={cn("size-[34%]", pip)} />
       ) : (
-        <FiletePip suit={suit} className={cn("size-[30%]", pip)} />
+        <Suit suit={suit} className={cn("size-[30%]", pip)} />
       )}
     </span>
   );

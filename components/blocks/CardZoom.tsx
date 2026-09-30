@@ -3,8 +3,6 @@
 import { motion as m, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Icon } from "@/components/ui/Icon";
-import type { Deck } from "@/content/schema";
-import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
 export type CardRect = { left: number; top: number; width: number; height: number; rotate: number };
@@ -30,17 +28,6 @@ const track = (a: Box, b: Box, c: Box) => ({
   height: [a.height, b.height, c.height],
 });
 
-/** The deck's face frame as a nine-slice, so the corner scrolls keep their shape at any size. */
-function Frame({ art }: { art: Deck["face"] }) {
-  const slice = (src: string) => ({ borderImage: `url(${src}) 150 fill / clamp(44px, 7vw, 84px) stretch` });
-  return (
-    <>
-      <span aria-hidden className={cn("absolute inset-0", art.srcDark && "dark:hidden")} style={slice(art.src)} />
-      {art.srcDark && <span aria-hidden className="absolute inset-0 hidden dark:block" style={slice(art.srcDark)} />}
-    </>
-  );
-}
-
 /**
  * The picked card, lifted off the table: it flips over while travelling to the centre, then widens to fill the
  * screen, and its section appears on the back. Closing plays the same path in reverse and lands on the table.
@@ -50,7 +37,7 @@ export function CardZoom({
   open,
   title,
   front,
-  deck,
+  marks,
   onClose,
   onClosed,
   children,
@@ -59,7 +46,8 @@ export function CardZoom({
   open: boolean;
   title: string;
   front: ReactNode;
-  deck?: Deck;
+  /** The card's corner indices, repeated on its back so the section reads as printed on the same card. */
+  marks?: ReactNode;
   onClose: () => void;
   onClosed: () => void;
   children: ReactNode;
@@ -121,7 +109,7 @@ export function CardZoom({
       >
         <div className="absolute inset-0 backface-hidden">{front}</div>
         <div className="playing-card absolute inset-0 overflow-hidden rounded-card backface-hidden rotate-y-180">
-          {deck && <Frame art={deck.face} />}
+          {marks}
           <m.button
             ref={close}
             type="button"
@@ -129,7 +117,7 @@ export function CardZoom({
             initial={{ opacity: 0 }}
             animate={{ opacity: open ? 1 : 0 }}
             transition={{ duration: 0.3, delay: open && !still ? duration * 0.8 : 0 }}
-            className="focus-ring absolute top-[clamp(14px,2.4vw,28px)] right-[calc(clamp(44px,7vw,84px)+8px)] z-10 grid size-10 place-items-center rounded-pill border border-hairline bg-canvas/80 text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+            className="focus-ring absolute top-[clamp(10px,1.6vw,20px)] right-[clamp(10px,1.6vw,20px)] z-10 grid size-10 place-items-center rounded-pill border border-hairline bg-canvas/80 text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
           >
             <Icon name="x" className="size-4" />
             <span className="sr-only">Close</span>
@@ -138,7 +126,7 @@ export function CardZoom({
             initial={{ opacity: 0 }}
             animate={{ opacity: open ? 1 : 0 }}
             transition={{ duration: still ? 0 : open ? 0.5 : 0.15, delay: open && !still ? duration * 0.62 : 0 }}
-            className="absolute inset-[clamp(40px,6vw,76px)] overflow-y-auto overscroll-contain [scrollbar-width:thin]"
+            className="absolute inset-[clamp(40px,5vw,64px)] overflow-y-auto overscroll-contain [scrollbar-width:thin]"
           >
             {(shown || open) && children}
           </m.div>

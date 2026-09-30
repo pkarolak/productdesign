@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: plain card faces, fileteado only as a nod
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** aces have plain faces, one pip size and corner values pushed into the corners. Two inks replace the four fileteado hues: a warm red tuned to the amber accent, and the card ink ([ADR 0018](decisions/0018-plain-faces-fileteado-accents.md)). The joker carries a small bandoneon emblem instead of a full-card painting. A new back sits between the first two decks. The zoomed card repeats its corner values instead of the frame. Removed `card-gold`, `card-green`, `card-sky`, `card-glint`, `filete-letter`, `FiletePip` and `deck.face`.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; fan, back and zoom screenshots in dark and light; axe zero violations.
+
 ## 2026-09-30: picking a card opens it
 
 - **Agent:** Cursor agent (Claude)

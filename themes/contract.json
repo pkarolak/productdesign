@@ -35,10 +35,6 @@
     "--card-face",
     "--card-red",
     "--card-ink",
-    "--card-gold",
-    "--card-green",
-    "--card-sky",
-    "--card-glint",
     "--core",
     "--skeleton",
     "--shadow",
@@ -80,11 +76,7 @@
     "--shadow",
     "--card-face",
     "--card-red",
-    "--card-ink",
-    "--card-gold",
-    "--card-green",
-    "--card-sky",
-    "--card-glint"
+    "--card-ink"
   ],
   "utilities": [
     "surface",
@@ -115,8 +107,7 @@
     "press",
     "sheet",
     "playing-card",
-    "type-hand",
-    "filete-letter"
+    "type-hand"
   ],
   "fontVariables": [
     "--theme-font-display",
