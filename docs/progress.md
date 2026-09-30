@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: after-hours line names the role
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the After hours line reads "Head of design at CoNaDzielni.pl", at the owner's request. It is a job title, which the AGENTS.md copy rule normally keeps out of site copy; the owner chose it here.
+- **Verified:** build.
+
 ## 2026-09-30: company names open notes, not links
 
 - **Agent:** Cursor agent (Claude)

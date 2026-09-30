@@ -73,7 +73,7 @@ export const site = siteSchema.parse({
       {
         when: "After hours",
         icon: "sunset",
-        parts: ["Running design at", {
+        parts: ["Head of design at", {
             pill: "CoNaDzielni.pl",
             logo: "/logos/conadzielni.png",
             kind: "Local events guide",
