@@ -2,7 +2,7 @@
 
 The round 4 page structure (hero, work, interlude, how I work, hobbies, contact), restyled as if the portfolio were an activity-feed sport app. The hobbies take the slot where benshih.design lists side apps. The app layer (real kudos, activity sheets, a working player, Cmd+K, toasts, view transitions) rides on top. Case pages stay crisp.
 
-**Status:** proposed, awaiting approval.
+**Status:** superseded by [round 8](../round-8/README.md): blocks first, subtle dark styling, no kudos.
 
 - **Palette:** canvas `#F5F5F4`, cards `#FFFFFF` with hairlines, ink `#16171A`, grey `#6B6E75`, one accent: our own orange `#FF5A1F` (not Strava's).
 - **Type:** Archivo (display, tight and bold) and Figtree (body), with tabular figures. No mono, no serif, no handwriting.
