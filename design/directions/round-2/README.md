@@ -2,7 +2,7 @@
 
 **Brief from the user, after [round 1](../round-1/README.md) was rejected:** clean and modern, beautiful whitespace, subtle gradients, subtle isometric grids in the backgrounds.
 
-**Shared by all four:** a faint isometric grid behind the content that fades out toward the edges, one soft gradient glow per view, very generous whitespace, one accent color, and the same placeholder content as round 1. Generated 2026-09-30 with `imagegen-frontend-web`.
+**Shared by all four:** a faint isometric grid behind the content that fades out toward the edges, one soft gradient glow per view, very generous whitespace, one accent color, and the same placeholder content as round 1. These concepts show the old placeholder name, Maren Kowal; from `section-refs` on, the name is Patryk Karolak. Generated 2026-09-30 with `imagegen-frontend-web`.
 
 Text inside the mock UI screenshots is sometimes garbled. That is expected from image generation and irrelevant here, because real artifacts replace them.
 

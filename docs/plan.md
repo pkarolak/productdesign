@@ -120,6 +120,8 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 - `access`: `"protected"` (default) or `"public"`. See Password gating.
 - `cover`, `accent?` (must be a token from `DESIGN.md`, no free colors)
 
+**Placeholder designer name:** Patryk Karolak, used in `content/site.ts`, in metadata and OG images, and in all design references from `section-refs` on. Round 1 and round 2 concepts show an older placeholder, Maren Kowal.
+
 **Site fields** (`content/site.ts`): name, title, one-line positioning, short bio, portrait, experience list (role, company, years), 3 working principles, links.
 
 **The 4 placeholder cases**
@@ -130,7 +132,7 @@ Each placeholder case shows a different kind of senior signal:
 4. **Cross-org initiative (accessibility program):** multi-team leadership, standards.
 
 **Copy rules**
-- Realistic fictional companies and people; no Acme or Jane Doe.
+- The designer is Patryk Karolak. Companies, colleagues and projects are realistic but fictional; no Acme or Jane Doe.
 - No "elevate / seamless / passionate." No em-dashes.
 - Never frame the site around career level, titles or job moves. The work speaks; the site never asks for anything.
 

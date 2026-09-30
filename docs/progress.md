@@ -36,6 +36,7 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - **Next:** `direction-lock`.
   - Write `DESIGN.md`. The isometric grid and the gradient glow become first-class tokens and background components.
   - Write ADR 0002, recording both rounds and the brief change.
+- **Also decided:** the placeholder designer name is **Patryk Karolak**, replacing Maren Kowal. It applies to all content and references from now on; the existing concept images were not regenerated.
 - **Open questions:** which of F, G, H or I, plus any cross-direction tweak.
 
 ## 2026-09-30: direction-concepts
