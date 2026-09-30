@@ -34,6 +34,17 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: hero as one composition, dealt from the face card
+
+- **Agent:** Cursor agent (Claude)
+- **Done** ([ADR 0026](decisions/0026-hero-face-card-and-daylight.md)):
+  - **Fits the fold:** tighter top padding and rhythm, and the photo and cards at 200px from `xl`. At 1440 × 900 the greeting, headline, day switch, the fan and the handwritten caption all show without scrolling (caption bottom at 899px).
+  - **Face card:** the photo is a P of hearts, with corner marks and the photo framed on card paper. On hover it turns over to `avatar.back`, or to the deck back until a second photo exists.
+  - **The trick:** on wide screens the fan's face-down stack sits under the face card, peeking out, and is dealt from there into the fan. The text column sits above the cards in flight.
+  - **Daylight:** a new `daylight` contract utility in both themes. A glow behind the hero follows the day switch: a warm sun top right, a low rose sunset, cool moonlight top left. It cross-fades, and fades out at the bottom through a mask.
+  - **Calmer headline:** the dictionary underlines in the tagline sit at 30% until the headline is hovered.
+- **Verified:** lint, typecheck, theme:check under dusk and blueprint, build; deal frames at 0.5 to 1.6s; settled, sunset, night and flip screenshots at 1440 in dark and light; iPhone 13; reduced motion shows the fan already dealt; axe over the fully scrolled page, zero violations.
+
 ## 2026-09-30: calmer company names in the intro
 
 - **Agent:** Cursor agent (Claude)

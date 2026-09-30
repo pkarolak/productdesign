@@ -136,7 +136,7 @@ export function Bubble({
         className={cn(
           "group/bubble focus-ring cursor-help rounded-inset text-inherit [text-shadow:inherit] transition-colors duration-(--t-hover-short) ease-slow",
           !name &&
-            "decoration-accent/60 decoration-dotted decoration-2 underline-offset-[0.16em] [text-decoration-line:underline] hover:bg-accent/10 hover:text-ink hover:decoration-accent aria-expanded:bg-accent/10 aria-expanded:text-ink aria-expanded:decoration-accent",
+            "decoration-accent/30 decoration-dotted decoration-2 underline-offset-[0.16em] [text-decoration-line:underline] group-hover/tagline:decoration-accent/70 hover:bg-accent/10 hover:text-ink hover:decoration-accent aria-expanded:bg-accent/10 aria-expanded:text-ink aria-expanded:decoration-accent",
         )}
       >
         {children}

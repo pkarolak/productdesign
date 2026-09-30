@@ -108,7 +108,8 @@
     "sheet",
     "playing-card",
     "type-hand",
-    "filete-shade"
+    "filete-shade",
+    "daylight"
   ],
   "fontVariables": [
     "--theme-font-display",

@@ -11,7 +11,7 @@ import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/sch
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
-export function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean }) {
+export function Corner({ suit, rank = "A", flip = false }: { suit: SuitName; rank?: string; flip?: boolean }) {
   const joker = suit === "joker";
   return (
     <span
@@ -30,7 +30,7 @@ export function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean 
         ))
       ) : (
         <>
-          <span className="font-display text-[1.375rem] font-semibold tracking-[-0.04em]">A</span>
+          <span className="font-display text-[1.375rem] font-semibold tracking-[-0.04em]">{rank}</span>
           <Suit suit={suit} className="mt-0.5 size-3.5" />
         </>
       )}
@@ -38,7 +38,7 @@ export function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean 
   );
 }
 
-function Art({ art, sizes, className }: { art: Deck["back"]; sizes: string; className?: string }) {
+export function Art({ art, sizes, className }: { art: Deck["back"]; sizes: string; className?: string }) {
   return <Picture src={art.src} srcDark={art.srcDark} alt="" sizes={sizes} dim={false} className={className} />;
 }
 
@@ -74,7 +74,7 @@ function Card({
         <span className={cn("relative -my-2 block aspect-[3/2] w-[88%]", pip)}>
           <Art
             art={deck.joker}
-            sizes="(min-width: 1280px) 190px, 160px"
+            sizes="(min-width: 1280px) 180px, 160px"
             className="object-contain"
           />
         </span>
@@ -155,27 +155,53 @@ const pile = (i: number) => ({ rotate: ((i * 5) % 7) - 3, y: -i * 1.5 });
 const tilts = [-3, 2, -1.5, 2.5, -2];
 const tilt = (i: number) => tilts[i % tilts.length];
 
+/** Where an element sits on the page, ignoring transforms, so a card mid-animation measures where it will rest. */
+const pageBox = (el: HTMLElement) => {
+  let x = el.offsetWidth / 2;
+  let y = el.offsetHeight / 2;
+  for (let n: HTMLElement | null = el; n; n = n.offsetParent as HTMLElement | null) {
+    x += n.offsetLeft;
+    y += n.offsetTop;
+  }
+  return { x, y };
+};
+
+/** The hero face card, when it is on screen: the fan's stack hides under it and is dealt from there. */
+export const DECK_ORIGIN = "intro-card";
+
 /**
  * Holds a list of cards in a stack until it scrolls into view, then deals it out. `anchor` is where the
- * stack sits: the middle of the list (a fan) or the first card (a row).
+ * stack sits: the middle of the list (a fan) or the first card (a row). A fan stacks under the hero face card
+ * instead when there is one on screen.
  */
 function useDeal(list: RefObject<HTMLUListElement | null>, count: number, anchor: "middle" | "first") {
   const still = useReducedMotion();
   const inView = useInView(list, { once: true, amount: 0.4 });
-  const [offsets, setOffsets] = useState<number[] | null>(null);
+  const [offsets, setOffsets] = useState<{ x: number; y: number }[] | null>(null);
   const [phase, setPhase] = useState<Phase>("stacked");
   const measured = offsets !== null;
 
   useEffect(() => {
     const ul = list.current;
     if (!ul) return;
-    const ro = new ResizeObserver(() => {
+    const measure = () => {
       const items = [...ul.children] as HTMLElement[];
+      const source = anchor === "middle" ? document.getElementById(DECK_ORIGIN) : null;
+      if (source?.offsetParent) {
+        const to = pageBox(source);
+        setOffsets(items.map((el) => {
+          const at = pageBox(el);
+          return { x: to.x - at.x, y: to.y - at.y };
+        }));
+        return;
+      }
       const centre = (el: HTMLElement) => el.offsetLeft + el.offsetWidth / 2;
       const origin = anchor === "middle" ? ul.clientWidth / 2 : items[0] ? centre(items[0]) : 0;
-      setOffsets(items.map((el) => centre(el) - origin));
-    });
+      setOffsets(items.map((el) => ({ x: origin - centre(el), y: 0 })));
+    };
+    const ro = new ResizeObserver(measure);
     ro.observe(ul);
+    document.fonts?.ready.then(measure);
     return () => ro.disconnect();
   }, [list, anchor, count]);
 
@@ -244,7 +270,7 @@ export function CardHand({
     <nav aria-label="Sections" className="container-page">
       <ul
         ref={fanList}
-        className="relative hidden h-[360px] items-start justify-center pt-6 lg:flex xl:h-[400px]"
+        className="relative hidden h-[350px] items-start justify-center pt-4 lg:flex xl:h-[364px]"
         onPointerLeave={() => setHot(null)}
       >
         {cards.map((card, i) => {
@@ -266,7 +292,7 @@ export function CardHand({
                 initial={false}
                 animate={
                   stacked
-                    ? { ...pile(i), x: -(fan.offsets[i] ?? 0), scale: 1 }
+                    ? { ...pile(i), x: fan.offsets[i]?.x ?? 0, y: (fan.offsets[i]?.y ?? 0) + pile(i).y, scale: 1 }
                     : {
                         rotate: lifted ? 0 : d * spread,
                         x: shift,
@@ -285,7 +311,7 @@ export function CardHand({
                     onPick={pick(i, lifted ? 0 : d * spread, lifted ? 1.05 : 1)}
                     onFocus={() => setHot(i)}
                     onBlur={() => setHot(null)}
-                    className="aspect-[5/7] w-[172px] xl:w-[212px]"
+                    className="aspect-[5/7] w-[172px] xl:w-[200px]"
                   />
                 </Flip>
               </m.div>
@@ -310,7 +336,7 @@ export function CardHand({
               initial={false}
               animate={
                 row.phase === "stacked"
-                  ? { ...pile(i), x: -(row.offsets[i] ?? 0) }
+                  ? { ...pile(i), x: row.offsets[i]?.x ?? 0 }
                   : { rotate: tilt(i), x: 0, y: i % 2 ? 8 : 0 }
               }
               transition={dealing(row.phase, i)}

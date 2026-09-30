@@ -5,6 +5,10 @@
  */
 
 :root {
+  --dk-sun: rgba(214, 150, 60, 0.18);
+  --dk-sunset: rgba(206, 104, 72, 0.17);
+  --dk-sunset-2: rgba(214, 150, 60, 0.09);
+  --dk-moon: rgba(86, 108, 168, 0.13);
   color-scheme: light;
 
   /* contract: color */
@@ -77,6 +81,10 @@
 }
 
 [data-theme="dark"] {
+  --dk-sun: rgba(232, 178, 112, 0.12);
+  --dk-sunset: rgba(226, 124, 94, 0.13);
+  --dk-sunset-2: rgba(232, 178, 112, 0.05);
+  --dk-moon: rgba(150, 172, 222, 0.14);
   --card-face: #0B0A09;
   --card-red: #E2866B;
   --card-ink: #F1E4C8;
@@ -386,4 +394,31 @@
 /* sign-painter lettering: the fileteado block shade, in the accent (ADR 0019) */
 @utility filete-shade {
   text-shadow: 0.05em 0.055em 0 color-mix(in srgb, var(--accent) 72%, transparent);
+}
+
+/* Hero light that follows the intro's time of day; the container carries data-time (sun, sunset, moon). */
+@utility daylight {
+  position: absolute;
+  inset: 0 0 -40% 0;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  & > span {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s var(--t-ease);
+  }
+  & > span:nth-child(1) { background: radial-gradient(38% 60% at 72% 28%, var(--dk-sun), transparent 72%); }
+  & > span:nth-child(2) {
+    background:
+      radial-gradient(46% 55% at 22% 88%, var(--dk-sunset), transparent 72%),
+      radial-gradient(30% 40% at 80% 70%, var(--dk-sunset-2), transparent 72%);
+  }
+  & > span:nth-child(3) { background: radial-gradient(36% 58% at 26% 18%, var(--dk-moon), transparent 72%); }
+  &[data-time="sun"] > span:nth-child(1),
+  &[data-time="sunset"] > span:nth-child(2),
+  &[data-time="moon"] > span:nth-child(3) { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    & > span { transition: none; }
+  }
 }
