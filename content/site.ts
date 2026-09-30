@@ -76,6 +76,11 @@ export const site = siteSchema.parse({
       {
         when: "After hours",
         icon: "sunset",
+        photo: {
+          src: "/about/patryk-wink-point.jpg",
+          cutout: "/about/patryk-wink-point-cutout.png",
+          alt: "Patryk Karolak winking and pointing at you with a grin.",
+        },
         parts: ["My lovely wife and toddler, then head of design at", {
             pill: "CoNaDzielni.pl",
             logo: "/logos/conadzielni.png",
@@ -87,6 +92,11 @@ export const site = siteSchema.parse({
       {
         when: "Night",
         icon: "moon",
+        photo: {
+          src: "/about/patryk-tango-invite.jpg",
+          cutout: "/about/patryk-tango-invite-cutout.png",
+          alt: "Patryk Karolak smiling with his arms open, inviting you to a tango.",
+        },
         parts: [
           "Bouldering, long runs, dancing and DJ-ing at",
           {
