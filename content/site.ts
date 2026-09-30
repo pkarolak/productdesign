@@ -10,7 +10,7 @@ export const site = siteSchema.parse({
     "Product designer shaping workflow, platform and 0 to 1 products. Selected work from Ledgerline and Halden.",
   hero: {
     greeting: "Hi, I'm Patryk.",
-    tagline: "Product designer.",
+    tagline: "Product designer and sport freak with gotan soul.",
     intro: [
       "I design workflow and platform products at",
       { pill: "Ledgerline", href: "/work/keel-design-system" },

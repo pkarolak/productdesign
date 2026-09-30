@@ -111,7 +111,7 @@ const introPart = z.union([z.string().min(1), z.object({ pill: z.string().min(2)
 
 export const heroSchema = z.object({
   greeting: words(5),
-  tagline: words(6),
+  tagline: words(8),
   intro: z
     .array(introPart)
     .min(1)
