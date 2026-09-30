@@ -109,7 +109,8 @@
     "playing-card",
     "type-hand",
     "filete-shade",
-    "daylight"
+    "daylight",
+    "face-tint"
   ],
   "fontVariables": [
     "--theme-font-display",

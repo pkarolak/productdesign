@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: each shuffled card has its own colour
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** In the day deck, each card now has its own suit (Day ♥, After hours ♦, Night ♠) and a wash of that time's light over the paper (amber, wine, night blue), via the new `face-tint` contract utility in both themes (ADR 0027 amended). The single card without extra photos is unchanged.
+- **Verified:** lint, typecheck, `theme:check` under both themes, build; shuffle captured in dark and light with temporary test photos, then reverted.
+
 ## 2026-10-01: more breathing room in the hero
 
 - **Agent:** Cursor agent (Claude)

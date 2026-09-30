@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion as m, useReducedMotion } from "motion/react";
 import { useState } from "react";
+import type { Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 import { Corner, DECK_ORIGIN } from "./CardHand";
@@ -10,11 +11,16 @@ import { setDaytime, useDaytime, type Daytime } from "./daytime";
 
 export type Face = { time: Daytime; when: string; src: string; alt: string };
 
-/** A face card: the P of hearts, with the photo framed on card paper between corner marks. */
-function FaceCard({ face, preload }: { face: Face; preload?: boolean }) {
+/** Each time of day is its own card in the deck: a suit and a wash of that time's light. */
+const suits: Record<Daytime, SuitName> = { sun: "heart", sunset: "diamond", moon: "spade" };
+
+/** A face card: a P with the photo framed on card paper between corner marks. `tinted` in a deck of several. */
+function FaceCard({ face, preload, tinted }: { face: Face; preload?: boolean; tinted?: boolean }) {
+  const suit = tinted ? suits[face.time] : "heart";
   return (
     <div className="playing-card absolute inset-0 overflow-hidden rounded-inset">
-      <Corner suit="heart" rank="P" />
+      {tinted && <span aria-hidden data-time={face.time} className="face-tint" />}
+      <Corner suit={suit} rank="P" />
       <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden border border-card-ink/15">
         <Image
           src={face.src}
@@ -25,7 +31,7 @@ function FaceCard({ face, preload }: { face: Face; preload?: boolean }) {
           className="object-cover object-[50%_30%] sepia-[0.14]"
         />
       </div>
-      <Corner suit="heart" rank="P" flip />
+      <Corner suit={suit} rank="P" flip />
     </div>
   );
 }
@@ -97,7 +103,7 @@ export function FaceDeck({ faces }: { faces: Face[] }) {
                   : { ...motion.spring, zIndex: { duration: 0 } }
             }
           >
-            <FaceCard face={face} preload={i === 0} />
+            <FaceCard face={face} preload={i === 0} tinted />
           </m.div>
         );
       })}

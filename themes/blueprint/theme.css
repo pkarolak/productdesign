@@ -6,6 +6,9 @@
  */
 
 :root {
+  --bp-face-sun: rgba(240, 170, 70, 0.2);
+  --bp-face-sunset: rgba(226, 110, 90, 0.18);
+  --bp-face-moon: rgba(60, 90, 200, 0.16);
   --bp-sun: rgba(240, 170, 70, 0.16);
   --bp-sunset: rgba(226, 110, 90, 0.15);
   --bp-sunset-2: rgba(240, 170, 70, 0.05);
@@ -87,6 +90,9 @@
 }
 
 [data-theme="dark"] {
+  --bp-face-sun: rgba(240, 180, 100, 0.24);
+  --bp-face-sunset: rgba(236, 110, 120, 0.28);
+  --bp-face-moon: rgba(120, 150, 255, 0.28);
   --bp-sun: rgba(240, 180, 100, 0.10);
   --bp-sunset: rgba(236, 122, 102, 0.11);
   --bp-sunset-2: rgba(240, 180, 100, 0.04);
@@ -499,4 +505,14 @@
   @media (prefers-reduced-motion: reduce) {
     & > span { transition: none; }
   }
+}
+
+/* A wash over a hero face card in its time of day's colour (data-time: sun, sunset, moon). */
+@utility face-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  &[data-time="sun"] { background: linear-gradient(160deg, var(--bp-face-sun), transparent 78%); }
+  &[data-time="sunset"] { background: linear-gradient(160deg, var(--bp-face-sunset), transparent 78%); }
+  &[data-time="moon"] { background: linear-gradient(160deg, var(--bp-face-moon), transparent 78%); }
 }
