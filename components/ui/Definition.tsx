@@ -3,7 +3,8 @@
 import { AnimatePresence, motion as m } from "motion/react";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import type { GlossaryEntry } from "@/content/schema";
+import Image from "next/image";
+import type { Company, GlossaryEntry } from "@/content/schema";
 import { motion } from "@theme/motion";
 
 const WIDTH = 340;
@@ -37,12 +38,12 @@ const watchNarrow = (l: () => void) => {
 };
 
 /**
- * A highlighted term that opens a dictionary-style card on hover, focus or tap. Only one is open at a time.
- * The card is portalled out of the heading so it never becomes part of the heading's text,
+ * A highlighted run of text that opens a small card on hover, focus or tap. Only one is open at a time.
+ * The card is portalled out of the surrounding text so it never becomes part of it,
  * stays open while the pointer is over it, and closes on Escape (WCAG 1.4.13).
  * On narrow screens it opens centred over a blurred scrim, and any tap closes it.
  */
-export function Definition({ entry, children }: { entry: GlossaryEntry; children: ReactNode }) {
+export function Bubble({ label, card, children }: { label: string; card: ReactNode; children: ReactNode }) {
   const [pos, setPos] = useState<{ left: number; top: number; above: boolean } | null>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const pointer = useRef("");
@@ -130,7 +131,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
             {open && centred && (
               <m.aside
                 key="centred"
-                aria-label="Dictionary"
+                aria-label={label}
                 onClick={close}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -147,28 +148,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
                   transition={{ duration: 0.26, ease: motion.ease }}
                   className="surface surface-deep w-full max-w-[340px] rounded-card p-5 text-left"
                 >
-            <p className="type-label">Dictionary</p>
-            <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="type-h3 text-ink">{entry.term.toLowerCase()}</span>
-              {entry.phonetic && <span className="type-small text-ink-3!">| {entry.phonetic} |</span>}
-            </p>
-            <p className="type-caption mt-1 text-ink-3!">{entry.kind}</p>
-            <ol className="mt-3 grid gap-2">
-              {entry.senses.map((s, i) => (
-                <li key={i} className="type-small grid grid-cols-[1.1rem_minmax(0,1fr)] text-ink-2!">
-                  <span aria-hidden className="text-accent tabular-nums">
-                    {i + 1}
-                  </span>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ol>
-            {entry.origin && (
-              <p className="type-caption mt-4 border-t border-hairline pt-3 text-ink-3!">
-                <span className="mr-2 font-semibold tracking-[0.08em] text-ink-2">ORIGIN</span>
-                {entry.origin}
-              </p>
-            )}
+                  {card}
                 </m.div>
               </m.aside>
             )}
@@ -198,33 +178,80 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
                 }}
                 className="surface surface-deep pointer-events-none fixed z-[70] rounded-card p-5 text-left"
               >
-                <p className="type-label">Dictionary</p>
-                <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="type-h3 text-ink">{entry.term.toLowerCase()}</span>
-                  {entry.phonetic && <span className="type-small text-ink-3!">| {entry.phonetic} |</span>}
-                </p>
-                <p className="type-caption mt-1 text-ink-3!">{entry.kind}</p>
-                <ol className="mt-3 grid gap-2">
-                  {entry.senses.map((s, i) => (
-                    <li key={i} className="type-small grid grid-cols-[1.1rem_minmax(0,1fr)] text-ink-2!">
-                      <span aria-hidden className="text-accent tabular-nums">
-                        {i + 1}
-                      </span>
-                      <span>{s}</span>
-                    </li>
-                  ))}
-                </ol>
-                {entry.origin && (
-                  <p className="type-caption mt-4 border-t border-hairline pt-3 text-ink-3!">
-                    <span className="mr-2 font-semibold tracking-[0.08em] text-ink-2">ORIGIN</span>
-                    {entry.origin}
-                  </p>
-                )}
+                {card}
               </m.div>
             )}
           </AnimatePresence>,
           document.querySelector("main") ?? document.body,
         )}
     </>
+  );
+}
+
+/** A glossary term with a dictionary-style card. */
+export function Definition({ entry, children }: { entry: GlossaryEntry; children: ReactNode }) {
+  return (
+    <Bubble
+      label="Dictionary"
+      card={
+        <>
+          <p className="type-label">Dictionary</p>
+          <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="type-h3 text-ink">{entry.term.toLowerCase()}</span>
+            {entry.phonetic && <span className="type-small text-ink-3!">| {entry.phonetic} |</span>}
+          </p>
+          <p className="type-caption mt-1 text-ink-3!">{entry.kind}</p>
+          <ol className="mt-3 grid gap-2">
+            {entry.senses.map((s, i) => (
+              <li key={i} className="type-small grid grid-cols-[1.1rem_minmax(0,1fr)] text-ink-2!">
+                <span aria-hidden className="text-accent tabular-nums">
+                  {i + 1}
+                </span>
+                <span>{s}</span>
+              </li>
+            ))}
+          </ol>
+          {entry.origin && (
+            <p className="type-caption mt-4 border-t border-hairline pt-3 text-ink-3!">
+              <span className="mr-2 font-semibold tracking-[0.08em] text-ink-2">ORIGIN</span>
+              {entry.origin}
+            </p>
+          )}
+        </>
+      }
+    >
+      {children}
+    </Bubble>
+  );
+}
+
+/** A company or product name that explains itself in a small card instead of linking away. */
+export function CompanyNote({ company, children }: { company: Company; children: ReactNode }) {
+  return (
+    <Bubble
+      label={`About ${company.pill}`}
+      card={
+        <>
+          <div className="flex items-center gap-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-inset border border-hairline bg-canvas">
+              {company.logo ? (
+                <Image src={company.logo} alt="" width={24} height={24} className="size-6 object-contain" />
+              ) : (
+                <span aria-hidden className="type-h3 text-accent">
+                  {company.pill[0]}
+                </span>
+              )}
+            </span>
+            <span className="grid">
+              <span className="type-h3 text-ink">{company.pill}</span>
+              <span className="type-caption text-ink-3!">{company.kind}</span>
+            </span>
+          </div>
+          <p className="type-small mt-3 text-ink-2!">{company.about}</p>
+        </>
+      }
+    >
+      {children}
+    </Bubble>
   );
 }

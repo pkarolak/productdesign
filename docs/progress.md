@@ -34,6 +34,15 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: company names open notes, not links
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - Miro, Egnyte, Allegro and CoNaDzielni.pl no longer link out. Each opens a small card with its logo, the kind of product and one line about it, like the reference site benshih.design ([ADR 0025](decisions/0025-company-notes.md)).
+  - `Definition` now wraps a shared `Bubble` (hover, focus, tap, one at a time, centred on phones), with `Definition` and the new `CompanyNote` as its two cards.
+  - Schema: company parts are `{ pill, logo?, kind, about }`, with no `href`.
+- **Verified:** lint, typecheck, theme:check, build; Miro and Egnyte cards at 1440 in dark and light, and a click stays on the page; CoNaDzielni.pl centred on an iPhone 13; axe over the fully scrolled page, zero violations.
+
 ## 2026-09-30: night line with milongas and empanadas
 
 - **Agent:** Cursor agent (Claude)

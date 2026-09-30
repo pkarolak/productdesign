@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { motion as m, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
-import { Definition } from "@/components/ui/Definition";
+import { CompanyNote, Definition } from "@/components/ui/Definition";
 import { Icon } from "@/components/ui/Icon";
-import { SmartLink } from "@/components/ui/SmartLink";
 import type { Hero } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
@@ -17,8 +16,8 @@ const STEP_MS = 4200;
 const leading = /^[.,;:!?)]+/;
 
 /**
- * A run of text, company links and dictionary terms. Each link is glued to the word before it, so a logo never starts a line on its
- * own, and trailing punctuation stays with the link.
+ * A run of text, company notes and dictionary terms. Each company is glued to the word before it, so a logo never
+ * starts a line on its own, and trailing punctuation stays with the term.
  */
 function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
   return parts.map((part, i) => {
@@ -49,13 +48,7 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
         {i > 0 && " "}
         <span className="whitespace-nowrap">
           {glued && `${glued} `}
-          <SmartLink
-            href={part.href}
-            className={cn(
-              "focus-ring rounded-inset underline decoration-1 underline-offset-[0.22em] transition-colors duration-(--t-hover-short) ease-slow hover:decoration-accent",
-              quiet ? "text-ink-2 decoration-ink-3/40 hover:text-ink" : "text-ink decoration-ink-3/50",
-            )}
-          >
+          <CompanyNote company={part}>
             {part.logo ? (
               <Image
                 src={part.logo}
@@ -72,8 +65,8 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
                 {part.pill[0]}
               </span>
             )}
-            {part.pill}
-          </SmartLink>
+            <span className={quiet ? "text-ink-2" : "text-ink"}>{part.pill}</span>
+          </CompanyNote>
           {trailing}
         </span>
       </span>

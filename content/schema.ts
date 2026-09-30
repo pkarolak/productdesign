@@ -116,11 +116,21 @@ const glossaryEntry = z.object({
   origin: words(20).optional(),
 });
 
-/** Plain text runs, inline company pills and dictionary terms, read as one sentence. */
+/**
+ * A company or product named in the intro. It opens a small note instead of leaving the site.
+ * `logo`: a small square mark in `public/logos/`; without it the name's first letter stands in.
+ */
+const company = z.object({
+  pill: z.string().min(2),
+  logo: z.string().startsWith("/logos/").optional(),
+  kind: words(5),
+  about: words(24),
+});
+
+/** Plain text runs, inline company notes and dictionary terms, read as one sentence. */
 const introPart = z.union([
   z.string().min(1),
-  /** `logo`: a small square mark in `public/logos/`; without it the pill shows the name's first letter. */
-  z.object({ pill: z.string().min(2), href, logo: z.string().startsWith("/logos/").optional() }),
+  company,
   glossaryEntry,
 ]);
 
@@ -324,6 +334,7 @@ export const siteSchema = z.object({
 export type Site = z.infer<typeof siteSchema>;
 export type Hero = Site["hero"];
 export type GlossaryEntry = Hero["glossary"][number];
+export type Company = z.infer<typeof company>;
 export type HandCard = Site["hand"][number];
 export type Deck = NonNullable<Site["deck"]>;
 export type HandTarget = (typeof handTargets)[number];

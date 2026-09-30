@@ -47,18 +47,38 @@ export const site = siteSchema.parse({
       {
         when: "Day",
         icon: "sun",
-        parts: ["Shaping enterprise-grade experiences at", { pill: "Miro", href: "https://miro.com", logo: "/logos/miro.png" }, ","],
+        parts: ["Shaping enterprise-grade experiences at", {
+            pill: "Miro",
+            logo: "/logos/miro.png",
+            kind: "Visual collaboration platform",
+            about: "An online canvas where teams brainstorm, plan and build together, used by millions of people at companies large and small.",
+          }, ","],
         note: [
           "before that at",
-          { pill: "Egnyte", href: "https://www.egnyte.com", logo: "/logos/egnyte.png" },
+          {
+            pill: "Egnyte",
+            logo: "/logos/egnyte.png",
+            kind: "Secure content platform",
+            about: "Cloud file sharing and governance for businesses that need their documents safe, compliant and easy to find.",
+          },
           "and",
-          { pill: "Allegro", href: "https://allegro.pl", logo: "/logos/allegro.png" },
+          {
+            pill: "Allegro",
+            logo: "/logos/allegro.png",
+            kind: "Online marketplace",
+            about: "The biggest e-commerce platform in Poland, where millions of people buy and sell almost anything every day.",
+          },
         ],
       },
       {
         when: "After hours",
         icon: "sunset",
-        parts: ["Running design at", { pill: "CoNaDzielni.pl", href: "https://conadzielni.pl", logo: "/logos/conadzielni.png" }],
+        parts: ["Running design at", {
+            pill: "CoNaDzielni.pl",
+            logo: "/logos/conadzielni.png",
+            kind: "Local events guide",
+            about: "A guide to what is happening in your city: events, places and plans nearby.",
+          }],
       },
       {
         when: "Night",
