@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: cooler card backs
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Both card backs (`public/cards/back-milonga-{light,dark}.jpg`) were still yellow from the gold filete. The gold is muted to a soft champagne (hue 37 to 70°, saturation down about 60%), the orange reds of the dress and flowers are shifted toward the card crimson, and skin tones are only lightly touched.
+- **Verified:** side-by-side of both backs and a close-up of the dancers.
+
 ## 2026-10-01: cold crimson and balanced washes
 
 - **Agent:** Cursor agent (Claude)
