@@ -246,6 +246,8 @@ export const outsideSchema = z.object({
 export const siteSchema = z.object({
   name: z.string().min(2),
   role: words(4),
+  /** A square photo of the designer, shown in the nav and beside the intro. */
+  avatar: image.optional(),
   url: z.url(),
   description: words(30),
   hero: heroSchema,

@@ -4,6 +4,7 @@ import { siteSchema } from "./schema";
 export const site = siteSchema.parse({
   name: "Patryk Karolak",
   role: "Product designer",
+  avatar: { src: "/about/patryk.jpg", alt: "Patryk Karolak in a white T-shirt against a light wall." },
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://patrykkarolak.vercel.app",
   description:
     "Product designer shaping workflow, platform and 0 to 1 products. Selected work from Ledgerline and Halden.",

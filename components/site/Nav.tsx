@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion as m, useMotionValueEvent, useScroll } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +17,7 @@ const links = [
   { href: "/about", label: "About", match: (p: string) => p === "/about" },
 ];
 
-export function Nav({ name }: { name: string }) {
+export function Nav({ name, avatar }: { name: string; avatar?: string }) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +62,14 @@ export function Nav({ name }: { name: string }) {
         style={{ viewTransitionName: "site-header" }}
         className="surface-strong fixed inset-x-0 top-(--nav-top) z-50 mx-auto flex w-max items-center gap-[30px] rounded-pill py-[6px] pr-[6px] pl-[26px] text-[15px] transition-shadow duration-(--t-hover) ease-slow data-[scrolled=true]:surface-deep"
       >
-        <Link href="/" transitionTypes={["nav-back"]} className="focus-ring type-wordmark rounded-pill text-ink">
+        <Link
+          href="/"
+          transitionTypes={["nav-back"]}
+          className={cn("focus-ring type-wordmark flex items-center gap-2.5 rounded-pill text-ink", avatar && "-ml-4")}
+        >
+          {avatar && (
+            <Image src={avatar} alt="" width={32} height={32} className="size-8 rounded-pill border border-hairline object-cover" />
+          )}
           {name}
         </Link>
         <span aria-hidden className="divider hidden h-[18px] md:block" />

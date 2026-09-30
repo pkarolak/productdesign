@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: the owner's photo in nav and hero
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** new optional `site.avatar` (square image, `public/about/patryk.jpg`). The nav shows it as a 32px circle before the name; the intro hero shows it as a tilted photo card to the right from `md` (straightens on hover) and as a 72px circle above the greeting on mobile.
+- **Verified:** lint, typecheck, theme:check, build; axe zero violations; desktop light and dark, tablet and mobile, no overflow.
+
 ## 2026-09-30: a hand of section cards
 
 - **Agent:** Cursor agent (Claude)
