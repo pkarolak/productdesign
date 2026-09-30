@@ -1,0 +1,40 @@
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CircleAlert,
+  Command,
+  Copy,
+  CornerDownLeft,
+  Lock,
+  LockOpen,
+  Menu,
+  Moon,
+  Quote,
+  Search,
+  Sun,
+  X,
+} from "lucide-react";
+import type { IconTokens } from "../contract";
+
+export const icons = {
+  set: {
+    "arrow-right": ArrowRight,
+    "arrow-up-right": ArrowUpRight,
+    sun: Sun,
+    moon: Moon,
+    lock: Lock,
+    "lock-open": LockOpen,
+    "circle-alert": CircleAlert,
+    menu: Menu,
+    x: X,
+    copy: Copy,
+    check: Check,
+    search: Search,
+    command: Command,
+    quote: Quote,
+    "corner-down-left": CornerDownLeft,
+  },
+  strokeWidth: 1.5,
+  size: { ui: 18, nav: 20 },
+} satisfies IconTokens;

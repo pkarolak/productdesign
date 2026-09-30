@@ -23,6 +23,12 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: Dusk theme (`dusk-theme`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `themes/dusk/` forked from Blueprint and rewritten: dark and light tokens, Geist, calm quick motion, a faint vignette, a flat stacked `Signature`, a layered-bar `Diagram`, `meta.defaultMode: "dark"`, view-transition CSS. `ThemeProvider` reads the default mode and wraps motion in `MotionConfig reducedMotion="user"`. Active theme switched to Dusk.
+- **Next:** `content-schema`.
+
 ## 2026-09-30: block library and Dusk, decisions and contract (`adrs-contract`)
 
 - **Agent:** Cursor agent (Claude)

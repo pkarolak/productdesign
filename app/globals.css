@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Active design language. Switch together with the `@theme/*` path in tsconfig.json (docs/theming.md). */
-@import "../themes/blueprint/theme.css";
+@import "../themes/dusk/theme.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 

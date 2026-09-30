@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@theme/*": ["./themes/blueprint/*"]
+      "@theme/*": ["./themes/dusk/*"]
     }
   },
   "include": [
