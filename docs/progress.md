@@ -23,6 +23,13 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: UX and accessibility audit
+
+- **Agent:** Cursor agent (Claude)
+- **Todo:** `qa` (audit part)
+- **Done:** audited every page in both themes and both viewports with axe-core, a keyboard trace, target sizes, a no-JS check and a component review. Findings with severity, heuristic and fix: [ux-audit.md](ux-audit.md). 6 High, 11 Medium, 7 Low.
+- **Next:** fix in the order the audit suggests (H2, H1, H3, H4 first), re-run `pnpm shots` and axe.
+
 ## 2026-09-30: v1 build with a swappable design language
 
 - **Agent:** Cursor agent (Claude)

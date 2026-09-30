@@ -14,6 +14,7 @@ Navigation hub. Each fact is defined in one place and linked from everywhere els
 - [theming.md](theming.md): changing the design language.
 - [content-guide.md](content-guide.md): writing cases within budgets, asset kinds, image specs, swapping placeholders.
 - [operations.md](operations.md): env vars, local commands, Vercel deploy, Firewall rule, rotating the password.
+- [ux-audit.md](ux-audit.md): UX, accessibility and heuristics audit of v1, with the prioritized fix list.
 
 ## Decisions
 
