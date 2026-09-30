@@ -2,7 +2,7 @@
 
 Round 4 (Milonga) was rejected for being too close to [benshih.design](https://www.benshih.design/): cream paper, a soft chunky display face, handwritten notes, pastel tiles, tilted fanned cards and the "Hi, I'm" opener. Each direction here draws its look from the designer's own world instead. The app behaviours (command menu, sheets, working player, view transitions) carry over to any pick, since they are interaction patterns, not a visual style.
 
-**Status:** proposed, awaiting a pick.
+**Status:** rejected. The analogies are right, but the looks put the hobbies ahead of the work. Replaced by [round 6](../round-6/README.md).
 
 | Direction | Source world | Image |
 | --- | --- | --- |
