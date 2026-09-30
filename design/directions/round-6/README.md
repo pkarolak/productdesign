@@ -4,7 +4,7 @@ Round 5 was rejected for putting the hobbies ahead of the work. The new brief: t
 
 **Story shape:** the hero states the premise ("Hi! I'm Patryk. I design products in the moments free from climbing and tango."). Then four scroll-driven chapters, each an analogy pinned on the left with its case evidence arriving on the right.
 
-**Status:** proposed, awaiting a pick.
+**Status:** superseded by [round 7](../round-7/README.md): the user chose the round 4 structure in a sport-app style.
 
 | Direction | Look | Hero | Chapter |
 | --- | --- | --- | --- |
