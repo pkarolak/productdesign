@@ -176,6 +176,7 @@ Each placeholder case shows a different kind of senior signal:
 7. Next case link.
 
 ### Locked case `/work/[slug]` (not unlocked yet)
+> **Updated (round 8):** a centred card with a lock character whose keyhole eyes follow the pointer, look at the password field on focus, shut while typing and shake on a wrong password (`components/case/LockFace.tsx`). "Password, please.", the case title and company, the stacked unlock form and "Ask me for one". Below the card: the bottom line (so anyone still gets it) and links to the open cases. The cover and lead metric moved off this page. The points below still hold otherwise.
 - Shows the cover, title, company, year, `bottomLine` and the single lead metric. Anyone still gets the bottom line.
 - Unlock form below: one password field with a visible label, a submit button ("Unlock"), and an inline error on a wrong password.
 - A second line: "No password? Ask me for one", then links to the open cases.

@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: locked page with a watching lock
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the locked teaser is now a centred card with `LockFace`, a lock whose keyhole eyes follow the pointer, look at the password field on focus, squint while typing, blink, and frown and shake on a wrong password (`UnlockForm` dispatches `unlock:failed`). Reduced motion: eyes jump instead of springing, no blink or shake. Colours are contract tokens only, so it works in both themes. The bottom line stays public below the card; cover and lead metric removed from this page.
+- **Verified:** lint, typecheck, theme:check, build; axe zero violations; scripted pointer tracking, wrong password, and unlock; light, dark and mobile with no overflow.
+
 ## 2026-09-30: block library built and composed (`content-schema`, `blocks`, `interactions`, `kit-page`, `compose`, `verify-docs`)
 
 - **Agent:** Cursor agent (Claude)

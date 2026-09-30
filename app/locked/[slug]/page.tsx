@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CaseHeader } from "@/components/case/CaseHeader";
+import { LockFace } from "@/components/case/LockFace";
 import { UnlockForm } from "@/components/case/UnlockForm";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
 import { Contact } from "@/components/site/Contact";
-import { Chip } from "@/components/ui/Chip";
 import { Icon } from "@/components/ui/Icon";
-import { MetricValue } from "@/components/ui/MetricsPanel";
-import { Panel } from "@/components/ui/Panel";
 import { getProject, projects, protectedSlugs } from "@/content/projects";
 import { site } from "@/content/site";
 
@@ -33,51 +30,70 @@ export async function generateMetadata({ params }: PageProps<"/locked/[slug]">):
 export default async function LockedCase({ params }: PageProps<"/locked/[slug]">) {
   const project = getProject((await params).slug);
   if (!project || project.access !== "protected") notFound();
-  const metric = project.metrics[0];
   const open = projects.filter((p) => p.access === "public");
 
   return (
     <PageTransition>
       <div>
-        <CaseHeader project={project} status={<Chip icon="lock">Password protected</Chip>}>
-          <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-8">
-            <Rise i={3} className="flex items-end gap-4 pb-8">
-              <MetricValue metric={metric} />
-              <p className="type-small pb-0.5">
-                {metric.label}
-                <span className="block">{metric.context}</span>
-              </p>
+        <section aria-labelledby="locked-title" className="container-page pt-(--nav-clear) pb-(--section-y) md:pt-36">
+          <div className="mx-auto max-w-[440px]">
+            <Rise>
+              <Link
+                href="/#work"
+                transitionTypes={["nav-back"]}
+                className="focus-ring type-small group/back inline-flex items-center gap-1.5 rounded-pill py-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+              >
+                <Icon
+                  name="arrow-right"
+                  className="size-4 rotate-180 transition-transform duration-(--t-hover-mid) ease-slow group-hover/back:-translate-x-0.5"
+                />
+                All work
+              </Link>
             </Rise>
-            <Panel rise={4} className="w-full max-w-[460px] p-7 md:p-8">
-              <p className="type-body mb-6 flex items-center gap-2.5 text-ink">
-                <span className="text-accent">
-                  <Icon name="lock" />
-                </span>
-                The full case is password protected.
+
+            <Rise i={1} className="card mt-3 rounded-card px-6 pt-10 pb-6 text-center md:px-9">
+              <LockFace className="mx-auto" />
+              <h1 id="locked-title" className="type-h2 mt-7 text-ink">
+                Password, please.
+              </h1>
+              <p className="type-small mx-auto mt-3 max-w-[34ch]">
+                <span className="text-ink">{project.title}</span> for {project.company} is shared on request.
               </p>
-              <UnlockForm slug={project.slug} />
-              <p className="type-small mt-1">
+              <div aria-hidden className="mx-auto my-7 h-px w-12 bg-hairline" />
+              <UnlockForm slug={project.slug} stacked />
+              <p className="type-small">
                 No password?{" "}
                 <a href="#contact" className="focus-ring link rounded-pill py-1">
                   Ask me for one
                 </a>
               </p>
+            </Rise>
+
+            <Rise i={2} className="mt-10 text-center">
+              <p className="type-label">
+                The short version, {project.company}, {project.year}
+              </p>
+              <p className="type-body mx-auto mt-2 max-w-[44ch] text-ink-2">{project.bottomLine}</p>
               {open.length > 0 && (
-                <p className="type-small mt-3 border-t border-hairline pt-4">
+                <p className="type-small mt-5">
                   Or read the open {open.length === 1 ? "case" : "cases"}:{" "}
                   {open.map((p, i) => (
                     <span key={p.slug}>
                       {i > 0 && ", "}
-                      <Link href={`/work/${p.slug}`} transitionTypes={["nav-forward"]} className="focus-ring link rounded-pill py-1">
+                      <Link
+                        href={`/work/${p.slug}`}
+                        transitionTypes={["nav-forward"]}
+                        className="focus-ring link rounded-pill py-1"
+                      >
                         {p.title}
                       </Link>
                     </span>
                   ))}
                 </p>
               )}
-            </Panel>
+            </Rise>
           </div>
-        </CaseHeader>
+        </section>
         <Contact site={site} />
       </div>
     </PageTransition>
