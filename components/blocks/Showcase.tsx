@@ -7,17 +7,59 @@ import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
-import type { Showcase as ShowcaseData, ShowcaseItem } from "@/content/schema";
+import { Suit, suitBg } from "@/components/ui/Suit";
+import { suits, type Showcase as ShowcaseData, type ShowcaseItem, type Suit as SuitName } from "@/content/schema";
+import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 import { BlockHeader } from "./BlockHeader";
 
-function Detail({ item, open, onClose }: { item: ShowcaseItem; open: boolean; onClose: () => void }) {
+/** The item's image, or a suit-coloured panel when it has none. */
+function Cover({
+  item,
+  suit,
+  sizes,
+  alt,
+  className,
+}: {
+  item: ShowcaseItem;
+  suit: SuitName;
+  sizes: string;
+  alt: string;
+  className?: string;
+}) {
+  if (item.image)
+    return (
+      <span className={cn("core relative block overflow-hidden", className)}>
+        <Picture
+          src={item.image.src}
+          srcDark={item.image.srcDark}
+          alt={alt}
+          sizes={sizes}
+          className="object-cover transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-[1.03]"
+        />
+      </span>
+    );
+  return (
+    <span className={cn("relative grid place-items-center overflow-hidden text-suit-ink", suitBg[suit], className)}>
+      <Suit
+        suit={suit}
+        className="size-[34%] opacity-25 transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-110 group-hover/sc:rotate-12"
+      />
+    </span>
+  );
+}
+
+function Detail({ item, suit, open, onClose }: { item: ShowcaseItem; suit: SuitName; open: boolean; onClose: () => void }) {
   const titleId = `showcase-${item.id}-title`;
   return (
     <Modal open={open} onClose={onClose} labelledBy={titleId} layoutId={`showcase-${item.id}`}>
-      <div className="core relative aspect-[16/10] overflow-hidden">
-        <Picture src={item.image.src} srcDark={item.image.srcDark} alt={item.image.alt} sizes="560px" className="object-cover" />
-      </div>
+      <Cover
+        item={item}
+        suit={suit}
+        sizes="560px"
+        alt={item.image?.alt ?? ""}
+        className={item.image ? "aspect-[16/10]" : "aspect-[16/6]"}
+      />
       <div className="p-6 md:p-7">
         <p className="type-label">{item.kicker}</p>
         <h3 id={titleId} className="type-h3 mt-2 text-ink">
@@ -40,15 +82,27 @@ function Detail({ item, open, onClose }: { item: ShowcaseItem; open: boolean; on
 }
 
 /** Small cards that expand into a sheet. Renders nothing while there are no items. */
-export function Showcase({ showcase }: { showcase?: ShowcaseData }) {
+export function Showcase({
+  showcase,
+  id = "showcase",
+  suit,
+}: {
+  showcase?: ShowcaseData;
+  id?: string;
+  /** Heading suit; cards without an image cycle through all suits starting here. */
+  suit?: SuitName;
+}) {
   const [open, setOpen] = useState(false);
   const [shownId, setShownId] = useState<string | null>(null);
   if (!showcase?.items.length) return null;
-  const shown = showcase.items.find((i) => i.id === shownId);
+  const start = suit ? suits.indexOf(suit) : 0;
+  const suitOf = (i: number) => suits[(start + i) % suits.length];
+  const shownIndex = showcase.items.findIndex((i) => i.id === shownId);
+  const shown = showcase.items[shownIndex];
 
   return (
-    <section id="showcase" aria-labelledby="showcase-title" className="container-page section-y">
-      <BlockHeader id="showcase-title" title={showcase.title} note={showcase.note} />
+    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
+      <BlockHeader id={`${id}-title`} title={showcase.title} note={showcase.note} suit={suit} />
       <ul className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
         {showcase.items.map((item, i) => (
           <Rise as="li" key={item.id} i={i}>
@@ -67,15 +121,13 @@ export function Showcase({ showcase }: { showcase?: ShowcaseData }) {
                 aria-haspopup="dialog"
                 className="focus-ring press group/sc flex h-full w-full cursor-pointer flex-col text-left"
               >
-                <span className="core relative block aspect-[16/10] overflow-hidden">
-                  <Picture
-                    src={item.image.src}
-                    srcDark={item.image.srcDark}
-                    alt=""
-                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-[1.03]"
-                  />
-                </span>
+                <Cover
+                  item={item}
+                  suit={suitOf(i)}
+                  alt=""
+                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                  className="aspect-[16/10]"
+                />
                 <span className="flex flex-1 flex-col p-5">
                   <span className="type-label">{item.kicker}</span>
                   <span className="type-h3 mt-1.5 text-ink">{item.title}</span>
@@ -90,7 +142,7 @@ export function Showcase({ showcase }: { showcase?: ShowcaseData }) {
           </Rise>
         ))}
       </ul>
-      {shown && <Detail key={shown.id} item={shown} open={open} onClose={() => setOpen(false)} />}
+      {shown && <Detail key={shown.id} item={shown} suit={suitOf(shownIndex)} open={open} onClose={() => setOpen(false)} />}
     </section>
   );
 }

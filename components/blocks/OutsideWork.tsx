@@ -1,15 +1,15 @@
 import { Rise } from "@/components/motion/Rise";
-import type { Outside } from "@/content/schema";
+import type { Outside, Suit } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
 
 /** A few lines about life outside work. Renders nothing while empty. */
-export function OutsideWork({ outside }: { outside?: Outside }) {
+export function OutsideWork({ outside, id = "outside", suit }: { outside?: Outside; id?: string; suit?: Suit }) {
   if (!outside?.items.length) return null;
   const { items } = outside;
   return (
-    <section id="outside" aria-labelledby="outside-title" className="container-page section-y">
-      <BlockHeader id="outside-title" title={outside.title} note={outside.note} />
+    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
+      <BlockHeader id={`${id}-title`} title={outside.title} note={outside.note} suit={suit} />
       <ul className={cn("grid gap-3 md:gap-4", items.length > 1 && "md:grid-cols-2", items.length === 3 && "lg:grid-cols-3")}>
         {items.map((o, i) => (
           <Rise as="li" key={o.title} i={i} className="card rounded-card p-6 md:p-7">

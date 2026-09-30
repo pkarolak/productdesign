@@ -79,7 +79,7 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
   - Read `DESIGN.md` before any UI work.
  - Fidelity targets per theme: Dusk follows `design/directions/round-8/`; Blueprint follows `design/preview/blueprint.html` (its tokens, glass, dots, orbs and motion verbatim).
  - Run the `DESIGN.md` checklist and the `pnpm shots` comparison before marking any UI todo done.
- - One accent and one radius system per theme (Dusk: pale amber; Blueprint: Cobalt). Use only theme tokens, no free colors.
+ - One accent and one radius system per theme (Dusk: pale amber; Blueprint: Cobalt). Use only theme tokens, no free colors. The suit colours (`suit-1` to `suit-5`) are only for card fills and section suit glyphs (ADR 0012), never text accents or buttons.
  - Every component must work in both light and dark modes, and under both themes.
  - Fonts per theme: Dusk uses Geist; Blueprint uses Sora and Lato (ADR 0011). Never Inter, never a serif, mono or handwritten font.
  - Page sections are blocks in `components/blocks/` (ADR 0010). A block with no content renders nothing; review blocks on `/kit`.

@@ -34,6 +34,14 @@
   --r-phone: 32px;
   --r-card: 28px;
   --r-sheet: 32px;
+
+  /* card suits: playful tiles only, never text accents or buttons (ADR 0012); same in light and dark */
+  --suit-1: #FF9E80;
+  --suit-2: #7FA6FF;
+  --suit-3: #FFD27A;
+  --suit-4: #7FDDC0;
+  --suit-5: #C3A8FF;
+  --suit-ink: #0B1030;
   --frame-pad: 8px;
 
   /* contract: motion (CSS side; the JS side is motion.ts) */

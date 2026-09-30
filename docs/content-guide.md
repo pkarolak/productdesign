@@ -4,7 +4,7 @@ Everything a visitor reads lives in `content/`. The build validates it against [
 
 ## Files
 
-- `content/site.ts`: name, the content of every block (hero, doors, statement, work intro, showcase, writing, testimonials, letter, About story, education, journey, values, outside of work), links, contact copy, footnote.
+- `content/site.ts`: name, the content of every block (hero, hand, statement, work intro, showcase (side projects), teaching, writing, testimonials, letter, About story, education, journey, values, outside of work), links, contact copy, footnote.
 - `content/kit.ts`: fixtures for `/kit`, the live content plus the blocks the site leaves empty. Only `/kit` reads it.
 - `content/projects/<slug>.ts`: one file per case.
 - `content/projects/index.ts`: the order. The work timeline groups cases by `year`, newest first.
@@ -18,9 +18,10 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | Field | Budget | Write it as |
 | --- | --- | --- |
 | `hero` | greeting 5, tagline 6, intro 32 words, headline 12 | `intro` mixes plain text and `{ pill, href }` company pills, read as one sentence. Spaces are added between parts, except before punctuation. `headline` is for metadata and OG images. |
-| `doors` | up to 3, title 10 words | Each points at `work`, `showcase`, `writing`, `about` or `contact`. |
+| `hand` | up to 5 cards, title 3, text 8 words | Each has a `suit` (`heart`, `spade`, `diamond`, `club`, `star`) and a `target` (`about`, `work`, `showcase`, `teaching`, `outside`, `writing`, `contact`). The target block's heading wears the same suit. |
 | `statement` | 1 to 2 lines of 8 words, text 32 | The second line renders in Ink 2. |
-| `showcase` | up to 6 items, text 14, detail 60 | Cards that open a sheet. Images are public. |
+| `showcase` | up to 6 items, text 14, detail 60 | Cards that open a sheet. `image` is optional; without one the card shows a suit colour. Images are public. |
+| `teaching` | up to 3, text 30, 4 topics of 4 words | Place, role, years, what you taught. |
 | `writing` | up to 6, title 12 | `date` as `YYYY-MM` or `YYYY-MM-DD`, `href` a full URL. |
 | `testimonials` | up to 4, quote 45 words | Real people only on a real site. |
 | `letter` | 1 to 3 paragraphs of 34 words | Closes Home and carries the contact actions. |

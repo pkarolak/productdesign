@@ -9,6 +9,7 @@ Subtle dark, calm, crisp. Dark is the default; light stays on the toggle ([ADR 0
 - **Color, dark:** canvas `#0F1012`, card `#16181B` (raised `#1B1D21`), hairline `rgba(255,255,255,.07)`, Ink `#ECEDEE`, Ink 2 `#A6A9AF`, Ink 3 `#858990`, accent pale amber `#E8B270` on `#1A1206` accent ink.
 - **Color, light:** canvas `#F6F6F5`, card `#FFFFFF`, hairline `rgba(17,18,20,.08)`, Ink `#111214`, Ink 2 `#55585E`, Ink 3 `#6A6D73`, accent `#9A5B12` on white accent ink.
 - **One accent.** Amber marks the primary action, links on hover, the active dot and focus. Never on large fills beyond buttons.
+- **Suits (ADR 0012).** Pastel coral, sky, amber, mint and lilac (`suit-1` to `suit-5`) with dark `suit-ink`, the same in both modes. Only on the card hand, image-less showcase cards and the small glyph beside a section heading.
 - **Type:** Geist only. Display 600 `clamp(2.5rem, 5vw, 3.75rem)`, tracking `-0.035em`, the `<em>` part in Ink 2 on its own line. H2 600 `clamp(1.75rem, 3vw, 2.25rem)`. H3 500 `1.125rem`. Body 400 `1rem` at 1.65. Small `0.875rem` Ink 2. Labels in sentence case, `0.8125rem`, Ink 3. Tabular numbers for dates and metrics. Banned: Inter, serif, mono, handwriting, all caps headings.
 - **Shape:** cards 16px, sheets 20px, frames 20px with a 6px inset, pills fully round, inline company pills 8px.
 - **Surfaces:** flat cards with a 1px hairline and a soft low shadow; no glass on content. The nav and sheets are near-opaque with a light blur so text stays legible over media. The only atmosphere is a faint top vignette.

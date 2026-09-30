@@ -1,12 +1,14 @@
 import { Contact } from "@/components/site/Contact";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
-import { visibleDoors } from "@/lib/blocks";
-import { DoorCards } from "./DoorCards";
+import { suitFor, visibleCards } from "@/lib/blocks";
+import { CardHand } from "./CardHand";
 import { IntroHero } from "./IntroHero";
 import { LetterCard } from "./LetterCard";
+import { OutsideWork } from "./OutsideWork";
 import { Showcase } from "./Showcase";
 import { Statement } from "./Statement";
+import { Teaching } from "./Teaching";
 import { Testimonials } from "./Testimonials";
 import { WorkTimeline } from "./WorkTimeline";
 import { WritingList } from "./WritingList";
@@ -16,10 +18,12 @@ export function HomeBlocks({ content }: { content: Site }) {
   return (
     <>
       <IntroHero hero={content.hero} />
-      <DoorCards doors={visibleDoors(content, projects.length > 0)} />
+      <CardHand cards={visibleCards(content, projects.length > 0)} />
       <Statement statement={content.statement} />
-      <WorkTimeline intro={content.work} projects={projects} />
-      <Showcase showcase={content.showcase} />
+      <WorkTimeline intro={content.work} projects={projects} suit={suitFor(content, "work")} />
+      <Showcase showcase={content.showcase} id="side-projects" suit={suitFor(content, "showcase")} />
+      <Teaching teaching={content.teaching} suit={suitFor(content, "teaching")} />
+      <OutsideWork outside={content.outside} id="my-world" suit={suitFor(content, "outside")} />
       <WritingList writing={content.writing} />
       <Testimonials testimonials={content.testimonials} />
       {content.letter ? (

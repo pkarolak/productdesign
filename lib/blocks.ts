@@ -1,13 +1,19 @@
-import type { Door, DoorTarget, Site } from "@/content/schema";
+import type { HandCard, HandTarget, Site, Suit } from "@/content/schema";
 
-/** Doors whose target block has content; a door into an empty block would lead nowhere. */
-export function visibleDoors(site: Site, hasWork: boolean): Door[] {
-  const filled: Record<DoorTarget, boolean> = {
+/** Cards whose target block has content; a card into an empty block would lead nowhere. */
+export function visibleCards(site: Site, hasWork: boolean): HandCard[] {
+  const filled: Record<HandTarget, boolean> = {
+    about: true,
     work: hasWork,
     showcase: !!site.showcase?.items.length,
+    teaching: !!site.teaching?.items.length,
+    outside: !!site.outside?.items.length,
     writing: !!site.writing?.items.length,
-    about: true,
     contact: true,
   };
-  return site.doors.filter((d) => filled[d.target]);
+  return site.hand.filter((c) => filled[c.target]);
 }
+
+/** The suit of the card pointing at a block, so the block's heading can wear it. */
+export const suitFor = (site: Site, target: HandTarget): Suit | undefined =>
+  site.hand.find((c) => c.target === target)?.suit;

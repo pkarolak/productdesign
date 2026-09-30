@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { DoorCards } from "@/components/blocks/DoorCards";
+import { CardHand } from "@/components/blocks/CardHand";
 import { Education } from "@/components/blocks/Education";
 import { IntroHero } from "@/components/blocks/IntroHero";
 import { Journey } from "@/components/blocks/Journey";
@@ -8,6 +8,7 @@ import { LetterCard } from "@/components/blocks/LetterCard";
 import { OutsideWork } from "@/components/blocks/OutsideWork";
 import { Showcase } from "@/components/blocks/Showcase";
 import { Statement } from "@/components/blocks/Statement";
+import { Teaching } from "@/components/blocks/Teaching";
 import { StoryHeader } from "@/components/blocks/StoryHeader";
 import { Testimonials } from "@/components/blocks/Testimonials";
 import { Values } from "@/components/blocks/Values";
@@ -18,7 +19,8 @@ import { PageTransition } from "@/components/motion/PageTransition";
 import { Contact } from "@/components/site/Contact";
 import { kit } from "@/content/kit";
 import { projects } from "@/content/projects";
-import { visibleDoors } from "@/lib/blocks";
+import { site } from "@/content/site";
+import { suitFor, visibleCards } from "@/lib/blocks";
 
 export const metadata: Metadata = {
   title: "Block library",
@@ -60,19 +62,25 @@ export default function Kit() {
         <Specimen name="IntroHero" note="Home opener with inline pills">
           <IntroHero hero={kit.hero} />
         </Specimen>
-        <Specimen name="DoorCards" note="Only doors whose target has content">
+        <Specimen name="CardHand" note="Fanned on wide screens, a swipe row on narrow ones">
           <div className="pb-(--section-y)">
-            <DoorCards doors={visibleDoors(kit, projects.length > 0)} />
+            <CardHand cards={visibleCards(kit, projects.length > 0)} />
           </div>
         </Specimen>
         <Specimen name="Statement">
           <Statement statement={kit.statement} />
         </Specimen>
         <Specimen name="WorkTimeline" note="Cases by year, cover morphs into the case">
-          <WorkTimeline intro={kit.work} projects={projects} />
+          <WorkTimeline intro={kit.work} projects={projects} suit={suitFor(kit, "work")} />
         </Specimen>
-        <Specimen name="Showcase" note="Cards that expand into a sheet">
-          <Showcase showcase={kit.showcase} />
+        <Specimen name="Showcase" note="Cards that expand into a sheet, with images">
+          <Showcase showcase={kit.showcase} suit={suitFor(kit, "showcase")} />
+        </Specimen>
+        <Specimen name="Showcase" note="Without images, cards wear the suits">
+          <Showcase showcase={site.showcase} id="side-projects" suit={suitFor(kit, "showcase")} />
+        </Specimen>
+        <Specimen name="Teaching">
+          <Teaching teaching={kit.teaching} suit={suitFor(kit, "teaching")} />
         </Specimen>
         <Specimen name="WritingList">
           <WritingList writing={kit.writing} />
@@ -95,7 +103,7 @@ export default function Kit() {
           <Values values={kit.values} projects={projects} />
         </Specimen>
         <Specimen name="OutsideWork">
-          <OutsideWork outside={kit.outside} />
+          <OutsideWork outside={kit.outside} suit={suitFor(kit, "outside")} />
         </Specimen>
         <Specimen name="Contact" note="Used where there is no letter">
           <Contact site={kit} />

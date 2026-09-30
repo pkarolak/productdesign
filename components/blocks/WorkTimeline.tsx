@@ -4,7 +4,7 @@ import { Picture } from "@/components/media/Picture";
 import { CoverMorph } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
 import { Icon } from "@/components/ui/Icon";
-import type { Project, WorkIntro } from "@/content/schema";
+import type { Project, Suit, WorkIntro } from "@/content/schema";
 import { BlockHeader } from "./BlockHeader";
 
 const counts = ["None", "One", "Two", "Three", "All four", "All five", "All six"];
@@ -60,7 +60,7 @@ function Row({ project, i }: { project: Project; i: number }) {
 }
 
 /** Cases grouped by year, newest first, each row opening the case with a cover morph. */
-export function WorkTimeline({ intro, projects }: { intro: WorkIntro; projects: Project[] }) {
+export function WorkTimeline({ intro, projects, suit }: { intro: WorkIntro; projects: Project[]; suit?: Suit }) {
   if (!projects.length) return null;
   const years = [...new Set(projects.map((p) => p.year))].sort((a, b) => b - a);
   const locked = projects.filter((p) => p.access === "protected").length;
@@ -69,6 +69,7 @@ export function WorkTimeline({ intro, projects }: { intro: WorkIntro; projects: 
       <BlockHeader
         id="work-title"
         title={intro.title}
+        suit={suit}
         note={
           <>
             {intro.note}

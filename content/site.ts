@@ -19,28 +19,12 @@ export const site = siteSchema.parse({
     ],
     headline: "I design the *systems* product teams build on.",
   },
-  doors: [
-    {
-      label: "Recent work",
-      title: "Four product stories, readable in half a minute.",
-      cta: "See the work",
-      href: "#work",
-      target: "work",
-    },
-    {
-      label: "Side things",
-      title: "What I make when nobody asked for it.",
-      cta: "Take a look",
-      href: "#showcase",
-      target: "showcase",
-    },
-    {
-      label: "About",
-      title: "How I work and what I value.",
-      cta: "Meet me",
-      href: "/about",
-      target: "about",
-    },
+  hand: [
+    { title: "Hi!", text: "Who I am and how I work.", href: "/about", target: "about", suit: "heart" },
+    { title: "Core work", text: "The biggest tools I shaped.", href: "#work", target: "work", suit: "spade" },
+    { title: "Side projects", text: "Tinier gigs, quick and fun.", href: "#side-projects", target: "showcase", suit: "diamond" },
+    { title: "Teaching", text: "Years as an academic tutor.", href: "#teaching", target: "teaching", suit: "club" },
+    { title: "My world", text: "Climbing, tango and the records.", href: "#my-world", target: "outside", suit: "star" },
   ],
   statement: {
     label: "A bit about me",
@@ -49,8 +33,58 @@ export const site = siteSchema.parse({
     cta: { label: "More about me", href: "/about" },
   },
   work: {
-    title: "Some recent work",
-    note: "Four cases, each readable in half a minute.",
+    title: "Core work",
+    note: "The biggest tools I shaped. Each reads in thirty seconds.",
+  },
+  showcase: {
+    title: "Side projects",
+    note: "Tinier gigs for friends, festivals and hackathons. Tap one for the story.",
+    items: [
+      {
+        id: "crux-booking",
+        kicker: "Freelance, 2024",
+        title: "Crux wall booking",
+        text: "Slot booking for a bouldering gym that replaced a paper list at the desk.",
+        detail:
+          "Two weekends, one owner and a very full Tuesday night. Members book a slot on their phone, staff see the wall fill up on a tablet, and the paper list retired. No-shows dropped once reminders went out an hour before.",
+      },
+      {
+        id: "festival-signs",
+        kicker: "Pro bono, 2023",
+        title: "Festival wayfinding",
+        text: "Signs, schedule and a tiny web app for a three-day tango festival.",
+        detail:
+          "Three venues, forty workshops and guests from twelve countries. I drew one schedule grid and reused it on posters, lanyards and a phone page, so people stopped asking where the next class was.",
+      },
+      {
+        id: "tram-alerts",
+        kicker: "Hackathon, 2022",
+        title: "Tram delay alerts",
+        text: "A weekend prototype that warns riders before they reach the stop.",
+        detail:
+          "Built with two engineers in forty-eight hours on open city data. It pinged riders when their usual tram ran late, with a walking alternative. We took second place and a lot of feedback from commuters.",
+      },
+    ],
+  },
+  teaching: {
+    title: "Teaching",
+    note: "Before and alongside product work, I taught interaction design to students.",
+    items: [
+      {
+        place: "Vistula School of Interaction",
+        role: "Academic tutor",
+        years: "2014 to 2017",
+        text: "Ran the second-year interaction design studio: weekly critiques, usability testing labs and final juries for about thirty students a year.",
+        topics: ["Interaction design studio", "Usability testing", "Critique"],
+      },
+      {
+        place: "Northgate Academy of Arts",
+        role: "Guest lecturer",
+        years: "2018 to 2020",
+        text: "A yearly workshop on designing with numbers: how to frame a design problem in hours, risk and money.",
+        topics: ["Design metrics", "Portfolio reviews"],
+      },
+    ],
   },
   testimonials: {
     title: "What it is like to work with me",
@@ -170,15 +204,20 @@ export const site = siteSchema.parse({
     ],
   },
   outside: {
-    title: "Outside of work",
+    title: "My world",
+    note: "What fills the hours away from the screen.",
     items: [
       {
-        title: "I restore old film cameras.",
-        text: "Taking a shutter apart teaches patience and respect for mechanisms somebody designed decades ago. Most of them still work better than expected.",
+        title: "I climb, mostly boulders.",
+        text: "Bouldering is problem solving with your whole body. You read the route, commit, fall, adjust and try again. It is the most honest usability test I know.",
       },
       {
-        title: "I cycle too far.",
-        text: "Long rides are where I untangle problems. The best ideas tend to arrive around kilometre eighty, usually far from a notebook.",
+        title: "I dance Argentine tango.",
+        text: "Tango is improvised and led in the moment, with constant small signals between two people. It taught me more about listening than any workshop.",
+      },
+      {
+        title: "I DJ at milongas.",
+        text: "Reading a room and changing the plan when the floor goes quiet. Picking the next track feels a lot like picking the next thing to ship.",
       },
     ],
   },

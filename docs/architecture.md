@@ -15,8 +15,8 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 
 | Route | Rendering | Notes |
 | --- | --- | --- |
-| `/` | static | Blocks: intro hero, doors, statement, work timeline, showcase, writing, testimonials, letter. |
-| `/about` | static | Blocks: story with education, journey, values, outside of work, contact. |
+| `/` | static | Blocks: intro hero, card hand, statement, core work, side projects, teaching, my world, writing, testimonials, letter. |
+| `/about` | static | Blocks: story with education, journey, values, contact. |
 | `/kit` | static, `noindex` | Every block and primitive, filled from `content/kit.ts`. Not linked and not in the sitemap. |
 | `/work/[slug]` | static (SSG) | Full case. For protected cases the proxy serves `/locked/[slug]` instead until unlocked. |
 | `/locked/[slug]` | static (SSG), protected slugs only | Public teaser: title, bottom line, lead metric, cover, unlock form. |
@@ -40,7 +40,7 @@ flowchart LR
 
 ## Components
 
-- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides doors whose target is empty.
+- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides cards whose target is empty and gives each block its card's suit. `CardHand` fans the section cards on wide screens ([ADR 0012](decisions/0012-card-hand-and-suits.md)).
 - `components/ui/`: primitives. `SmartLink` (anchor, external or app route with a transition type), `ArrowLink`, `Modal` (native `<dialog>`, sheet or palette placement, optional `layoutId` morph), `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
 - `components/motion/Rise.tsx`: the entry reveal, timings from `@theme/motion`. Clears its filter on completion so it never becomes a backdrop root.
 - `components/media/`: `Asset` renders any content asset by `kind`, `Picture` (light and dark sources, unoptimized for protected media), `Compare`, `Video`.

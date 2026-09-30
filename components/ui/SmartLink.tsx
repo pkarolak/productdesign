@@ -12,6 +12,8 @@ export function SmartLink({
   children,
   transition,
   onClick,
+  onFocus,
+  onBlur,
   "aria-label": ariaLabel,
 }: {
   href: string;
@@ -19,6 +21,8 @@ export function SmartLink({
   children: ReactNode;
   transition?: TransitionType;
   onClick?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   "aria-label"?: string;
 }) {
   if (href.startsWith("#") || external(href)) {
@@ -28,6 +32,8 @@ export function SmartLink({
         href={href}
         className={className}
         onClick={onClick}
+        onFocus={onFocus}
+        onBlur={onBlur}
         aria-label={ariaLabel}
         {...(newTab ? { target: "_blank", rel: "noreferrer" } : {})}
       >
@@ -40,6 +46,8 @@ export function SmartLink({
       href={href}
       className={className}
       onClick={onClick}
+      onFocus={onFocus}
+      onBlur={onBlur}
       aria-label={ariaLabel}
       transitionTypes={transition ? [transition] : undefined}
     >

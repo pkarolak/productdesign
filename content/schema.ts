@@ -124,11 +124,14 @@ export const heroSchema = z.object({
   cta: cta.optional(),
 });
 
-export const doorTargets = ["work", "showcase", "writing", "about", "contact"] as const;
+export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
 
-export const doorsSchema = z
-  .array(z.object({ label: words(3), title: words(10), cta: words(4), href, target: z.enum(doorTargets) }))
-  .max(3);
+/** Card suits; each theme colours them with --suit-1 to --suit-5. */
+export const suits = ["heart", "spade", "diamond", "club", "star"] as const;
+
+export const handSchema = z
+  .array(z.object({ title: words(3), text: words(8), href, target: z.enum(handTargets), suit: z.enum(suits) }))
+  .max(5);
 
 export const statementSchema = z.object({
   label: words(5),
@@ -149,7 +152,8 @@ export const showcaseSchema = z.object({
         kicker: words(4),
         title: words(5),
         text: words(14),
-        image,
+        /** Without an image the card shows its suit colour instead. */
+        image: image.optional(),
         detail: words(60),
         link: cta.optional(),
       }),
@@ -183,6 +187,22 @@ export const letterSchema = z.object({
   salutation: words(5),
   paragraphs: z.array(words(34)).min(1).max(3),
   signoff: words(4),
+});
+
+export const teachingSchema = z.object({
+  title: words(5),
+  note: words(20).optional(),
+  items: z
+    .array(
+      z.object({
+        place: z.string().min(3),
+        role: words(5),
+        years: z.string().min(4),
+        text: words(30),
+        topics: z.array(words(4)).max(4).default([]),
+      }),
+    )
+    .max(3),
 });
 
 export const educationSchema = z
@@ -229,13 +249,14 @@ export const siteSchema = z.object({
   url: z.url(),
   description: words(30),
   hero: heroSchema,
-  doors: doorsSchema.default([]),
+  hand: handSchema.default([]),
   statement: statementSchema.optional(),
   work: workIntroSchema,
   showcase: showcaseSchema.optional(),
   writing: writingSchema.optional(),
   testimonials: testimonialsSchema.optional(),
   letter: letterSchema.optional(),
+  teaching: teachingSchema.optional(),
   about: z.object({
     headline: words(12),
     story: z.array(words(70)).min(1).max(3),
@@ -256,8 +277,9 @@ export const siteSchema = z.object({
 
 export type Site = z.infer<typeof siteSchema>;
 export type Hero = Site["hero"];
-export type Door = Site["doors"][number];
-export type DoorTarget = (typeof doorTargets)[number];
+export type HandCard = Site["hand"][number];
+export type HandTarget = (typeof handTargets)[number];
+export type Suit = (typeof suits)[number];
 export type Statement = z.infer<typeof statementSchema>;
 export type WorkIntro = z.infer<typeof workIntroSchema>;
 export type Showcase = z.infer<typeof showcaseSchema>;
@@ -265,6 +287,7 @@ export type ShowcaseItem = Showcase["items"][number];
 export type Writing = z.infer<typeof writingSchema>;
 export type Testimonials = z.infer<typeof testimonialsSchema>;
 export type Letter = z.infer<typeof letterSchema>;
+export type Teaching = z.infer<typeof teachingSchema>;
 export type Education = z.infer<typeof educationSchema>;
 export type Journey = z.infer<typeof journeySchema>;
 export type Values = z.infer<typeof valuesSchema>;

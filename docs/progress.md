@@ -34,6 +34,13 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: a hand of section cards
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the door tiles became `CardHand`, five playing cards (Hi!, Core work, Side projects, Teaching, My world) fanned like a hand from `lg`, with lift and spread on hover or focus, and a swipe row on narrow screens. New suit tokens `--suit-1` to `--suit-5` and `--suit-ink` in the contract, Dusk and Blueprint ([ADR 0012](decisions/0012-card-hand-and-suits.md)). Home gains Side projects (showcase, image optional, suit panels), a new Teaching block and My world (moved from About, with climbing, tango and DJing). Section headings wear their card's suit. Command menu lists the new sections.
+- **Verified:** lint, typecheck, theme:check, build; axe zero violations; hover spread, 1024px fit, mobile swipe row, no overflow, light and dark.
+- **Next:** real side projects and teaching details from the owner; running did not fit My world's three items.
+
 ## 2026-09-30: nav tools moved to the corner
 
 - **Agent:** Cursor agent (Claude)
