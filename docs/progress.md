@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: colder card paper in light mode
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** In light mode the playing cards were too yellow. The paper is now a cool off-white (`--card-face` Dusk `#F0F2F5`, Blueprint `#EEF1F7`, was cream). Dusk's card edge, grain and shadow went from warm brown to slate, and the light face-card washes for Day and After hours are softer. The light card back (`public/cards/back-milonga-light.jpg`) is white-balanced to the new paper. Dark mode is unchanged.
+- **Verified:** `theme:check`, build, the light home hero at 1440 × 900.
+
 ## 2026-10-01: rounded photo on the face card
 
 - **Agent:** Cursor agent (Claude)

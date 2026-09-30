@@ -5,9 +5,9 @@
  */
 
 :root {
-  --dk-face-sun: rgba(214, 150, 60, 0.22);
-  --dk-face-sunset: rgba(206, 104, 72, 0.2);
-  --dk-face-moon: rgba(86, 108, 168, 0.18);
+  --dk-face-sun: rgba(214, 150, 60, 0.12);
+  --dk-face-sunset: rgba(206, 104, 96, 0.13);
+  --dk-face-moon: rgba(86, 108, 168, 0.16);
   --dk-sun: rgba(214, 150, 60, 0.18);
   --dk-sunset: rgba(206, 104, 72, 0.17);
   --dk-sunset-2: rgba(214, 150, 60, 0.09);
@@ -43,13 +43,13 @@
   --r-sheet: 20px;
 
   /* playing cards: paper, one red and one ink; the deck turns dark with the page (ADR 0015, 0018) */
-  --card-face: #F6EEDC;
+  --card-face: #F0F2F5;
   --card-red: #A8452F;
   --card-ink: #1C1A17;
-  --pc-edge: rgba(28, 22, 14, 0.16);
-  --pc-grain: rgba(28, 22, 14, 0.018);
+  --pc-edge: rgba(22, 28, 40, 0.14);
+  --pc-grain: rgba(22, 28, 40, 0.02);
   --pc-shine: rgba(255, 255, 255, 0.75);
-  --pc-drop: 0 1px 2px rgba(28, 22, 14, 0.22), 0 14px 30px -12px rgba(28, 22, 14, 0.45);
+  --pc-drop: 0 1px 2px rgba(22, 28, 40, 0.2), 0 14px 30px -12px rgba(22, 28, 40, 0.4);
   --frame-pad: 6px;
 
   /* contract: motion (CSS side; the JS side is motion.ts) */

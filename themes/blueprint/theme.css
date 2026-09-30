@@ -6,8 +6,8 @@
  */
 
 :root {
-  --bp-face-sun: rgba(240, 170, 70, 0.2);
-  --bp-face-sunset: rgba(226, 110, 90, 0.18);
+  --bp-face-sun: rgba(240, 170, 70, 0.12);
+  --bp-face-sunset: rgba(226, 110, 110, 0.12);
   --bp-face-moon: rgba(60, 90, 200, 0.16);
   --bp-sun: rgba(240, 170, 70, 0.16);
   --bp-sunset: rgba(226, 110, 90, 0.15);
@@ -44,7 +44,7 @@
   --r-sheet: 32px;
 
   /* playing cards: paper, one red and one ink; the deck turns dark with the page (ADR 0015, 0018) */
-  --card-face: #F7F0DF;
+  --card-face: #EEF1F7;
   --card-red: #B8413C;
   --card-ink: #0B1030;
   --pc-edge: rgba(11, 16, 48, 0.16);
