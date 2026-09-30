@@ -26,6 +26,8 @@ export interface MotionTokens {
   press: { scale: number };
   /** Opening and closing of sheets and the command menu. */
   sheet: { type: "spring"; stiffness: number; damping: number; mass: number };
+  /** The card hand spreading out of a stack: spring, pause before the spread and delay between cards, in seconds. */
+  deal: { type: "spring"; stiffness: number; damping: number; mass: number; hold: number; stagger: number };
 }
 
 export const iconNames = [

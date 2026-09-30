@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: the hand deals out of a stack
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** when the hand scrolls into view the cards land as one loose pile (a hair off square each), hold for a beat, then spread left to right into the fan on desktop, or out of the first card's spot into the swipe row on mobile, as if swept across a table. Positions are measured, so it works at any width. Hover lift starts once the deal settles. The handwritten caption fades in and the arrow draws after the last card lands. New motion token `deal` in the contract, Dusk and Blueprint. Reduced motion shows the fan at once.
+- **Verified:** lint, typecheck, theme:check, build; filmstrips of the deal on desktop and mobile; hover after the deal; reduced motion; axe zero violations; no overflow at 1440, 1024 and mobile.
+
 ## 2026-09-30: a handwritten caption under the hand
 
 - **Agent:** Cursor agent (Claude)

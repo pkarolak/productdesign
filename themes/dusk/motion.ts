@@ -8,4 +8,5 @@ export const motion = {
   menu: { duration: 0.5, stagger: 0.05 },
   press: { scale: 0.97 },
   sheet: { type: "spring", stiffness: 380, damping: 36, mass: 1 },
+  deal: { type: "spring", stiffness: 140, damping: 20, mass: 1, hold: 0.6, stagger: 0.07 },
 } satisfies MotionTokens;
