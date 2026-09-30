@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: cleaner light card colours
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Light mode washes were muddy (muted hues over grey paper). They are now clean pastels at 10 to 13% (pink, apricot, sky blue, mint, lavender), the paper is near white (Dusk `#F8F9FB`, Blueprint `#F7F9FC`) and the linen grain is fainter. The light card back is rebalanced to the new paper and both backs are renamed `back-clean-*` so caches refetch them. Dark mode is unchanged (ADR 0028 amended).
+- **Verified:** `theme:check`, build, hero and hand in light and dark, axe colour contrast in both modes.
+
 ## 2026-10-01: no watch on the pointing hand
 
 - **Agent:** Cursor agent (Claude)

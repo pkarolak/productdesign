@@ -117,7 +117,7 @@ export const site = siteSchema.parse({
   handNote: "Pick a card to see my tricks!",
   deck: {
     joker: { src: "/cards/bandoneon-line-light.png", srcDark: "/cards/bandoneon-line-dark.png" },
-    back: { src: "/cards/back-champagne-light.jpg", srcDark: "/cards/back-champagne-dark.jpg" },
+    back: { src: "/cards/back-clean-light.jpg", srcDark: "/cards/back-clean-dark.jpg" },
   },
   hand: [
     { title: "Hi!", text: "Who I am and how I work.", href: "/about", target: "about", suit: "heart" },
