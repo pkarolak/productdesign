@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseHeader } from "@/components/case/CaseHeader";
 import { UnlockForm } from "@/components/case/UnlockForm";
 import { Rise } from "@/components/motion/Rise";
+import { Chip } from "@/components/ui/Chip";
 import { Icon } from "@/components/ui/Icon";
 import { MetricValue } from "@/components/ui/MetricsPanel";
 import { Panel } from "@/components/ui/Panel";
-import { getProject, protectedSlugs } from "@/content/projects";
+import { getProject, projects, protectedSlugs } from "@/content/projects";
 
 export const dynamicParams = false;
 
@@ -29,9 +31,10 @@ export default async function LockedCase({ params }: PageProps<"/locked/[slug]">
   const project = getProject((await params).slug);
   if (!project || project.access !== "protected") notFound();
   const metric = project.metrics[0];
+  const open = projects.filter((p) => p.access === "public");
 
   return (
-    <CaseHeader project={project}>
+    <CaseHeader project={project} status={<Chip icon="lock">Password protected</Chip>}>
       <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-8">
       <Rise i={3} className="flex items-end gap-4 pb-8">
         <MetricValue metric={metric} />
@@ -50,10 +53,23 @@ export default async function LockedCase({ params }: PageProps<"/locked/[slug]">
         <UnlockForm slug={project.slug} />
         <p className="type-small mt-1">
           No password?{" "}
-          <a href="#contact" className="focus-ring link rounded-pill">
-            Get in touch.
+          <a href="#contact" className="focus-ring link rounded-pill py-1">
+            Ask me for one
           </a>
         </p>
+        {open.length > 0 && (
+          <p className="type-small mt-3 border-t border-hairline pt-4">
+            Or read the open {open.length === 1 ? "case" : "cases"}:{" "}
+            {open.map((p, i) => (
+              <span key={p.slug}>
+                {i > 0 && ", "}
+                <Link href={`/work/${p.slug}`} className="focus-ring link rounded-pill py-1">
+                  {p.title}
+                </Link>
+              </span>
+            ))}
+          </p>
+        )}
       </Panel>
       </div>
     </CaseHeader>

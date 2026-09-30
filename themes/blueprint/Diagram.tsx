@@ -11,7 +11,7 @@ const CX = 210;
 export function Diagram({ layers, alt }: DiagramProps) {
   const base = 150 + (layers.length - 1) * STEP;
   return (
-    <svg viewBox={`0 0 640 ${base + HALF + THICK + 40}`} role="img" aria-label={alt} className="h-auto w-full">
+    <svg viewBox={`0 0 640 ${base + HALF + THICK + 40}`} role="img" aria-label={alt} className="size-full">
       {layers.map((label, k) => {
         const y = base - k * STEP;
         const top = `${CX},${y - HALF} ${CX + SIDE / 2},${y} ${CX},${y + HALF} ${CX - SIDE / 2},${y}`;

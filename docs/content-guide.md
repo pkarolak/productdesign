@@ -19,7 +19,7 @@ Wrap one word of a heading in `*asterisks*` to give it the single emphasis (for 
 | `beats` | 3 × 25 words | Frame (the real problem), Shape (the key move), Ship (how it landed). |
 | `role`, `team`, `timeline` | 5, 10, 3 words | Facts, no adjectives. |
 | `partners` | 18 words | Who you worked with and led across functions. |
-| `scope` | 2 to 3 chips | Areas, not skills. |
+| `scope` | 2 to 3 items | Areas, not skills. |
 | `artifacts` | 2 to 4 | Each with a 14-word `caption` and a real `alt`. |
 | `askMeAbout` | 2 to 3 × 10 words | Hooks for the conversation, not answers. |
 
@@ -29,9 +29,11 @@ Copy rules: no em-dashes, no "elevate / seamless / passionate", no Acme or Jane 
 
 Every asset has a `kind`. The same kinds work for `cover` and `artifacts`.
 
+Dark mode: add `srcDark` to screenshots when you have a dark export. Without one, the theme dims light images in dark mode so they do not glare, which is a fallback, not a substitute.
+
 | Kind | Fields | Tips |
 | --- | --- | --- |
-| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in %) | Desktop UI, at least 2000px wide, cropped from the top. |
+| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in % of the visible frame) | Desktop UI, at least 2000px wide. Frames crop from the top-left, so keep titles there. Check annotation dots after changing an image. |
 | `isometric` | `plates`: 1 to 3 images | Rendered as the theme's signature visual in the hero and case header, as layered frames elsewhere. |
 | `mobile` | `screens`: 2 to 4 images | Portrait screens without device chrome, 9:19.5. |
 | `photo` | `src`, `alt`, optional `ratio` | Research, workshops, whiteboards. |

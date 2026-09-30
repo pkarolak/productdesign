@@ -25,7 +25,7 @@ export function UnlockForm({ slug }: { slug: string }) {
           className="core h-[52px] w-full min-w-0 shrink-0 rounded-pill sm:flex-1 px-6 text-ink outline-none placeholder:text-ink-3 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent"
         />
         <PrimaryButton type="submit" disabled={pending} className="justify-between sm:justify-start">
-          Unlock
+          {pending ? "Checking" : "Unlock"}
         </PrimaryButton>
       </div>
       <p id="unlock-error" role="alert" aria-live="polite" className="min-h-6 text-ink">

@@ -22,7 +22,7 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 | `/work/[slug]/opengraph-image`, `/opengraph-image` | static | Built with `next/og`, colors and font from `@theme/meta`. Public fields only. |
 | `/sitemap.xml`, `/robots.txt` | static | Robots disallows `/locked/` and `/media/protected/`. |
 
-The root layout renders `Atmosphere`, `Nav`, the page, `Contact` (id `contact`, so every "Get in touch" link is `#contact`) and `Footer`.
+The root layout renders `Atmosphere`, `Nav`, the page, `Contact` (id `contact`, so every "Get in touch" link is `#contact`; its own action is "Email me" plus a copy button) and `Footer`. An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
 
 ## Gating flow
 
@@ -39,7 +39,7 @@ flowchart LR
 
 ## Components
 
-- `components/ui/`: primitives. `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, `ctaPill`), `Chip`, `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
+- `components/ui/`: primitives. `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
 - `components/motion/Rise.tsx`: the entry reveal, timings from `@theme/motion`. Clears its filter on completion so it never becomes a backdrop root.
 - `components/media/`: `Asset` renders any content asset by `kind`, `Picture` (light and dark sources, unoptimized for protected media), `Compare`, `Video`.
 - `components/site/`: `Nav` (pill nav, mobile sheet), `ThemeToggle`, `ThemeProvider` (`next-themes`, `data-theme`), `Contact`, `Footer`.

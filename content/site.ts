@@ -11,18 +11,18 @@ export const site = siteSchema.parse({
     headline: "I design the *systems* product teams build on.",
     lede: "Twelve years shaping workflow, platform and 0\u00a0to\u00a01 products at Ledgerline and Halden.",
     metrics: [
-      { value: "86", unit: "%", label: "component adoption", context: "across 14 teams" },
-      { value: "41", unit: "%", label: "fewer UI defects", context: "vs. pre-system quarter" },
-      { value: "2.7", unit: "x", label: "faster screen build", context: "on 6 squads" },
+      { value: "88", unit: "%", label: "system adoption", context: "14 of 16 teams" },
+      { value: "38", unit: "s", label: "to assign a load", context: "down from 3 min" },
+      { value: "18", unit: "k", label: "weekly app owners", context: "by month four" },
     ],
     plates: [
       {
-        src: "/projects/keel-design-system/plate-docs.jpg",
-        alt: "Keel component documentation page with live button variants.",
+        src: "/projects/dispatch-board/cover.jpg",
+        alt: "Halden dispatch board showing loads, drivers and live route status.",
       },
       {
-        src: "/projects/keel-design-system/plate-dashboard.jpg",
-        alt: "Ledgerline spend dashboard built entirely from Keel components.",
+        src: "/projects/accessible-by-default/cover.jpg",
+        alt: "Accessibility scorecard dashboard with conformance bars for seven teams.",
       },
     ],
   },

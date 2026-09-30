@@ -21,6 +21,12 @@ export function Compare({ before, after, sizes }: { before: Img; after: Img; siz
           </span>
         </span>
       </div>
+      <span aria-hidden className="core type-label pointer-events-none absolute top-4 left-4 rounded-pill px-3 py-2 text-ink">
+        Before
+      </span>
+      <span aria-hidden className="core type-label pointer-events-none absolute top-4 right-4 rounded-pill px-3 py-2 text-ink">
+        After
+      </span>
       <input
         type="range"
         min={0}
@@ -29,6 +35,7 @@ export function Compare({ before, after, sizes }: { before: Img; after: Img; siz
         value={pos}
         onChange={(e) => setPos(Number(e.target.value))}
         aria-label={`Compare before and after. Before: ${before.alt} After: ${after.alt}`}
+        aria-valuetext={`${pos}% before, ${100 - pos}% after`}
         className="focus-ring absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
       />
     </div>

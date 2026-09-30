@@ -5,6 +5,7 @@ import { AskMeAbout } from "@/components/case/AskMeAbout";
 import { Beats } from "@/components/case/Beats";
 import { CaseFacts } from "@/components/case/CaseFacts";
 import { CaseHeader } from "@/components/case/CaseHeader";
+import { LockCases } from "@/components/case/LockCases";
 import { NextCase } from "@/components/case/NextCase";
 import { MetricsPanel } from "@/components/ui/MetricsPanel";
 import { getProject, nextProject, projects } from "@/content/projects";
@@ -31,14 +32,14 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
 
   return (
     <article>
-      <CaseHeader project={project}>
+      <CaseHeader project={project} status={project.access === "protected" ? <LockCases /> : undefined}>
         <MetricsPanel metrics={project.metrics} rise={3} className="mt-12 max-w-[640px]" />
       </CaseHeader>
       <CaseFacts project={project} />
       <Beats beats={project.beats} />
       <Artifacts artifacts={project.artifacts} />
       <AskMeAbout prompts={project.askMeAbout} />
-      <NextCase next={nextProject(project.slug)} showLock={project.access === "protected"} />
+      <NextCase next={nextProject(project.slug)} />
     </article>
   );
 }

@@ -84,7 +84,7 @@ export function Signature({ plates, priority, className, rise, size = "hero" }: 
                     alt=""
                     sizes="500px"
                     priority={priority && i === 0}
-                    className="object-cover object-top"
+                    className="object-cover object-[0%_0%]"
                   />
                 ) : (
                   <Skeleton variant={i} />
@@ -105,7 +105,7 @@ export function Signature({ plates, priority, className, rise, size = "hero" }: 
                 alt={first.alt}
                 sizes="100vw"
                 priority={priority}
-                className="object-cover object-top"
+                className="object-cover object-[0%_0%]"
               />
             ) : (
               <Skeleton variant={0} />

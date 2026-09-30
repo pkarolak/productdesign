@@ -4,6 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Panel } from "@/components/ui/Panel";
 import { PrimaryLink } from "@/components/ui/Button";
 import type { Site } from "@/content/schema";
+import { CopyEmail } from "./CopyEmail";
 
 export function Contact({ site }: { site: Site }) {
   const secondary = [
@@ -20,7 +21,7 @@ export function Contact({ site }: { site: Site }) {
           <p className="type-lede mt-5 max-w-[38ch]">{site.contact.text}</p>
         </div>
         <div className="flex flex-col items-start gap-6 lg:col-span-5 lg:items-end">
-          <PrimaryLink href={`mailto:${site.links.email}`}>Get in touch</PrimaryLink>
+          <PrimaryLink href={`mailto:${site.links.email}`}>Email me</PrimaryLink>
           <ul className="flex flex-wrap gap-x-7 gap-y-3">
             {secondary.map((l) => (
               <li key={l.href}>
@@ -39,8 +40,8 @@ export function Contact({ site }: { site: Site }) {
               </li>
             ))}
           </ul>
-          <Rise i={2} as="p" className="type-small">
-            {site.links.email}
+          <Rise i={2}>
+            <CopyEmail email={site.links.email} />
           </Rise>
         </div>
       </Panel>

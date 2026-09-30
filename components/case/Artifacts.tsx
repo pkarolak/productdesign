@@ -24,7 +24,13 @@ export function Artifacts({ artifacts }: { artifacts: Artifact[] }) {
           const slot = slots[i];
           return (
             <figure key={i} className={cn(slot.span)}>
-              <Asset asset={a} flatIsometric aspect={slot.aspect} sizes={slot.sizes} rise={i % 2} />
+              <Asset
+                asset={a}
+                flatIsometric
+                aspect={a.kind === "diagram" && slot === full ? "12/5" : slot.aspect}
+                sizes={slot.sizes}
+                rise={i % 2}
+              />
               <Rise as="figcaption" i={(i % 2) + 1} className="type-caption mt-4 max-w-[52ch]">
                 {a.caption}
               </Rise>

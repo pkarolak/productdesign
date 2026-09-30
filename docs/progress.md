@@ -23,6 +23,20 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: audit fixes (High and Medium)
+
+- **Agent:** Cursor agent (Claude)
+- **Todo:** `qa`
+- **Done:** fixed all 6 High and 11 Medium findings from [ux-audit.md](ux-audit.md); decisions in [ADR 0009](decisions/0009-audit-fixes.md), values in `DESIGN.md`.
+  - Contrast: Ink 3 darkened (light) and lightened (dark); nav and mobile sheet on strong glass.
+  - Gating made visible: "Password protected" chips, Selected work intro says how many are gated, "Unlocked · Lock cases" in the case header, locked page links to open cases, "Checking" while unlocking.
+  - One primary button (compact size in the nav); card arrows always visible; chips are status only; numbered "Ask me about"; labelled Partners and Scope; "Email me" plus a copy button in the contact block.
+  - Mobile menu: focus in, Escape out, page behind inert. Content is visible without JavaScript; reveals start sooner.
+  - Content: 88% (14 of 16) fixed, hero metrics from three cases, hero plates from two other cases.
+  - Craft: top-left crops, dark-mode dim for light screenshots, diagram fits its frame, before/after labels, annotation re-placed.
+- **Verified:** axe zero violations on 6 pages in light and dark, mobile menu keyboard test, no-JS render, no mobile overflow, `pnpm shots`.
+- **Next:** Low findings (L1 to L7), Lighthouse on a Vercel preview, ADR 0005.
+
 ## 2026-09-30: UX and accessibility audit
 
 - **Agent:** Cursor agent (Claude)

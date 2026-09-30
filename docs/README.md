@@ -26,6 +26,7 @@ Navigation hub. Each fact is defined in one place and linked from everywhere els
   - [0006-blueprint-v2-refinement.md](decisions/0006-blueprint-v2-refinement.md): frozen glass, dot lattice, drifting light, generous radii, slow motion, fidelity contract.
   - [0007-lucide-icons.md](decisions/0007-lucide-icons.md): Lucide icons at stroke 1.5.
   - [0008-design-language-layer.md](decisions/0008-design-language-layer.md): the design language is a swappable layer in `themes/`.
+  - [0009-audit-fixes.md](decisions/0009-audit-fixes.md): design changes from the UX and accessibility audit.
   - 0005 (image-first design workflow) is reserved for `docs-final`.
 
 ## Design

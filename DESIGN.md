@@ -9,6 +9,7 @@
 - [ADR 0006](docs/decisions/0006-blueprint-v2-refinement.md): the v2 refinement (glass, dots, radii, slow motion, elegance).
 - [ADR 0007](docs/decisions/0007-lucide-icons.md): Lucide icons.
 - [ADR 0008](docs/decisions/0008-design-language-layer.md): the design language is a swappable layer in `themes/`.
+- [ADR 0009](docs/decisions/0009-audit-fixes.md): changes from the UX and accessibility audit (Ink 3, strong glass, one primary button, status chips).
 
 **Reference implementation (the fidelity target):**
 - [design/preview/blueprint.html](design/preview/blueprint.html): open it in Chrome to see the motion.
@@ -55,7 +56,7 @@ One accent family: **Blueprint Cobalt.**
 - **Canvas** `#F5F7FB`: page background.
 - **Ink** `#0B1220`: headings and primary text.
 - **Ink 2** `#4E5868`: lede, body secondary, captions. AA on Canvas.
-- **Ink 3** `#8A93A3`: tertiary text only (labels, disabled). Never body text.
+- **Ink 3** `#5F6878`: tertiary text only (labels, disabled). Never body text. Darkened from `#8A93A3` to pass 4.5:1 (ADR 0009).
 - **Accent** `#2F5BEA` and **Accent ink** `#FFFFFF`.
 - **Dot** `rgba(11, 18, 32, 0.22)`: lattice dots, before masking.
 - **Orb 1** `rgba(47, 91, 234, 0.30)`, **Orb 2** `rgba(140, 180, 255, 0.40)`, **Orb 3** `rgba(120, 190, 250, 0.34)`: drifting light.
@@ -71,7 +72,7 @@ One accent family: **Blueprint Cobalt.**
 - **Canvas** `#080C17`
 - **Ink** `#EEF1F7`
 - **Ink 2** `#A3ADBF`
-- **Ink 3** `#6B7588`
+- **Ink 3** `#8791A4` (lightened from `#6B7588`, ADR 0009)
 - **Accent** `#8AA8FF` and **Accent ink** `#080C17`.
 - **Dot** `rgba(238, 241, 247, 0.14)`
 - **Orb 1** `rgba(47, 91, 234, 0.42)`, **Orb 2** `rgba(90, 130, 230, 0.26)`, **Orb 3** `rgba(70, 150, 230, 0.24)`.
@@ -179,28 +180,30 @@ box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-ha
 ### Pill nav
 - **Position:** fixed and centered (`left: 0; right: 0; margin: 0 auto; width: max-content`), `top: 28px`.
   - Never center it with `translateX(-50%)`, because entrance transforms override it.
-- **Style:** glass, with padding `7px 7px 7px 26px` and a 30px gap.
+- **Style:** strong glass (the glass recipe at 88% to 76% opacity light, 90% to 84% dark, `surface-strong`) so links stay legible over any imagery; padding `6px 6px 6px 26px`, 30px gap.
 - **Contents, left to right:**
   - the wordmark;
   - a glass divider: 1px Glass hairline plus a 1px Glass edge offset;
   - "Work" and "About" (Lato 400, 15px, Ink 2; Ink on hover);
   - the theme toggle, a 36px round icon button with Lucide `Moon` or `Sun`;
-  - the "Get in touch" CTA pill (Accent fill, Lato 700, `11px 20px` padding, inset top highlight `rgba(255,255,255,.25)`).
+  - "Get in touch" as the compact primary button (see Buttons).
 - **On scroll** past 80px, the padding tightens by 2px and the shadow deepens. It uses the slow spring from section 8.
 - **Active page:** a 4px accent dot 6px below the link.
 - **Mobile, under 768px:**
   - The pill holds the wordmark and a 40px menu button with two lines that morph into an X.
-  - The button opens a full-screen glass sheet (blur 40px). Links stagger in (Sora 400, 2rem), then the toggle, then a full-width "Get in touch" pill last.
+  - The button opens a full-screen strong-glass sheet (blur 40px). Links stagger in (Sora 400, 2rem), then the toggle, then a full-width primary "Get in touch" last.
+  - Opening moves focus to the first link and makes the page behind inert; Escape closes and returns focus to the button.
 
 ### Buttons
-- **Primary** ("View work", "Unlock"):
+- **Primary** ("View work", "Unlock", "Email me", the nav's "Get in touch"). The only primary style on the site:
   - Ink fill with Canvas text, inverted in dark mode.
   - Padding `7px 7px 7px 26px`, Lato 700, 16px.
   - Shadow `0 12px 32px -12px rgba(11,18,32,.35)`.
   - A nested 38px accent circle with the Lucide `ArrowRight` icon.
   - **Hover:** the circle drifts `translate(3px, -1px)` and scales to 1.06 over 900ms (slow ease).
   - **Active:** the button scales to 0.98.
-- **CTA pill:** Accent fill. On hover it brightens by 6% over 600ms.
+- **Compact primary** (nav only): the same button at padding `5px 5px 5px 20px`, 15px text, a 34px arrow circle, no drop shadow.
+- **Arrow circles** (work cards, next case): the same 44px accent circle, always visible, drifting right on hover.
 - **Text link:** Ink, with a 1px underline in Glass hairline, offset 4px. On hover the underline turns to Accent over 600ms.
 
 ### Media frame
@@ -222,7 +225,8 @@ box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-ha
 - **`diagram`:** an isometric SVG line illustration with 1.25px accent strokes. Faces are filled with `Core` at 60%, and small glass-like highlights sit on the top edges.
 - **`compare`:** a before and after slider with a 1px accent divider and a 36px glass pill handle. It works from the keyboard (arrow keys, 5% steps).
 - **`video`:** muted, looping and `playsinline`, with a poster. It pauses off-screen, and under reduced motion only the poster shows.
-- **Dark mode:** an optional `srcDark` per asset.
+- **Dark mode:** an optional `srcDark` per asset. Without one, raster media get `media`: brightness 0.84, contrast 1.04 in dark mode, so light screenshots do not glare.
+- **Crops:** screenshots and plates anchor to the top-left, where product UIs keep their titles and navigation.
 
 ### Metrics panel
 - A glass panel with radius 28px and padding `28px 32px`, containing 2 to 3 columns with a 28px gap.
@@ -230,15 +234,17 @@ box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-ha
 - **Label and context:** Lato 13.5px, Ink 2. The context line comes after the label.
 - Under 768px, the metrics stack as rows with Glass hairline dividers.
 
-### Chips (scope)
-Pill shape, Glass hairline border, transparent fill, Lato 400 at 13.5px, Ink 2, `7px 14px` padding.
+### Chips (status)
+Static status only, never actions or filters ("Password protected" on cards and the locked header). Pill, `Core` fill, Lato 400 at 13.5px, Ink 2, `6px 12px`, optional 14px icon. Scope renders as labelled plain text, not chips.
 
 ### Locked-case form
 - A glass panel with radius 28px, max 460px wide.
 - The "Password" label sits above a pill input: Core fill, Glass hairline, 52px tall, with a 2px accent focus ring at a 3px offset.
 - The "Unlock" primary button sits inline on desktop and below the input on mobile.
 - **Error:** inline, with the Lucide `CircleAlert` in the accent and Ink text: "That password did not work."
-- Below the form: the text link "No password? Get in touch."
+- While checking, the button reads "Checking".
+- Below the form: "No password? Ask me for one" (to `#contact`), then a hairline and links to the open (public) cases, so the page is never a dead end.
+- The header shows a "Password protected" chip beside the company and year; once unlocked, the full case shows "Unlocked · Lock cases" in the same place.
 
 ### Icons
 - **[Lucide](https://lucide.dev/icons/)** via `lucide-react` (user choice, ADR 0007).
@@ -308,7 +314,7 @@ Pill shape, Glass hairline border, transparent fill, Lato 400 at 13.5px, Ink 2, 
 1. **Tokens are copied, not reinterpreted.**
    - `themes/blueprint/theme.css` defines every variable from section 2 under `:root` and `[data-theme="dark"]`, with exactly these values. (The design language is a swappable layer: [ADR 0008](docs/decisions/0008-design-language-layer.md), [docs/theming.md](docs/theming.md).)
    - The glass recipe (exposed as the contract utility `surface`), the dot lattice, the orbs, the grain and the rise are ported verbatim from `design/preview/blueprint.html`.
-   - Name mapping from this spec to code: Glass hairline is `--hairline`; `.glass` is `surface`; the deeper scrolled or hovered shadow is `surface-deep`; the mobile sheet is `surface-sheet`.
+   - Name mapping from this spec to code: Glass hairline is `--hairline`; `.glass` is `surface`; the deeper scrolled or hovered shadow is `surface-deep`; glass that carries text over imagery (nav) is `surface-strong`; the mobile sheet is `surface-sheet`; the dark-mode image treatment is `media`.
 2. **Components follow the reference.** These are the only way the patterns appear. No one-off glass, shadows or radii.
    - `Atmosphere` and the isometric `Signature` (the plates) live in `themes/blueprint/`.
    - `Panel` and `Frame` are the glass panel and media frame, in `components/ui/`.

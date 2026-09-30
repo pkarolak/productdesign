@@ -74,6 +74,8 @@
   padding-block: var(--section-y);
 }
 
+html:not(.js) [data-rise] { opacity: 1 !important; transform: none !important; filter: none !important; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-rise] { opacity: 1 !important; transform: none !important; filter: none !important; }

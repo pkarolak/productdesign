@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Asset } from "@/components/media/Asset";
 import { Rise } from "@/components/motion/Rise";
+import { Chip } from "@/components/ui/Chip";
 import { Icon } from "@/components/ui/Icon";
 import { MetricValue } from "@/components/ui/MetricsPanel";
 import type { Project } from "@/content/schema";
@@ -14,18 +15,13 @@ function Meta({ project, lead }: { project: Project; lead?: boolean }) {
   return (
     <div className="mt-6 flex items-start justify-between gap-6">
       <div>
-        <p className="type-small">
-          {project.company}, {project.year}
-        </p>
-        <h3 className="type-h3 mt-1.5 flex items-center gap-2 text-ink">
-          {project.title}
-          {project.access === "protected" && (
-            <span className="text-ink-3">
-              <Icon name="lock" />
-              <span className="sr-only">(password protected)</span>
-            </span>
-          )}
-        </h3>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <p className="type-small">
+            {project.company}, {project.year}
+          </p>
+          {project.access === "protected" && <Chip icon="lock">Password protected</Chip>}
+        </div>
+        <h3 className="type-h3 mt-2 text-ink">{project.title}</h3>
         <p className="type-body mt-2.5 max-w-[54ch] text-ink-2">{project.bottomLine}</p>
         {lead && (
           <div className="mt-6 flex items-end gap-4 border-t border-hairline pt-6">
@@ -39,9 +35,9 @@ function Meta({ project, lead }: { project: Project; lead?: boolean }) {
       </div>
       <span
         aria-hidden
-        className="mt-1 grid size-10 shrink-0 place-items-center rounded-pill border border-hairline text-ink opacity-0 transition-[opacity,transform] duration-(--t-hover-mid) ease-slow group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-focus-visible:opacity-100"
+        className="grid size-11 shrink-0 place-items-center rounded-pill bg-accent text-accent-ink transition-transform duration-(--t-hover-mid) ease-slow group-hover:translate-x-1"
       >
-        <Icon name="arrow-up-right" />
+        <Icon name="arrow-right" />
       </span>
     </div>
   );

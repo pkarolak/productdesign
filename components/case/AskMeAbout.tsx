@@ -1,5 +1,4 @@
 import { Rise } from "@/components/motion/Rise";
-import { Icon } from "@/components/ui/Icon";
 
 export function AskMeAbout({ prompts }: { prompts: string[] }) {
   return (
@@ -9,29 +8,27 @@ export function AskMeAbout({ prompts }: { prompts: string[] }) {
           Ask me <em>about</em>
         </Rise>
         <Rise as="p" i={1} className="type-body mt-4 max-w-[32ch] text-ink-2">
-          The parts that do not fit on a page. Happy to go deep on any of them.
+          The parts that do not fit on a page. Happy to go deep on any of them.{" "}
+          <a href="#contact" className="focus-ring link rounded-pill">
+            Get in touch
+          </a>
         </Rise>
       </div>
-      <ul className="lg:col-span-8">
+      <ol className="lg:col-span-8">
         {prompts.map((p, i) => (
           <Rise
             as="li"
             key={p}
             i={i}
-            className="flex items-baseline gap-4 border-t border-hairline py-7 first:border-t-0 first:pt-0 md:py-8"
+            className="flex items-baseline gap-5 border-t border-hairline py-7 first:border-t-0 first:pt-0 md:py-8"
           >
-            <span className="translate-y-0.5 text-accent">
-              <Icon name="arrow-right" />
+            <span aria-hidden className="type-label w-5 shrink-0 tabular-nums">
+              {String(i + 1).padStart(2, "0")}
             </span>
             <p className="type-h3 text-ink">{p}</p>
           </Rise>
         ))}
-        <Rise as="li" i={prompts.length} className="pt-6">
-          <a href="#contact" className="focus-ring link type-body rounded-pill">
-            Get in touch
-          </a>
-        </Rise>
-      </ul>
+      </ol>
     </section>
   );
 }

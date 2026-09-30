@@ -54,7 +54,7 @@ async function settle(page) {
 async function unlock(page, password) {
   await page.fill("#password", password);
   await Promise.all([page.waitForURL(/\/work\//), page.click('button[type="submit"]')]);
-  await page.waitForSelector("text=Ask me");
+  await page.waitForSelector("#ask-title");
 }
 
 const browser = await chromium.launch({ channel: process.env.SHOTS_CHANNEL ?? "chrome" }).catch(() => chromium.launch());
@@ -75,7 +75,7 @@ for (const theme of themes) {
         continue;
       }
       await page.goto(base + p.path, { waitUntil: "networkidle" });
-      if (p.unlock && !(await page.locator("text=Ask me").count())) await unlock(page, password);
+      if (p.unlock && (await page.locator("#password").count())) await unlock(page, password);
       await page.waitForTimeout(3000);
       const file = `${p.name}-${vp.name}-${theme}.png`;
       await page.screenshot({ path: out + file });

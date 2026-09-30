@@ -2,6 +2,8 @@
 
 Audit of the v1 build (commit `aa07d46`), 2026-09-30. Method: real-size captures of every page (light and dark, 1440 and 390 wide), axe-core (WCAG 2.2 AA plus best practice), a keyboard focus-order trace, a target-size sweep, a no-JavaScript check, and a code review of the interactive components. Heuristics referenced: Nielsen's 10 (N1 to N10), Gestalt proximity and similarity, Fitts's law, WCAG 2.2.
 
+**Status:** all High and Medium findings fixed on 2026-09-30 ([ADR 0009](decisions/0009-audit-fixes.md)); axe reports zero violations on every page in both themes. Low findings are open.
+
 Severity: **High** blocks or misleads a real visitor, or fails WCAG AA. **Medium** causes friction or reads as a craft slip to a design leader. **Low** is polish.
 
 ## What already works

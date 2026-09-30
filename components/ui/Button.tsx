@@ -3,42 +3,77 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Icon } from "./Icon";
 
-const primary =
-  "group/btn focus-ring inline-flex items-center gap-4 rounded-pill bg-ink py-[7px] pr-[7px] pl-[26px] text-base font-bold text-canvas shadow-button transition-transform duration-(--t-hover-short) ease-slow active:scale-[0.98]";
+type Size = "default" | "compact";
 
-function Arrow() {
+const base =
+  "group/btn focus-ring inline-flex items-center rounded-pill bg-ink font-bold text-canvas transition-transform duration-(--t-hover-short) ease-slow active:scale-[0.98]";
+
+const sizes: Record<Size, { button: string; arrow: string }> = {
+  default: { button: "gap-4 py-[7px] pr-[7px] pl-[26px] text-base shadow-button", arrow: "size-[38px]" },
+  compact: { button: "gap-3 py-[5px] pr-[5px] pl-5 text-[15px]", arrow: "size-[34px]" },
+};
+
+function Arrow({ size }: { size: Size }) {
   return (
-    <span className="grid size-[38px] place-items-center rounded-pill bg-accent text-accent-ink transition-transform duration-(--t-hover-mid) ease-slow group-hover/btn:translate-x-[3px] group-hover/btn:-translate-y-px group-hover/btn:scale-[1.06]">
+    <span
+      className={cn(
+        "grid place-items-center rounded-pill bg-accent text-accent-ink transition-transform duration-(--t-hover-mid) ease-slow group-hover/btn:translate-x-[3px] group-hover/btn:-translate-y-px group-hover/btn:scale-[1.06]",
+        sizes[size].arrow,
+      )}
+    >
       <Icon name="arrow-right" />
     </span>
   );
 }
 
+/** The one primary action style. Links to in-page anchors and mailto: render a plain anchor. */
 export function PrimaryLink({
   href,
   children,
   className,
+  size = "default",
+  onClick,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
+  size?: Size;
+  onClick?: () => void;
 }) {
-  return (
-    <Link href={href} className={cn(primary, className)}>
+  const classes = cn(base, sizes[size].button, className);
+  const content = (
+    <>
       {children}
-      <Arrow />
+      <Arrow size={size} />
+    </>
+  );
+  if (href.startsWith("#") || href.startsWith("mailto:")) {
+    return (
+      <a href={href} onClick={onClick} className={classes}>
+        {content}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} onClick={onClick} className={classes}>
+      {content}
     </Link>
   );
 }
 
-export function PrimaryButton({ children, className, ...props }: ComponentPropsWithoutRef<"button">) {
+export function PrimaryButton({
+  children,
+  className,
+  size = "default",
+  ...props
+}: ComponentPropsWithoutRef<"button"> & { size?: Size }) {
   return (
-    <button className={cn(primary, "cursor-pointer disabled:cursor-wait disabled:opacity-80", className)} {...props}>
+    <button
+      className={cn(base, sizes[size].button, "cursor-pointer disabled:cursor-wait", className)}
+      {...props}
+    >
       {children}
-      <Arrow />
+      <Arrow size={size} />
     </button>
   );
 }
-
-export const ctaPill =
-  "focus-ring inline-flex items-center justify-center rounded-pill bg-accent px-5 py-[11px] font-bold text-accent-ink shadow-cta transition-[filter] duration-(--t-hover-short) ease-slow hover:brightness-106";

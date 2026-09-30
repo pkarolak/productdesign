@@ -14,6 +14,7 @@ export function Picture({
   sizes,
   priority,
   className,
+  dim = true,
 }: {
   src: string;
   srcDark?: string;
@@ -21,6 +22,8 @@ export function Picture({
   sizes: string;
   priority?: boolean;
   className?: string;
+  /** Tone down a light-only image in dark mode. Off when the caller sets its own filter. */
+  dim?: boolean;
 }) {
   const light = (
     <Image
@@ -30,7 +33,7 @@ export function Picture({
       sizes={sizes}
       preload={priority}
       unoptimized={isProtected(src)}
-      className={cn(className, srcDark && "dark:hidden")}
+      className={cn(className, srcDark ? "dark:hidden" : dim && "media")}
     />
   );
   if (!srcDark) return light;

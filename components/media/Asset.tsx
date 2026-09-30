@@ -74,7 +74,7 @@ export function Asset({
                       : "right-[7%] bottom-[9%]",
                 )}
               >
-                <Picture {...plate} sizes={sizes} priority={priority && i === 0} className="object-cover object-top" />
+                <Picture {...plate} sizes={sizes} priority={priority && i === 0} className="object-cover object-[0%_0%]" />
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export function Asset({
                 alt={asset.alt}
                 sizes={sizes}
                 priority={priority}
-                className="object-cover object-top"
+                className="object-cover object-[0%_0%]"
               />
               {asset.annotations?.map((a, i) => (
                 <span
@@ -115,7 +115,7 @@ export function Asset({
                   phoneOffsets[i],
                 )}
               >
-                <Picture {...s} sizes="(min-width: 1024px) 18vw, 30vw" priority={priority} className="object-cover object-top" />
+                <Picture {...s} sizes="(min-width: 1024px) 18vw, 30vw" priority={priority} className="object-cover object-[0%_0%]" />
               </div>
             ))}
           </div>
@@ -129,6 +129,7 @@ export function Asset({
               alt={asset.alt}
               sizes={sizes}
               priority={priority}
+              dim={false}
               className="object-cover saturate-[.88]"
             />
             <div aria-hidden className="absolute inset-0 bg-accent/4" />
@@ -136,7 +137,7 @@ export function Asset({
         )}
 
         {asset.kind === "diagram" && (
-          <div className="wash absolute inset-0 grid place-items-center p-[6%]">
+          <div className="wash absolute inset-0 p-[5%]">
             <Diagram layers={asset.layers} alt={asset.alt} />
           </div>
         )}

@@ -59,7 +59,9 @@
   "utilities": [
     "surface",
     "surface-deep",
+    "surface-strong",
     "surface-sheet",
+    "media",
     "core",
     "wash",
     "divider",

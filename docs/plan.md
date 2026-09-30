@@ -102,7 +102,7 @@ flowchart LR
 ```
 
 - **Nav:** Work, About, Get in touch. Nav height is at most 72px and fits on one line.
-- **One label per intent across the whole site:** "View work" (portfolio intent) and "Get in touch" (contact intent). Nothing else.
+- **One label per intent across the whole site:** "View work" (portfolio intent), "Get in touch" (go to the contact block) and "Email me" (the contact block's mail action). One label never means two actions.
 - **Contact:** `mailto:` plus LinkedIn and a calendar link from `site.ts`. No backend.
 
 ---
@@ -116,7 +116,7 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 - `bottomLine`: at most 30 words. What changed and why it mattered. This is the only thing a busy reader must see.
 - `role`, `team` (e.g. "2 PMs, 9 engineers, 1 researcher"), `timeline`
 - `metrics[]`: 2 to 3 items, each `{ value, label, context }`. `context` gives the baseline or time window (e.g. "vs. Q1 baseline, 8 weeks post-launch") so the numbers are credible, not just big.
-- `scope[]`: 2 to 3 chips, e.g. "Design system", "Onboarding", "Pricing". Shows breadth.
+- `scope[]`: 2 to 3 areas, e.g. "Design system", "Onboarding", "Pricing", shown as labelled text. Shows breadth.
 - `partners`: one line on who they worked with and led across functions.
 - `beats`: exactly 3, `{ label, text }`, where `text` is at most 25 words (Frame, Shape, Ship).
 - `artifacts[]`: 2 to 4 items, each `{ kind, src, alt, caption }`. `alt` is required. The `kind` is one of:
@@ -163,7 +163,7 @@ Each placeholder case shows a different kind of senior signal:
 ### Case study `/work/[slug]` (target: understood in 30 seconds, at most about 2 screens)
 1. Title, company, year, and `bottomLine` as the largest text on the page.
 2. Metrics band (2 to 3 values with context lines). This is the primary strength surface.
-3. Role, team, timeline, scope chips, partners, in one compact block.
+3. Role, team, timeline, partners and scope, each labelled, in one compact block.
 4. Three beats as a horizontal row on desktop, stacked on mobile.
 5. Artifacts: 2 to 3 large frames with captions.
 6. **Ask me about:** 2 to 3 prompts plus "Get in touch." The page ends by inviting the conversation.
@@ -172,7 +172,7 @@ Each placeholder case shows a different kind of senior signal:
 ### Locked case `/work/[slug]` (not unlocked yet)
 - Shows the cover, title, company, year, `bottomLine` and the single lead metric. Anyone still gets the bottom line.
 - Unlock form below: one password field with a visible label, a submit button ("Unlock"), and an inline error on a wrong password.
-- A second line: "No password? Get in touch."
+- A second line: "No password? Ask me for one", then links to the open cases.
 - Designed in the chosen direction as a real page, not a browser prompt or a generic modal.
 - Home cards for protected cases show a small Lucide `Lock` icon next to the title. No other change.
 

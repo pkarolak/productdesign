@@ -12,7 +12,7 @@ export const keelDesignSystem = {
   partners: "Partnered with the platform EM and the front-end guild; ran a contributor council across 9 teams.",
   scope: ["Design system", "Tokens", "Governance"],
   metrics: [
-    { value: "86", unit: "%", label: "component adoption", context: "14 of 16 teams, Q3 audit" },
+    { value: "88", unit: "%", label: "component adoption", context: "14 of 16 teams, Q3 audit" },
     { value: "41", unit: "%", label: "fewer UI defects", context: "vs. pre-system quarter" },
     { value: "2.7", unit: "x", label: "faster screen build", context: "6 squads, median of 40 screens" },
   ],
@@ -42,7 +42,7 @@ export const keelDesignSystem = {
       src: "/media/protected/keel-design-system/docs.jpg",
       alt: "Keel documentation page showing button variants with usage guidance.",
       caption: "Docs pair live components with do and don't guidance.",
-      annotations: [{ x: 28, y: 34 }],
+      annotations: [{ x: 52, y: 36 }],
     },
     {
       kind: "screenshot",
