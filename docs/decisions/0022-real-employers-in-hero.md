@@ -10,7 +10,12 @@ The template kept every company fictional. The owner asked for the hero intro to
 
 ## Decision
 
-- **Copy:** the intro reads "By day I shape enterprise-grade experiences at Miro, before that at Egnyte and Allegro. After hours I run design at CoNaDzielni.pl. At night I DJ tango at milongas." The day, after hours and night rhythm keeps it one breath long (28 of 32 words). "Run design" describes the work, not a title.
+- **Copy:** the intro is a three-row schedule, a label column with a time-of-day icon and one short phrase each:
+  - By day: "Shaping enterprise-grade experiences at Miro", with a quieter "Before that Egnyte and Allegro" line.
+  - After hours: "Running design at CoNaDzielni.pl".
+  - At night: "Behind the decks at milongas", which also nods to the deck of cards.
+
+  The rows are 20 of 32 words, with hairlines between them. "Running design" describes the work, not a title. The first version was one run-on sentence, which read as crowded.
 - **Pills:** each pill takes an optional `logo`, a small square mark in `public/logos/`, and links to the company's own site in a new tab. Pills without a logo keep the letter mark.
 - **Metadata:** `hero.headline` (metadata and OG) is "I shape enterprise-grade experiences at Miro."
 - **Scope:** only the hero intro names real companies. Case studies, their companies and projects stay fictional until the owner replaces them.

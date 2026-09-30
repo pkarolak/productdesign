@@ -34,6 +34,14 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: the intro as a day-to-night schedule
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the run-on intro sentence became a three-row schedule, "By day", "After hours" and "At night", with sun, sunset and moon icons in the accent, a label column and hairlines between rows ([ADR 0022](decisions/0022-real-employers-in-hero.md)).
+  - Past employers sit on a quieter "Before that" line with frameless logo pills.
+  - The new `sunset` icon is in the contract and both themes, and `hero.intro` is now a list of rows.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; labels share a baseline with the first line; desktop light and dark, iPhone 13; axe zero violations.
+
 ## 2026-09-30: real employers in the hero
 
 - **Agent:** Cursor agent (Claude)

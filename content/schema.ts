@@ -113,6 +113,14 @@ const introPart = z.union([
   z.object({ pill: z.string().min(2), href, logo: z.string().startsWith("/logos/").optional() }),
 ]);
 
+/** One line of the intro schedule: when, a short phrase with pills, and an optional quieter follow-up. */
+const introRow = z.object({
+  when: words(2),
+  icon: z.enum(["sun", "sunset", "moon"]),
+  parts: z.array(introPart).min(1).max(4),
+  note: z.array(introPart).min(1).max(4).optional(),
+});
+
 /** A dictionary entry shown when a visitor hovers or taps a highlighted term in the tagline. */
 const glossaryEntry = z.object({
   /** Must appear verbatim in the tagline (case-insensitive). */
@@ -130,12 +138,19 @@ export const heroSchema = z.object({
   /** One phrase of the tagline that gets the painted filete shade; the rest stays clean ink. */
   shade: words(3).optional(),
   intro: z
-    .array(introPart)
+    .array(introRow)
     .min(1)
-    .max(9)
-    .refine((parts) => wordCount(parts.map((p) => (typeof p === "string" ? p : p.pill)).join(" ")) <= 32, {
-      message: "The intro sentence is at most 32 words. Cut it, do not raise the limit.",
-    }),
+    .max(3)
+    .refine(
+      (rows) =>
+        wordCount(
+          rows
+            .flatMap((r) => [...r.parts, ...(r.note ?? [])])
+            .map((p) => (typeof p === "string" ? p : p.pill))
+            .join(" "),
+        ) <= 32,
+      { message: "The intro is at most 32 words. Cut it, do not raise the limit." },
+    ),
   /** Used for metadata and OG images, where the pills cannot render. */
   headline: words(12),
   cta: cta.optional(),

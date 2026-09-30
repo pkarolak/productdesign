@@ -36,6 +36,7 @@ export const iconNames = [
   "arrow-right",
   "arrow-up-right",
   "sun",
+  "sunset",
   "moon",
   "lock",
   "lock-open",

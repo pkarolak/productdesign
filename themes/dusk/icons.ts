@@ -13,6 +13,7 @@ import {
   Quote,
   Search,
   Sun,
+  Sunset,
   X,
 } from "lucide-react";
 import type { IconTokens } from "../contract";
@@ -22,6 +23,7 @@ export const icons = {
     "arrow-right": ArrowRight,
     "arrow-up-right": ArrowUpRight,
     sun: Sun,
+    sunset: Sunset,
     moon: Moon,
     lock: Lock,
     "lock-open": LockOpen,

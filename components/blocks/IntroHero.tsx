@@ -3,6 +3,7 @@ import { Rise } from "@/components/motion/Rise";
 import { PrimaryLink } from "@/components/ui/Button";
 import { Definition } from "@/components/ui/Definition";
 import { Filete } from "@/components/ui/Filete";
+import { Icon } from "@/components/ui/Icon";
 import { SmartLink } from "@/components/ui/SmartLink";
 import type { Hero, Site } from "@/content/schema";
 
@@ -41,8 +42,13 @@ function Tagline({ hero }: { hero: Hero }) {
 
 const leading = /^[.,;:!?)]+/;
 
-/** The intro sentence. Each pill is glued to the word before it, so a pill never starts a line on its own. */
-function Intro({ parts }: { parts: Hero["intro"] }) {
+type Part = Hero["intro"][number]["parts"][number];
+
+/**
+ * A run of intro text and company pills. Each pill is glued to the word before it, so a pill never starts a line on
+ * its own. `quiet` pills drop the frame: a mark and a name, for the follow-up line.
+ */
+function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
   return parts.map((part, i) => {
     const prev = parts[i - 1];
     const next = parts[i + 1];
@@ -55,22 +61,27 @@ function Intro({ parts }: { parts: Hero["intro"] }) {
     }
     const glued = typeof prev === "string" ? (prev.trimEnd().match(/\S+$/)?.[0] ?? "") : "";
     const trailing = typeof next === "string" ? (next.match(leading)?.[0] ?? "") : "";
+    const mark = part.logo ? (
+      <Image src={part.logo} alt="" width={16} height={16} className={quiet ? "mr-1.5 inline-block size-3.5 object-contain align-[-0.2em]" : "size-4 object-contain"} />
+    ) : (
+      <span aria-hidden className="grid size-4 place-items-center rounded-pill bg-accent/15 text-[10px] leading-none text-accent">
+        {part.pill[0]}
+      </span>
+    );
     return (
       <span key={part.pill}>
         {i > 0 && " "}
         <span className="whitespace-nowrap">
           {glued && `${glued} `}
-          <SmartLink href={part.href} className="inline-pill focus-ring type-small">
-            {part.logo ? (
-              <Image src={part.logo} alt="" width={16} height={16} className="size-4 object-contain" />
-            ) : (
-              <span
-                aria-hidden
-                className="grid size-4 place-items-center rounded-pill bg-accent/15 text-[10px] leading-none text-accent"
-              >
-                {part.pill[0]}
-              </span>
-            )}
+          <SmartLink
+            href={part.href}
+            className={
+              quiet
+                ? "focus-ring rounded-inset text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+                : "inline-pill focus-ring type-small"
+            }
+          >
+            {mark}
             {part.pill}
           </SmartLink>
           {trailing}
@@ -80,9 +91,36 @@ function Intro({ parts }: { parts: Hero["intro"] }) {
   });
 }
 
+/** Where the day goes: a label column with a time-of-day icon, and one short line each. */
+function Schedule({ rows }: { rows: Hero["intro"] }) {
+  return (
+    <dl className="grid max-w-[36rem]">
+      {rows.map((row) => (
+        <div
+          key={row.when}
+          className="grid gap-y-1 border-t border-hairline py-3.5 first:border-t-0 first:pt-0 last:pb-0 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:items-baseline sm:gap-x-6"
+        >
+          <dt className="type-label flex items-center gap-2">
+            <Icon name={row.icon} className="size-4 shrink-0 text-accent" />
+            {row.when}
+          </dt>
+          <dd className="type-lede text-ink">
+            <Parts parts={row.parts} />
+            {row.note && (
+              <span className="type-small mt-1 block text-ink-3">
+                <Parts parts={row.note} quiet />
+              </span>
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 /**
- * A small greeting over the tagline, one shaded phrase and a filete flourish, a sentence with inline company pills,
- * and the photo on card paper. The block centres on the same axis as the hand below it.
+ * A small greeting over the tagline, one shaded phrase and a filete flourish, a day-to-night schedule with company
+ * pills, and the photo on card paper. The block centres on the same axis as the hand below it.
  */
 export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"] }) {
   return (
@@ -114,8 +152,8 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
         <Rise i={1}>
           <Filete className="mt-5" />
         </Rise>
-        <Rise as="p" i={1} className="type-lede mt-6 max-w-[58ch]">
-          <Intro parts={hero.intro} />
+        <Rise i={1} className="mt-7">
+          <Schedule rows={hero.intro} />
         </Rise>
         {hero.cta && (
           <Rise i={2} className="mt-9">
