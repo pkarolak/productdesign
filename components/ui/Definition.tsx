@@ -42,7 +42,8 @@ const watchNarrow = (l: () => void) => {
  * A highlighted run of text that opens a small card on hover, focus or tap. Only one is open at a time.
  * The card is portalled out of the surrounding text so it never becomes part of it,
  * stays open while the pointer is over it, and closes on Escape (WCAG 1.4.13).
- * On narrow screens it opens centred over a blurred scrim, and any tap closes it.
+ * Tapped on a narrow screen, it opens centred over a blurred scrim, and any tap closes it; a mouse or keyboard
+ * always gets the anchored card, since a scrim under the pointer would end the hover that opened it.
  */
 export function Bubble({
   label,
@@ -64,13 +65,16 @@ export function Bubble({
   const client = useSyncExternalStore(noop, () => true, () => false);
   const open = useSyncExternalStore(subscribe, () => current === id, () => false);
   const handedOver = useSyncExternalStore(subscribe, () => current !== null && current !== id, () => false);
-  const centred = useSyncExternalStore(watchNarrow, () => window.matchMedia(narrow).matches, () => false);
+  const narrowScreen = useSyncExternalStore(watchNarrow, () => window.matchMedia(narrow).matches, () => false);
+  const [tapped, setTapped] = useState(false);
+  const centred = tapped && narrowScreen;
 
   const close = useCallback(() => {
     if (current === id) setCurrent(null);
   }, [id]);
-  const show = useCallback(() => {
+  const show = useCallback((byTap = false) => {
     clearTimeout(closing.current);
+    setTapped(byTap);
     setCurrent(id);
   }, [id]);
   const hide = useCallback(() => {
@@ -131,7 +135,7 @@ export function Bubble({
           pointer.current = "";
           if (kind === "mouse") return;
           if (open) close();
-          else show();
+          else show(kind === "touch" || kind === "pen");
         }}
         className={cn(
           "group/bubble focus-ring cursor-help rounded-inset text-inherit transition-colors duration-(--t-hover-short) ease-slow",

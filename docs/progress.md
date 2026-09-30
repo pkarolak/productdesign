@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: tooltips in a narrow desktop window
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Hero tooltips (dictionary terms and company notes) chose the centred phone card by window width alone. In a narrow desktop window a mouse hover opened the scrim under the pointer, which ended the hover, closed the card and reopened it in a loop. The centred card is now used only when a term is tapped (touch or pen) on a narrow screen; a mouse or keyboard always gets the anchored card, which already narrows to the window.
+- **Verified:** lint, typecheck, build; at 600px wide a hovered term stays open with no scrim for 1.2s, company notes too; on an iPhone 13 emulation a tap opens the centred card and a tap closes it.
+
 ## 2026-10-01: cleaner light card colours
 
 - **Agent:** Cursor agent (Claude)
