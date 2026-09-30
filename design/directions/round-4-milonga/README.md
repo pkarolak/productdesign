@@ -2,7 +2,7 @@
 
 A second design language, built alongside Blueprint as its own theme (`themes/milonga/`) so either can be switched on. Brief: the warmth and personality of [benshih.design](https://www.benshih.design/), plus the energy of a runner, climber, tango dancer and tango DJ. Personality wraps the work (hero, interludes, approach, off the clock, contact); case pages stay crisp.
 
-**Status:** proposed, awaiting feedback.
+**Status:** rejected. Too close to benshih.design in palette, type, handwriting and the fanned cards. Replaced by [round 5](../round-5/README.md).
 
 ## Concept
 
