@@ -14,6 +14,9 @@ const image = z.object({
   alt: z.string().min(8),
 });
 
+/** A photo of the designer; `cutout` is the same shot as a transparent PNG with the background removed. */
+const portrait = image.extend({ cutout: z.string().startsWith("/").optional() });
+
 const ratio = z.string().regex(/^\d+(\.\d+)?\/\d+(\.\d+)?$/).optional();
 
 export const assetSchema = z.discriminatedUnion("kind", [
@@ -141,7 +144,7 @@ const introRow = z.object({
   parts: z.array(introPart).min(1).max(4),
   note: z.array(introPart).min(1).max(4).optional(),
   /** A 5:7 photo on the hero face card while this row is on; without it the card shows `avatar`. */
-  photo: image.optional(),
+  photo: portrait.optional(),
 });
 
 export const heroSchema = z.object({
@@ -301,7 +304,7 @@ export const siteSchema = z.object({
   name: z.string().min(2),
   role: words(4),
   /** A square photo of the designer, shown in the nav and beside the intro. */
-  avatar: image.optional(),
+  avatar: portrait.optional(),
   url: z.url(),
   description: words(30),
   hero: heroSchema,

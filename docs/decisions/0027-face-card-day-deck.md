@@ -15,6 +15,7 @@ The day switch already changed the intro line and the light behind the hero. The
 - The deck is a button: a click shuffles to the next time and stops the day switch's autoplay, exactly like picking a tab.
 - One small store (`components/blocks/daytime.ts`) holds the time and the stopped flag for the day switch, the light and the deck.
 - Each card in the deck is its own colour: a suit per time (Day ♦, After hours ♥, Night ♠, in `card-red` or `card-ink`) and a wash over the card paper in that suit's colour (amber, rose, blue) through the `card-tint` contract utility ([ADR 0028](0028-suit-tints.md)). A shuffle then reads as a new card, not the same one moving. The single static card stays the plain P of hearts.
+- A photo with a `cutout` (a transparent PNG) fills the card instead of sitting in a frame: it stands on the bottom edge, reaches up to just under the top corner and always gets its suit's wash, so the black shirt reads against the paper in dark mode. The corner marks are drawn over it, as on a court card.
 - With fewer than two photos, the face card is a single static card, and the hover flip and `avatar.back` are gone.
 
 ## Alternatives considered

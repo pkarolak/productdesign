@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: cut-out photo on the face card
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The hero photo lost its background (Apple Vision's foreground mask, edge pulled in 1px against the wall's fringe) and is saved as `public/about/patryk-arms-crossed-cutout.png`. A new optional `cutout` on `avatar` and on row photos makes the face card show it standing on the bottom edge and filling the card on its suit's wash, with the corners drawn over it. The nav keeps the original photo.
+- **Verified:** lint, typecheck, build, close-ups of the card in dark and light.
+
 ## 2026-10-01: suit tints on the aces
 
 - **Agent:** Cursor agent (Claude)

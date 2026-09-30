@@ -9,28 +9,44 @@ import { motion } from "@theme/motion";
 import { Corner, DECK_ORIGIN, suitTint } from "./CardHand";
 import { setDaytime, useDaytime, type Daytime } from "./daytime";
 
-export type Face = { time: Daytime; when: string; src: string; alt: string };
+export type Face = { time: Daytime; when: string; src: string; cutout?: string; alt: string };
 
 /** Each time of day is its own card in the deck, in its suit's wash. */
 const suits: Record<Daytime, SuitName> = { sun: "diamond", sunset: "heart", moon: "spade" };
 
-/** A face card: a P with the photo framed on card paper between corner marks. `tinted` in a deck of several. */
+/**
+ * A face card: a P with the photo between corner marks. A cut-out stands on the bottom edge and fills the card; a
+ * plain photo is framed on the paper. `tinted` in a deck of several.
+ */
 function FaceCard({ face, preload, tinted }: { face: Face; preload?: boolean; tinted?: boolean }) {
   const suit = tinted ? suits[face.time] : "heart";
   return (
     <div className="playing-card absolute inset-0 overflow-hidden rounded-inset">
-      {tinted && <span aria-hidden data-tint={suitTint[suit]} className="card-tint" />}
+      {(tinted || face.cutout) && <span aria-hidden data-tint={suitTint[suit]} className="card-tint" />}
+      {face.cutout ? (
+        <div className="absolute inset-x-0 top-[9%] bottom-0">
+          <Image
+            src={face.cutout}
+            alt={face.alt}
+            fill
+            preload={preload}
+            sizes="200px"
+            className="object-contain object-bottom sepia-[0.14]"
+          />
+        </div>
+      ) : (
+        <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden rounded-print border border-card-ink/15">
+          <Image
+            src={face.src}
+            alt={face.alt}
+            fill
+            preload={preload}
+            sizes="160px"
+            className="object-cover object-[50%_30%] sepia-[0.14]"
+          />
+        </div>
+      )}
       <Corner suit={suit} rank="P" />
-      <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden rounded-print border border-card-ink/15">
-        <Image
-          src={face.src}
-          alt={face.alt}
-          fill
-          preload={preload}
-          sizes="160px"
-          className="object-cover object-[50%_30%] sepia-[0.14]"
-        />
-      </div>
       <Corner suit={suit} rank="P" flip />
     </div>
   );

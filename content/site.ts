@@ -4,7 +4,11 @@ import { siteSchema } from "./schema";
 export const site = siteSchema.parse({
   name: "Patryk Karolak",
   role: "Product designer",
-  avatar: { src: "/about/patryk-arms-crossed.jpg", alt: "Patryk Karolak smiling with his arms crossed, in a black T-shirt against a light wall." },
+  avatar: {
+    src: "/about/patryk-arms-crossed.jpg",
+    cutout: "/about/patryk-arms-crossed-cutout.png",
+    alt: "Patryk Karolak smiling with his arms crossed, in a black T-shirt.",
+  },
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://patrykkarolak.vercel.app",
   description:
     "Product designer shaping workflow, platform and 0 to 1 products. Selected work from Ledgerline and Halden.",
