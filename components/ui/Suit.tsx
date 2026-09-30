@@ -12,23 +12,17 @@ const paths: Record<SuitName, string> = {
     "M3.6 17.5C4.4 12.6 3.9 9 2.6 6.4 6.4 7.2 9.1 9.8 10.6 13.4 10.9 9.4 11.4 6.6 12 4.6c.6 2 1.1 4.8 1.4 8.8 1.5-3.6 4.2-6.2 8-7-1.3 2.6-1.8 6.2-1 11.1ZM3.4 18.6h17.2v2.6H3.4ZM1 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM10.4 3.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM19.8 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0Z",
 };
 
-/** Pip ink on a card face: red hearts and diamonds, black spades and clubs, a red joker. */
+/** Fileteado pip inks: vermilion hearts, gold diamonds, celeste spades, green clubs. */
 export const suitInk: Record<SuitName, string> = {
   heart: "text-card-red",
-  spade: "text-card-ink",
-  diamond: "text-card-red",
-  club: "text-card-ink",
+  spade: "text-card-sky",
+  diamond: "text-card-gold",
+  club: "text-card-green",
   joker: "text-card-red",
 };
 
-/** The same split on the page itself, where black pips take the ink colour so they read in dark mode. */
-export const suitText: Record<SuitName, string> = {
-  heart: "text-card-red",
-  spade: "text-ink",
-  diamond: "text-card-red",
-  club: "text-ink",
-  joker: "text-card-red",
-};
+/** The same inks beside section headings; each follows the page mode. */
+export const suitText = suitInk;
 
 export function Suit({ suit, className }: { suit: SuitName; className?: string }) {
   return (
@@ -53,6 +47,32 @@ export function JokerEmblem({ className }: { className?: string }) {
         <circle cx="2.6" cy="5.2" r="1.6" />
         <circle cx="21.4" cy="5.2" r="1.6" />
       </g>
+    </svg>
+  );
+}
+
+const glints: Record<SuitName, string> = {
+  heart: "M5 8.2c.2-1.5 1.3-2.7 2.8-2.9",
+  spade: "M7.6 11.6c.7-1.7 1.9-3.2 3.3-4.6",
+  diamond: "M8.3 10.6 11.2 7",
+  club: "M9.6 6.2c.4-.9 1.2-1.5 2.1-1.6",
+  joker: "",
+};
+
+/** A painted pip: suit ink, a gold filete outline and one white brush glint. */
+export function FiletePip({ suit, className }: { suit: SuitName; className?: string }) {
+  return (
+    <svg viewBox="-1 -1 26 26" aria-hidden className={cn("size-4 overflow-visible", suitInk[suit], className)}>
+      <path
+        d={paths[suit]}
+        className={cn(
+          "fill-current [paint-order:stroke] [stroke-linejoin:round] [stroke-width:1.1]",
+          suit === "diamond" ? "stroke-card-red" : "stroke-card-gold",
+        )}
+      />
+      {glints[suit] && (
+        <path d={glints[suit]} className="fill-none stroke-card-glint [stroke-linecap:round] [stroke-width:1.1]" />
+      )}
     </svg>
   );
 }

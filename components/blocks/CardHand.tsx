@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { SmartLink } from "@/components/ui/SmartLink";
-import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
+import { FiletePip, JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
 import type { Deck, HandCard, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
@@ -14,8 +14,8 @@ function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean
   const joker = suit === "joker";
   const place = framed
     ? flip
-      ? "right-[12%] bottom-[8%] rotate-180"
-      : "top-[8%] left-[12%]"
+      ? "right-[7%] bottom-[15%] rotate-180"
+      : "top-[15%] left-[7%]"
     : flip
       ? "right-2.5 bottom-2.5 rotate-180"
       : "top-2.5 left-2.5";
@@ -25,7 +25,6 @@ function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean
       className={cn(
         "absolute z-10 flex flex-col items-center leading-none",
         place,
-        framed && joker && "rounded-pill bg-card-face/90 px-[3px] py-1.5",
         joker ? (flip ? "text-card-red" : "text-card-ink") : suitInk[suit],
       )}
     >
@@ -38,7 +37,7 @@ function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean
       ) : (
         <>
           <span className="font-display text-[1.375rem] font-semibold tracking-[-0.04em]">A</span>
-          <Suit suit={suit} className="mt-1 size-3.5" />
+          {framed ? <FiletePip suit={suit} className="mt-1 size-3.5" /> : <Suit suit={suit} className="mt-1 size-3.5" />}
         </>
       )}
     </span>
@@ -73,21 +72,27 @@ function Card({
       onBlur={onBlur}
       className={cn(
         "focus-ring group/card playing-card relative flex flex-col items-center overflow-hidden rounded-inset text-center backface-hidden",
-        framed && joker ? "justify-end" : "justify-center",
-        framed ? "px-[17%] py-[18%]" : "px-8 py-14",
-        framed && joker && "px-[14%] pb-[5%]",
+        framed && joker ? "justify-between" : "justify-center",
+        framed ? "px-[13%] py-[16%]" : "px-8 py-14",
+        framed && joker && "px-[16%] pt-[8%] pb-[6%]",
         className,
       )}
     >
       {deck && <Art art={joker ? deck.joker : deck.face} />}
       <Corner suit={card.suit} framed={framed} />
       {framed && joker ? (
-        <span className="relative w-full rounded-inset border border-card-ink/15 bg-card-face/90 px-2 py-1.5">
-          <span className="type-h3 block text-[0.9375rem]! leading-tight! font-semibold text-card-ink!">{card.title}</span>
-          <span className="type-caption block text-[0.6875rem]! leading-[1.3]! text-balance! text-card-ink/75!">
+        <>
+          <span className="type-h3 filete-letter relative block font-semibold">{card.title}</span>
+          <span className="type-caption relative block text-[0.75rem]! leading-[1.3]! text-balance! text-card-ink/75!">
             {card.text}
           </span>
-        </span>
+        </>
+      ) : framed ? (
+        <>
+          <FiletePip suit={card.suit} className={cn("relative", card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14", pip)} />
+          <span className="type-h3 filete-letter relative mt-4 block font-semibold">{card.title}</span>
+          <span className="type-caption relative mt-1 block text-balance! text-card-ink/75!">{card.text}</span>
+        </>
       ) : (
         <>
           {joker ? (

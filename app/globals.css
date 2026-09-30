@@ -26,6 +26,10 @@
   --color-card-face: var(--card-face);
   --color-card-red: var(--card-red);
   --color-card-ink: var(--card-ink);
+  --color-card-gold: var(--card-gold);
+  --color-card-green: var(--card-green);
+  --color-card-sky: var(--card-sky);
+  --color-card-glint: var(--card-glint);
 
   --radius-pill: var(--r-pill);
   --radius-plate: var(--r-plate);

@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: a quieter deck in fileteado inks
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** per the owner's feedback ([ADR 0016](decisions/0016-quieter-deck-fileteado-inks.md)): the ace frame is down to corner scrolls and a double filete line, the joker is a bandoneón alone (title above, blurb below), and the back is a small tango medallion on a plain field. Six new images with new file names. Pips are painted in fileteado inks (vermilion, gold, celeste, green) with a gold outline and a glint (`FiletePip`); titles use `filete-letter`. New contract variables `--card-gold`, `--card-green`, `--card-sky` and `--card-glint`.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; deal filmstrip; light and dark at 1440, 800 and mobile; axe zero violations; no overflow.
+
 ## 2026-09-30: a Fileteado Porteño deck
 
 - **Agent:** Cursor agent (Claude)

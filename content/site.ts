@@ -53,9 +53,9 @@ export const site = siteSchema.parse({
   },
   handNote: "Pick a card to see some tricks",
   deck: {
-    face: { src: "/cards/face-light.jpg", srcDark: "/cards/face-dark.jpg" },
-    joker: { src: "/cards/joker-light.jpg", srcDark: "/cards/joker-dark.jpg" },
-    back: { src: "/cards/back-light.jpg", srcDark: "/cards/back-dark.jpg" },
+    face: { src: "/cards/ace-frame-light.jpg", srcDark: "/cards/ace-frame-dark.jpg" },
+    joker: { src: "/cards/joker-bandoneon-light.jpg", srcDark: "/cards/joker-bandoneon-dark.jpg" },
+    back: { src: "/cards/back-couple-light.jpg", srcDark: "/cards/back-couple-dark.jpg" },
   },
   hand: [
     { title: "Hi!", text: "Who I am and how I work.", href: "/about", target: "about", suit: "heart" },

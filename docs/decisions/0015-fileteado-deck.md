@@ -1,6 +1,6 @@
 # 0015: A Fileteado Porteño deck that follows the page mode
 
-- **Status:** Accepted, extends [ADR 0013](0013-real-playing-cards.md)
+- **Status:** Accepted, extends [ADR 0013](0013-real-playing-cards.md); art and inks revised by [ADR 0016](0016-quieter-deck-fileteado-inks.md)
 - **Date:** 2026-09-30
 - **Todo:** card hand follow-up (owner request)
 

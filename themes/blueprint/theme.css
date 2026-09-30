@@ -35,10 +35,14 @@
   --r-card: 28px;
   --r-sheet: 32px;
 
-  /* playing cards: paper and pip inks; the deck turns dark with the page (ADR 0015) */
+  /* playing cards: paper and fileteado inks; the deck turns dark with the page (ADR 0015, 0016) */
   --card-face: #F7F0DF;
   --card-red: #C22F3A;
   --card-ink: #0B1030;
+  --card-gold: #9A6A12;
+  --card-green: #2E7446;
+  --card-sky: #2F6FA8;
+  --card-glint: rgba(255, 255, 255, 0.85);
   --pc-edge: rgba(11, 16, 48, 0.16);
   --pc-grain: rgba(11, 16, 48, 0.018);
   --pc-shine: rgba(255, 255, 255, 0.75);
@@ -86,6 +90,10 @@
   --card-face: #0A0B14;
   --card-red: #EC5A4A;
   --card-ink: #F1E6CE;
+  --card-gold: #E3B654;
+  --card-green: #56A874;
+  --card-sky: #86BDE8;
+  --card-glint: rgba(255, 248, 230, 0.8);
   --pc-edge: rgba(255, 240, 210, 0.14);
   --pc-grain: rgba(255, 240, 210, 0.02);
   --pc-shine: rgba(255, 240, 210, 0.06);
@@ -457,4 +465,10 @@
   font-size: 1.625rem;
   line-height: 1.1;
   color: var(--ink-2);
+}
+
+/* Fileteado sign lettering: gold letters with a red block shadow (ADR 0016). */
+@utility filete-letter {
+  color: var(--card-gold);
+  text-shadow: 0.05em 0.06em 0 var(--card-red);
 }
