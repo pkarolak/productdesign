@@ -73,20 +73,19 @@ export const site = siteSchema.parse({
       {
         when: "After hours",
         icon: "sunset",
-        parts: ["Head of design at", {
+        parts: ["My lovely wife and toddler, then head of design at", {
             pill: "CoNaDzielni.pl",
             logo: "/logos/conadzielni.png",
             kind: "Local events guide",
             about: "A guide to what is happening in your city: events, places and plans nearby.",
           },
-          ", bouldering and long runs",
         ],
       },
       {
         when: "Night",
         icon: "moon",
         parts: [
-          "My lovely wife and toddler, then dancing and DJ-ing at",
+          "Bouldering, long runs, dancing and DJ-ing at",
           {
             term: "milongas",
             phonetic: "miˈlon.ɡas",

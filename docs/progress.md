@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: family after hours, sport and tango at night
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** After hours reads "My lovely wife and toddler, then head of design at CoNaDzielni.pl". Night reads "Bouldering, long runs, dancing and DJ-ing at milongas". The intro is 30 of 32 words.
+- **Verified:** build; both lines on screen.
+
 ## 2026-10-01: a face-card deck that shuffles with the day
 
 - **Agent:** Cursor agent (Claude)
