@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Rise } from "@/components/motion/Rise";
 import { Emphasis } from "@/components/ui/Emphasis";
+import { Filete } from "@/components/ui/Filete";
 import { Suit, suitText } from "@/components/ui/Suit";
 import type { Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
@@ -29,11 +30,14 @@ export function BlockHeader({
           {label}
         </Rise>
       )}
-      <Rise as="h2" id={id} i={1} className="type-h2 flex items-center gap-3 text-ink">
+      <Rise as="h2" id={id} i={1} className="type-h2 filete-shade flex items-center gap-3 text-ink">
         {suit && <Suit suit={suit} className={cn("size-[0.8em] shrink-0", suitText[suit])} />}
         <span>
           <Emphasis text={title} />
         </span>
+      </Rise>
+      <Rise i={1}>
+        <Filete className="mt-3" />
       </Rise>
       {note && (
         <Rise as="p" i={2} className="type-lede mt-3">

@@ -81,7 +81,7 @@ function Card({
       ) : (
         <JokerEmblem className={cn("relative size-13 xl:size-15", pip)} />
       )}
-      <span className="type-h3 relative mt-4 block font-semibold text-card-ink!">{card.title}</span>
+      <span className="type-h3 filete-shade relative mt-4 block font-semibold text-card-ink!">{card.title}</span>
       <span className="type-caption relative mt-1 block text-balance! text-card-ink/70!">{card.text}</span>
       <Corner suit={card.suit} flip />
     </>

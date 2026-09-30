@@ -460,3 +460,8 @@
 }
 
 /* Fileteado sign lettering: gold letters with a red block shadow (ADR 0016). */
+
+/* sign-painter lettering: the fileteado block shade, in the accent (ADR 0019) */
+@utility filete-shade {
+  text-shadow: 0.05em 0.055em 0 color-mix(in srgb, var(--accent) 72%, transparent);
+}

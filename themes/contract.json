@@ -107,7 +107,8 @@
     "press",
     "sheet",
     "playing-card",
-    "type-hand"
+    "type-hand",
+    "filete-shade"
   ],
   "fontVariables": [
     "--theme-font-display",

@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: fileteado lettering on headings
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** section headings and card titles keep Geist but wear `filete-shade`, a sign-painter block shade in the accent. Section headings add a small `Filete` flourish underneath ([ADR 0019](decisions/0019-filete-lettering.md)).
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; heading and fan screenshots in dark and light; axe zero violations.
+
 ## 2026-09-30: plain card faces, fileteado only as a nod
 
 - **Agent:** Cursor agent (Claude)
