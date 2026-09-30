@@ -27,6 +27,7 @@ const pages = only(
     { name: "case-public", path: "/work/accessible-by-default" },
     { name: "case-locked", path: "/work/keel-design-system" },
     { name: "case-unlocked", path: "/work/keel-design-system", unlock: true },
+    { name: "kit", path: "/kit" },
   ],
   "SHOTS_ONLY",
 );
@@ -68,6 +69,8 @@ for (const theme of themes) {
       colorScheme: theme,
       deviceScaleFactor: 1,
     });
+    // next-themes reads localStorage first, and a design language may default to dark regardless of the OS.
+    await context.addInitScript((t) => localStorage.setItem("theme", t), theme);
     const page = await context.newPage();
     for (const p of pages) {
       if (p.unlock && !password) {

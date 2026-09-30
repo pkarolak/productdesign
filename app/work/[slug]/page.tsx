@@ -7,8 +7,11 @@ import { CaseFacts } from "@/components/case/CaseFacts";
 import { CaseHeader } from "@/components/case/CaseHeader";
 import { LockCases } from "@/components/case/LockCases";
 import { NextCase } from "@/components/case/NextCase";
+import { PageTransition } from "@/components/motion/PageTransition";
+import { Contact } from "@/components/site/Contact";
 import { MetricsPanel } from "@/components/ui/MetricsPanel";
 import { getProject, nextProject, projects } from "@/content/projects";
+import { site } from "@/content/site";
 
 export const dynamicParams = false;
 
@@ -31,15 +34,20 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
   if (!project) notFound();
 
   return (
-    <article>
-      <CaseHeader project={project} status={project.access === "protected" ? <LockCases /> : undefined}>
-        <MetricsPanel metrics={project.metrics} rise={3} className="mt-12 max-w-[640px]" />
-      </CaseHeader>
-      <CaseFacts project={project} />
-      <Beats beats={project.beats} />
-      <Artifacts artifacts={project.artifacts} />
-      <AskMeAbout prompts={project.askMeAbout} />
-      <NextCase next={nextProject(project.slug)} />
-    </article>
+    <PageTransition>
+      <div>
+        <article>
+          <CaseHeader project={project} status={project.access === "protected" ? <LockCases /> : undefined}>
+            <MetricsPanel metrics={project.metrics} rise={3} className="mt-12 max-w-[640px]" />
+          </CaseHeader>
+          <CaseFacts project={project} />
+          <Beats beats={project.beats} />
+          <Artifacts artifacts={project.artifacts} />
+          <AskMeAbout prompts={project.askMeAbout} />
+          <NextCase next={nextProject(project.slug)} />
+        </article>
+        <Contact site={site} />
+      </div>
+    </PageTransition>
   );
 }

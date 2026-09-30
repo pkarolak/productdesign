@@ -7,7 +7,7 @@ export function NextCase({ next }: { next: Project }) {
   return (
     <section aria-label="Next case" className="container-page pb-(--section-y)">
       <Rise className="border-t border-hairline pt-12">
-        <Link href={`/work/${next.slug}`} className="focus-ring group/n inline-block rounded-frame">
+        <Link href={`/work/${next.slug}`} transitionTypes={["nav-forward"]} className="focus-ring group/n inline-block rounded-frame">
           <span className="type-small block">Next case</span>
           <span className="type-h2 mt-2 flex items-center gap-4 text-ink">
             {next.title}

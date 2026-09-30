@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Asset } from "@/components/media/Asset";
+import { CoverMorph } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
 import type { Project } from "@/content/schema";
 
@@ -32,14 +33,18 @@ export function CaseHeader({
         {children}
       </div>
       <div className="lg:col-span-5">
-        <Asset
-          asset={project.cover}
-          compact
-          priority
-          rise={3}
-          aspect={project.cover.kind === "mobile" ? "4/5" : "4/3"}
-          sizes="(min-width: 1024px) 40vw, 100vw"
-        />
+        <CoverMorph slug={project.slug}>
+          <div>
+            <Asset
+              asset={project.cover}
+              compact
+              priority
+              rise={3}
+              aspect={project.cover.kind === "mobile" ? "4/5" : "4/3"}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
+          </div>
+        </CoverMorph>
       </div>
     </header>
   );

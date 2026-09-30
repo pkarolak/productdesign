@@ -3,7 +3,21 @@
 import { motion as m, type HTMLMotionProps } from "motion/react";
 import { motion } from "@theme/motion";
 
-type Tag = "div" | "section" | "header" | "li" | "p" | "h1" | "h2" | "span" | "ul" | "article" | "figcaption";
+type Tag =
+  | "div"
+  | "section"
+  | "header"
+  | "li"
+  | "p"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "span"
+  | "ul"
+  | "ol"
+  | "article"
+  | "figure"
+  | "figcaption";
 
 /** The entry reveal. Stagger with `i`; siblings rise in order. */
 export function Rise({

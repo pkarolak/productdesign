@@ -21,7 +21,30 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [ ] `qa`: done: shots gate, overflow check, gating leak tests, README. Left: taste pre-flight write-up, keyboard and screen reader pass, Lighthouse on a Vercel preview
 - [ ] `docs-final`: done: architecture, theming, content guide, operations. Left: ADR 0005, `pnpm docs:check`, final handoff entry
 
+Round 8 (block library and Dusk):
+
+- [x] `dusk-comps`, `adrs-contract`, `dusk-theme`
+- [x] `content-schema`: block schemas with budgets, `site.ts` rewritten, `content/kit.ts`
+- [x] `blocks`: `components/blocks/`, `lib/blocks.ts`
+- [x] `interactions`: Modal, Toaster, CommandMenu, `press`, page transitions and cover morph
+- [x] `kit-page`: `/kit`
+- [x] `compose`: Home and About from blocks, contact per page
+- [x] `verify-docs`: checks under both themes, axe, interactions, shots, docs
+- [ ] Phase 3, the personal touch: hobbies in the Showcase, personal copy. No kudos.
+
 ---
+
+## 2026-09-30: block library built and composed (`content-schema`, `blocks`, `interactions`, `kit-page`, `compose`, `verify-docs`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - Content: one schema per block with word budgets; `hero.lede`, `hero.metrics`, `hero.plates`, `approach`, `about.bio` and `about.experience` removed. `site.ts` fills hero, doors, statement, testimonials, letter, story, education, journey, values and outside; showcase and writing stay empty on the live site. `content/kit.ts` fills them for `/kit`.
+  - Blocks in `components/blocks/`: IntroHero, DoorCards, Statement, WorkTimeline, Showcase, WritingList, Testimonials, LetterCard, StoryHeader, Education, Journey, Values, OutsideWork, plus `BlockHeader` and the `HomeBlocks` and `AboutBlocks` compositions. Empty blocks render nothing; doors into empty blocks are hidden.
+  - Interactions: `Modal` (native dialog, sheet or palette, optional morph), `Toaster`, `CommandMenu` (Cmd K or Ctrl K, go to, copy email, switch theme, links), `CopyEmail` as a button with a toast, `press` on tiles and buttons, `PageTransition` and `CoverMorph` on every page and case cover, nav gets a command button and a fixed view-transition name.
+  - `/kit` shows every block and primitive, `noindex`, not in the sitemap or nav. Old `components/home/` removed; `Contact` moved from the layout into each page.
+- **Verified:** `theme:check`, `typecheck`, `lint` and `build` under Dusk and Blueprint. axe zero violations on 7 pages (including `/kit`) in light and dark, and inside the open command menu and sheet. Scripted checks: Cmd K opens with focus in the input, filter and Enter navigate, Escape closes and returns focus, theme switch and copy email toast, showcase sheet opens and closes. `pnpm shots` (now with `/kit`, theme set through `localStorage`) with no overflow; compared against round 8.
+- **Left:** the nav is still Blueprint's pill layout in Dusk (the comp shows a full-width bar); nav text links are 23px tall, as before.
+- **Next:** Phase 3, the personal touch.
 
 ## 2026-09-30: Dusk theme (`dusk-theme`)
 

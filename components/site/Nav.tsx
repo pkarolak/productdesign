@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "@theme/motion";
 import { PrimaryLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/cn";
+import { openCommandMenu } from "./CommandMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -56,9 +58,10 @@ export function Nav({ name }: { name: string }) {
           scale: spring,
         }}
         data-scrolled={scrolled}
+        style={{ viewTransitionName: "site-header" }}
         className="surface-strong fixed inset-x-0 top-(--nav-top) z-50 mx-auto flex w-max items-center gap-[30px] rounded-pill py-[6px] pr-[6px] pl-[26px] text-[15px] transition-shadow duration-(--t-hover) ease-slow data-[scrolled=true]:surface-deep"
       >
-        <Link href="/" className="focus-ring type-wordmark rounded-pill text-ink">
+        <Link href="/" transitionTypes={["nav-back"]} className="focus-ring type-wordmark rounded-pill text-ink">
           {name}
         </Link>
         <span aria-hidden className="divider hidden h-[18px] md:block" />
@@ -68,6 +71,7 @@ export function Nav({ name }: { name: string }) {
             <Link
               key={l.href}
               href={l.href}
+              transitionTypes={[l.href === "/about" ? "nav-forward" : "nav-back"]}
               aria-current={active ? "page" : undefined}
               className={cn(
                 "focus-ring relative hidden rounded-pill text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink md:block",
@@ -81,6 +85,16 @@ export function Nav({ name }: { name: string }) {
             </Link>
           );
         })}
+        <button
+          type="button"
+          onClick={openCommandMenu}
+          aria-label="Open command menu"
+          aria-keyshortcuts="Meta+K Control+K"
+          className="focus-ring press -mx-3 flex h-10 cursor-pointer items-center gap-1.5 rounded-pill px-3 text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink max-md:hidden"
+        >
+          <Icon name="command" className="size-4" />
+          <span aria-hidden className="type-caption">K</span>
+        </button>
         <ThemeToggle className="-mx-3 max-md:hidden" />
         <PrimaryLink href="#contact" size="compact" className="max-md:hidden">
           Get in touch

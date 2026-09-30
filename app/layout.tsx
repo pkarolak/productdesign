@@ -4,11 +4,13 @@ import type { Metadata, Viewport } from "next";
 import { Atmosphere } from "@theme/Atmosphere";
 import { fontVariables } from "@theme/fonts";
 import { meta } from "@theme/meta";
-import { Contact } from "@/components/site/Contact";
+import { CommandMenu, type CommandGroup } from "@/components/site/CommandMenu";
 import { Footer } from "@/components/site/Footer";
 import { Nav } from "@/components/site/Nav";
 import { ThemeProvider } from "@/components/site/ThemeProvider";
+import { Toaster } from "@/components/site/Toaster";
 import { plain } from "@/components/ui/Emphasis";
+import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -27,6 +29,32 @@ export const viewport: Viewport = {
   ],
 };
 
+const commands: CommandGroup[] = [
+  {
+    label: "Go to",
+    items: [
+      { id: "home", label: "Home", href: "/" },
+      { id: "work", label: "Work", href: "/#work", keywords: "cases projects" },
+      { id: "about", label: "About", href: "/about", keywords: "journey values" },
+      ...projects.map((p) => ({ id: p.slug, label: p.title, href: `/work/${p.slug}`, keywords: `case ${p.company}` })),
+    ],
+  },
+  {
+    label: "Actions",
+    items: [
+      { id: "copy-email", label: "Copy email address", action: "copy-email", keywords: "contact mail" },
+      { id: "toggle-theme", label: "Switch light or dark mode", action: "toggle-theme", keywords: "theme appearance" },
+    ],
+  },
+  {
+    label: "Links",
+    items: [
+      { id: "linkedin", label: "LinkedIn", href: site.links.linkedin },
+      ...(site.links.calendar ? [{ id: "calendar", label: "Book a call", href: site.links.calendar }] : []),
+    ],
+  },
+];
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
@@ -35,19 +63,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-dvh">
         <ThemeProvider>
-          <a
-            href="#main"
-            className="focus-ring sr-only z-[60] rounded-pill bg-ink px-5 py-3 text-canvas focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
-          >
-            Skip to content
-          </a>
-          <Atmosphere />
-          <Nav name={site.name} />
-          <main id="main" className="relative z-10">
-            {children}
-          </main>
-          <Contact site={site} />
-          <Footer name={site.name} note={site.footnote} />
+          <Toaster>
+            <a
+              href="#main"
+              className="focus-ring sr-only z-[60] rounded-pill bg-ink px-5 py-3 text-canvas focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+            >
+              Skip to content
+            </a>
+            <Atmosphere />
+            <Nav name={site.name} />
+            <main id="main" className="relative z-10">
+              {children}
+            </main>
+            <Footer name={site.name} note={site.footnote} />
+            <CommandMenu groups={commands} email={site.links.email} />
+          </Toaster>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

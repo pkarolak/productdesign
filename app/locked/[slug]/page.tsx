@@ -3,12 +3,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseHeader } from "@/components/case/CaseHeader";
 import { UnlockForm } from "@/components/case/UnlockForm";
+import { PageTransition } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
+import { Contact } from "@/components/site/Contact";
 import { Chip } from "@/components/ui/Chip";
 import { Icon } from "@/components/ui/Icon";
 import { MetricValue } from "@/components/ui/MetricsPanel";
 import { Panel } from "@/components/ui/Panel";
 import { getProject, projects, protectedSlugs } from "@/content/projects";
+import { site } from "@/content/site";
 
 export const dynamicParams = false;
 
@@ -34,44 +37,49 @@ export default async function LockedCase({ params }: PageProps<"/locked/[slug]">
   const open = projects.filter((p) => p.access === "public");
 
   return (
-    <CaseHeader project={project} status={<Chip icon="lock">Password protected</Chip>}>
-      <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-8">
-      <Rise i={3} className="flex items-end gap-4 pb-8">
-        <MetricValue metric={metric} />
-        <p className="type-small pb-0.5">
-          {metric.label}
-          <span className="block">{metric.context}</span>
-        </p>
-      </Rise>
-      <Panel rise={4} className="w-full max-w-[460px] p-7 md:p-8">
-        <p className="type-body mb-6 flex items-center gap-2.5 text-ink">
-          <span className="text-accent">
-            <Icon name="lock" />
-          </span>
-          The full case is password protected.
-        </p>
-        <UnlockForm slug={project.slug} />
-        <p className="type-small mt-1">
-          No password?{" "}
-          <a href="#contact" className="focus-ring link rounded-pill py-1">
-            Ask me for one
-          </a>
-        </p>
-        {open.length > 0 && (
-          <p className="type-small mt-3 border-t border-hairline pt-4">
-            Or read the open {open.length === 1 ? "case" : "cases"}:{" "}
-            {open.map((p, i) => (
-              <span key={p.slug}>
-                {i > 0 && ", "}
-                <Link href={`/work/${p.slug}`} className="focus-ring link rounded-pill py-1">
-                  {p.title}
-                </Link>
-              </span>
-            ))}
-          </p>
-        )}
-      </Panel>
+    <PageTransition>
+      <div>
+        <CaseHeader project={project} status={<Chip icon="lock">Password protected</Chip>}>
+          <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-8">
+            <Rise i={3} className="flex items-end gap-4 pb-8">
+              <MetricValue metric={metric} />
+              <p className="type-small pb-0.5">
+                {metric.label}
+                <span className="block">{metric.context}</span>
+              </p>
+            </Rise>
+            <Panel rise={4} className="w-full max-w-[460px] p-7 md:p-8">
+              <p className="type-body mb-6 flex items-center gap-2.5 text-ink">
+                <span className="text-accent">
+                  <Icon name="lock" />
+                </span>
+                The full case is password protected.
+              </p>
+              <UnlockForm slug={project.slug} />
+              <p className="type-small mt-1">
+                No password?{" "}
+                <a href="#contact" className="focus-ring link rounded-pill py-1">
+                  Ask me for one
+                </a>
+              </p>
+              {open.length > 0 && (
+                <p className="type-small mt-3 border-t border-hairline pt-4">
+                  Or read the open {open.length === 1 ? "case" : "cases"}:{" "}
+                  {open.map((p, i) => (
+                    <span key={p.slug}>
+                      {i > 0 && ", "}
+                      <Link href={`/work/${p.slug}`} transitionTypes={["nav-forward"]} className="focus-ring link rounded-pill py-1">
+                        {p.title}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
+              )}
+            </Panel>
+          </div>
+        </CaseHeader>
+        <Contact site={site} />
       </div>
-    </CaseHeader>
+    </PageTransition>
   );
 }

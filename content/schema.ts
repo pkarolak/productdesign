@@ -96,26 +96,155 @@ export const projectSchema = z
 
 export type Project = z.infer<typeof projectSchema>;
 
+const href = z
+  .string()
+  .refine((s) => /^(\/|#|mailto:|https?:\/\/)/.test(s), { message: "Use a /path, #anchor, mailto: or https:// URL." });
+
+const cta = z.object({ label: words(4), href });
+
+const slug = z.string().regex(/^[a-z0-9-]+$/);
+
+const year = z.number().int().min(1990).max(2100);
+
+/** Plain text runs and inline company pills, read as one sentence. */
+const introPart = z.union([z.string().min(1), z.object({ pill: z.string().min(2), href })]);
+
+export const heroSchema = z.object({
+  greeting: words(5),
+  tagline: words(6),
+  intro: z
+    .array(introPart)
+    .min(1)
+    .max(9)
+    .refine((parts) => wordCount(parts.map((p) => (typeof p === "string" ? p : p.pill)).join(" ")) <= 32, {
+      message: "The intro sentence is at most 32 words. Cut it, do not raise the limit.",
+    }),
+  /** Used for metadata and OG images, where the pills cannot render. */
+  headline: words(12),
+  cta: cta.optional(),
+});
+
+export const doorTargets = ["work", "showcase", "writing", "about", "contact"] as const;
+
+export const doorsSchema = z
+  .array(z.object({ label: words(3), title: words(10), cta: words(4), href, target: z.enum(doorTargets) }))
+  .max(3);
+
+export const statementSchema = z.object({
+  label: words(5),
+  lines: z.array(words(8)).min(1).max(2),
+  text: words(32),
+  cta: cta.optional(),
+});
+
+export const workIntroSchema = z.object({ title: words(5), note: words(10) });
+
+export const showcaseSchema = z.object({
+  title: words(6),
+  note: words(20),
+  items: z
+    .array(
+      z.object({
+        id: slug,
+        kicker: words(4),
+        title: words(5),
+        text: words(14),
+        image,
+        detail: words(60),
+        link: cta.optional(),
+      }),
+    )
+    .max(6),
+});
+
+export const writingSchema = z.object({
+  title: words(6),
+  note: words(20).optional(),
+  items: z
+    .array(
+      z.object({
+        title: words(12),
+        date: z.string().regex(/^\d{4}-\d{2}(-\d{2})?$/, "Use YYYY-MM or YYYY-MM-DD."),
+        href: z.url(),
+        source: z.string().min(2).optional(),
+      }),
+    )
+    .max(6),
+});
+
+export const testimonialsSchema = z.object({
+  title: words(8),
+  items: z
+    .array(z.object({ quote: words(45), name: z.string().min(3), role: words(5), company: z.string().min(2) }))
+    .max(4),
+});
+
+export const letterSchema = z.object({
+  salutation: words(5),
+  paragraphs: z.array(words(34)).min(1).max(3),
+  signoff: words(4),
+});
+
+export const educationSchema = z
+  .array(z.object({ school: z.string().min(3), degree: words(6), years: z.string().min(4) }))
+  .max(4);
+
+export const journeySchema = z.object({
+  title: words(5),
+  note: words(24).optional(),
+  roles: z
+    .array(
+      z
+        .object({
+          from: year,
+          /** Omit while the role is current. */
+          to: year.optional(),
+          company: z.string().min(2),
+          role: words(5),
+          kind: words(3),
+          summary: words(18),
+          points: z.array(words(16)).max(2).default([]),
+          cases: z.array(slug).max(2).default([]),
+        })
+        .refine((r) => r.to === undefined || r.to >= r.from, { message: "`to` must not be before `from`." }),
+    )
+    .min(1)
+    .max(8),
+});
+
+export const valuesSchema = z.object({
+  title: words(6),
+  items: z.array(z.object({ title: words(6), text: words(30), evidence: slug.optional() })).max(4),
+});
+
+export const outsideSchema = z.object({
+  title: words(6),
+  note: words(20).optional(),
+  items: z.array(z.object({ title: words(8), text: words(40) })).max(3),
+});
+
 export const siteSchema = z.object({
   name: z.string().min(2),
   role: words(4),
   url: z.url(),
   description: words(30),
-  hero: z.object({
-    headline: words(12),
-    lede: words(20),
-    metrics: z.array(metric).length(3),
-    plates: z.array(image).min(1).max(3).optional(),
-  }),
-  approach: z
-    .array(z.object({ title: words(6), text: words(24), long: words(50), evidence: z.string() }))
-    .length(3),
+  hero: heroSchema,
+  doors: doorsSchema.default([]),
+  statement: statementSchema.optional(),
+  work: workIntroSchema,
+  showcase: showcaseSchema.optional(),
+  writing: writingSchema.optional(),
+  testimonials: testimonialsSchema.optional(),
+  letter: letterSchema.optional(),
   about: z.object({
     headline: words(12),
-    bio: words(80),
-    portrait: image,
-    experience: z.array(z.object({ role: words(5), company: z.string(), years: z.string() })).min(2).max(6),
+    story: z.array(words(70)).min(1).max(3),
+    portrait: image.optional(),
   }),
+  education: educationSchema.default([]),
+  journey: journeySchema.optional(),
+  values: valuesSchema.optional(),
+  outside: outsideSchema.optional(),
   links: z.object({
     email: z.email(),
     linkedin: z.url(),
@@ -126,3 +255,17 @@ export const siteSchema = z.object({
 });
 
 export type Site = z.infer<typeof siteSchema>;
+export type Hero = Site["hero"];
+export type Door = Site["doors"][number];
+export type DoorTarget = (typeof doorTargets)[number];
+export type Statement = z.infer<typeof statementSchema>;
+export type WorkIntro = z.infer<typeof workIntroSchema>;
+export type Showcase = z.infer<typeof showcaseSchema>;
+export type ShowcaseItem = Showcase["items"][number];
+export type Writing = z.infer<typeof writingSchema>;
+export type Testimonials = z.infer<typeof testimonialsSchema>;
+export type Letter = z.infer<typeof letterSchema>;
+export type Education = z.infer<typeof educationSchema>;
+export type Journey = z.infer<typeof journeySchema>;
+export type Values = z.infer<typeof valuesSchema>;
+export type Outside = z.infer<typeof outsideSchema>;
