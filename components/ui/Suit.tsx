@@ -15,9 +15,9 @@ const paths: Record<SuitName, string> = {
 /** Pip ink on a card face: red hearts and diamonds, black spades and clubs, a red joker. */
 export const suitInk: Record<SuitName, string> = {
   heart: "text-card-red",
-  spade: "text-card-black",
+  spade: "text-card-ink",
   diamond: "text-card-red",
-  club: "text-card-black",
+  club: "text-card-ink",
   joker: "text-card-red",
 };
 
@@ -47,7 +47,7 @@ export function JokerEmblem({ className }: { className?: string }) {
         <path d="M20.4 17.5c-.8-4.9-.3-8.5 1-11.1-3.8.8-6.5 3.4-8 7L12 17.5Z" />
         <circle cx="12" cy="3.2" r="1.6" />
       </g>
-      <g className="fill-card-black">
+      <g className="fill-card-ink">
         <path d="M10.6 13.4c.3-4 .8-6.8 1.4-8.8.6 2 1.1 4.8 1.4 8.8L12 17.5Z" />
         <path d="M3.4 18.6h17.2v2.6H3.4Z" />
         <circle cx="2.6" cy="5.2" r="1.6" />

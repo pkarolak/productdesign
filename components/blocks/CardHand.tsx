@@ -1,23 +1,32 @@
 "use client";
 
 import { motion as m, useInView, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
-import type { HandCard, Suit as SuitName } from "@/content/schema";
+import type { Deck, HandCard, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
-function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean }) {
+function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean; framed: boolean }) {
   const joker = suit === "joker";
+  const place = framed
+    ? flip
+      ? "right-[12%] bottom-[8%] rotate-180"
+      : "top-[8%] left-[12%]"
+    : flip
+      ? "right-2.5 bottom-2.5 rotate-180"
+      : "top-2.5 left-2.5";
   return (
     <span
       aria-hidden
       className={cn(
-        "absolute flex flex-col items-center leading-none",
-        flip ? "right-2.5 bottom-2.5 rotate-180" : "top-2.5 left-2.5",
-        joker ? (flip ? "text-card-red" : "text-card-black") : suitInk[suit],
+        "absolute z-10 flex flex-col items-center leading-none",
+        place,
+        framed && joker && "rounded-pill bg-card-face/90 px-[3px] py-1.5",
+        joker ? (flip ? "text-card-red" : "text-card-ink") : suitInk[suit],
       )}
     >
       {joker ? (
@@ -36,18 +45,26 @@ function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean }) {
   );
 }
 
+function Art({ art }: { art: Deck["face"] }) {
+  return <Picture src={art.src} srcDark={art.srcDark} alt="" sizes="(min-width: 1280px) 212px, 220px" dim={false} className="object-fill" />;
+}
+
 function Card({
   card,
+  deck,
   className,
   onFocus,
   onBlur,
 }: {
   card: HandCard;
+  deck?: Deck;
   className?: string;
   onFocus?: () => void;
   onBlur?: () => void;
 }) {
   const pip = "shrink-0 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
+  const joker = card.suit === "joker";
+  const framed = Boolean(deck);
   return (
     <SmartLink
       href={card.href}
@@ -55,23 +72,70 @@ function Card({
       onFocus={onFocus}
       onBlur={onBlur}
       className={cn(
-        "focus-ring group/card playing-card relative flex flex-col items-center justify-center overflow-hidden rounded-inset px-8 py-14 text-center",
+        "focus-ring group/card playing-card relative flex flex-col items-center overflow-hidden rounded-inset text-center backface-hidden",
+        framed && joker ? "justify-end" : "justify-center",
+        framed ? "px-[17%] py-[18%]" : "px-8 py-14",
+        framed && joker && "px-[14%] pb-[5%]",
         className,
       )}
     >
-      <Corner suit={card.suit} />
-      {card.suit === "joker" ? (
-        <JokerEmblem className={cn("size-16 xl:size-20", pip)} />
+      {deck && <Art art={joker ? deck.joker : deck.face} />}
+      <Corner suit={card.suit} framed={framed} />
+      {framed && joker ? (
+        <span className="relative w-full rounded-inset border border-card-ink/15 bg-card-face/90 px-2 py-1.5">
+          <span className="type-h3 block text-[0.9375rem]! leading-tight! font-semibold text-card-ink!">{card.title}</span>
+          <span className="type-caption block text-[0.6875rem]! leading-[1.3]! text-balance! text-card-ink/75!">
+            {card.text}
+          </span>
+        </span>
       ) : (
-        <Suit
-          suit={card.suit}
-          className={cn(suitInk[card.suit], card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14", pip)}
-        />
+        <>
+          {joker ? (
+            <JokerEmblem className={cn("relative size-16 xl:size-20", pip)} />
+          ) : (
+            <Suit
+              suit={card.suit}
+              className={cn(
+                "relative",
+                suitInk[card.suit],
+                card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14",
+                pip,
+              )}
+            />
+          )}
+          <span className="type-h3 relative mt-4 block font-semibold text-card-ink!">{card.title}</span>
+          <span className="type-caption relative mt-1 block text-balance! text-card-ink/75!">{card.text}</span>
+        </>
       )}
-      <span className="type-h3 mt-4 block font-semibold text-card-black!">{card.title}</span>
-      <span className="type-caption mt-1 block text-card-black/70!">{card.text}</span>
-      <Corner suit={card.suit} flip />
+      <Corner suit={card.suit} framed={framed} flip />
     </SmartLink>
+  );
+}
+
+function CardBack({ art }: { art: Deck["back"] }) {
+  return (
+    <span
+      aria-hidden
+      className="playing-card pointer-events-none absolute inset-0 overflow-hidden rounded-inset backface-hidden rotate-y-180"
+    >
+      <Art art={art} />
+    </span>
+  );
+}
+
+/** Turns a card face down while `down`, flipping it over when dealt. */
+function Flip({ down, delay, back, children }: { down: boolean; delay: number; back?: Deck["back"]; children: ReactNode }) {
+  if (!back) return children;
+  return (
+    <m.div
+      className="relative transform-3d"
+      initial={false}
+      animate={{ rotateY: down ? 180 : 0 }}
+      transition={down ? { duration: 0 } : { duration: 0.7, delay, ease: motion.ease }}
+    >
+      {children}
+      <CardBack art={back} />
+    </m.div>
   );
 }
 
@@ -140,7 +204,7 @@ function useDeal(list: RefObject<HTMLUListElement | null>, count: number, anchor
  * Section cards held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
  * while its neighbours make room. Narrow screens get a plain swipe row.
  */
-export function CardHand({ cards, note }: { cards: HandCard[]; note?: string }) {
+export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: string; deck?: Deck }) {
   const [hot, setHot] = useState<number | null>(null);
   const fanList = useRef<HTMLUListElement>(null);
   const rowList = useRef<HTMLUListElement>(null);
@@ -187,14 +251,18 @@ export function CardHand({ cards, note }: { cards: HandCard[]; note?: string }) 
                       }
                 }
                 transition={dealing(fan.phase, i)}
+                className="perspective-[1400px]"
                 style={{ transformOrigin: "50% 120%" }}
               >
-                <Card
-                  card={card}
-                  onFocus={() => setHot(i)}
-                  onBlur={() => setHot(null)}
-                  className="aspect-[5/7] w-[172px] xl:w-[212px]"
-                />
+                <Flip down={stacked} delay={i * motion.deal.stagger + 0.1} back={deck?.back}>
+                  <Card
+                    card={card}
+                    deck={deck}
+                    onFocus={() => setHot(i)}
+                    onBlur={() => setHot(null)}
+                    className="aspect-[5/7] w-[172px] xl:w-[212px]"
+                  />
+                </Flip>
               </m.div>
             </Rise>
           );
@@ -215,8 +283,11 @@ export function CardHand({ cards, note }: { cards: HandCard[]; note?: string }) 
                   : { rotate: 0, x: 0, y: 0 }
               }
               transition={dealing(row.phase, i)}
+              className="perspective-[1400px]"
             >
-              <Card card={card} className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]" />
+              <Flip down={row.phase === "stacked"} delay={i * motion.deal.stagger + 0.1} back={deck?.back}>
+                <Card card={card} deck={deck} className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]" />
+              </Flip>
             </m.div>
           </Rise>
         ))}

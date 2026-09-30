@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: a Fileteado Porteño deck
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hand is a Fileteado Porteño deck ([ADR 0015](decisions/0015-fileteado-deck.md)): an ornamental ace frame, Aníbal Troilo with his bandoneón as the joker and a tango couple on the back, generated as one consistent set in black and cream (`public/cards/`, `site.deck`). Cards are black in dark mode and cream in light mode (`--card-face`, `--card-red` and `--card-ink` now per mode; `--card-black` renamed). The stack lands face down showing the tango backs and each card flips face up as it is dealt.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; deal filmstrip; light and dark at 1440, 800 and mobile; axe zero violations; no overflow.
+
 ## 2026-09-30: calmer hero alignment
 
 - **Agent:** Cursor agent (Claude)

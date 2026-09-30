@@ -142,6 +142,11 @@ export const handTargets = ["about", "work", "showcase", "teaching", "outside", 
 /** Card suits; each theme colours them with --suit-1 to --suit-5. The joker blends them all. */
 export const suits = ["heart", "spade", "diamond", "club", "joker"] as const;
 
+const art = z.object({ src: z.string().startsWith("/"), srcDark: z.string().startsWith("/").optional() });
+
+/** Illustrated card art for the hand: the frame behind the aces, the joker and the back. Decorative. */
+export const deckSchema = z.object({ face: art, joker: art, back: art });
+
 export const handSchema = z
   .array(z.object({ title: words(3), text: words(8), href, target: z.enum(handTargets), suit: z.enum(suits) }))
   .max(5);
@@ -266,6 +271,7 @@ export const siteSchema = z.object({
   hero: heroSchema,
   hand: handSchema.default([]),
   handNote: words(8).optional(),
+  deck: deckSchema.optional(),
   statement: statementSchema.optional(),
   work: workIntroSchema,
   showcase: showcaseSchema.optional(),
@@ -295,6 +301,7 @@ export type Site = z.infer<typeof siteSchema>;
 export type Hero = Site["hero"];
 export type GlossaryEntry = Hero["glossary"][number];
 export type HandCard = Site["hand"][number];
+export type Deck = NonNullable<Site["deck"]>;
 export type HandTarget = (typeof handTargets)[number];
 export type Suit = (typeof suits)[number];
 export type Statement = z.infer<typeof statementSchema>;

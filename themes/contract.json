@@ -34,7 +34,7 @@
     "--hairline",
     "--card-face",
     "--card-red",
-    "--card-black",
+    "--card-ink",
     "--core",
     "--skeleton",
     "--shadow",
@@ -73,7 +73,10 @@
     "--hairline",
     "--core",
     "--skeleton",
-    "--shadow"
+    "--shadow",
+    "--card-face",
+    "--card-red",
+    "--card-ink"
   ],
   "utilities": [
     "surface",
