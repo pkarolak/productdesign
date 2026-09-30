@@ -24,7 +24,7 @@ pnpm shots                   # against a running server; SHOTS_URL=http://localh
 
 ## Deploy on Vercel
 
-1. Import `pkarolak/productdesign` in Vercel. Framework preset: Next.js. No build settings to change.
+1. Import `pkarolak/productdesign` in Vercel. `vercel.json` pins the framework to Next.js, so no build settings need changing. If the site answers `404 NOT_FOUND` in plain text while files from `public/` load, the project is building as "Other": check that `vercel.json` is on the deployed commit, and clear any Output Directory override in the project settings.
 2. Add `CASE_PASSWORD` and `AUTH_SECRET` (and optionally `NEXT_PUBLIC_SITE_URL`) for Production and Preview.
 3. Deploy. Analytics and Speed Insights are already wired in the root layout; enable them in the Vercel dashboard.
 

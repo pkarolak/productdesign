@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: Vercel served a 404 on every page
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** production answered Vercel's plain `NOT_FOUND` on `/`, `/about` and `/robots.txt`, while files from `public/` loaded. The project had been imported before Next.js was in the repo, so Vercel kept the framework preset "Other" and deployed only `public/` as static files. Added `vercel.json` with `"framework": "nextjs"`, which overrides the dashboard preset. The deploy notes are in `docs/operations.md`.
+- **Verified:** see the entry's commit; production checked with curl after the deploy.
+
 ## 2026-09-30: hero recomposed
 
 - **Agent:** Cursor agent (Claude)
