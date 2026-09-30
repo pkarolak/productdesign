@@ -2,7 +2,7 @@
 
 A reusable block library modelled on the structure of benshih.design, with original content, styled as Dusk: a subtle dark design language that defaults to dark and keeps the light toggle. The personal touch comes later; there are no kudos.
 
-**Status:** proposed, awaiting a pick of type and accent.
+**Status:** approved with Geist and pale amber `#E8B270`. Built as `themes/dusk/` ([ADR 0011](../../../docs/decisions/0011-dusk-theme.md)) and `components/blocks/` ([ADR 0010](../../../docs/decisions/0010-block-library.md)).
 
 - **Tokens:** canvas `#0F1012`, surfaces `#16181B`, hairline `#25282C`, ink `#ECEDEE` / `#A6A9AF` / `#7D8188`, soft 16px radii, no glow, no glass.
 - **Accent candidates:** pale amber `#E8B270` (images 1, 3, 4) and mist blue `#9DB7E0` (image 2).

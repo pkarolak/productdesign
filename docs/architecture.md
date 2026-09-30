@@ -15,14 +15,15 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 
 | Route | Rendering | Notes |
 | --- | --- | --- |
-| `/` | static | Hero, selected work (4-cell bento), approach. |
-| `/about` | static | Bio, portrait, experience, principles (long form). |
+| `/` | static | Blocks: intro hero, doors, statement, work timeline, showcase, writing, testimonials, letter. |
+| `/about` | static | Blocks: story with education, journey, values, outside of work, contact. |
+| `/kit` | static, `noindex` | Every block and primitive, filled from `content/kit.ts`. Not linked and not in the sitemap. |
 | `/work/[slug]` | static (SSG) | Full case. For protected cases the proxy serves `/locked/[slug]` instead until unlocked. |
 | `/locked/[slug]` | static (SSG), protected slugs only | Public teaser: title, bottom line, lead metric, cover, unlock form. |
 | `/work/[slug]/opengraph-image`, `/opengraph-image` | static | Built with `next/og`, colors and font from `@theme/meta`. Public fields only. |
 | `/sitemap.xml`, `/robots.txt` | static | Robots disallows `/locked/` and `/media/protected/`. |
 
-The root layout renders `Atmosphere`, `Nav`, the page, `Contact` (id `contact`, so every "Get in touch" link is `#contact`; its own action is "Email me" plus a copy button) and `Footer`. An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
+The root layout renders `Atmosphere`, `Nav`, the page, `Footer`, the `CommandMenu` and the `Toaster` region. Each page renders its own contact block with id `contact` (Home: `LetterCard`; other pages: `Contact`), so every "Get in touch" link is `#contact`. Each page wraps its content in `PageTransition`, so links tagged `nav-forward` or `nav-back` slide, and a case cover morphs from the work list into the case header (`CoverMorph`, a shared `ViewTransition` name per slug). An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
 
 ## Gating flow
 
@@ -39,13 +40,15 @@ flowchart LR
 
 ## Components
 
-- `components/ui/`: primitives. `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
+- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides doors whose target is empty.
+- `components/ui/`: primitives. `SmartLink` (anchor, external or app route with a transition type), `ArrowLink`, `Modal` (native `<dialog>`, sheet or palette placement, optional `layoutId` morph), `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
 - `components/motion/Rise.tsx`: the entry reveal, timings from `@theme/motion`. Clears its filter on completion so it never becomes a backdrop root.
 - `components/media/`: `Asset` renders any content asset by `kind`, `Picture` (light and dark sources, unoptimized for protected media), `Compare`, `Video`.
-- `components/site/`: `Nav` (pill nav, mobile sheet), `ThemeToggle`, `ThemeProvider` (`next-themes`, `data-theme`), `Contact`, `Footer`.
-- `components/home/`, `components/case/`: page sections.
+- `components/motion/PageTransition.tsx`: `PageTransition` and `CoverMorph`, built on React's `ViewTransition`; the animations live in the theme CSS.
+- `components/site/`: `Nav` (pill nav, command menu button, mobile sheet), `ThemeToggle`, `ThemeProvider` (`next-themes`, `data-theme`, default from `meta.defaultMode`, `MotionConfig reducedMotion="user"`), `CommandMenu` (Cmd K or Ctrl K, combobox and listbox), `Toaster` (`useToast`, polite live region), `CopyEmail`, `Contact`, `Footer`.
+- `components/case/`: case page sections. `components/kit/`: the primitives specimen for `/kit`.
 
 ## Scripts
 
 - `scripts/theme-check.mjs`, `theme-use.mjs`, `theme-new.mjs`: the design-language tooling.
-- `scripts/shots.mjs`: Playwright screenshots of every page, light and dark, desktop and mobile, including a real unlock. Fails on horizontal overflow.
+- `scripts/shots.mjs`: Playwright screenshots of every page (including `/kit`), light and dark, desktop and mobile, including a real unlock. Sets the theme through `localStorage`, since a design language may default to dark. Fails on horizontal overflow.

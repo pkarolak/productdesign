@@ -154,6 +154,12 @@ Each placeholder case shows a different kind of senior signal:
 
 ## Page compositions
 
+> **Superseded for Home and About (round 8, [ADR 0010](decisions/0010-block-library.md)).** Home and About are now composed from the block library in `components/blocks/`:
+> - **Home:** IntroHero, DoorCards, Statement, WorkTimeline, Showcase, WritingList, Testimonials, then LetterCard (id `contact`), or Contact when there is no letter.
+> - **About:** StoryHeader with Education, Journey, Values, OutsideWork, Contact.
+> - Every block renders nothing when its content is empty; `/kit` shows all of them filled from `content/kit.ts`. App primitives: Modal (sheet and palette), Toaster, CommandMenu (Cmd K), `press`, and view transitions between routes with a cover morph into the case header.
+> - The case, locked and 404 compositions below still apply. The original Home and About specs are kept for history.
+
 ### Home (4 sections, 4 different layout families)
 1. **Hero.** At most 4 text elements: name, positioning line (at most 2 lines), one supporting sentence (at most 20 words), "View work." Fits the viewport, top padding at most `pt-24`.
 2. **Selected work.** Asymmetric layout with exactly 4 cells: one lead case plus three companions. Each cell shows the cover, title and `bottomLine`. The lead case also shows its strongest metric. Hover reveals the arrow and a gentle media scale.

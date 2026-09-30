@@ -43,11 +43,11 @@ The required files and exports are listed in [themes/contract.json](../themes/co
 
 | File | Owns |
 | --- | --- |
-| `theme.css` | Every color, shadow, radius, spacing, easing and duration token, for light and dark (`[data-theme="dark"]`). The contract utilities: `surface`, `surface-deep`, `surface-strong`, `surface-sheet`, `media`, `core`, `wash`, `divider`, the `type-*` scale, `focus-ring`, `link`. Anything private (Blueprint's orbs, dot lattice, grain, plate float). |
+| `theme.css` | Every color, shadow, radius, spacing, easing and duration token, for light and dark (`[data-theme="dark"]`). The contract utilities: `surface`, `surface-deep`, `surface-strong`, `surface-sheet`, `media`, `core`, `wash`, `divider`, the `type-*` scale, `focus-ring`, `link`, and for the blocks `card`, `inline-pill`, `type-quote`, `press`, `sheet`. Route transitions: `::view-transition-*` rules for `site-header`, `.morph`, `.nav-forward` and `.nav-back`. Anything private (Blueprint's orbs, dot lattice, grain, plate float). |
 | `fonts.ts` | The fonts, via `next/font`. Must set `--theme-font-display` and `--theme-font-body`. |
 | `motion.ts` | JS motion values: easing, spring, the entry reveal ("rise"), hover and menu timing. Used by `<Rise>`, the nav and the menu. |
 | `icons.ts` | The icon library, mapped onto the fixed icon names in `contract.ts`, plus stroke width and sizes. Swap Lucide for anything by changing this one file. |
-| `meta.ts` | Plain color values for places that cannot read CSS variables: browser `theme-color` and OG images, plus the OG font family. |
+| `meta.ts` | Plain color values for places that cannot read CSS variables: browser `theme-color` and OG images, plus the OG font family. `defaultMode` (`light`, `dark` or `system`) sets the mode a first-time visitor sees. |
 | `Atmosphere.tsx` | The fixed background layer. Blueprint: drifting orbs, dot lattice, grain. Another theme can return a flat color or nothing. |
 | `Signature.tsx` | The hero and case-header visual for `isometric` assets. Blueprint: floating glass plates. Another theme might show a single flat frame. |
 | `Diagram.tsx` | How `diagram` assets are drawn. Blueprint: isometric stacked layers. |

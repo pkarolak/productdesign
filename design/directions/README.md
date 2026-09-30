@@ -9,6 +9,6 @@ Phase 0 concept rounds. Each round has its own README with the images and notes.
 - [Round 5](round-5/README.md): After dark, Race kit and Topo, each drawn from the designer's own world. Rejected: too much hobby, too little work.
 - [Round 6](round-6/README.md): story first, work first. A (Margin notes, light) and B (Studio, dark). Superseded by round 7.
 - [Round 7](round-7/README.md): Tempo, the round 4 structure in a sport-app language, with kudos and app interactions. Superseded by round 8.
-- [Round 8](round-8/README.md): a block library modelled on benshih.design's structure, styled as Dusk (subtle dark). Proposed.
+- [Round 8](round-8/README.md): a block library modelled on benshih.design's structure, styled as Dusk (subtle dark). Approved (Geist, pale amber) and built.
 - **Locked:** [../../DESIGN.md](../../DESIGN.md).
 - Font candidates: [../fonts/README.md](../fonts/README.md).
