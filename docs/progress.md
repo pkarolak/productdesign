@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: joker emblem without a background on hover
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the bandoneon showed a white or black box when its card was hovered, because the scaled layer isolated its CSS blend mode. The emblem is now a transparent PNG in each mode, and the blend classes are gone ([ADR 0018](decisions/0018-plain-faces-fileteado-accents.md)).
+- **Verified:** lint, build; hovered joker screenshots in dark and light.
+
 ## 2026-09-30: fileteado lettering on headings
 
 - **Agent:** Cursor agent (Claude)

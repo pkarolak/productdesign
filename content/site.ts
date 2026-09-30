@@ -53,7 +53,7 @@ export const site = siteSchema.parse({
   },
   handNote: "Pick a card to see some tricks",
   deck: {
-    joker: { src: "/cards/bandoneon-paper-light.jpg", srcDark: "/cards/bandoneon-paper-dark.jpg" },
+    joker: { src: "/cards/bandoneon-line-light.png", srcDark: "/cards/bandoneon-line-dark.png" },
     back: { src: "/cards/back-milonga-light.jpg", srcDark: "/cards/back-milonga-dark.jpg" },
   },
   hand: [

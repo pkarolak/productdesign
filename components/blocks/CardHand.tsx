@@ -75,7 +75,7 @@ function Card({
           <Art
             art={deck.joker}
             sizes="(min-width: 1280px) 190px, 160px"
-            className="object-contain mix-blend-multiply dark:mix-blend-lighten"
+            className="object-contain"
           />
         </span>
       ) : (
