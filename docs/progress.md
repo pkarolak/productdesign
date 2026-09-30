@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: four aces and a joker
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the first four hand cards are aces (A plus suit in the corners), each in its own suit colour; My world is the joker: JOKER spelled down the corners, a jester hat as the emblem and a coral, lilac and sky blend. The `star` suit became `joker`.
+- **Verified:** lint, typecheck, theme:check, build; axe zero violations; light and dark.
+
 ## 2026-09-30: the owner's photo in nav and hero
 
 - **Agent:** Cursor agent (Claude)

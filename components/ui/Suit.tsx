@@ -8,7 +8,8 @@ const paths: Record<SuitName, string> = {
     "M12 2c-3.8 4.6-9 7.8-9 12 0 2.7 2.1 4.5 4.6 4.5 1.5 0 2.8-.6 3.6-1.7L10 22h4l-1.2-5.2c.8 1.1 2.1 1.7 3.6 1.7 2.5 0 4.6-1.8 4.6-4.5 0-4.2-5.2-7.4-9-12Z",
   diamond: "M12 2 20.5 12 12 22 3.5 12Z",
   club: "M12 2.5a4.3 4.3 0 0 0-3.9 6.1A4.3 4.3 0 1 0 10.7 16L10 22h4l-.7-6a4.3 4.3 0 1 0 2.6-7.4A4.3 4.3 0 0 0 12 2.5Z",
-  star: "m12 2 2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4l-6.2 3.7 1.6-7L2 9.3l7.1-.7Z",
+  joker:
+    "M3.6 17.5C4.4 12.6 3.9 9 2.6 6.4 6.4 7.2 9.1 9.8 10.6 13.4 10.9 9.4 11.4 6.6 12 4.6c.6 2 1.1 4.8 1.4 8.8 1.5-3.6 4.2-6.2 8-7-1.3 2.6-1.8 6.2-1 11.1ZM3.4 18.6h17.2v2.6H3.4ZM1 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM10.4 3.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM19.8 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0Z",
 };
 
 /** Suit fill colours; the palette itself lives in the theme (--suit-1 to --suit-5). */
@@ -17,7 +18,7 @@ export const suitBg: Record<SuitName, string> = {
   spade: "bg-suit-2",
   diamond: "bg-suit-3",
   club: "bg-suit-4",
-  star: "bg-suit-5",
+  joker: "bg-linear-135 from-suit-1 via-suit-5 to-suit-2",
 };
 
 export const suitText: Record<SuitName, string> = {
@@ -25,7 +26,7 @@ export const suitText: Record<SuitName, string> = {
   spade: "text-suit-2",
   diamond: "text-suit-3",
   club: "text-suit-4",
-  star: "text-suit-5",
+  joker: "text-suit-5",
 };
 
 export function Suit({ suit, className }: { suit: SuitName; className?: string }) {

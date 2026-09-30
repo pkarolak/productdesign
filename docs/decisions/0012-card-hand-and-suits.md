@@ -10,7 +10,7 @@ The owner found the two door tiles under the intro too plain. They asked for fiv
 
 ## Decision
 
-- **`CardHand` replaces `DoorCards`.** `site.hand` holds up to five cards. Each card has a title, a short line, an href, a target block and a suit (`heart`, `spade`, `diamond`, `club` or `star`). A card whose target block is empty is hidden (`lib/blocks.ts`).
+- **`CardHand` replaces `DoorCards`.** `site.hand` holds up to five cards. Each card has a title, a short line, an href, a target block and a suit (`heart`, `spade`, `diamond`, `club` or `joker`). Suited cards are aces; the joker has JOKER in its corners, a jester hat and a fill blended from the suit colours. A card whose target block is empty is hidden (`lib/blocks.ts`).
 - **Desktop (from `lg`):** the cards fan out like a hand on an arc. Hovering or focusing a card lifts and straightens it while its neighbours move aside. Each card has playing-card corners, the suit drawn large, and the title.
 - **Narrow screens:** a plain horizontal swipe row with scroll snap and no rotation.
 - **Suit colours:** themes gain `--suit-1` to `--suit-5` and `--suit-ink`, a pastel set with dark ink that is the same in light and dark mode. Suits appear only as card fills (the hand, showcase cards without an image) and as the small glyph beside a section heading, which ties each section to its card. They are never text accents, links or buttons. "One accent per theme" still holds for everything else.

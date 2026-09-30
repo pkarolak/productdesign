@@ -19,7 +19,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | --- | --- | --- |
 | `hero` | greeting 5, tagline 8, intro 32 words, headline 12 | `intro` mixes plain text and `{ pill, href }` company pills, read as one sentence. Spaces are added between parts, except before punctuation. `headline` is for metadata and OG images. |
 | `avatar` | optional | A square photo (at least 480px) in `public/about/`, with real `alt` text. Shown in the nav and beside the intro. |
-| `hand` | up to 5 cards, title 3, text 8 words | Each has a `suit` (`heart`, `spade`, `diamond`, `club`, `star`) and a `target` (`about`, `work`, `showcase`, `teaching`, `outside`, `writing`, `contact`). The target block's heading wears the same suit. |
+| `hand` | up to 5 cards, title 3, text 8 words | Each has a `suit` (`heart`, `spade`, `diamond`, `club`, `joker`) and a `target` (`about`, `work`, `showcase`, `teaching`, `outside`, `writing`, `contact`). The target block's heading wears the same suit. |
 | `statement` | 1 to 2 lines of 8 words, text 32 | The second line renders in Ink 2. |
 | `showcase` | up to 6 items, text 14, detail 60 | Cards that open a sheet. `image` is optional; without one the card shows a suit colour. Images are public. |
 | `teaching` | up to 3, text 30, 4 topics of 4 words | Place, role, years, what you taught. |

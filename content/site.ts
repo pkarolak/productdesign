@@ -25,7 +25,7 @@ export const site = siteSchema.parse({
     { title: "Core work", text: "The biggest tools I shaped.", href: "#work", target: "work", suit: "spade" },
     { title: "Side projects", text: "Tinier gigs, quick and fun.", href: "#side-projects", target: "showcase", suit: "diamond" },
     { title: "Teaching", text: "Years as an academic tutor.", href: "#teaching", target: "teaching", suit: "club" },
-    { title: "My world", text: "Climbing, tango and the records.", href: "#my-world", target: "outside", suit: "star" },
+    { title: "My world", text: "Climbing, tango and the records.", href: "#my-world", target: "outside", suit: "joker" },
   ],
   statement: {
     label: "A bit about me",

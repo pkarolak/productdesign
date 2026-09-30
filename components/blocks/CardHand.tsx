@@ -12,20 +12,25 @@ import { motion } from "@theme/motion";
 
 function Card({
   card,
-  n,
   className,
   onFocus,
   onBlur,
 }: {
   card: HandCard;
-  n: number;
   className?: string;
   onFocus?: () => void;
   onBlur?: () => void;
 }) {
-  const corner = (
+  const joker = card.suit === "joker";
+  const corner = joker ? (
+    <span className="type-caption flex flex-col items-center leading-[1.05] font-semibold text-suit-ink!">
+      {"JOKER".split("").map((l, i) => (
+        <span key={i}>{l}</span>
+      ))}
+    </span>
+  ) : (
     <span className="flex flex-col items-center gap-1 leading-none">
-      <span className="type-h3 text-suit-ink! tabular-nums">{n}</span>
+      <span className="type-h3 text-suit-ink!">A</span>
       <Suit suit={card.suit} className="size-3.5" />
     </span>
   );
@@ -97,7 +102,6 @@ export function CardHand({ cards }: { cards: HandCard[] }) {
               >
                 <Card
                   card={card}
-                  n={i + 1}
                   onFocus={() => setHot(i)}
                   onBlur={() => setHot(null)}
                   className="aspect-[5/7] w-[172px] xl:w-[212px]"
@@ -111,7 +115,7 @@ export function CardHand({ cards }: { cards: HandCard[] }) {
       <ul className="-mx-(--gutter) flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-(--gutter) px-(--gutter) pb-4 [scrollbar-width:none] lg:hidden">
         {cards.map((card, i) => (
           <Rise as="li" key={card.href} i={i + 2} className="shrink-0 snap-start">
-            <Card card={card} n={i + 1} className="press aspect-[4/5] w-[58vw] max-w-[240px] sm:w-[220px]" />
+            <Card card={card} className="press aspect-[4/5] w-[58vw] max-w-[240px] sm:w-[220px]" />
           </Rise>
         ))}
       </ul>

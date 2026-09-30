@@ -126,8 +126,8 @@ export const heroSchema = z.object({
 
 export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
 
-/** Card suits; each theme colours them with --suit-1 to --suit-5. */
-export const suits = ["heart", "spade", "diamond", "club", "star"] as const;
+/** Card suits; each theme colours them with --suit-1 to --suit-5. The joker blends them all. */
+export const suits = ["heart", "spade", "diamond", "club", "joker"] as const;
 
 export const handSchema = z
   .array(z.object({ title: words(3), text: words(8), href, target: z.enum(handTargets), suit: z.enum(suits) }))
