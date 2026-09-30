@@ -23,6 +23,12 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: Milonga direction proposed (round 4)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** studied benshih.design and three besler.pl pages; the user chose a new warm theme alongside Blueprint, loosened four rules (multiple accents, a handwritten accent font, chunkier display type, snappier motion), and wants personality around the work with crisp case pages. Generated six section comps: [design/directions/round-4-milonga/](../design/directions/round-4-milonga/README.md).
+- **Next:** user feedback on the comps, then ADR 0010, `themes/milonga/`, and the new theme-agnostic content (off the clock, now playing, cortinas).
+
 ## 2026-09-30: audit fixes (High and Medium)
 
 - **Agent:** Cursor agent (Claude)
