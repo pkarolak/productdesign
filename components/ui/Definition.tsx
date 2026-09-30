@@ -32,6 +32,8 @@ const leave = {
 };
 
 const narrow = "(max-width: 767px)";
+/** A real mouse on a device that can hover; phones sometimes report fast taps as mouse events. */
+const hovering = (pointerType: string) => pointerType === "mouse" && window.matchMedia("(hover: hover)").matches;
 const watchNarrow = (l: () => void) => {
   const q = window.matchMedia(narrow);
   q.addEventListener("change", l);
@@ -42,8 +44,9 @@ const watchNarrow = (l: () => void) => {
  * A highlighted run of text that opens a small card on hover, focus or tap. Only one is open at a time.
  * The card is portalled out of the surrounding text so it never becomes part of it,
  * stays open while the pointer is over it, and closes on Escape (WCAG 1.4.13).
- * Tapped on a narrow screen, it opens centred over a blurred scrim, and any tap closes it; a mouse or keyboard
- * always gets the anchored card, since a scrim under the pointer would end the hover that opened it.
+ * Tapped on a narrow screen, or opened in any way on a narrow device that cannot hover, it opens centred over a
+ * blurred scrim, and any tap closes it. A mouse or keyboard gets the anchored card, since a scrim under the pointer
+ * would end the hover that opened it. Fast taps do not always report themselves as touch, hence the device check.
  */
 export function Bubble({
   label,
@@ -74,7 +77,7 @@ export function Bubble({
   }, [id]);
   const show = useCallback((byTap = false) => {
     clearTimeout(closing.current);
-    setTapped(byTap);
+    setTapped(byTap || window.matchMedia("(hover: none)").matches);
     setCurrent(id);
   }, [id]);
   const hide = useCallback(() => {
@@ -125,15 +128,15 @@ export function Bubble({
         type="button"
         aria-describedby={open ? id : undefined}
         aria-expanded={open}
-        onPointerEnter={(e) => e.pointerType === "mouse" && show()}
-        onPointerLeave={(e) => e.pointerType === "mouse" && hide()}
+        onPointerEnter={(e) => hovering(e.pointerType) && show()}
+        onPointerLeave={(e) => hovering(e.pointerType) && hide()}
         onPointerDown={(e) => (pointer.current = e.pointerType)}
         onFocus={() => !pointer.current && show()}
         onBlur={hide}
         onClick={() => {
           const kind = pointer.current;
           pointer.current = "";
-          if (kind === "mouse") return;
+          if (hovering(kind)) return;
           if (open) close();
           else show(kind === "touch" || kind === "pen");
         }}

@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: fast taps always get the overlay on phones
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Fast taps on a phone sometimes opened the dictionary as an anchored pop-over, because the overlay depended on the tap reporting itself as touch. The overlay is now also chosen on any narrow device that cannot hover (`(hover: none)`), and mouse-type pointer events only count as hover on devices that can hover, so a tap reported as a mouse can neither be ignored nor close the card.
+- **Verified:** lint, typecheck, build; on an iPhone 13 emulation a real tap, a click with no pointerdown, a tap reported as mouse and a burst of fast taps all end in the overlay; a mouse hover in a 600px desktop window still gets the anchored card.
+
 ## 2026-10-01: the swipe row shows it scrolls
 
 - **Agent:** Cursor agent (Claude)
