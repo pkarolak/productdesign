@@ -23,6 +23,12 @@ const subscribe = (l: () => void) => {
   return () => listeners.delete(l);
 };
 
+/** A card leaving because another term took over vanishes at once, so two are never on screen together. */
+const leave = {
+  exit: (handedOver: boolean) =>
+    handedOver ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, scale: 0.98, transition: { duration: 0.18, ease: motion.ease } },
+};
+
 const narrow = "(max-width: 767px)";
 const watchNarrow = (l: () => void) => {
   const q = window.matchMedia(narrow);
@@ -44,6 +50,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
   const id = useId();
   const client = useSyncExternalStore(noop, () => true, () => false);
   const open = useSyncExternalStore(subscribe, () => current === id, () => false);
+  const handedOver = useSyncExternalStore(subscribe, () => current !== null && current !== id, () => false);
   const centred = useSyncExternalStore(watchNarrow, () => window.matchMedia(narrow).matches, () => false);
 
   const close = useCallback(() => {
@@ -170,7 +177,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
         )}
       {client &&
         createPortal(
-          <AnimatePresence>
+          <AnimatePresence custom={handedOver}>
             {open && !centred && pos && (
               <m.div
                 key="anchored"
@@ -178,7 +185,9 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
                 role="tooltip"
                 initial={{ opacity: 0, y: pos.above ? 6 : -6, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: pos.above ? 4 : -4, scale: 0.98 }}
+                variants={leave}
+                exit="exit"
+                custom={handedOver}
                 transition={{ duration: 0.22, ease: motion.ease }}
                 style={{
                   left: pos.left,

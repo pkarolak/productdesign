@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: one dictionary card on desktop, even on fast moves
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** moving the mouse quickly across the terms showed up to three cards at once, because each card played its fade-out while the next faded in. A card leaving because another term took over now vanishes at once; closing to nothing still fades.
+- **Verified:** lint, typecheck, build; a Playwright sweep across the three terms, sampled every 20ms: at most 3 cards before, 1 after.
+
 ## 2026-09-30: dictionary cards on mobile
 
 - **Agent:** Cursor agent (Claude)
