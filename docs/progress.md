@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: photo on the left and dictionary tooltips
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hero photo card now sits left of the text from `md`. New `hero.glossary` (up to 3 entries, each term must appear in the tagline): the terms get a dotted accent underline and open a dictionary card (`components/ui/Definition.tsx`) with headword, phonetic, kind, numbered senses and origin. It opens on hover, keyboard focus or tap, closes on leave, blur, Escape or a second tap, flips above when there is no room below and is click-through so neighbouring terms stay reachable.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; axe zero violations with the card open; hover, focus, Escape and mobile tap scripted in light and dark; no overflow on mobile.
+
 ## 2026-09-30: four aces and a joker
 
 - **Agent:** Cursor agent (Claude)

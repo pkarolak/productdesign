@@ -109,9 +109,20 @@ const year = z.number().int().min(1990).max(2100);
 /** Plain text runs and inline company pills, read as one sentence. */
 const introPart = z.union([z.string().min(1), z.object({ pill: z.string().min(2), href })]);
 
+/** A dictionary entry shown when a visitor hovers or taps a highlighted term in the tagline. */
+const glossaryEntry = z.object({
+  /** Must appear verbatim in the tagline (case-insensitive). */
+  term: z.string().min(2),
+  phonetic: z.string().min(2).optional(),
+  kind: words(3),
+  senses: z.array(words(26)).min(1).max(2),
+  origin: words(20).optional(),
+});
+
 export const heroSchema = z.object({
   greeting: words(5),
   tagline: words(8),
+  glossary: z.array(glossaryEntry).max(3).default([]),
   intro: z
     .array(introPart)
     .min(1)
@@ -122,6 +133,8 @@ export const heroSchema = z.object({
   /** Used for metadata and OG images, where the pills cannot render. */
   headline: words(12),
   cta: cta.optional(),
+}).refine((h) => h.glossary.every((g) => h.tagline.toLowerCase().includes(g.term.toLowerCase())), {
+  message: "Every glossary term must appear in the tagline.",
 });
 
 export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
@@ -279,6 +292,7 @@ export const siteSchema = z.object({
 
 export type Site = z.infer<typeof siteSchema>;
 export type Hero = Site["hero"];
+export type GlossaryEntry = Hero["glossary"][number];
 export type HandCard = Site["hand"][number];
 export type HandTarget = (typeof handTargets)[number];
 export type Suit = (typeof suits)[number];

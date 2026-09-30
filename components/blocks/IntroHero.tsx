@@ -1,8 +1,27 @@
 import Image from "next/image";
 import { Rise } from "@/components/motion/Rise";
 import { PrimaryLink } from "@/components/ui/Button";
+import { Definition } from "@/components/ui/Definition";
 import { SmartLink } from "@/components/ui/SmartLink";
 import type { Hero, Site } from "@/content/schema";
+
+const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** The tagline with each glossary term wrapped in a Definition. */
+function Tagline({ hero }: { hero: Hero }) {
+  if (!hero.glossary.length) return hero.tagline;
+  const pattern = new RegExp(`(${hero.glossary.map((g) => escape(g.term)).join("|")})`, "gi");
+  return hero.tagline.split(pattern).map((part, i) => {
+    const entry = hero.glossary.find((g) => g.term.toLowerCase() === part.toLowerCase());
+    return entry ? (
+      <Definition key={i} entry={entry}>
+        {part}
+      </Definition>
+    ) : (
+      part
+    );
+  });
+}
 
 const leadsWithPunctuation = (s: string) => /^[.,;:!?)]/.test(s);
 
@@ -11,8 +30,24 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
   return (
     <section
       aria-labelledby="intro-title"
-      className="container-page grid items-center gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[minmax(0,1fr)_auto] md:pt-44 md:pb-16"
+      className="container-page grid items-center gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,1fr)] md:gap-14 md:pt-44 md:pb-16"
     >
+      {avatar && (
+        <Rise className="hidden md:block">
+          <div className="card group/avatar w-[200px] -rotate-3 rounded-card p-2 transition-transform duration-(--t-hover) ease-slow hover:rotate-0 lg:w-[232px]">
+            <div className="core relative aspect-square overflow-hidden rounded-inset">
+              <Image
+                src={avatar.src}
+                alt={avatar.alt}
+                fill
+                preload
+                sizes="232px"
+                className="object-cover transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.04]"
+              />
+            </div>
+          </div>
+        </Rise>
+      )}
       <div>
         {avatar && (
           <Rise className="mb-6 md:hidden">
@@ -28,7 +63,9 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
         )}
         <Rise as="h1" id="intro-title" className="type-display max-w-[16ch] text-ink">
           {hero.greeting}
-          <em className="block">{hero.tagline}</em>
+          <em className="block">
+            <Tagline hero={hero} />
+          </em>
         </Rise>
         <Rise as="p" i={1} className="type-lede mt-6 max-w-[58ch]">
           {hero.intro.map((part, i) => {
@@ -64,22 +101,6 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
           </Rise>
         )}
       </div>
-      {avatar && (
-        <Rise i={2} className="hidden md:block">
-          <div className="card group/avatar w-[200px] rotate-3 rounded-card p-2 transition-transform duration-(--t-hover) ease-slow hover:rotate-0 lg:w-[232px]">
-            <div className="core relative aspect-square overflow-hidden rounded-inset">
-              <Image
-                src={avatar.src}
-                alt={avatar.alt}
-                fill
-                preload
-                sizes="232px"
-                className="object-cover transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.04]"
-              />
-            </div>
-          </div>
-        </Rise>
-      )}
     </section>
   );
 }

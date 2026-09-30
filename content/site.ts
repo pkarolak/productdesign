@@ -11,6 +11,37 @@ export const site = siteSchema.parse({
   hero: {
     greeting: "Hi, I'm Patryk.",
     tagline: "Product designer and sport freak with gotan soul.",
+    glossary: [
+      {
+        term: "Product designer",
+        phonetic: "ˈprɒd.ʌkt dɪˈzaɪ.nə",
+        kind: "noun",
+        senses: [
+          "A person who works out what a product should do and how it should feel, then tests it with real people until it does.",
+          "In this case: someone who would rather remove a feature than add one.",
+        ],
+      },
+      {
+        term: "sport",
+        phonetic: "spɔːt",
+        kind: "noun",
+        senses: [
+          "Climbing, running and anything else that ends with tired legs.",
+          "The place where hard problems quietly untangle themselves.",
+        ],
+        origin: "Middle English, shortened from disport, to divert oneself.",
+      },
+      {
+        term: "gotan",
+        phonetic: "ɡoˈtan",
+        kind: "noun, lunfardo",
+        senses: [
+          "Tango, with its syllables swapped, in the street slang of Buenos Aires.",
+          "Here: a love for the dance, the music and long nights at the milonga.",
+        ],
+        origin: "Rioplatense Spanish vesre, reversed speech, from tango.",
+      },
+    ],
     intro: [
       "I design workflow and platform products at",
       { pill: "Ledgerline", href: "/work/keel-design-system" },
