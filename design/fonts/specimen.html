@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Heading font candidates with Lato body</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Sora:wght@500;600&family=Plus+Jakarta+Sans:wght@500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Instrument+Sans:wght@500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B1215;
+    --muted: #5B6770;
+    --accent: #0E7C6B;
+    --line: rgba(14, 124, 107, 0.09);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: #F7F9FA;
+    color: var(--ink);
+    font-family: "Lato", sans-serif;
+    padding: 48px 64px;
+  }
+  .page-title { font: 700 13px/1 "Lato"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid rgba(11, 18, 21, 0.06);
+    padding: 40px 44px 44px;
+    isolation: isolate;
+  }
+  .card::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background-image:
+      repeating-linear-gradient(30deg, var(--line) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(150deg, var(--line) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 39px);
+    -webkit-mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 70%);
+  }
+  .card::after {
+    content: "";
+    position: absolute; right: -120px; bottom: -160px; width: 420px; height: 420px; z-index: -1;
+    background: radial-gradient(closest-side, rgba(14, 124, 107, 0.16), transparent);
+  }
+  .name { font: 700 12px/1 "Lato"; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
+  h1 { font-size: 46px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; max-width: 14ch; }
+  .lede { font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 44ch; margin-bottom: 30px; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid rgba(11,18,21,.08); padding-top: 22px; margin-bottom: 26px; }
+  .metric b { display: block; font-size: 38px; line-height: 1; letter-spacing: -0.03em; color: var(--accent); margin-bottom: 8px; }
+  .metric span { font-size: 14px; line-height: 1.4; color: var(--muted); }
+  h2 { font-size: 24px; letter-spacing: -0.015em; margin-bottom: 8px; }
+  .body { font-size: 16px; line-height: 1.65; color: #2A3439; max-width: 60ch; }
+  .sora h1, .sora h2, .sora .metric b { font-family: "Sora"; font-weight: 600; }
+  .jakarta h1, .jakarta h2, .jakarta .metric b { font-family: "Plus Jakarta Sans"; font-weight: 700; }
+  .bricolage h1, .bricolage h2, .bricolage .metric b { font-family: "Bricolage Grotesque"; font-weight: 600; }
+  .instrument h1, .instrument h2, .instrument .metric b { font-family: "Instrument Sans"; font-weight: 600; }
+</style>
+</head>
+<body>
+  <p class="page-title">Heading candidates, body in Lato. Blueprint background preview.</p>
+  <div class="grid">
+    <section class="card sora">
+      <p class="name">1. Sora</p>
+      <h1>I design the systems product teams build on.</h1>
+      <p class="lede">Twelve years shaping workflow, platform and 0 to 1 products at Ledgerline and Halden.</p>
+      <div class="metrics">
+        <div class="metric"><b>86%</b><span>component adoption across 14 teams</span></div>
+        <div class="metric"><b>-41%</b><span>UI defects vs. pre-system quarter</span></div>
+        <div class="metric"><b>2.7x</b><span>faster screen build on 6 squads</span></div>
+      </div>
+      <h2>Ledgerline design system</h2>
+      <p class="body">One system for 14 product teams. Shipping UI got faster, and it stopped drifting. Governance moved from review meetings into tokens and tooling.</p>
+    </section>
+    <section class="card jakarta">
+      <p class="name">2. Plus Jakarta Sans</p>
+      <h1>I design the systems product teams build on.</h1>
+      <p class="lede">Twelve years shaping workflow, platform and 0 to 1 products at Ledgerline and Halden.</p>
+      <div class="metrics">
+        <div class="metric"><b>86%</b><span>component adoption across 14 teams</span></div>
+        <div class="metric"><b>-41%</b><span>UI defects vs. pre-system quarter</span></div>
+        <div class="metric"><b>2.7x</b><span>faster screen build on 6 squads</span></div>
+      </div>
+      <h2>Ledgerline design system</h2>
+      <p class="body">One system for 14 product teams. Shipping UI got faster, and it stopped drifting. Governance moved from review meetings into tokens and tooling.</p>
+    </section>
+    <section class="card bricolage">
+      <p class="name">3. Bricolage Grotesque</p>
+      <h1>I design the systems product teams build on.</h1>
+      <p class="lede">Twelve years shaping workflow, platform and 0 to 1 products at Ledgerline and Halden.</p>
+      <div class="metrics">
+        <div class="metric"><b>86%</b><span>component adoption across 14 teams</span></div>
+        <div class="metric"><b>-41%</b><span>UI defects vs. pre-system quarter</span></div>
+        <div class="metric"><b>2.7x</b><span>faster screen build on 6 squads</span></div>
+      </div>
+      <h2>Ledgerline design system</h2>
+      <p class="body">One system for 14 product teams. Shipping UI got faster, and it stopped drifting. Governance moved from review meetings into tokens and tooling.</p>
+    </section>
+    <section class="card instrument">
+      <p class="name">4. Instrument Sans</p>
+      <h1>I design the systems product teams build on.</h1>
+      <p class="lede">Twelve years shaping workflow, platform and 0 to 1 products at Ledgerline and Halden.</p>
+      <div class="metrics">
+        <div class="metric"><b>86%</b><span>component adoption across 14 teams</span></div>
+        <div class="metric"><b>-41%</b><span>UI defects vs. pre-system quarter</span></div>
+        <div class="metric"><b>2.7x</b><span>faster screen build on 6 squads</span></div>
+      </div>
+      <h2>Ledgerline design system</h2>
+      <p class="body">One system for 14 product teams. Shipping UI got faster, and it stopped drifting. Governance moved from review meetings into tokens and tooling.</p>
+    </section>
+  </div>
+</body>
+</html>

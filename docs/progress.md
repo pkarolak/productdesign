@@ -23,6 +23,25 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: direction-concepts, round 3
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-concepts`
+- **Done:**
+  - The user favoured G Blueprint and asked for:
+    - a more modern look;
+    - room for more asset types;
+    - the floating pill nav back, mashed up with Blueprint;
+    - Lato as the body font plus a matching heading font.
+  - Generated round 3 (hero, selected work with mixed assets, case header, artifacts) into `design/directions/round-3/`.
+  - Rendered a real font specimen (`design/fonts/specimen.html` / `.png`) with Sora, Plus Jakarta Sans, Bricolage Grotesque and Instrument Sans over Lato. It also previews the blueprint grid and glow in real CSS.
+  - Added artifact and cover `kind`s to the content model in `docs/plan.md`.
+- **In progress:** waiting for the user to approve round 3 and pick the heading font.
+- **Next:** `direction-lock`.
+  - Write `DESIGN.md`: Blueprint refined, pill nav, double-bezel media, isometric grid and glow tokens, Lato plus the chosen heading font, teal accent.
+  - Write ADR 0002, recording rounds 1 to 3.
+- **Open questions:** heading font (recommended: Sora), and any tweaks to round 3.
+
 ## 2026-09-30: direction-concepts, round 2
 
 - **Agent:** Cursor agent (Claude)

@@ -115,10 +115,20 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 - `scope[]`: 2 to 3 chips, e.g. "Design system", "Onboarding", "Pricing". Shows breadth.
 - `partners`: one line on who they worked with and led across functions.
 - `beats`: exactly 3, `{ label, text }`, where `text` is at most 25 words (Frame, Shape, Ship).
-- `artifacts[]`: 2 to 3 items `{ src, alt, caption }`. `alt` is required.
+- `artifacts[]`: 2 to 4 items, each `{ kind, src, alt, caption }`. `alt` is required. The `kind` is one of:
+  - `screenshot`, with optional annotations.
+  - `isometric`: exploded screenshot plates.
+  - `mobile`: 2 to 4 phone screens.
+  - `photo`
+  - `diagram`: an SVG line illustration.
+  - `compare`: before and after.
+  - `video`: a muted loop with a poster.
+
+  See [design/directions/round-3/README.md](../design/directions/round-3/README.md).
 - `askMeAbout[]`: 2 to 3 prompts, e.g. "Why we killed the wizard two weeks before launch". This is the hook for the in-person story. It signals depth without writing it out.
 - `access`: `"protected"` (default) or `"public"`. See Password gating.
-- `cover`, `accent?` (must be a token from `DESIGN.md`, no free colors)
+- `cover`: `{ kind, src, alt }`, using the same kinds, so the home bento can mix screenshots, photos, diagrams and phone sets.
+- `accent?` (must be a token from `DESIGN.md`, no free colors)
 
 **Placeholder designer name:** Patryk Karolak, used in `content/site.ts`, in metadata and OG images, and in all design references from `section-refs` on. Round 1 and round 2 concepts show an older placeholder, Maren Kowal.
 
