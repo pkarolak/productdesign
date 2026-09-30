@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: real playing cards
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hand cards look like a printed deck: ivory paper face with a faint grain, red hearts and diamonds, black spades and clubs, rank and pip in the corners (upside down bottom right), one centre pip with the title and line below, an oversized ace of spades, and a joker with JOKER corners in black and red and a harlequin hat. 5:7 on every screen. Contract: `--suit-*` replaced by `--card-face`, `--card-red`, `--card-black` and the `playing-card` utility ([ADR 0013](decisions/0013-real-playing-cards.md)). Side projects covers and section heading glyphs follow the same inks.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; axe zero violations; light and dark, 1440, 1024 and mobile, no overflow.
+
 ## 2026-09-30: photo on the left and dictionary tooltips
 
 - **Agent:** Cursor agent (Claude)

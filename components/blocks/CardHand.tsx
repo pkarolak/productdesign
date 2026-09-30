@@ -3,12 +3,38 @@
 import { motion as m } from "motion/react";
 import { useState } from "react";
 import { Rise } from "@/components/motion/Rise";
-import { Icon } from "@/components/ui/Icon";
 import { SmartLink } from "@/components/ui/SmartLink";
-import { Suit, suitBg } from "@/components/ui/Suit";
-import type { HandCard } from "@/content/schema";
+import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
+import type { HandCard, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
+
+function Corner({ suit, flip = false }: { suit: SuitName; flip?: boolean }) {
+  const joker = suit === "joker";
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "absolute flex flex-col items-center leading-none",
+        flip ? "right-2.5 bottom-2.5 rotate-180" : "top-2.5 left-2.5",
+        joker ? (flip ? "text-card-red" : "text-card-black") : suitInk[suit],
+      )}
+    >
+      {joker ? (
+        "JOKER".split("").map((l, i) => (
+          <span key={i} className="font-display text-[0.6875rem] leading-[1.1] font-semibold">
+            {l}
+          </span>
+        ))
+      ) : (
+        <>
+          <span className="font-display text-[1.375rem] font-semibold tracking-[-0.04em]">A</span>
+          <Suit suit={suit} className="mt-1 size-3.5" />
+        </>
+      )}
+    </span>
+  );
+}
 
 function Card({
   card,
@@ -21,19 +47,7 @@ function Card({
   onFocus?: () => void;
   onBlur?: () => void;
 }) {
-  const joker = card.suit === "joker";
-  const corner = joker ? (
-    <span className="type-caption flex flex-col items-center leading-[1.05] font-semibold text-suit-ink!">
-      {"JOKER".split("").map((l, i) => (
-        <span key={i}>{l}</span>
-      ))}
-    </span>
-  ) : (
-    <span className="flex flex-col items-center gap-1 leading-none">
-      <span className="type-h3 text-suit-ink!">A</span>
-      <Suit suit={card.suit} className="size-3.5" />
-    </span>
-  );
+  const pip = "transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
   return (
     <SmartLink
       href={card.href}
@@ -41,30 +55,22 @@ function Card({
       onFocus={onFocus}
       onBlur={onBlur}
       className={cn(
-        "focus-ring group/card relative flex flex-col overflow-hidden rounded-card border border-suit-ink/10 p-4 text-suit-ink shadow-raised",
-        suitBg[card.suit],
+        "focus-ring group/card playing-card relative flex flex-col items-center justify-center overflow-hidden rounded-inset px-8 py-14 text-center",
         className,
       )}
     >
-      <span aria-hidden className="pointer-events-none absolute inset-2 rounded-inset border border-suit-ink/15" />
-      <span aria-hidden className="relative flex items-start justify-between">
-        {corner}
-        <Icon
-          name="arrow-up-right"
-          className="size-4 opacity-0 transition-all duration-(--t-hover-mid) ease-slow group-hover/card:opacity-100 group-focus-visible/card:opacity-100"
+      <Corner suit={card.suit} />
+      {card.suit === "joker" ? (
+        <JokerEmblem className={cn("size-16 xl:size-20", pip)} />
+      ) : (
+        <Suit
+          suit={card.suit}
+          className={cn(suitInk[card.suit], card.suit === "spade" ? "size-16 xl:size-20" : "size-12 xl:size-14", pip)}
         />
-      </span>
-      <Suit
-        suit={card.suit}
-        className="absolute top-1/2 left-1/2 size-[42%] -translate-x-1/2 -translate-y-[62%] opacity-20 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-hover/card:rotate-12"
-      />
-      <span className="relative mt-auto block lg:pr-6">
-        <span className="type-h2 block text-suit-ink!">{card.title}</span>
-        <span className="type-small mt-1 block text-suit-ink/75!">{card.text}</span>
-      </span>
-      <span aria-hidden className="absolute right-4 bottom-4 hidden rotate-180 lg:block">
-        {corner}
-      </span>
+      )}
+      <span className="type-h3 mt-4 block font-semibold text-card-black!">{card.title}</span>
+      <span className="type-caption mt-1 block text-card-black/70!">{card.text}</span>
+      <Corner suit={card.suit} flip />
     </SmartLink>
   );
 }
@@ -115,7 +121,7 @@ export function CardHand({ cards }: { cards: HandCard[] }) {
       <ul className="-mx-(--gutter) flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-(--gutter) px-(--gutter) pb-4 [scrollbar-width:none] lg:hidden">
         {cards.map((card, i) => (
           <Rise as="li" key={card.href} i={i + 2} className="shrink-0 snap-start">
-            <Card card={card} className="press aspect-[4/5] w-[58vw] max-w-[240px] sm:w-[220px]" />
+            <Card card={card} className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]" />
           </Rise>
         ))}
       </ul>

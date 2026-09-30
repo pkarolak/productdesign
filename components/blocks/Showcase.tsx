@@ -7,7 +7,7 @@ import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
-import { Suit, suitBg } from "@/components/ui/Suit";
+import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
 import { suits, type Showcase as ShowcaseData, type ShowcaseItem, type Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
@@ -39,12 +39,14 @@ function Cover({
         />
       </span>
     );
+  const pip = "transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-110 group-hover/sc:rotate-12";
   return (
-    <span className={cn("relative grid place-items-center overflow-hidden text-suit-ink", suitBg[suit], className)}>
-      <Suit
-        suit={suit}
-        className="size-[34%] opacity-25 transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-110 group-hover/sc:rotate-12"
-      />
+    <span className={cn("playing-card relative grid place-items-center overflow-hidden", suitInk[suit], className)}>
+      {suit === "joker" ? (
+        <JokerEmblem className={cn("size-[34%]", pip)} />
+      ) : (
+        <Suit suit={suit} className={cn("size-[30%]", pip)} />
+      )}
     </span>
   );
 }

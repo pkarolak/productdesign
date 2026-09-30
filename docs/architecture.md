@@ -40,7 +40,7 @@ flowchart LR
 
 ## Components
 
-- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides cards whose target is empty and gives each block its card's suit. `CardHand` fans the section cards on wide screens ([ADR 0012](decisions/0012-card-hand-and-suits.md)).
+- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides cards whose target is empty and gives each block its card's suit. `CardHand` fans the section cards on wide screens ([ADR 0012](decisions/0012-card-hand-and-suits.md)), drawn as real playing cards ([ADR 0013](decisions/0013-real-playing-cards.md)).
 - `components/ui/`: primitives. `SmartLink` (anchor, external or app route with a transition type), `ArrowLink`, `Modal` (native `<dialog>`, sheet or palette placement, optional `layoutId` morph), `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
 - `components/motion/Rise.tsx`: the entry reveal, timings from `@theme/motion`. Clears its filter on completion so it never becomes a backdrop root.
 - `components/media/`: `Asset` renders any content asset by `kind`, `Picture` (light and dark sources, unoptimized for protected media), `Compare`, `Video`.

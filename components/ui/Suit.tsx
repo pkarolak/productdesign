@@ -12,27 +12,47 @@ const paths: Record<SuitName, string> = {
     "M3.6 17.5C4.4 12.6 3.9 9 2.6 6.4 6.4 7.2 9.1 9.8 10.6 13.4 10.9 9.4 11.4 6.6 12 4.6c.6 2 1.1 4.8 1.4 8.8 1.5-3.6 4.2-6.2 8-7-1.3 2.6-1.8 6.2-1 11.1ZM3.4 18.6h17.2v2.6H3.4ZM1 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM10.4 3.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0ZM19.8 5.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0Z",
 };
 
-/** Suit fill colours; the palette itself lives in the theme (--suit-1 to --suit-5). */
-export const suitBg: Record<SuitName, string> = {
-  heart: "bg-suit-1",
-  spade: "bg-suit-2",
-  diamond: "bg-suit-3",
-  club: "bg-suit-4",
-  joker: "bg-linear-135 from-suit-1 via-suit-5 to-suit-2",
+/** Pip ink on a card face: red hearts and diamonds, black spades and clubs, a red joker. */
+export const suitInk: Record<SuitName, string> = {
+  heart: "text-card-red",
+  spade: "text-card-black",
+  diamond: "text-card-red",
+  club: "text-card-black",
+  joker: "text-card-red",
 };
 
+/** The same split on the page itself, where black pips take the ink colour so they read in dark mode. */
 export const suitText: Record<SuitName, string> = {
-  heart: "text-suit-1",
-  spade: "text-suit-2",
-  diamond: "text-suit-3",
-  club: "text-suit-4",
-  joker: "text-suit-5",
+  heart: "text-card-red",
+  spade: "text-ink",
+  diamond: "text-card-red",
+  club: "text-ink",
+  joker: "text-card-red",
 };
 
 export function Suit({ suit, className }: { suit: SuitName; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden className={cn("size-4 fill-current", className)}>
       <path d={paths[suit]} />
+    </svg>
+  );
+}
+
+/** The joker's centre figure: a harlequin hat in alternating red and black. */
+export function JokerEmblem({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={cn("size-16", className)}>
+      <g className="fill-card-red">
+        <path d="M3.6 17.5C4.4 12.6 3.9 9 2.6 6.4c3.8.8 6.5 3.4 8 7L12 17.5Z" />
+        <path d="M20.4 17.5c-.8-4.9-.3-8.5 1-11.1-3.8.8-6.5 3.4-8 7L12 17.5Z" />
+        <circle cx="12" cy="3.2" r="1.6" />
+      </g>
+      <g className="fill-card-black">
+        <path d="M10.6 13.4c.3-4 .8-6.8 1.4-8.8.6 2 1.1 4.8 1.4 8.8L12 17.5Z" />
+        <path d="M3.4 18.6h17.2v2.6H3.4Z" />
+        <circle cx="2.6" cy="5.2" r="1.6" />
+        <circle cx="21.4" cy="5.2" r="1.6" />
+      </g>
     </svg>
   );
 }

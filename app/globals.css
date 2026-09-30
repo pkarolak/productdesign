@@ -23,12 +23,9 @@
   --color-hairline: var(--hairline);
   --color-core: var(--core);
   --color-skeleton: var(--skeleton);
-  --color-suit-1: var(--suit-1);
-  --color-suit-2: var(--suit-2);
-  --color-suit-3: var(--suit-3);
-  --color-suit-4: var(--suit-4);
-  --color-suit-5: var(--suit-5);
-  --color-suit-ink: var(--suit-ink);
+  --color-card-face: var(--card-face);
+  --color-card-red: var(--card-red);
+  --color-card-black: var(--card-black);
 
   --radius-pill: var(--r-pill);
   --radius-plate: var(--r-plate);

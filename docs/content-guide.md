@@ -21,7 +21,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `avatar` | optional | A square photo (at least 480px) in `public/about/`, with real `alt` text. Shown in the nav and beside the intro. |
 | `hand` | up to 5 cards, title 3, text 8 words | Each has a `suit` (`heart`, `spade`, `diamond`, `club`, `joker`) and a `target` (`about`, `work`, `showcase`, `teaching`, `outside`, `writing`, `contact`). The target block's heading wears the same suit. |
 | `statement` | 1 to 2 lines of 8 words, text 32 | The second line renders in Ink 2. |
-| `showcase` | up to 6 items, text 14, detail 60 | Cards that open a sheet. `image` is optional; without one the card shows a suit colour. Images are public. |
+| `showcase` | up to 6 items, text 14, detail 60 | Cards that open a sheet. `image` is optional; without one the cover is a card face with its suit pip. Images are public. |
 | `teaching` | up to 3, text 30, 4 topics of 4 words | Place, role, years, what you taught. |
 | `writing` | up to 6, title 12 | `date` as `YYYY-MM` or `YYYY-MM-DD`, `href` a full URL. |
 | `testimonials` | up to 4, quote 45 words | Real people only on a real site. |

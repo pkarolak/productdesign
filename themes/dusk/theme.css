@@ -34,13 +34,10 @@
   --r-card: 16px;
   --r-sheet: 20px;
 
-  /* card suits: playful tiles only, never text accents or buttons (ADR 0012); same in light and dark */
-  --suit-1: #F2937E;
-  --suit-2: #8CB6F2;
-  --suit-3: #E8B270;
-  --suit-4: #8ED3B4;
-  --suit-5: #B8A4F2;
-  --suit-ink: #17130F;
+  /* playing cards: face and pip inks, the same in light and dark (ADR 0013) */
+  --card-face: #FBF7EE;
+  --card-red: #C0303C;
+  --card-black: #1C1A17;
   --frame-pad: 6px;
 
   /* contract: motion (CSS side; the JS side is motion.ts) */
@@ -351,4 +348,18 @@
 .dk-stack-back {
   transform: translate(6%, -7%) scale(0.92);
   opacity: 0.55;
+}
+
+/* A printed card lying on the page: paper face, faint linen grain, hairline edge and a soft drop. */
+@utility playing-card {
+  background:
+    radial-gradient(120% 80% at 20% 0%, rgba(255, 255, 255, 0.75), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(28, 22, 14, 0.018) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(-45deg, rgba(28, 22, 14, 0.018) 0 1px, transparent 1px 3px),
+    var(--card-face);
+  border: 1px solid rgba(28, 22, 14, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(28, 22, 14, 0.22),
+    0 14px 30px -12px rgba(28, 22, 14, 0.45);
 }

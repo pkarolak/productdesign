@@ -32,12 +32,9 @@
     "--accent",
     "--accent-ink",
     "--hairline",
-    "--suit-1",
-    "--suit-2",
-    "--suit-3",
-    "--suit-4",
-    "--suit-5",
-    "--suit-ink",
+    "--card-face",
+    "--card-red",
+    "--card-black",
     "--core",
     "--skeleton",
     "--shadow",
@@ -105,7 +102,8 @@
     "inline-pill",
     "type-quote",
     "press",
-    "sheet"
+    "sheet",
+    "playing-card"
   ],
   "fontVariables": [
     "--theme-font-display",
