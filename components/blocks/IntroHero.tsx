@@ -25,26 +25,24 @@ function Tagline({ hero }: { hero: Hero }) {
 
 const leadsWithPunctuation = (s: string) => /^[.,;:!?)]/.test(s);
 
-/** Greeting, a second line in Ink 2, then one sentence with inline company pills; the photo sits beside it. */
+/** Greeting, a second line in Ink 2, then one sentence with inline company pills; the photo spans the text block. */
 export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"] }) {
   return (
     <section
       aria-labelledby="intro-title"
-      className="container-page grid items-center gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,1fr)] md:gap-14 md:pt-44 md:pb-16"
+      className="container-page grid gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,1fr)] md:gap-12 md:pt-44 md:pb-16 lg:gap-14"
     >
       {avatar && (
-        <Rise className="hidden md:block">
-          <div className="card group/avatar w-[200px] -rotate-3 rounded-card p-2 transition-transform duration-(--t-hover) ease-slow hover:rotate-0 lg:w-[232px]">
-            <div className="core relative aspect-square overflow-hidden rounded-inset">
-              <Image
-                src={avatar.src}
-                alt={avatar.alt}
-                fill
-                preload
-                sizes="232px"
-                className="object-cover transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.04]"
-              />
-            </div>
+        <Rise className="hidden pt-[0.6rem] pb-[0.45rem] md:block">
+          <div className="group/avatar relative h-full w-[168px] overflow-hidden rounded-card border border-hairline shadow-raised lg:w-[212px]">
+            <Image
+              src={avatar.src}
+              alt={avatar.alt}
+              fill
+              preload
+              sizes="212px"
+              className="object-cover object-[50%_28%] transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.03]"
+            />
           </div>
         </Rise>
       )}

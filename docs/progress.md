@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: calmer hero alignment
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hero photo is no longer a tilted card floating beside the text. It is an upright portrait (168px, 212px from `lg`) that spans the text block exactly: its top meets the cap height of the greeting and its bottom the last line of the intro, with a hairline edge and soft shadow.
+- **Verified:** measured photo, heading and intro boxes at 1440; 800 and mobile screenshots.
+
 ## 2026-09-30: the hand deals out of a stack
 
 - **Agent:** Cursor agent (Claude)
