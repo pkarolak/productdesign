@@ -85,17 +85,6 @@ export function Nav({ name }: { name: string }) {
             </Link>
           );
         })}
-        <button
-          type="button"
-          onClick={openCommandMenu}
-          aria-label="Open command menu"
-          aria-keyshortcuts="Meta+K Control+K"
-          className="focus-ring press -mx-3 flex h-10 cursor-pointer items-center gap-1.5 rounded-pill px-3 text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink max-md:hidden"
-        >
-          <Icon name="command" className="size-4" />
-          <span aria-hidden className="type-caption">K</span>
-        </button>
-        <ThemeToggle className="-mx-3 max-md:hidden" />
         <PrimaryLink href="#contact" size="compact" className="max-md:hidden">
           Get in touch
         </PrimaryLink>
@@ -120,6 +109,26 @@ export function Nav({ name }: { name: string }) {
           />
         </button>
       </m.nav>
+
+      <m.div
+        data-rise=""
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: rise.duration, ease, delay: rise.delay + 0.1 }}
+        className="fixed top-(--nav-top) right-(--gutter) z-50 hidden h-14 items-center gap-1 md:flex"
+      >
+        <button
+          type="button"
+          onClick={openCommandMenu}
+          aria-label="Open command menu"
+          aria-keyshortcuts="Meta+K Control+K"
+          className="focus-ring press flex h-9 cursor-pointer items-center gap-1 rounded-pill px-2.5 text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+        >
+          <Icon name="command" className="size-3.5" />
+          <span aria-hidden className="type-caption">K</span>
+        </button>
+        <ThemeToggle quiet />
+      </m.div>
 
       <AnimatePresence>
         {open && (

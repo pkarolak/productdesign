@@ -34,6 +34,11 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: nav tools moved to the corner
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the command menu button and theme toggle left the centre pill for a quiet cluster fixed top right (desktop only, Ink 3, aligned to the pill's height). The pill keeps the name, Work, About and Get in touch. Mobile unchanged: the toggle stays in the menu. `ThemeToggle` gains a `quiet` tone.
+
 ## 2026-09-30: locked page with a watching lock
 
 - **Agent:** Cursor agent (Claude)
