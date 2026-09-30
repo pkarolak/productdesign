@@ -43,7 +43,7 @@ export const site = siteSchema.parse({
       },
     ],
     intro: [
-      "I design workflow and platform products at",
+      "I design the systems product teams build on, now at",
       { pill: "Ledgerline", href: "/work/keel-design-system" },
       "and before that at",
       { pill: "Halden", href: "/work/dispatch-board" },

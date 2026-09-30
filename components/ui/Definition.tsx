@@ -82,7 +82,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
           if (open) setOpen(false);
           else show();
         }}
-        className="focus-ring cursor-help rounded-inset text-inherit decoration-accent/70 decoration-dotted decoration-2 underline-offset-[0.14em] [text-decoration-line:underline] transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink aria-expanded:bg-accent/10 aria-expanded:text-ink"
+        className="focus-ring cursor-help rounded-inset text-inherit [text-shadow:inherit] decoration-ink-3/50 decoration-dotted decoration-1 underline-offset-[0.16em] hover:decoration-accent aria-expanded:decoration-accent [text-decoration-line:underline] transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink aria-expanded:bg-accent/10 aria-expanded:text-ink"
       >
         {children}
       </button>

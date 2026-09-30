@@ -17,8 +17,8 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 
 | Field | Budget | Write it as |
 | --- | --- | --- |
-| `hero` | greeting 5, tagline 8, intro 32 words, headline 12 | `intro` mixes plain text and `{ pill, href }` company pills, read as one sentence. Spaces are added between parts, except before punctuation. `headline` is for metadata and OG images. `glossary`: up to 3 `{ term, phonetic?, kind 3, senses 1 to 2 × 26, origin? 20 }` entries; each term must appear in the tagline and becomes a dictionary tooltip. |
-| `avatar` | optional | A square photo (at least 480px) in `public/about/`, with real `alt` text. Shown in the nav and beside the intro. |
+| `hero` | greeting 5, tagline 8, intro 32 words, headline 12 | `intro` mixes plain text and `{ pill, href }` company pills, read as one sentence; lead with what you do. The word before each pill stays on its line. Spaces are added between parts, except before punctuation. `headline` is for metadata and OG images. `glossary`: up to 3 `{ term, phonetic?, kind 3, senses 1 to 2 × 26, origin? 20 }` entries; each term must appear in the tagline and becomes a dictionary tooltip. |
+| `avatar` | optional | A square photo (at least 480px) in `public/about/`, with real `alt` text. Shown in the nav and, on wide screens, beside the intro as a photo card. |
 | `handNote` | 8 words, optional | The handwritten caption under the hand, with a doodle arrow (ADR 0014). |
 | `deck` | optional: `joker`, `back`, each `{ src, srcDark }` | Decorative card art for the hand ([ADR 0018](decisions/0018-plain-faces-fileteado-accents.md)). The joker is a small emblem as a transparent PNG (about 3:2), the back a full card. Leave it out for plain printed cards. |
 | `hand` | up to 5 cards, title 3, text 8 words | Each has a `suit` (`heart`, `spade`, `diamond`, `club`, `joker`) and a `target` (`about`, `work`, `showcase`, `teaching`, `outside`, `writing`, `contact`). The target block's heading wears the same suit. |

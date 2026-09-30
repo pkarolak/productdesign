@@ -34,6 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: hero recomposed
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** fixed every point from the hero review ([ADR 0020](decisions/0020-hero-recomposition.md)):
+  - The hero block centres on the fan's axis, and the portrait is a tilted photo card.
+  - The greeting is quiet and the tagline is in full ink with `filete-shade`. The tooltip words keep the shade, and their underlines are calmer.
+  - The intro leads with "I design the systems product teams build on". Pills stay glued to the word before them.
+  - On mobile, the duplicate photo is gone, the cards are a smaller overlapping hand with a slight tilt, and the shadow is no longer cut off.
+- **Verified:** lint, typecheck, theme:check, build; desktop 1440 light and dark, 1024, iPhone 13 light and dark; no horizontal overflow; tapping a card still opens it; axe zero violations.
+
 ## 2026-09-30: joker emblem without a background on hover
 
 - **Agent:** Cursor agent (Claude)

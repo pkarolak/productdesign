@@ -62,7 +62,7 @@ function Card({
 }) {
   const pip = "shrink-0 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
   const classes = cn(
-    "focus-ring group/card playing-card relative flex flex-col items-center justify-center overflow-hidden rounded-inset px-7 py-12 text-center backface-hidden",
+    "focus-ring group/card playing-card relative flex flex-col items-center justify-center overflow-hidden rounded-inset px-[13%] py-12 text-center backface-hidden",
     className,
   );
   const face = (
@@ -150,6 +150,10 @@ type Phase = "stacked" | "dealing" | "settled";
 
 /** A loose pile: each card a hair off square, like a deck set down by hand. */
 const pile = (i: number) => ({ rotate: ((i * 5) % 7) - 3, y: -i * 1.5 });
+
+/** Cards dealt in a row on narrow screens: overlapping and a little askew, as if laid out by hand. */
+const tilts = [-3, 2, -1.5, 2.5, -2];
+const tilt = (i: number) => tilts[i % tilts.length];
 
 /**
  * Holds a list of cards in a stack until it scrolls into view, then deals it out. `anchor` is where the
@@ -292,16 +296,22 @@ export function CardHand({
 
       <ul
         ref={rowList}
-        className="relative -mx-(--gutter) flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-(--gutter) px-(--gutter) pt-2 pb-4 [scrollbar-width:none] lg:hidden"
+        className="relative -mx-(--gutter) -mb-8 flex snap-x snap-mandatory overflow-x-auto scroll-px-(--gutter) px-(--gutter) pt-4 pb-12 [scrollbar-width:none] lg:hidden"
       >
         {cards.map((card, i) => (
-          <Rise as="li" key={card.href} i={2} className={cn("shrink-0 snap-start", picked?.index === i && "invisible")}>
+          <Rise
+            as="li"
+            key={card.href}
+            i={2}
+            className={cn("-ml-5 shrink-0 snap-start first:ml-0", picked?.index === i && "invisible")}
+            style={{ zIndex: 10 + i }}
+          >
             <m.div
               initial={false}
               animate={
                 row.phase === "stacked"
                   ? { ...pile(i), x: -(row.offsets[i] ?? 0) }
-                  : { rotate: 0, x: 0, y: 0 }
+                  : { rotate: tilt(i), x: 0, y: i % 2 ? 8 : 0 }
               }
               transition={dealing(row.phase, i)}
               className="perspective-[1400px]"
@@ -310,8 +320,8 @@ export function CardHand({
                 <Card
                   card={card}
                   deck={deck}
-                  onPick={pick(i, 0, 1)}
-                  className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]"
+                  onPick={pick(i, tilt(i), 1)}
+                  className="press aspect-[5/7] w-[44vw] max-w-[200px] sm:w-[180px]"
                 />
               </Flip>
             </m.div>
