@@ -68,18 +68,19 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
                 alt=""
                 width={16}
                 height={16}
-                className="mr-[0.4em] inline-block size-[1.05em] object-contain align-[-0.17em]"
+                className="mr-[0.4em] ml-[0.2em] inline-block size-[1.05em] object-contain align-[-0.17em]"
               />
             ) : (
               <span
                 aria-hidden
-                className="mr-[0.4em] inline-grid size-[1.05em] place-items-center rounded-pill bg-accent/15 align-[-0.17em] text-[0.6em] leading-none text-accent"
+                className="mr-[0.4em] ml-[0.2em] inline-grid size-[1.05em] place-items-center rounded-pill bg-accent/15 align-[-0.17em] text-[0.6em] leading-none text-accent"
               >
                 {part.pill[0]}
               </span>
             )}
             <span
               className={cn(
+                !trailing && "mr-[0.15em]",
                 "font-medium tracking-[-0.005em] underline decoration-accent/45 decoration-dotted decoration-1 underline-offset-[0.42em] transition-colors duration-(--t-hover-short) ease-slow group-hover/bubble:decoration-accent group-aria-expanded/bubble:decoration-accent",
                 quiet ? "text-ink-2" : "text-ink",
               )}
@@ -175,7 +176,7 @@ export function DayCycle({ rows }: { rows: Hero["intro"] }) {
           </button>
         ))}
       </div>
-      <div className="mt-4 grid max-w-[34rem]">
+      <div className="mt-5 grid max-w-[34rem]">
         {rows.map((row, i) => (
           <p
             key={row.when}

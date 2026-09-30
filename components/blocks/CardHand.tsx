@@ -270,7 +270,7 @@ export function CardHand({
     <nav aria-label="Sections" className="container-page">
       <ul
         ref={fanList}
-        className="relative hidden h-[350px] items-start justify-center pt-4 lg:flex xl:h-[364px]"
+        className="relative hidden h-[350px] items-start justify-center pt-2 lg:flex xl:h-[356px]"
         onPointerLeave={() => setHot(null)}
       >
         {cards.map((card, i) => {
@@ -360,7 +360,7 @@ export function CardHand({
           initial={false}
           animate={{ opacity: dealt ? 1 : 0, y: dealt ? 0 : 8 }}
           transition={{ duration: 0.6, delay: dealt ? dealTime : 0, ease: motion.ease }}
-          className="mx-auto mt-1 flex w-max max-w-full items-end gap-1 pl-2 lg:-mt-14 lg:translate-x-24"
+          className="mx-auto mt-1 flex w-max max-w-full items-end gap-1 pl-2 lg:-mt-16 lg:translate-x-24"
         >
           <DoodleArrow play={dealt} after={dealTime} className="-mb-1 h-14 w-16 shrink-0 text-accent lg:h-22 lg:w-24" />
           <p className="type-hand -rotate-3 pb-1 lg:pb-2 lg:text-[2rem]">{note}</p>

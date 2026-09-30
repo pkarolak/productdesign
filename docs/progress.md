@@ -34,6 +34,14 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: more breathing room in the hero
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - Vertical: a little more space between the hero's text elements (hairline `mt-5`, day switch `mt-7`, intro line `mt-5`). On screens at least 940px tall, the hero also gets `pt-32` and `pb-10`. To keep the 1440 × 900 fold, the fan sits 8px higher and the caption tucks 8px closer.
+  - Horizontal: company logos get a small gap before them (0.2em), and names followed by a word get a hair of space after (0.15em), so each company reads as its own unit.
+- **Verified:** build; caption bottom at 899px (1440 × 900) and 947px (1728 × 1000); intro close-up.
+
 ## 2026-10-01: family after hours, sport and tango at night
 
 - **Agent:** Cursor agent (Claude)

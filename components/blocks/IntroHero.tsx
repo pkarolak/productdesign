@@ -54,7 +54,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
   return (
     <section
       aria-labelledby="intro-title"
-      className="relative container-page grid gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,38rem)] md:justify-center md:gap-12 md:pt-28 md:pb-2 lg:gap-16"
+      className="relative container-page grid gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,38rem)] md:justify-center md:gap-12 md:pt-28 md:pb-2 md:[@media(min-height:940px)]:pt-32 md:[@media(min-height:940px)]:pb-10 lg:gap-16"
     >
       <Daylight className="-z-10 left-1/2! w-screen -translate-x-1/2" />
       {avatar && (
@@ -64,13 +64,13 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
       )}
       <div className="relative z-30">
         <Rise as="h1" id="intro-title" className="group/tagline type-display max-w-[15ch] text-ink">
-          <span className="type-lede mb-3 block font-medium tracking-[-0.01em]">{hero.greeting}</span>
+          <span className="type-lede mb-4 block font-medium tracking-[-0.01em]">{hero.greeting}</span>
           <Tagline hero={hero} />
         </Rise>
         <Rise i={1}>
-          <Filete className="mt-4" />
+          <Filete className="mt-5" />
         </Rise>
-        <Rise i={1} className="mt-6">
+        <Rise i={1} className="mt-7">
           <DayCycle rows={hero.intro} />
         </Rise>
         {hero.cta && (
