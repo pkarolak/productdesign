@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: hand caption copy
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the handwritten caption under the cards now reads "Pick a card to see my tricks!".
+- **Verified:** build.
+
 ## 2026-09-30: the intro as a day cycle
 
 - **Agent:** Cursor agent (Claude)

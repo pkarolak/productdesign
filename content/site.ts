@@ -64,7 +64,7 @@ export const site = siteSchema.parse({
     ],
     headline: "I shape *enterprise-grade* experiences at Miro.",
   },
-  handNote: "Pick a card to see some tricks",
+  handNote: "Pick a card to see my tricks!",
   deck: {
     joker: { src: "/cards/bandoneon-line-light.png", srcDark: "/cards/bandoneon-line-dark.png" },
     back: { src: "/cards/back-milonga-light.jpg", srcDark: "/cards/back-milonga-dark.jpg" },
