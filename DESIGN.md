@@ -8,13 +8,14 @@
 - [ADR 0002](docs/decisions/0002-style-direction.md): the direction.
 - [ADR 0006](docs/decisions/0006-blueprint-v2-refinement.md): the v2 refinement (glass, dots, radii, slow motion, elegance).
 - [ADR 0007](docs/decisions/0007-lucide-icons.md): Lucide icons.
+- [ADR 0008](docs/decisions/0008-design-language-layer.md): the design language is a swappable layer in `themes/`.
 
 **Reference implementation (the fidelity target):**
 - [design/preview/blueprint.html](design/preview/blueprint.html): open it in Chrome to see the motion.
 - [design/preview/blueprint.png](design/preview/blueprint.png): the static render in light and dark.
 - Every value in this file exists in that HTML. When building, copy the values verbatim; do not re-derive them.
 
-This file is the single source of truth for every visual decision. If code and this file disagree, this file wins. Change this file and add an ADR before changing the look.
+This file is the single source of truth for every visual decision of the Blueprint design language (implemented in `themes/blueprint/`). If code and this file disagree, this file wins. Change this file and add an ADR before changing the look. To replace Blueprint with a different design language, follow [docs/theming.md](docs/theming.md).
 
 ---
 
@@ -104,7 +105,7 @@ One accent family: **Blueprint Cobalt.**
 
 ### Scale
 - **Display (hero):** Sora 400, `clamp(2.75rem, 5.2vw, 4rem)`, line-height 1.04, tracking `-0.045em`, max 13.5ch.
-- **Case bottom line:** Sora 400, `clamp(2.125rem, 3.8vw, 3.125rem)`, line-height 1.08, tracking `-0.04em`.
+- **Case bottom line:** Sora 400, `clamp(2rem, 3.2vw, 2.75rem)`, line-height 1.1, tracking `-0.04em`, max 28ch. (Tuned during the build: at the original size a 30-word bottom line ran six lines and pushed the unlock form below the fold.)
 - **H2:** Sora 400, `clamp(1.875rem, 3.2vw, 2.625rem)`, line-height 1.12, tracking `-0.035em`.
 - **H3 (card title):** Sora 500, `1.25rem`, line-height 1.3, tracking `-0.02em`.
 - **Metric value:** Sora 300, `clamp(2.25rem, 3.6vw, 2.75rem)`, line-height 1, tracking `-0.04em`, tabular numbers. The unit is `<sup>` at 0.5em, in the accent, weight 400.
@@ -305,9 +306,14 @@ Pill shape, Glass hairline border, transparent fill, Lato 400 at 13.5px, Ink 2, 
 ## 11. Fidelity contract (how this lands in the real build)
 
 1. **Tokens are copied, not reinterpreted.**
-   - `app/globals.css` defines every variable from section 2 under `:root` and `[data-theme="dark"]`, with exactly these values.
-   - The `.glass` utility, the dot lattice, the orbs, the grain and the rise keyframes are ported verbatim from `design/preview/blueprint.html`.
-2. **Components follow the reference.** `<Atmosphere />`, `<Glass />`, `<PillNav />`, `<IsoStack />`, `<MetricsPanel />` and `<Rise />` are the only way these patterns appear. No one-off glass, shadows or radii.
+   - `themes/blueprint/theme.css` defines every variable from section 2 under `:root` and `[data-theme="dark"]`, with exactly these values. (The design language is a swappable layer: [ADR 0008](docs/decisions/0008-design-language-layer.md), [docs/theming.md](docs/theming.md).)
+   - The glass recipe (exposed as the contract utility `surface`), the dot lattice, the orbs, the grain and the rise are ported verbatim from `design/preview/blueprint.html`.
+   - Name mapping from this spec to code: Glass hairline is `--hairline`; `.glass` is `surface`; the deeper scrolled or hovered shadow is `surface-deep`; the mobile sheet is `surface-sheet`.
+2. **Components follow the reference.** These are the only way the patterns appear. No one-off glass, shadows or radii.
+   - `Atmosphere` and the isometric `Signature` (the plates) live in `themes/blueprint/`.
+   - `Panel` and `Frame` are the glass panel and media frame, in `components/ui/`.
+   - `Nav` is the pill nav; `MetricsPanel` and `Rise` complete the set.
+   - Glass surfaces take a `rise` index instead of being wrapped in `Rise`. An animating ancestor (opacity or filter) becomes the backdrop root and flattens the glass.
 3. **Screenshot comparison gate.**
    - The `pnpm shots` script (Playwright) captures `/`, one case page and the locked page, at 1440 by 900 and 390 by 844, in light and dark.
    - The captures go to `design/shots/`.

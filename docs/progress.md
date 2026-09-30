@@ -8,20 +8,48 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
 - [x] `direction-concepts`: 2 reference images per style direction in `design/directions/`
 - [x] `direction-lock`: user picks, `DESIGN.md` + ADR 0002
-- [ ] `section-refs`: remaining section references for the chosen direction in `design/refs/`
-- [ ] `scaffold`: Next.js + Tailwind v4 + Motion + lucide-react + zod, tokens from `DESIGN.md`, Vercel import
-- [ ] `content-model`: zod schema with budgets, `site.ts`, 4 placeholder projects, ADR 0003
-- [ ] `shell`: layout, nav, footer, motion primitives, texture layer
-- [ ] `home`: hero, selected work, approach, contact
-- [ ] `case-pages`: `/work/[slug]` full case layout
-- [ ] `gating`: unlock, signed cookie, proxy, locked page, protected media, ADR 0004
-- [ ] `about`: `/about`
-- [ ] `assets`: covers and artifacts for all 4 cases
-- [ ] `share-seo`: metadata, OG images, sitemap, robots, analytics
-- [ ] `qa`: pre-flight, a11y, breakpoints, Lighthouse, gating tests, README
-- [ ] `docs-final`: architecture, content guide, operations, ADR 0005, docs check, handoff entry
+- [x] `section-refs`: skipped by decision; the user said "let's build" and the build was compared against `design/preview/blueprint.html` plus `pnpm shots` instead
+- [x] `scaffold`: Next.js 16 + Tailwind v4 + Motion + lucide-react + zod + next-themes + Playwright, design-language layer (ADR 0008). Vercel import still to do by the user (see operations.md)
+- [x] `content-model`: zod schema with budgets, `site.ts`, 4 placeholder projects, ADR 0003
+- [x] `shell`: layout, nav, footer, contact, motion primitives, atmosphere layer
+- [x] `home`: hero, selected work, approach, contact
+- [x] `case-pages`: `/work/[slug]` full case layout
+- [x] `gating`: unlock, signed cookie, proxy, locked page, protected media, ADR 0004
+- [x] `about`: `/about`
+- [x] `assets`: covers and artifacts for all 4 cases
+- [x] `share-seo`: metadata, OG images, sitemap, robots, analytics
+- [ ] `qa`: done: shots gate, overflow check, gating leak tests, README. Left: taste pre-flight write-up, keyboard and screen reader pass, Lighthouse on a Vercel preview
+- [ ] `docs-final`: done: architecture, theming, content guide, operations. Left: ADR 0005, `pnpm docs:check`, final handoff entry
 
 ---
+
+## 2026-09-30: v1 build with a swappable design language
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `scaffold`, `content-model`, `shell`, `home`, `case-pages`, `gating`, `about`, `assets`, `share-seo`, most of `qa` and `docs-final`. `section-refs` skipped by decision.
+- **Done:**
+  - The user asked to build with Blueprint as the starting design, and to make changing the design language easy later. Built the design-language layer first ([ADR 0008](decisions/0008-design-language-layer.md), [theming.md](theming.md)):
+    - `themes/blueprint/` holds every visual value (`theme.css`), fonts, motion, icons, OG/meta colors, and the signature components (`Atmosphere`, `Signature`, `Diagram`).
+    - `themes/contract.json` and `contract.ts` define what any theme must provide; components use only those names.
+    - `pnpm theme:check` (runs before every build), `pnpm theme:new`, `pnpm theme:use`.
+    - Drilled a swap end to end: fork, change the accent, switch, build, confirm the compiled CSS, switch back.
+  - Scaffolded Next.js 16.3 (App Router, Turbopack, `proxy.ts`), Tailwind 4 with the default palette, radii, shadows, fonts and easings reset.
+  - Content model with zod budgets and 4 fictional cases ([ADR 0003](decisions/0003-teaser-depth-and-content-budgets.md)).
+  - Pages: home (hero, 4-cell bento, approach), full case, locked teaser, About, 404, plus the shared contact block and footer.
+  - Password gating ([ADR 0004](decisions/0004-password-gating.md)). Verified: locked HTML and RSC payloads contain no case content, protected media return 401, unlock through the real form works, and the password is fingerprinted into the cookie so rotating it revokes access.
+  - 11 generated placeholder images (UI screens, phone screens, photos); diagrams are drawn in code by the theme.
+  - Metadata, OG images from `@theme/meta`, sitemap, robots, Vercel Analytics and Speed Insights.
+  - `pnpm shots`: 20 captures (5 pages, light and dark, desktop and mobile), with a real unlock and an overflow check. All pass.
+- **Fidelity comparison** (home hero vs `design/preview/blueprint.png`): glass, dot lattice, drifting light, radii, Sora weights, nav, button and metrics panel match. The plates now hold real screenshots instead of skeletons. Fixed during comparison: metric unit superscripts sat too high (Tailwind preflight `sup` offset), and a stray metric divider showed on desktop.
+- **Design tweaks made during the build:**
+  - The case bottom line is now `clamp(2rem, 3.2vw, 2.75rem)`, max 28ch (DESIGN.md section 3), so a 30-word bottom line fits in about four lines and the unlock form stays in the first viewport.
+  - "Lock cases" lives on full protected case pages, not in the global footer (the static footer cannot know the HttpOnly cookie).
+  - Every "Get in touch" goes to the shared `#contact` block rendered on every page.
+- **Next:**
+  - User: import the repo in Vercel, set `CASE_PASSWORD` and `AUTH_SECRET`, add the Firewall rule ([operations.md](operations.md)).
+  - `qa`: taste pre-flight write-up, keyboard and screen reader pass, Lighthouse on the preview URL.
+  - `docs-final`: ADR 0005, `pnpm docs:check`.
+- **Open questions:** none. Local dev password is in the gitignored `.env.local`.
 
 ## 2026-09-30: icons switched to Lucide
 

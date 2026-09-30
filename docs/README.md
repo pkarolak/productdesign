@@ -8,28 +8,31 @@ Navigation hub. Each fact is defined in one place and linked from everywhere els
 - [plan.md](plan.md): full scope, sequence and specs.
 - [brief.md](brief.md): audience, goals, how strength shows, teaser philosophy.
 
+## Guides
+
+- [architecture.md](architecture.md): layers, routes, gating flow, components, scripts.
+- [theming.md](theming.md): changing the design language.
+- [content-guide.md](content-guide.md): writing cases within budgets, asset kinds, image specs, swapping placeholders.
+- [operations.md](operations.md): env vars, local commands, Vercel deploy, Firewall rule, rotating the password.
+
 ## Decisions
 
 - [decisions/](decisions/): Architecture Decision Records (ADRs). Use [0000-template.md](decisions/0000-template.md) for new ones.
   - [0001-stack.md](decisions/0001-stack.md): Next.js, Tailwind v4, Motion, Vercel.
   - [0002-style-direction.md](decisions/0002-style-direction.md): "Blueprint" style, Sora + Lato, Blueprint Cobalt, light and dark.
+  - [0003-teaser-depth-and-content-budgets.md](decisions/0003-teaser-depth-and-content-budgets.md): zod-enforced reading budgets.
+  - [0004-password-gating.md](decisions/0004-password-gating.md): shared password, proxy rewrite, signed cookie, protected media.
   - [0006-blueprint-v2-refinement.md](decisions/0006-blueprint-v2-refinement.md): frozen glass, dot lattice, drifting light, generous radii, slow motion, fidelity contract.
   - [0007-lucide-icons.md](decisions/0007-lucide-icons.md): Lucide icons at stroke 1.5.
+  - [0008-design-language-layer.md](decisions/0008-design-language-layer.md): the design language is a swappable layer in `themes/`.
+  - 0005 (image-first design workflow) is reserved for `docs-final`.
 
 ## Design
 
-- [../DESIGN.md](../DESIGN.md): the locked design system. Read it before any UI work.
+- [../DESIGN.md](../DESIGN.md): the Blueprint design system. Read it before any UI work.
 - [../design/preview/blueprint.html](../design/preview/blueprint.html): the reference implementation and fidelity target ([static render](../design/preview/blueprint.png)).
+- [../design/shots/](../design/shots/): `pnpm shots` captures of the build, light and dark, desktop and mobile.
 - [../design/directions/](../design/directions/README.md): concept rounds 1 to 3.
-
-## Planned
-
-These files are created when their todo is reached:
-
-- `architecture.md`: routes, rendering, gating flow, content pipeline.
-- `content-guide.md`: writing cases within budgets, image specs, swapping placeholders.
-- `operations.md`: env vars, Vercel deploy, Firewall rule, rotating the password.
-- ADRs 0003 to 0005: teaser depth and content budgets, password gating, image-first design workflow.
 
 ## Related
 

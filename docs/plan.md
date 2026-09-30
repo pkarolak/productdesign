@@ -250,14 +250,19 @@ flowchart LR
 │   ├── locked/[slug]/actions.ts # unlock / lock Server Actions
 │   ├── opengraph-image.tsx
 │   ├── sitemap.ts, robots.ts
-│   └── globals.css              # Tailwind v4 + tokens
+│   └── globals.css              # Tailwind v4, imports the active theme, maps contract tokens
 ├── components/
-│   ├── site/  (Nav, Footer, Contact)
-│   ├── home/  (Hero, SelectedWork, Approach)
-│   ├── case/  (CaseHeader, Metrics, Scope, Beats, Artifacts, AskMeAbout, NextCase)
-│   ├── motion/ (Reveal, Stagger, client leaves)
-│   └── ui/    (Button, Chip, Frame)
-├── content/  (schema.ts, site.ts, projects.ts)
+│   ├── site/  (Nav, ThemeToggle, Footer, Contact)
+│   ├── home/  (Hero, WorkCard, SelectedWork, Approach)
+│   ├── case/  (CaseHeader, CaseFacts, Beats, Artifacts, AskMeAbout, NextCase, UnlockForm)
+│   ├── media/ (Asset, Picture, Compare, Video)
+│   ├── motion/ (Rise)
+│   └── ui/    (Button, Chip, Frame, Panel, Icon, MetricsPanel, Emphasis)
+├── themes/                      # design language layer, see docs/theming.md
+│   ├── contract.json, contract.ts
+│   └── blueprint/  (theme.css, fonts, motion, icons, meta, Atmosphere, Signature, Diagram)
+├── scripts/  (theme-check, theme-new, theme-use, shots)
+├── content/  (schema.ts, site.ts, projects/<slug>.ts)
 ├── lib/access.ts                # sign / verify token (jose), constant-time compare
 ├── proxy.ts                     # request interception (middleware.ts on older Next.js)
 ├── .env.example                 # CASE_PASSWORD, AUTH_SECRET

@@ -1,0 +1,42 @@
+{
+  "name": "productdesign-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "pnpm theme:check && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "theme:check": "node scripts/theme-check.mjs",
+    "theme:new": "node scripts/theme-new.mjs",
+    "theme:use": "node scripts/theme-use.mjs",
+    "docs:check": "markdown-link-check -q -c .markdown-link-check.json AGENTS.md README.md DESIGN.md docs/*.md docs/decisions/*.md",
+    "shots": "node scripts/shots.mjs"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "jose": "^6.2.12",
+    "lucide-react": "^1.49.0",
+    "motion": "^13.4.6",
+    "next": "16.3.7",
+    "next-themes": "^0.4.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.7",
+    "markdown-link-check": "^3.15.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@10.20.0"
+}

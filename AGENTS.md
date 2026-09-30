@@ -1,3 +1,13 @@
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
+
 # AGENTS.md
 
 Instructions for any coding agent (Cursor, Claude Code, Codex, Gemini, others) working in this repo. Read this file fully before doing anything.
@@ -32,17 +42,21 @@ A reusable portfolio template for a product designer. It showcases 4 case studie
 
 ## Commands
 
-The app is not scaffolded yet (see progress). After the `scaffold` todo, these will exist:
-
 ```bash
 pnpm install
-pnpm dev             # local dev server
-pnpm build           # production build; fails if content breaks budgets
+pnpm dev                  # local dev server (needs .env.local for unlocking, see docs/operations.md)
+pnpm build                # theme:check, then production build; fails if content breaks budgets
+pnpm start                # serve the production build
 pnpm lint
-pnpm typecheck
-pnpm docs:check      # markdown link check over AGENTS.md, README.md, docs/
-pnpm shots           # Playwright screenshots into design/shots/ (light and dark, desktop and mobile)
+pnpm typecheck            # next typegen + tsc
+pnpm theme:check          # the active design language honours themes/contract.json
+pnpm theme:new <name>     # fork the active design language into themes/<name>/
+pnpm theme:use <name>     # switch the active design language
+pnpm docs:check           # markdown link check over AGENTS.md, README.md, DESIGN.md, docs/
+pnpm shots                # Playwright screenshots into design/shots/ against a running server (SHOTS_URL)
 ```
+
+Shell note: in the maintainer's zsh, `grep` is aliased to `rg`. Do not pipe `pnpm build` into `grep -E`; a failing pipe can leave a build running in the background that overwrites `.next` under a running server.
 
 ## Skills
 
@@ -56,6 +70,11 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 
 ## Hard rules
 
+- **Design language layer ([docs/theming.md](docs/theming.md), ADR 0008):**
+  - Every visual value lives in `themes/<name>/` (active: `blueprint`). Components use only contract names from `themes/contract.json` (`surface`, `type-h2`, `text-ink-2`, `rounded-frame`, `ease-slow`, ...).
+  - Import theme modules only via `@theme/*`, never `@/themes/blueprint/...`. Never use a theme's private names (`bp-*`, `--glass-*`, `--orb-*`, `--dot`) outside its folder.
+  - No free colors, radii, shadows, fonts or easings in components; Tailwind's defaults are reset on purpose. Need something new? Add it to the theme and the contract first.
+  - `pnpm theme:check` enforces this and runs before every build.
 - **Design:**
   - Read `DESIGN.md` before any UI work.
   - `design/preview/blueprint.html` is the fidelity target. Copy its token values, glass recipe, dot lattice, orbs and motion verbatim.
@@ -81,10 +100,18 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 ```
 AGENTS.md            this file
 CLAUDE.md            pointer to this file
-DESIGN.md            locked design system "Blueprint"; read before any UI work
-docs/                plan, progress, brief, decisions, architecture, guides
+DESIGN.md            spec of the "Blueprint" design language; read before any UI work
+docs/                plan, progress, brief, decisions, architecture, theming, content guide, operations
 design/directions/   Phase 0 style direction concepts
-design/refs/         section references for the chosen direction
+design/preview/      reference implementation (fidelity target)
+design/shots/        pnpm shots output (viewport captures; full-page ones are gitignored)
 .agents/skills/      design skills (pinned)
-app/, components/, content/, lib/, public/   the app (after scaffold)
+app/                 routes: /, /about, /work/[slug], /locked/[slug], OG images, sitemap, robots
+components/          ui/ primitives, motion/, media/ (asset kinds), site/ (nav, contact, footer), home/, case/
+content/             schema.ts (budgets), site.ts, projects/ (one file per case)
+themes/              contract.json + contract.ts, and one folder per design language (blueprint/)
+lib/                 access.ts (signing, compare), og.tsx, cn.ts
+proxy.ts             password gating for /work/* and /media/protected/*
+public/              projects/ (public covers), media/protected/ (gated artifacts), about/
+scripts/             theme-check, theme-new, theme-use, shots
 ```
