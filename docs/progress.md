@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: the shuffle plays on top
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The face deck moved from the hero's `z-20` layer to `z-40`, above the text column (`z-30`), so the shuffle draws over the headline and the day switch instead of slipping under them. Dealt hand cards still pass under the text.
+- **Verified:** build; mid-shuffle captures at 900, 1100 and 1440px wide with temporary test photos (reverted); the day switch tabs still receive clicks.
+
 ## 2026-10-01: each shuffled card has its own colour
 
 - **Agent:** Cursor agent (Claude)

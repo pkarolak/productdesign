@@ -58,7 +58,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
     >
       <Daylight className="-z-10 left-1/2! w-screen -translate-x-1/2" />
       {avatar && (
-        <Rise className="relative z-20 hidden self-center md:block">
+        <Rise className="relative z-40 hidden self-center md:block">
           <FaceDeck faces={faces(hero, avatar)} />
         </Rise>
       )}
