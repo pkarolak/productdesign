@@ -23,6 +23,33 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: direction-lock, v2 refinement
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-lock`
+- **Done:**
+  - The user said the v1 HTML render was the right direction but looked cheap. They asked for:
+    - more frozen glass;
+    - slow animations;
+    - a subtler isometric background with dots, not lines;
+    - delightfully rounded corners;
+    - more elegance, and for all of it to land in the build.
+  - Built the reference implementation `design/preview/blueprint.html` (render: `blueprint.png`):
+    - a glass recipe;
+    - drifting orbs;
+    - an isometric dot lattice and grain;
+    - radii of 36/28, 32/24 and 28px;
+    - Sora 300 to 500;
+    - a 1400ms rise with a 140ms stagger, and a 12s plate float.
+  - Rewrote `DESIGN.md` as v2 with verbatim tokens and a **fidelity contract** (section 11): copied tokens, fixed pattern components, the `pnpm shots` screenshot gate, and a checklist.
+  - Added ADR 0006.
+- **In progress:** nothing.
+- **Next:** `section-refs`.
+  - Generate references in the v2 style (glass, dots, orbs, radii, cobalt, Patryk Karolak).
+  - Cover: selected work bento, approach, contact and footer, the locked case page, About, and a dark-mode case page.
+  - Then `scaffold`.
+- **Open questions:** none.
+
 ## 2026-09-30: direction-lock
 
 - **Agent:** Cursor agent (Claude)

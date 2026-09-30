@@ -1,6 +1,6 @@
 # 0002: Style direction "Blueprint"
 
-- **Status:** Accepted
+- **Status:** Accepted, refined by [0006](0006-blueprint-v2-refinement.md)
 - **Date:** 2026-09-30
 - **Todo:** direction-lock
 

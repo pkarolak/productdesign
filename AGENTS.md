@@ -41,6 +41,7 @@ pnpm build           # production build; fails if content breaks budgets
 pnpm lint
 pnpm typecheck
 pnpm docs:check      # markdown link check over AGENTS.md, README.md, docs/
+pnpm shots           # Playwright screenshots into design/shots/ (light and dark, desktop and mobile)
 ```
 
 ## Skills
@@ -56,7 +57,9 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 ## Hard rules
 
 - **Design:**
-  - Read `DESIGN.md` before any UI work. If it does not exist yet, do not write UI.
+  - Read `DESIGN.md` before any UI work.
+  - `design/preview/blueprint.html` is the fidelity target. Copy its token values, glass recipe, dot lattice, orbs and motion verbatim.
+  - Run the `DESIGN.md` section 11 checklist and the `pnpm shots` comparison before marking any UI todo done.
   - One accent (Blueprint Cobalt) and one radius system across the whole site. Use only `DESIGN.md` tokens, no free colors.
   - Every component must work in both light and dark themes.
   - Fonts are Sora for headings and Lato for everything else. Never Inter, never a serif or mono font.

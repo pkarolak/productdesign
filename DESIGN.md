@@ -1,259 +1,341 @@
-# Design System: Blueprint
+# Design System: Blueprint (v2)
 
 **Skills:**
 - Written with `stitch-design-taste`.
-- Built with `design-taste-frontend` (pre-flight), `high-end-visual-design` (double-bezel frames, pill nav, motion) and `image-to-code` (section references in `design/refs/`).
+- Built with `design-taste-frontend` (pre-flight), `high-end-visual-design` (glass, double-bezel frames, pill nav, motion) and `image-to-code` (section references in `design/refs/`).
 
-**Decision record:** [docs/decisions/0002-style-direction.md](docs/decisions/0002-style-direction.md)
+**Decision records:**
+- [ADR 0002](docs/decisions/0002-style-direction.md): the direction.
+- [ADR 0006](docs/decisions/0006-blueprint-v2-refinement.md): the v2 refinement (glass, dots, radii, slow motion, elegance).
 
-**Visual references:**
-- [design/directions/round-3/](design/directions/round-3/README.md): layout and asset types.
-- [design/preview/accent.png](design/preview/accent.png): real fonts and colors, light and dark.
+**Reference implementation (the fidelity target):**
+- [design/preview/blueprint.html](design/preview/blueprint.html): open it in Chrome to see the motion.
+- [design/preview/blueprint.png](design/preview/blueprint.png): the static render in light and dark.
+- Every value in this file exists in that HTML. When building, copy the values verbatim; do not re-derive them.
 
-This file is the single source of truth for every visual decision. If code and this file disagree, this file wins. Change this file (and add an ADR) before changing the look.
+This file is the single source of truth for every visual decision. If code and this file disagree, this file wins. Change this file and add an ADR before changing the look.
 
 ---
 
 ## 0. Dials
 
-- **Design variance: 6.** Offset and asymmetric, but calm. No artsy chaos.
-- **Motion intensity: 5.** Fluid and physical, never theatrical.
-- **Visual density: 3.** Gallery-airy: whitespace is the main material.
+- **Design variance: 6.** Offset and asymmetric, but calm.
+- **Motion intensity: 6.** Slow, weighted and continuous in the ambient layer, never busy.
+- **Visual density: 2.** Gallery-airy: whitespace is the main material.
 
 ---
 
 ## 1. Visual theme and atmosphere
 
-A clean, modern and precise interface that feels like a well-lit architecture studio at dawn. Content floats over a faint **isometric blueprint grid** that fades out toward the edges, lit by **one soft cobalt glow** per view. Product work is presented as physical objects:
-- Screenshots sit in machined double-bezel frames.
-- On key moments, screenshots lift into **exploded isometric plates** joined by dashed guide lines, the visual signature of a systems thinker.
+Frozen glass over a quiet blueprint.
+- The page is a cool, luminous canvas. Soft cobalt and ice-blue light **drifts very slowly** behind everything.
+- A **fine isometric dot lattice** fades in behind the hero visual, like a faint drafting-paper grid.
+- Everything that holds content is **frosted glass**: it blurs and saturates the light behind it, has a bright top edge highlight, and has **delightfully rounded** corners.
+- Product work floats as exploded isometric glass plates joined by fine dashed guides and small glowing nodes.
+- Headings are Sora in **light weights** with tight tracking. Emphasis comes from a single step up in weight, not from size or color.
 
-Navigation is a **floating frosted pill**. Typography is confident and geometric in headings, and warm and highly readable in body text. Everything breathes.
+It must feel sophisticated, elegant, calm, expensive and precise, like a high-end hardware product page.
+It must never feel flat, cheap, techy, loud, busy or templated.
 
-It must feel: modern, professional, calm confidence, engineered elegance.
-It must never feel: techy or sci-fi, loud, templated, dense.
+**The four signature ingredients.** All four must be visible on every page:
+1. Frosted glass surfaces.
+2. The isometric dot lattice.
+3. Slow drifting light.
+4. Generous rounded corners.
 
 ---
 
 ## 2. Color palette and roles
 
-One accent family: **Blueprint Cobalt.** Named after real blueprints; it reads as professional and precise, and holds up in dark mode.
+One accent family: **Blueprint Cobalt.**
 
-### Light theme (default when the system is light)
-- **Canvas Mist** (`#F7F9FC`): page background.
-- **Pure Surface** (`#FFFFFF`): media frame inner core, cards, locked form.
-- **Blueprint Ink** (`#0B1220`): headings and primary text. Never pure black.
-- **Slate Secondary** (`#5B6474`): body secondary, lede, captions. Passes AA on Canvas Mist.
-- **Slate Tertiary** (`#8A93A3`): timestamps and disabled states only. Never body text.
-- **Hairline** (`rgba(11, 18, 32, 0.08)`): 1px structural lines, frame borders, dividers.
-- **Blueprint Cobalt** (`#2F5BEA`): the single accent, used for primary CTAs, metric numbers, links on hover, focus rings, guide lines and the active nav state.
-- **Cobalt Ink** (`#FFFFFF`): text on cobalt fills.
-- **Grid Line** (`rgba(47, 91, 234, 0.075)`): isometric grid strokes.
-- **Cobalt Glow** (`rgba(47, 91, 234, 0.16)`): radial background glow.
-- **Glass** (`rgba(255, 255, 255, 0.72)`): pill nav fill, with a 16px backdrop blur.
-- **Tinted Shadow** (`0 24px 60px -24px rgba(47, 91, 234, 0.22)`): media frames and the nav. The only shadow in the system.
+### Light theme
+- **Canvas** `#F5F7FB`: page background.
+- **Ink** `#0B1220`: headings and primary text.
+- **Ink 2** `#4E5868`: lede, body secondary, captions. AA on Canvas.
+- **Ink 3** `#8A93A3`: tertiary text only (labels, disabled). Never body text.
+- **Accent** `#2F5BEA` and **Accent ink** `#FFFFFF`.
+- **Dot** `rgba(11, 18, 32, 0.22)`: lattice dots, before masking.
+- **Orb 1** `rgba(47, 91, 234, 0.30)`, **Orb 2** `rgba(140, 180, 255, 0.40)`, **Orb 3** `rgba(120, 190, 250, 0.34)`: drifting light.
+- **Glass top** `rgba(255, 255, 255, 0.66)` and **Glass bottom** `rgba(255, 255, 255, 0.34)`: the vertical glass fill gradient.
+- **Glass edge** `rgba(255, 255, 255, 0.85)`: the 1px glass border.
+- **Glass highlight** `rgba(255, 255, 255, 0.95)`: the inset 1px top highlight.
+- **Glass hairline** `rgba(11, 18, 32, 0.06)`: the inset 1px outline and internal dividers.
+- **Core** `rgba(255, 255, 255, 0.82)`: the inner core of media frames and plates.
+- **Skeleton** `rgba(11, 18, 32, 0.06)`: loading shapes and placeholder bars.
+- **Shadow:** `0 1px 1px rgba(11,18,32,.03), 0 8px 24px -12px rgba(11,18,32,.08), 0 32px 80px -32px rgba(47,91,234,.28)`.
 
-### Dark theme (default when the system is dark)
-- **Canvas Night** (`#0A0F1C`): page background. Deep ink navy, never pure black.
-- **Night Surface** (`#111827`): frame inner core, cards.
-- **Paper Ink** (`#E8ECF4`): headings and primary text.
-- **Slate Secondary** (`#9AA5B8`): body secondary, lede, captions.
-- **Slate Tertiary** (`#6B7588`): timestamps and disabled states only.
-- **Hairline** (`rgba(232, 236, 244, 0.10)`)
-- **Blueprint Cobalt Light** (`#7A9BFF`): the accent in dark mode, in the same roles as light mode.
-- **Cobalt Ink** (`#0A0F1C`): text on cobalt fills.
-- **Grid Line** (`rgba(122, 155, 255, 0.07)`)
-- **Cobalt Glow** (`rgba(47, 91, 234, 0.30)`)
-- **Glass** (`rgba(17, 24, 39, 0.66)`)
-- **Tinted Shadow** (`0 24px 60px -24px rgba(0, 0, 0, 0.60)`)
+### Dark theme
+- **Canvas** `#080C17`
+- **Ink** `#EEF1F7`
+- **Ink 2** `#A3ADBF`
+- **Ink 3** `#6B7588`
+- **Accent** `#8AA8FF` and **Accent ink** `#080C17`.
+- **Dot** `rgba(238, 241, 247, 0.14)`
+- **Orb 1** `rgba(47, 91, 234, 0.42)`, **Orb 2** `rgba(90, 130, 230, 0.26)`, **Orb 3** `rgba(70, 150, 230, 0.24)`.
+- **Glass top** `rgba(40, 52, 80, 0.46)` and **Glass bottom** `rgba(20, 28, 48, 0.28)`.
+- **Glass edge** `rgba(255, 255, 255, 0.10)`
+- **Glass highlight** `rgba(255, 255, 255, 0.14)`
+- **Glass hairline** `rgba(255, 255, 255, 0.05)`
+- **Core** `rgba(14, 20, 36, 0.72)`
+- **Skeleton** `rgba(238, 241, 247, 0.07)`
+- **Shadow:** `0 1px 1px rgba(0,0,0,.2), 0 8px 24px -12px rgba(0,0,0,.5), 0 32px 80px -32px rgba(0,0,0,.7)`.
 
-### Color rules
-- The accent is used on at most about 5% of any viewport. It is a signal, not a fill.
-- There are no other hues. Status colors are not needed on a portfolio. The error text on the unlock form uses the accent plus an icon, not red. The only exception is color inside real product screenshots.
-- No purple, no neon, no gradient text, no multi-stop rainbow gradients.
-- Gradients are allowed in exactly two places:
-  - the background glow;
-  - a subtle 2-stop cobalt wash (from 0% to 22% opacity) behind screenshots inside media frames.
+### Rules
+- The accent covers at most about 5% of a viewport:
+  - CTA fill, the arrow circle, metric unit superscripts, guide lines and nodes;
+  - focus rings, the active nav dot, and the first skeleton bar in plates.
+- Metric numbers themselves are **Ink**; only the unit (`%`, `x`) is in the accent. This restraint is part of the elegance.
+- No other hues, no purple, no neon, no gradient text.
+- Gradients appear only in the orbs, the glass fill, and the 2-stop accent wash inside media (from 20% down to 0%).
 
 ---
 
-## 3. Typography rules
+## 3. Typography
 
-- **Display and headings: Sora** (`next/font/google`, weights 500 and 600).
-  - Geometric and slightly wide, with tight tracking. Hierarchy comes from weight and size, never all caps.
-  - Headings use sentence case.
-  - Use `text-wrap: balance` on all headings so no single word sits alone on the last line.
-- **Body and UI: Lato** (`next/font/google`, weights 400 and 700, with 400 italic).
-  - Relaxed leading, at most 65ch per line.
-  - Lato is used for nav links, buttons, captions, labels and form text.
-- **No mono font.** Metadata uses Lato with tabular numerals (`font-variant-numeric: tabular-nums`).
+- **Sora**, weights **300, 400, 500** only, for all headings and metric values.
+  - Light weights are the elegance lever.
+  - 600 or more is banned.
+- **Lato**, weights 400, 700 and 400 italic, for everything else.
+- Headings use sentence case and `text-wrap: balance`. Body uses `text-wrap: pretty`.
+- Keep short phrases together with non-breaking spaces (for example `0&nbsp;to&nbsp;1`).
+- Emphasis inside a heading is a single word in Sora 500 inside a 400 heading (`<em>` styled `font-style: normal; font-weight: 500`). No color emphasis.
 
 ### Scale
-- **Display (hero):** Sora 600, `clamp(2.5rem, 5vw, 4rem)`, line-height 1.06, tracking `-0.035em`. At most 2 lines on desktop.
-- **Case bottom line:** Sora 600, `clamp(2rem, 3.6vw, 3rem)`, line-height 1.1, tracking `-0.03em`.
-- **H2 (section):** Sora 600, `clamp(1.75rem, 3vw, 2.5rem)`, line-height 1.15, tracking `-0.025em`.
-- **H3 (card title):** Sora 600, `1.25rem`, line-height 1.3, tracking `-0.015em`.
-- **Metric value:** Sora 600, `clamp(2rem, 3.5vw, 2.75rem)`, line-height 1, tracking `-0.03em`, tabular numbers, in accent color.
-- **Lede:** Lato 400, `1.1875rem`, line-height 1.6, Slate Secondary.
-- **Body:** Lato 400, `1.0625rem`, line-height 1.65.
-- **Small and caption:** Lato 400, `0.875rem`, line-height 1.5, Slate Secondary.
-- **Label:** Lato 700, `0.75rem`, tracking `0.12em`, uppercase.
-  - Allowed only for form labels and for at most 1 eyebrow per 3 sections.
+- **Display (hero):** Sora 400, `clamp(2.75rem, 5.2vw, 4rem)`, line-height 1.04, tracking `-0.045em`, max 13.5ch.
+- **Case bottom line:** Sora 400, `clamp(2.125rem, 3.8vw, 3.125rem)`, line-height 1.08, tracking `-0.04em`.
+- **H2:** Sora 400, `clamp(1.875rem, 3.2vw, 2.625rem)`, line-height 1.12, tracking `-0.035em`.
+- **H3 (card title):** Sora 500, `1.25rem`, line-height 1.3, tracking `-0.02em`.
+- **Metric value:** Sora 300, `clamp(2.25rem, 3.6vw, 2.75rem)`, line-height 1, tracking `-0.04em`, tabular numbers. The unit is `<sup>` at 0.5em, in the accent, weight 400.
+- **Wordmark:** Sora 500, `0.9375rem`, tracking `-0.015em`.
+- **Lede:** Lato 400, `1.1875rem`, line-height 1.65, Ink 2, max 38ch.
+- **Body:** Lato 400, `1.0625rem`, line-height 1.7, max 62ch.
+- **Caption:** Lato 400, `0.84375rem`, line-height 1.5, Ink 2.
+- **Label:** Lato 700, `0.6875rem`, tracking `0.14em`, uppercase, Ink 3.
+  - Allowed for form labels, plus at most 1 eyebrow per 3 sections.
 
-### Banned
-Inter, Space Grotesk, any serif, any mono, all-caps headings, and mixed-family emphasis. For emphasis, use Sora 600 against 500, or Lato italic.
-
----
-
-## 4. Radius system (locked)
-
-- **Interactive elements are full pills:** nav, buttons, chips, the theme toggle, and the password input.
-- **Media frames:** the outer shell is `24px` and the inner core `18px`, with a `6px` shell padding.
-- **Small containers** (locked-page form panel, metric tiles, if ever used): `16px`.
-- Nothing else is rounded. Nothing is square-cornered except full-bleed images.
+**Banned:** Inter, Space Grotesk, any serif, any mono, Sora 600 or heavier, all-caps headings, colored heading words.
 
 ---
 
-## 5. Background system
+## 4. Radius system (locked, generous)
 
-The **Blueprint Layer** is one `position: fixed; inset: 0; pointer-events: none; z-index: 0` element rendered once in the root layout. It is never attached to scrolling containers.
-- **Isometric grid:** 3 `repeating-linear-gradient`s of `Grid Line`, at `30deg` and `150deg` (40px period) and `90deg` (46px period), each with a 1px stroke.
-- **Mask:** `radial-gradient(90% 90% at 75% 30%, #000 10%, transparent 75%)`. The grid is strongest behind the hero visual and invisible at the edges and behind body copy.
-- **Glow:** one radial `Cobalt Glow` circle about 820px across, anchored bottom-right of the first viewport. Case pages anchor it top-right, behind the bottom line.
-- The layer does not animate. On scroll, it can fade to 60% opacity via Motion `useScroll` (a transform or opacity change only).
-- The reference implementation is in `design/preview/accent.html`.
+Concentric rule: **inner radius = outer radius − padding.**
+
+- **Pills** (nav, buttons, CTA, chips, toggle, inputs): `999px`.
+- **Glass plates** (isometric): outer `36px`, 8px padding, core `28px`.
+- **Media frames:** outer `32px`, 8px padding, core `24px`.
+- **Glass panels** (metrics panel, locked form, about portrait card): `28px`.
+- **Inside-core elements** (charts, small images inside a frame): `20px`.
+- **Mobile phone screens:** `32px`.
+- **Skeleton bars:** `999px`.
+- Nothing is square-cornered, except full-bleed images inside a core, which inherit the core's radius through `overflow: hidden`.
+
+`corner-shape: squircle` is not used. Chrome renders it visually tighter, and it is inconsistent across browsers.
 
 ---
 
-## 6. Components
+## 5. Background system (the Atmosphere layer)
+
+One `<Atmosphere />` component, rendered once in the root layout. It is `position: fixed; inset: 0; z-index: 0; pointer-events: none;`, and it is never attached to scrolling content. It has three layers, from back to front:
+
+1. **Orbs.** Three circles with `filter: blur(80px)` and `will-change: transform`.
+   - **Orb 1:** 720px, top-right (`right: -120px; top: -160px`), drifting `translate3d(-80px, 60px) scale(1.06)` over 48s.
+   - **Orb 2:** 560px, low center-right (`right: 280px; bottom: -260px`), drifting `translate3d(60px, -50px) scale(0.96)` over 56s.
+   - **Orb 3:** 520 by 420px, lower-left (`left: 40px; top: 520px`), sitting behind the metrics panel so the glass has light to blur. It drifts `translate3d(70px, -40px) scale(1.08)` over 64s.
+   - All three use `ease-in-out infinite alternate`.
+   - On case pages, orbs 1 and 3 move behind the bottom line and the metrics panel. The positions come from a prop.
+2. **Isometric dot lattice.** Two `radial-gradient(circle, Dot 0 1px, transparent 1.4px)` layers, `background-size: 26px 45.04px`, `background-position: 0 0, 13px 22.52px`. That is a triangular lattice with side s = 26px and row height h = s·√3/2.
+   - **Mask:** `radial-gradient(80% 90% at 70% 40%, #000 0%, rgba(0,0,0,.6) 45%, transparent 85%)`.
+3. **Film grain.** An SVG `feTurbulence` noise at `opacity: 0.035` with `mix-blend-mode: overlay`.
+
+**Scroll behavior:** the whole layer fades to 70% opacity after the first viewport, via Motion `useScroll` (opacity only).
+
+---
+
+## 6. Glass recipe (use the `.glass` utility, never ad hoc)
+
+```css
+background: linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
+backdrop-filter: blur(28px) saturate(170%);
+border: 1px solid var(--glass-edge);
+box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-hairline), var(--shadow);
+```
+
+- **Used on:** the pill nav, the mobile menu sheet, isometric plates, media frame shells, the metrics panel, the locked-case form panel, and the About portrait card.
+- **Performance budget:**
+  - At most 6 glass elements in any viewport.
+  - Never on elements larger than 1200 by 800px.
+  - Never nested (a glass element inside glass uses `Core`, not glass).
+- **Fallbacks:**
+  - When `@supports not (backdrop-filter: blur(1px))`, or under `prefers-reduced-transparency: reduce`, the fill is a solid color: `Core` at 96% opacity.
+
+---
+
+## 7. Components
 
 ### Pill nav
-- **Position:** fixed, centered, `top: 20px`, detached from the edges. Height at most 56px.
-- **Style:** Glass fill, 16px backdrop blur, Hairline border and Tinted Shadow.
+- **Position:** fixed and centered (`left: 0; right: 0; margin: 0 auto; width: max-content`), `top: 28px`.
+  - Never center it with `translateX(-50%)`, because entrance transforms override it.
+- **Style:** glass, with padding `7px 7px 7px 26px` and a 30px gap.
 - **Contents, left to right:**
-  - "Patryk Karolak" wordmark (Sora 600), with a hairline divider after it.
-  - "Work" and "About" links (Lato 400).
-  - Theme toggle: a 36px icon button with Phosphor `Sun` / `Moon`.
-  - "Get in touch" pill (cobalt fill, Lato 700).
-- **On scroll** past 80px, the pill tightens its padding and slightly strengthens the glass fill (spring).
-- **Mobile, under 768px:** the pill holds the wordmark and a menu button. The menu button is two lines that morph into an X. It opens a full-screen Glass sheet (blur 24px); the links stagger in (translateY 24px to 0, 60ms stagger). "Get in touch" is the last item, as a full-width pill.
-- **Active page:** the link gets a 4px cobalt dot under it.
+  - the wordmark;
+  - a glass divider: 1px Glass hairline plus a 1px Glass edge offset;
+  - "Work" and "About" (Lato 400, 15px, Ink 2; Ink on hover);
+  - the theme toggle, a 36px round icon button with Phosphor `Moon` or `Sun`;
+  - the "Get in touch" CTA pill (Accent fill, Lato 700, `11px 20px` padding, inset top highlight `rgba(255,255,255,.25)`).
+- **On scroll** past 80px, the padding tightens by 2px and the shadow deepens. It uses the slow spring from section 8.
+- **Active page:** a 4px accent dot 6px below the link.
+- **Mobile, under 768px:**
+  - The pill holds the wordmark and a 40px menu button with two lines that morph into an X.
+  - The button opens a full-screen glass sheet (blur 40px). Links stagger in (Sora 400, 2rem), then the toggle, then a full-width "Get in touch" pill last.
 
 ### Buttons
 - **Primary** ("View work", "Unlock"):
-  - Blueprint Ink fill with Canvas text. In dark mode, the inverse: Paper Ink fill with Night text.
-  - Pill shape, padding `8px 8px 8px 24px`.
-  - Trailing arrow in a nested 36px cobalt circle (button-in-button).
-  - On hover, the inner circle moves `translate(2px, -1px)` and scales to 1.05. On active, the button scales to 0.98.
-- **Accent pill** ("Get in touch"): Cobalt fill, Cobalt Ink text. Hover lightens it by 6%.
-- **Text link:** Blueprint Ink with a 1px hairline underline offset by 4px. On hover, the underline turns cobalt.
-- Buttons never glow, and labels never wrap.
+  - Ink fill with Canvas text, inverted in dark mode.
+  - Padding `7px 7px 7px 26px`, Lato 700, 16px.
+  - Shadow `0 12px 32px -12px rgba(11,18,32,.35)`.
+  - A nested 38px accent circle with the Phosphor `ArrowRight` icon.
+  - **Hover:** the circle drifts `translate(3px, -1px)` and scales to 1.06 over 900ms (slow ease).
+  - **Active:** the button scales to 0.98.
+- **CTA pill:** Accent fill. On hover it brightens by 6% over 600ms.
+- **Text link:** Ink, with a 1px underline in Glass hairline, offset 4px. On hover the underline turns to Accent over 600ms.
 
-### Media frame (double bezel)
-Every asset uses this frame:
-- **Outer shell:** `color-mix(surface 60%, transparent)`, Hairline border, 6px padding, 24px radius, Tinted Shadow.
-- **Inner core:** Surface fill, Hairline border, 18px radius, `overflow: hidden`.
-- **Behind screenshots:** the optional 2-stop cobalt wash.
-- **Hover** (only when the frame is a link): the media scales to 1.02 inside the core over 700ms.
+### Media frame
+- **Shell:** glass, 8px padding, radius 32px.
+- **Core:** `Core` fill, radius 24px, `overflow: hidden`, inset 1px Glass hairline.
+- **Screenshots** sit on the accent wash inside the core.
+- **Hover** (linked frames only): the media scales to 1.025 over 1200ms (slow ease), and the shell shadow deepens.
 
 ### Asset kinds (content `kind`)
-- **`screenshot`:** a desktop UI in the frame. Optional annotations are 22px cobalt numbered dots with 1px leader lines; their captions sit below the frame, never over it.
-- **`isometric`:** 1 to 3 screenshots as plates, `rotateX(55deg) rotateZ(-38deg)`, offset down the stack, joined by 1.5px dashed cobalt guides at 70% opacity. Used in the hero and case headers only, at most one per page.
-  - On scroll, the plates separate by up to 24px (parallax spring).
-  - Under 768px, a flat single screenshot replaces this.
-- **`mobile`:** 2 to 4 phone screens side by side on the wash, each with a 28px radius and a hairline border. There are no device-chrome mockups.
-- **`photo`:** documentary photos, desaturated by 15% with a 4% cobalt overlay, so they sit in the palette.
-- **`diagram`:** isometric SVG line illustrations: 1.5px strokes in the accent, fills in Surface at 70% opacity, labels in Lato small.
-- **`compare`:** a before and after slider with a 1.5px cobalt divider and a 32px pill handle, operable from the keyboard.
-- **`video`:** a muted, looping, `playsinline` video with a poster. It pauses when off-screen, and under reduced motion it shows only the poster.
-- **Dark mode:** any asset can provide an optional `srcDark`. Screenshots without one keep their light UI; the frame and wash carry the theme.
+- **`screenshot`:** a desktop UI inside the frame. Optional annotations are 24px accent nodes (a dot with an 18% accent halo). Callout captions sit below the frame, never over it.
+- **`isometric`:**
+  - 1 to 3 screenshots as **glass plates** (`rotateX(54deg) rotateZ(-40deg)`, 500px wide at desktop), offset 210px down and 80px right per plate.
+  - Joined by 1px dashed accent guides (60% opacity) that end in glowing 7px nodes.
+  - Plates **float** ±10px over 12s, ease-in-out, infinite, with the second plate phase-shifted by −6s.
+  - Used in the hero and case headers only, at most one per page.
+  - Under 768px, a flat media frame replaces it.
+- **`mobile`:** 2 to 4 phone screens on the wash, radius 32px, a Glass hairline, and a staggered vertical offset (0, 24px, 12px). No device chrome.
+- **`photo`:** desaturated by 12%, with a 4% accent overlay.
+- **`diagram`:** an isometric SVG line illustration with 1.25px accent strokes. Faces are filled with `Core` at 60%, and small glass-like highlights sit on the top edges.
+- **`compare`:** a before and after slider with a 1px accent divider and a 36px glass pill handle. It works from the keyboard (arrow keys, 5% steps).
+- **`video`:** muted, looping and `playsinline`, with a poster. It pauses off-screen, and under reduced motion only the poster shows.
+- **Dark mode:** an optional `srcDark` per asset.
+
+### Metrics panel
+- A glass panel with radius 28px and padding `28px 32px`, containing 2 to 3 columns with a 28px gap.
+- **Value:** Sora 300, with an accent `<sup>` unit.
+- **Label and context:** Lato 13.5px, Ink 2. The context line comes after the label.
+- Under 768px, the metrics stack as rows with Glass hairline dividers.
 
 ### Chips (scope)
-Pill shape, Hairline border, transparent fill, Lato 400 at `0.875rem`, Slate Secondary text, `6px 14px` padding. There is no colored fill.
-
-### Metrics
-- Values sit on a Hairline top border, in 2 to 3 columns with a 24px gap. There are no cards around them.
-- Each has three lines: the value (Sora, accent), the label (Lato 700, Ink) and the context (Lato small, Secondary).
-- Under 768px, they stack as rows separated by hairlines.
+Pill shape, Glass hairline border, transparent fill, Lato 400 at 13.5px, Ink 2, `7px 14px` padding.
 
 ### Locked-case form
-- A 16px-radius Surface panel with a Hairline border, at most 440px wide, below the teaser content.
-- The label "Password" sits above the pill input. Focus shows a 2px cobalt ring with a 2px offset.
-- The "Unlock" primary button sits next to the input on desktop and below it on mobile.
-- Errors show inline below: a Phosphor `WarningCircle` icon in the accent with Ink text: "That password did not work."
-- Below: "No password? Get in touch." as a text link.
+- A glass panel with radius 28px, max 460px wide.
+- The "Password" label sits above a pill input: Core fill, Glass hairline, 52px tall, with a 2px accent focus ring at a 3px offset.
+- The "Unlock" primary button sits inline on desktop and below the input on mobile.
+- **Error:** inline, with the Phosphor `WarningCircle` in the accent and Ink text: "That password did not work."
+- Below the form: the text link "No password? Get in touch."
 
 ### Icons
-Phosphor (`@phosphor-icons/react`), **regular** weight everywhere, 18px in UI and 20px in the nav. Only these: `ArrowRight`, `ArrowUpRight`, `Sun`, `Moon`, `Lock`, `LockOpen`, `WarningCircle`, `List`, `X`. Hand-rolled SVG icons are not allowed; diagrams are not icons.
+- Phosphor, **light** weight, to match the Sora light headings. 18px in UI, 20px in the nav.
+- The full set: `ArrowRight`, `ArrowUpRight`, `Sun`, `Moon`, `Lock`, `LockOpen`, `WarningCircle`, `List`, `X`.
+- No hand-rolled icons.
 
 ---
 
-## 7. Layout principles
+## 8. Motion (slow, weighted, elegant)
 
-- **Container:** `max-width: 1280px`, centered, with padding of `24px` (mobile), `40px` (tablet) and `64px` (desktop).
-- **Section rhythm:** vertical padding `clamp(6rem, 12vw, 10rem)`. The hero uses at most `pt-24` below the nav.
-- **Hero:** split into text (7 of 12 columns) and the isometric visual (5 of 12). It fits in `min-height: 100dvh` and never uses `h-screen`.
-- **Selected work:** an asymmetric bento with exactly 4 cells. The lead case spans 7 columns and 2 rows; 3 companions stack in the other 5 columns. Each cell's media uses a different asset kind where possible. Uses `grid-auto-flow: dense`.
-- **Case page:**
-  - The header is split into the bottom line and metrics (7 columns) and the isometric or screenshot visual (5 columns).
-  - The meta and scope block is a single row.
-  - The beats are 3 columns on desktop, which is allowed because they are text columns separated by hairlines, not cards.
-  - The artifacts gallery is asymmetric: one large frame plus 1 or 2 smaller ones.
-- **Mobile, under 768px:**
-  - Every multi-column layout collapses to one column with a 24px gap.
-  - Isometric visuals become flat frames.
-  - Touch targets are at least 44px, and nothing scrolls horizontally.
-- CSS Grid everywhere; no flex percentage math.
-
----
-
-## 8. Motion and interaction
-
-- **Engine:** `motion/react`, in client leaf components only.
-- **Default spring:** `stiffness: 120, damping: 22`.
-- **Default ease:** `cubic-bezier(0.22, 1, 0.36, 1)`.
-- **Entry reveal:** `opacity 0 to 1` and `translateY 16px to 0` over 700ms, triggered once via `whileInView` (amount 0.3). Groups stagger by 80ms. Nothing appears un-animated above reduced-motion.
-- **Isometric plates:** slight separation on scroll (up to 24px) and an entrance where the plates settle from 40px apart.
-- **Nav:** the pill tightens on scroll (spring), and the mobile menu uses the morphing burger with staggered links.
-- **Hover:** media scales to 1.02, and CTAs use the inner-circle nudge.
-- **Theme switch:** colors cross-fade over 200ms, with no layout change.
+- **Engine:** `motion/react` in client leaf components. CSS keyframes are used for the ambient layer (orbs and plate float).
+- **Slow ease:** `cubic-bezier(0.16, 1, 0.3, 1)`, the default for all tweens.
+- **Slow spring:** `{ type: "spring", stiffness: 70, damping: 20, mass: 1 }`, for nav and plate interactions.
+- **Entry reveal ("rise"):**
+  - From `opacity 0, y 20px, blur 8px` to `opacity 1, y 0, blur 0`.
+  - **1400ms**, slow ease, triggered once in view (amount 0.25).
+  - Siblings stagger by **140ms**, and the first element waits 200ms.
+- **Hero choreography:**
+  - The nav rises first.
+  - Then, 140ms apart: the headline, the lede, and the button together with the isometric stage, then the metrics panel.
+- **Ambient:** orbs drift over 48 to 64s. Plates float over 12s. Neither may be faster.
+- **Hover:** 600 to 1200ms, as specified per component. Nothing snaps.
+- **Theme switch:** colors cross-fade over 400ms.
+- **Page transitions:** new content rises in (the same rise); there is no exit animation.
 - **Banned:**
-  - perpetual loops, marquees, parallax on text, scroll hijacking, custom cursors;
-  - animating `top`, `left`, `width` or `height`;
+  - durations under 400ms for anything decorative;
+  - linear easing, bounce or overshoot;
+  - marquees, text parallax, scroll hijacking, custom cursors;
+  - animating layout properties;
   - `window.addEventListener('scroll')`.
-- **Reduced motion:** all entrance, parallax and hover transforms are disabled, and videos show their poster.
+- **Reduced motion:** rise becomes an instant show, and orbs, plate float, parallax and hover transforms are disabled. Videos show their poster.
 
 ---
 
-## 9. Dark mode
+## 9. Layout
 
-- **Default:** the system preference (`prefers-color-scheme`). The toggle in the pill nav overrides it and persists in `localStorage`.
-- **Implementation:** `next-themes` with `attribute="data-theme"`, so there is no flash on load.
-- **Tokens:** everything is a CSS variable, swapped under `[data-theme="dark"]`. Tailwind v4 uses `@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *))`.
-- A page is always entirely one theme; no section inverts.
-- Both themes pass WCAG AA:
-  - Body and secondary text are at least 4.5:1.
-  - Large headings and metric values are at least 3:1.
-  - Cobalt on canvas is used only for large or bold text.
+- **Container:** `max-width: 1280px`, with padding of `24px` (mobile), `48px` (tablet) and `112px` (desktop, at 1440px wide).
+- **Section rhythm:** `clamp(7rem, 14vw, 11rem)` of vertical padding. The whitespace is intentional; never fill it.
+- **Hero:** two equal columns. Text on the left; the isometric stage on the right, 640px tall. It uses `min-height: 100dvh`, and the content starts at most 24px below the nav's clear zone.
+- **Selected work:** an asymmetric bento with exactly 4 cells.
+  - The lead case spans 7 of 12 columns and 2 rows; 3 companions share the remaining 5 columns.
+  - A 28px gap. Mixed asset kinds.
+- **Case page:**
+  - Header: the bottom line plus the metrics panel (7 columns) beside the isometric or flat frame (5 columns).
+  - Then a meta and chips row.
+  - Then 3 beats as text columns separated by Glass hairlines.
+  - Then an asymmetric artifacts gallery.
+  - Then "Ask me about", then the next case.
+- **Mobile, under 768px:** one column with a 24px gap. Isometric becomes flat, touch targets are at least 44px, and nothing scrolls horizontally.
 
 ---
 
-## 10. Anti-patterns (banned)
+## 10. Dark mode
+
+- Follows the system by default; the nav toggle overrides and persists via `next-themes` (`attribute="data-theme"`), with no flash on load.
+- All tokens are CSS variables swapped under `[data-theme="dark"]`. Tailwind v4 uses `@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *))`.
+- A page is always entirely one theme.
+- Both themes pass WCAG AA: body text at least 4.5:1, large text and metric values at least 3:1.
+
+---
+
+## 11. Fidelity contract (how this lands in the real build)
+
+1. **Tokens are copied, not reinterpreted.**
+   - `app/globals.css` defines every variable from section 2 under `:root` and `[data-theme="dark"]`, with exactly these values.
+   - The `.glass` utility, the dot lattice, the orbs, the grain and the rise keyframes are ported verbatim from `design/preview/blueprint.html`.
+2. **Components follow the reference.** `<Atmosphere />`, `<Glass />`, `<PillNav />`, `<IsoStack />`, `<MetricsPanel />` and `<Rise />` are the only way these patterns appear. No one-off glass, shadows or radii.
+3. **Screenshot comparison gate.**
+   - The `pnpm shots` script (Playwright) captures `/`, one case page and the locked page, at 1440 by 900 and 390 by 844, in light and dark.
+   - The captures go to `design/shots/`.
+   - Before the `home` todo is marked done, the home hero capture is compared side by side with `design/preview/blueprint.png` and noted in `docs/progress.md`.
+   - Any visible difference in glass, dots, radii, type weight or spacing is fixed first.
+4. **Checklist, run before any UI todo is marked done:**
+   - [ ] All four signature ingredients are visible in the first viewport.
+   - [ ] Headings use Sora 300 to 500 only. The hero headline is 2 or 3 lines, with no orphan word.
+   - [ ] Every container uses the radius from section 4, and the concentric rule holds.
+   - [ ] All glass uses `.glass`. At most 6 glass elements per viewport, none nested.
+   - [ ] Every reveal is 1400ms with a 140ms stagger. Nothing decorative is faster than 400ms.
+   - [ ] Orbs sit behind every glass panel on the page, so the frost is visible.
+   - [ ] Reduced motion and reduced transparency fallbacks work.
+   - [ ] The design-taste-frontend pre-flight passes.
+
+---
+
+## 12. Anti-patterns (banned)
 
 - **Content:**
-  - No emojis.
-  - No em-dashes in UI copy.
-  - No career-level or job-move framing.
-  - No "elevate / seamless / unleash / passionate."
-  - No Acme or John Doe; companies and colleagues are fictional but realistic.
-  - No fake round numbers; metrics are specific and carry context.
+  - No emojis, no em-dashes in UI copy, no career-level or job-move framing.
+  - No filler adjectives.
+  - No Acme or John Doe.
+  - No fake round numbers.
 - **Visual:**
-  - No Inter, no serif, no mono, no all-caps headings.
-  - No purple, no neon, no glow shadows, no gradient text.
-  - No pure black.
-- **Layout and chrome:**
-  - No centered hero, no 3 equal cards, no split headers.
-  - No section numbering, no locale, time or weather strips, no scroll cues.
-  - No logo walls, testimonial carousels or skill bars.
-  - No overlapping text on images; captions always sit below media.
-  - No backdrop blur on scrolling content, only on the nav and the mobile sheet.
+  - Flat, opaque cards: every surface is glass or core.
+  - Sharp or small radii.
+  - Line grids: the lattice is dots only.
+  - Heavy font weights, colored heading words, gradient text.
+  - Purple, neon, glow shadows, pure black.
+- **Layout and motion:**
+  - A centered hero, 3 equal cards, split headers.
+  - Section numbering, scroll cues, logo walls, testimonial carousels, skill bars.
+  - Captions or text over media.
+  - Fast or snappy motion.

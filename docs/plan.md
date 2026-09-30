@@ -78,6 +78,7 @@ Goal: choose a look from real visuals, not adjectives. No app code is written in
 - **Motion:** `motion/react` in isolated `'use client'` leaf components. No GSAP.
 - **Fonts:** `next/font/google`, with Sora (500, 600) for headings and Lato (400, 700, 400 italic) for body. Inter is never used.
 - **Theming:** `next-themes` (`attribute="data-theme"`), light and dark following the system, with a toggle in the nav.
+- **Visual fidelity:** Playwright (`pnpm shots`) captures pages into `design/shots/` for comparison with `design/preview/blueprint.png` (DESIGN.md section 11).
 - **Icons:** `@phosphor-icons/react`, regular weight.
 - **Content:** typed modules in `content/`, validated with `zod` at build time.
 - **Images:** `next/image` (AVIF/WebP), assets in `public/projects/<slug>/`.
@@ -375,7 +376,9 @@ The todo list from this plan is mirrored at the top as a checklist, so status is
 7. Generate covers and artifact frames in the locked palette.
 8. Metadata, OG images, sitemap, analytics.
 9. QA:
-   - Full design-taste-frontend pre-flight checklist.
+   - Full design-taste-frontend pre-flight checklist, plus the DESIGN.md section 11 fidelity checklist.
+   - A `pnpm shots` comparison of every page against the reference, in both themes, at desktop and mobile.
+   - Performance check on a mid-range phone: glass and orbs stay smooth (no dropped frames when scrolling the home page).
    - WCAG AA contrast, keyboard and focus states, `prefers-reduced-motion`.
    - Layout checks at 375, 768, 1280 and 1440px.
    - Lighthouse 95 or higher on performance and accessibility; LCP under 2.5s, CLS under 0.1.
