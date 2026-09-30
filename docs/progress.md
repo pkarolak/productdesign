@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: photo card in the deck's proportions
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hero photo card is 5:7 and the same width as the fanned cards: 172px, and 212px from the `xl` breakpoint. It is centred against the text block instead of stretching to its height.
+- **Verified:** build; measured photo and card at 1440 (212 × 297) and 1024 (172 × 241), both 0.714; screenshots in dark and light.
+
 ## 2026-09-30: dividers as a hairline
 
 - **Agent:** Cursor agent (Claude)

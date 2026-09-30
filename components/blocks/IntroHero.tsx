@@ -129,8 +129,8 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
       className="container-page grid gap-10 pt-(--nav-clear) pb-12 md:grid-cols-[auto_minmax(0,38rem)] md:justify-center md:gap-12 md:pt-44 md:pb-16 lg:gap-16"
     >
       {avatar && (
-        <Rise className="hidden pt-[0.6rem] pb-[0.45rem] md:block">
-          <div className="group/avatar playing-card h-full w-[168px] rounded-card p-1.5 transition-transform duration-(--t-hover) ease-slow hover:-translate-y-1 hover:-rotate-2 lg:w-[212px]">
+        <Rise className="hidden self-center md:block">
+          <div className="group/avatar playing-card aspect-[5/7] w-[172px] rounded-card p-1.5 transition-transform duration-(--t-hover) ease-slow hover:-translate-y-1 hover:-rotate-2 xl:w-[212px]">
             <div className="relative size-full overflow-hidden rounded-inset">
               <Image
                 src={avatar.src}
