@@ -138,7 +138,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
                 fill
                 preload
                 sizes="212px"
-                className="object-cover object-[50%_28%] sepia-[0.14] transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.03]"
+                className="object-cover sepia-[0.14] transition-transform duration-(--t-hover) ease-slow group-hover/avatar:scale-[1.03]"
               />
             </div>
           </div>

@@ -68,7 +68,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
           className={cn("focus-ring type-wordmark flex items-center gap-2.5 rounded-pill text-ink", avatar && "-ml-4")}
         >
           {avatar && (
-            <Image src={avatar} alt="" width={32} height={32} className="size-8 rounded-pill border border-hairline object-cover" />
+            <Image src={avatar} alt="" width={32} height={32} className="size-8 rounded-pill border border-hairline object-cover object-[50%_12%]" />
           )}
           {name}
         </Link>

@@ -34,6 +34,15 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: new photo, clearer dictionary terms
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - New avatar, `public/about/patryk-arms-crossed.jpg`: a 5:7 crop (488 × 683) of the arms-crossed photo with new alt text. The old `patryk.jpg` is removed.
+  - The nav circle crops towards the face (`object-[50%_12%]`).
+  - The dictionary terms in the tagline have a 2px dotted underline in the accent at 60%, up from a 1px `ink-3` line.
+- **Verified:** lint, theme:check, build; hero screenshots in dark and light; axe zero violations.
+
 ## 2026-09-30: photo card in the deck's proportions
 
 - **Agent:** Cursor agent (Claude)
