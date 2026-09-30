@@ -34,6 +34,17 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: a quieter hero
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hero had become crowded, so ([ADR 0021](decisions/0021-quieter-hero-lettering.md)):
+  - Only "gotan soul" is shaded, through the new `hero.shade` field.
+  - The greeting is a small line above a three-line headline.
+  - Display type is smaller with more line height.
+  - The photo sits straight and tilts only on hover.
+  - A filete flourish sits under the headline.
+- **Verified:** lint, typecheck, theme:check, build; desktop light and dark, 1024, iPhone 13; axe zero violations.
+
 ## 2026-09-30: Vercel served a 404 on every page
 
 - **Agent:** Cursor agent (Claude)

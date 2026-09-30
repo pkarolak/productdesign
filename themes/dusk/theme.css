@@ -203,8 +203,8 @@
 @utility type-display {
   font-family: var(--theme-font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
-  line-height: 1.05;
+  font-size: clamp(2.375rem, 4.6vw, 3.4rem);
+  line-height: 1.1;
   letter-spacing: -0.035em;
   text-wrap: balance;
   & em { font-style: normal; color: var(--ink-2); }

@@ -2,17 +2,18 @@ import Image from "next/image";
 import { Rise } from "@/components/motion/Rise";
 import { PrimaryLink } from "@/components/ui/Button";
 import { Definition } from "@/components/ui/Definition";
+import { Filete } from "@/components/ui/Filete";
 import { SmartLink } from "@/components/ui/SmartLink";
 import type { Hero, Site } from "@/content/schema";
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-/** The tagline with each glossary term wrapped in a Definition. */
-function Tagline({ hero }: { hero: Hero }) {
-  if (!hero.glossary.length) return hero.tagline;
-  const pattern = new RegExp(`(${hero.glossary.map((g) => escape(g.term)).join("|")})`, "gi");
-  return hero.tagline.split(pattern).map((part, i) => {
-    const entry = hero.glossary.find((g) => g.term.toLowerCase() === part.toLowerCase());
+/** A run of tagline text with each glossary term wrapped in a Definition. */
+function Terms({ text, glossary }: { text: string; glossary: Hero["glossary"] }) {
+  if (!glossary.length) return text;
+  const pattern = new RegExp(`(${glossary.map((g) => escape(g.term)).join("|")})`, "gi");
+  return text.split(pattern).map((part, i) => {
+    const entry = glossary.find((g) => g.term.toLowerCase() === part.toLowerCase());
     return entry ? (
       <Definition key={i} entry={entry}>
         {part}
@@ -21,6 +22,21 @@ function Tagline({ hero }: { hero: Hero }) {
       part
     );
   });
+}
+
+/** The tagline, with its one shaded phrase painted like a sign. */
+function Tagline({ hero }: { hero: Hero }) {
+  const at = hero.shade ? hero.tagline.indexOf(hero.shade) : -1;
+  if (!hero.shade || at < 0) return <Terms text={hero.tagline} glossary={hero.glossary} />;
+  return (
+    <>
+      <Terms text={hero.tagline.slice(0, at)} glossary={hero.glossary} />
+      <span className="filete-shade">
+        <Terms text={hero.shade} glossary={hero.glossary} />
+      </span>
+      <Terms text={hero.tagline.slice(at + hero.shade.length)} glossary={hero.glossary} />
+    </>
+  );
 }
 
 const leading = /^[.,;:!?)]+/;
@@ -60,8 +76,10 @@ function Intro({ parts }: { parts: Hero["intro"] }) {
   });
 }
 
-/** A quiet greeting, the tagline in full ink with a sign-painter shade, one sentence with inline company pills, and
- * the photo set like a card laid on the table. The block centres on the same axis as the hand below it. */
+/**
+ * A small greeting over the tagline, one shaded phrase and a filete flourish, a sentence with inline company pills,
+ * and the photo on card paper. The block centres on the same axis as the hand below it.
+ */
 export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"] }) {
   return (
     <section
@@ -70,7 +88,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
     >
       {avatar && (
         <Rise className="hidden pt-[0.6rem] pb-[0.45rem] md:block">
-          <div className="group/avatar playing-card h-full w-[168px] -rotate-2 rounded-card p-1.5 transition-transform duration-(--t-hover) ease-slow hover:rotate-0 lg:w-[212px]">
+          <div className="group/avatar playing-card h-full w-[168px] rounded-card p-1.5 transition-transform duration-(--t-hover) ease-slow hover:-translate-y-1 hover:-rotate-2 lg:w-[212px]">
             <div className="relative size-full overflow-hidden rounded-inset">
               <Image
                 src={avatar.src}
@@ -85,11 +103,12 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
         </Rise>
       )}
       <div>
-        <Rise as="h1" id="intro-title" className="type-display max-w-[16ch] text-ink">
-          <span className="text-ink-2">{hero.greeting}</span>
-          <span className="filete-shade block">
-            <Tagline hero={hero} />
-          </span>
+        <Rise as="h1" id="intro-title" className="type-display max-w-[15ch] text-ink">
+          <span className="type-lede mb-3 block font-medium tracking-[-0.01em]">{hero.greeting}</span>
+          <Tagline hero={hero} />
+        </Rise>
+        <Rise i={1}>
+          <Filete className="mt-5" />
         </Rise>
         <Rise as="p" i={1} className="type-lede mt-6 max-w-[58ch]">
           <Intro parts={hero.intro} />

@@ -123,6 +123,8 @@ export const heroSchema = z.object({
   greeting: words(5),
   tagline: words(8),
   glossary: z.array(glossaryEntry).max(3).default([]),
+  /** One phrase of the tagline that gets the painted filete shade; the rest stays clean ink. */
+  shade: words(3).optional(),
   intro: z
     .array(introPart)
     .min(1)
@@ -133,9 +135,11 @@ export const heroSchema = z.object({
   /** Used for metadata and OG images, where the pills cannot render. */
   headline: words(12),
   cta: cta.optional(),
-}).refine((h) => h.glossary.every((g) => h.tagline.toLowerCase().includes(g.term.toLowerCase())), {
-  message: "Every glossary term must appear in the tagline.",
-});
+})
+  .refine((h) => h.glossary.every((g) => h.tagline.toLowerCase().includes(g.term.toLowerCase())), {
+    message: "Every glossary term must appear in the tagline.",
+  })
+  .refine((h) => !h.shade || h.tagline.includes(h.shade), { message: "The shaded phrase must appear verbatim in the tagline." });
 
 export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
 
