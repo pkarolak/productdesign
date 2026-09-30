@@ -5,6 +5,7 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSy
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { Company, GlossaryEntry } from "@/content/schema";
+import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
 const WIDTH = 340;
@@ -43,7 +44,18 @@ const watchNarrow = (l: () => void) => {
  * stays open while the pointer is over it, and closes on Escape (WCAG 1.4.13).
  * On narrow screens it opens centred over a blurred scrim, and any tap closes it.
  */
-export function Bubble({ label, card, children }: { label: string; card: ReactNode; children: ReactNode }) {
+export function Bubble({
+  label,
+  card,
+  name,
+  children,
+}: {
+  label: string;
+  card: ReactNode;
+  /** A proper name rather than a word: no highlight and no underline of its own; the name inside draws a fine one. */
+  name?: boolean;
+  children: ReactNode;
+}) {
   const [pos, setPos] = useState<{ left: number; top: number; above: boolean } | null>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const pointer = useRef("");
@@ -121,7 +133,11 @@ export function Bubble({ label, card, children }: { label: string; card: ReactNo
           if (open) close();
           else show();
         }}
-        className="focus-ring cursor-help rounded-inset text-inherit [text-shadow:inherit] decoration-accent/60 decoration-dotted decoration-2 underline-offset-[0.16em] hover:decoration-accent aria-expanded:decoration-accent [text-decoration-line:underline] transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink aria-expanded:bg-accent/10 aria-expanded:text-ink"
+        className={cn(
+          "group/bubble focus-ring cursor-help rounded-inset text-inherit [text-shadow:inherit] transition-colors duration-(--t-hover-short) ease-slow",
+          !name &&
+            "decoration-accent/60 decoration-dotted decoration-2 underline-offset-[0.16em] [text-decoration-line:underline] hover:bg-accent/10 hover:text-ink hover:decoration-accent aria-expanded:bg-accent/10 aria-expanded:text-ink aria-expanded:decoration-accent",
+        )}
       >
         {children}
       </button>
@@ -229,6 +245,7 @@ export function Definition({ entry, children }: { entry: GlossaryEntry; children
 export function CompanyNote({ company, children }: { company: Company; children: ReactNode }) {
   return (
     <Bubble
+      name
       label={`About ${company.pill}`}
       card={
         <>

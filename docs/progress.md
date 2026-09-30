@@ -34,6 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: calmer company names in the intro
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - The intro lines get more air: line height 1.85.
+  - Company names are set in medium weight, with a fine 1px dotted accent underline under the name only (not under the logo), set low at 0.42em. They have no hover highlight; the underline turns full accent on hover or when open.
+  - Logos scale with the text (1.05em), with an even gap before the name.
+  - `Bubble` takes a `name` flag for this quieter trigger. Dictionary terms keep their bolder dotted underline and highlight.
+- **Verified:** lint, theme:check, build; Day and After hours lines at 1440 in dark and light, and on an iPhone 13; axe zero violations.
+
 ## 2026-09-30: after-hours line names the role
 
 - **Agent:** Cursor agent (Claude)

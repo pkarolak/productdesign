@@ -55,17 +55,24 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
                 alt=""
                 width={16}
                 height={16}
-                className={cn("mr-1.5 inline-block object-contain", quiet ? "size-3.5 align-[-0.15em]" : "size-4 align-[-0.18em]")}
+                className="mr-[0.4em] inline-block size-[1.05em] object-contain align-[-0.17em]"
               />
             ) : (
               <span
                 aria-hidden
-                className="mr-1.5 inline-grid size-4 place-items-center rounded-pill bg-accent/15 align-[-0.18em] text-[10px] leading-none text-accent"
+                className="mr-[0.4em] inline-grid size-[1.05em] place-items-center rounded-pill bg-accent/15 align-[-0.17em] text-[0.6em] leading-none text-accent"
               >
                 {part.pill[0]}
               </span>
             )}
-            <span className={quiet ? "text-ink-2" : "text-ink"}>{part.pill}</span>
+            <span
+              className={cn(
+                "font-medium tracking-[-0.005em] underline decoration-accent/45 decoration-dotted decoration-1 underline-offset-[0.42em] transition-colors duration-(--t-hover-short) ease-slow group-hover/bubble:decoration-accent group-aria-expanded/bubble:decoration-accent",
+                quiet ? "text-ink-2" : "text-ink",
+              )}
+            >
+              {part.pill}
+            </span>
           </CompanyNote>
           {trailing}
         </span>
@@ -166,7 +173,7 @@ export function DayCycle({ rows }: { rows: Hero["intro"] }) {
             aria-hidden={i !== active}
             inert={i !== active}
             className={cn(
-              "type-lede text-ink-2 [grid-area:1/1] transition-[opacity,translate] duration-(--t-hover) ease-slow",
+              "type-lede text-ink-2 [grid-area:1/1] leading-[1.85]! transition-[opacity,translate] duration-(--t-hover) ease-slow",
               i === active ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-1.5 opacity-0",
             )}
           >
