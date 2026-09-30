@@ -64,7 +64,7 @@ export default function Kit() {
         </Specimen>
         <Specimen name="CardHand" note="Fanned on wide screens, a swipe row on narrow ones">
           <div className="pb-(--section-y)">
-            <CardHand cards={visibleCards(kit, projects.length > 0)} />
+            <CardHand cards={visibleCards(kit, projects.length > 0)} note={site.handNote} />
           </div>
         </Specimen>
         <Specimen name="Statement">

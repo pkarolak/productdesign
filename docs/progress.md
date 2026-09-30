@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: a handwritten caption under the hand
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** new optional `site.handNote`, "Pick a card to see some tricks", rendered under the hand in Caveat (`type-hand`, a new contract utility and `--theme-font-hand` in both themes) with an accent doodle arrow that loops and points at the cards and draws itself on scroll. The font rule gets a scoped exception ([ADR 0014](decisions/0014-handwritten-doodle-caption.md)). Also fixed the centre pips shrinking when a title wraps at 1024.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; axe zero violations; light and dark, 1440, 1024 and mobile, no overflow.
+
 ## 2026-09-30: real playing cards
 
 - **Agent:** Cursor agent (Claude)

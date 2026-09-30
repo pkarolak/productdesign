@@ -103,10 +103,12 @@
     "type-quote",
     "press",
     "sheet",
-    "playing-card"
+    "playing-card",
+    "type-hand"
   ],
   "fontVariables": [
     "--theme-font-display",
-    "--theme-font-body"
+    "--theme-font-body",
+    "--theme-font-hand"
   ]
 }

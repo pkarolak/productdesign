@@ -1,6 +1,6 @@
 "use client";
 
-import { motion as m } from "motion/react";
+import { motion as m, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { Rise } from "@/components/motion/Rise";
 import { SmartLink } from "@/components/ui/SmartLink";
@@ -47,7 +47,7 @@ function Card({
   onFocus?: () => void;
   onBlur?: () => void;
 }) {
-  const pip = "transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
+  const pip = "shrink-0 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
   return (
     <SmartLink
       href={card.href}
@@ -75,11 +75,34 @@ function Card({
   );
 }
 
+function DoodleArrow({ className }: { className?: string }) {
+  const still = useReducedMotion();
+  const draw = (delay: number) =>
+    still
+      ? {}
+      : {
+          initial: { pathLength: 0 },
+          whileInView: { pathLength: 1 },
+          viewport: { once: true, amount: 1 },
+          transition: { duration: 0.9, delay, ease: motion.ease },
+        };
+  return (
+    <svg
+      viewBox="0 0 96 84"
+      aria-hidden
+      className={cn("fill-none stroke-current [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:2.4]", className)}
+    >
+      <m.path d="M92 72C70 80 48 74 40 58 33 44 40 30 52 32c12 2 8 20-6 19C30 50 18 36 13 10" {...draw(0.2)} />
+      <m.path d="M5 20 13 9l9 9" {...draw(1)} />
+    </svg>
+  );
+}
+
 /**
  * Section cards held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
  * while its neighbours make room. Narrow screens get a plain swipe row.
  */
-export function CardHand({ cards }: { cards: HandCard[] }) {
+export function CardHand({ cards, note }: { cards: HandCard[]; note?: string }) {
   const [hot, setHot] = useState<number | null>(null);
   if (!cards.length) return null;
   const mid = (cards.length - 1) / 2;
@@ -125,6 +148,16 @@ export function CardHand({ cards }: { cards: HandCard[] }) {
           </Rise>
         ))}
       </ul>
+
+      {note && (
+        <Rise
+          i={cards.length + 2}
+          className="mx-auto mt-1 flex w-max max-w-full items-end gap-1 pl-2 lg:-mt-14 lg:translate-x-24"
+        >
+          <DoodleArrow className="-mb-1 h-14 w-16 shrink-0 text-accent lg:h-22 lg:w-24" />
+          <p className="type-hand -rotate-3 pb-1 lg:pb-2 lg:text-[2rem]">{note}</p>
+        </Rise>
+      )}
     </nav>
   );
 }

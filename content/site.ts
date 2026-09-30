@@ -51,6 +51,7 @@ export const site = siteSchema.parse({
     ],
     headline: "I design the *systems* product teams build on.",
   },
+  handNote: "Pick a card to see some tricks",
   hand: [
     { title: "Hi!", text: "Who I am and how I work.", href: "/about", target: "about", suit: "heart" },
     { title: "Core work", text: "The biggest tools I shaped.", href: "#work", target: "work", suit: "spade" },

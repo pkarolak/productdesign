@@ -265,6 +265,7 @@ export const siteSchema = z.object({
   description: words(30),
   hero: heroSchema,
   hand: handSchema.default([]),
+  handNote: words(8).optional(),
   statement: statementSchema.optional(),
   work: workIntroSchema,
   showcase: showcaseSchema.optional(),

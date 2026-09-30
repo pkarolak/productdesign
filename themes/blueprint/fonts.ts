@@ -1,4 +1,4 @@
-import { Lato, Sora } from "next/font/google";
+import { Caveat, Lato, Sora } from "next/font/google";
 
 const display = Sora({
   subsets: ["latin"],
@@ -15,5 +15,13 @@ const body = Lato({
   display: "swap",
 });
 
-/** Must set --theme-font-display and --theme-font-body on <html>. */
-export const fontVariables = `${display.variable} ${body.variable}`;
+/** Handwritten doodle captions only (ADR 0014). */
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--theme-font-hand",
+  display: "swap",
+});
+
+/** Must set --theme-font-display, --theme-font-body and --theme-font-hand on <html>. */
+export const fontVariables = `${display.variable} ${body.variable} ${hand.variable}`;
