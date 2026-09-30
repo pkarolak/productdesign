@@ -54,7 +54,7 @@ export const site = siteSchema.parse({
             about: "An online canvas where teams brainstorm, plan and build together, used by millions of people at companies large and small.",
           }, ","],
         note: [
-          "before that at",
+          "earlier at",
           {
             pill: "Egnyte",
             logo: "/logos/egnyte.png",
@@ -78,13 +78,15 @@ export const site = siteSchema.parse({
             logo: "/logos/conadzielni.png",
             kind: "Local events guide",
             about: "A guide to what is happening in your city: events, places and plans nearby.",
-          }],
+          },
+          ", bouldering and long runs",
+        ],
       },
       {
         when: "Night",
         icon: "moon",
         parts: [
-          "Dancing and DJ-ing at",
+          "My lovely wife and toddler, then dancing and DJ-ing at",
           {
             term: "milongas",
             phonetic: "miˈlon.ɡas",
@@ -95,7 +97,6 @@ export const site = siteSchema.parse({
             ],
             origin: "Rioplatense Spanish, from a Kimbundu word for words or chatter.",
           },
-          ", meeting people and eating empanadas 🥟",
         ],
       },
     ],

@@ -34,6 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: sport and family in the intro
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the intro lines, within the 32-word budget:
+  - Day: "Shaping enterprise-grade experiences at Miro, earlier at Egnyte and Allegro".
+  - After hours: "Head of design at CoNaDzielni.pl, bouldering and long runs".
+  - Night: "My lovely wife and toddler, then dancing and DJ-ing at milongas".
+  - To fit, "meeting people and eating empanadas 🥟" is cut, and "before that at" became "earlier at".
+- **Verified:** build (the budget check passes at exactly 32); After hours and Night screenshots.
+
 ## 2026-10-01: hero as one composition, dealt from the face card
 
 - **Agent:** Cursor agent (Claude)
