@@ -38,7 +38,7 @@ export function Corner({ suit, rank = "A", flip = false }: { suit: SuitName; ran
   );
 }
 
-export function Art({ art, sizes, className }: { art: Deck["back"]; sizes: string; className?: string }) {
+function Art({ art, sizes, className }: { art: Deck["back"]; sizes: string; className?: string }) {
   return <Picture src={art.src} srcDark={art.srcDark} alt="" sizes={sizes} dim={false} className={className} />;
 }
 

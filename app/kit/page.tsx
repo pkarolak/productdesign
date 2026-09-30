@@ -60,7 +60,7 @@ export default function Kit() {
         </section>
 
         <Specimen name="IntroHero" note="Home opener with inline pills">
-          <IntroHero hero={kit.hero} avatar={kit.avatar} deck={kit.deck ?? site.deck} />
+          <IntroHero hero={kit.hero} avatar={kit.avatar} />
         </Specimen>
         <Specimen name="CardHand" note="Fanned on wide screens, a swipe row on narrow ones">
           <div className="pb-(--section-y)">

@@ -18,7 +18,7 @@ import { WritingList } from "./WritingList";
 export function HomeBlocks({ content }: { content: Site }) {
   return (
     <>
-      <IntroHero hero={content.hero} avatar={content.avatar} deck={content.deck} />
+      <IntroHero hero={content.hero} avatar={content.avatar} />
       <CardHand
         cards={visibleCards(content, projects.length > 0)}
         note={content.handNote}

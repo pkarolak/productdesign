@@ -1,6 +1,6 @@
 # 0026: The hero is dealt from a face card and lit by the time of day
 
-- **Status:** Accepted.
+- **Status:** Accepted. The hover flip is replaced by the day deck of [ADR 0027](0027-face-card-day-deck.md).
 - **Date:** 2026-10-01
 - **Todo:** owner request for a more striking hero
 

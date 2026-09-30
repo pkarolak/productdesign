@@ -140,6 +140,8 @@ const introRow = z.object({
   icon: z.enum(["sun", "sunset", "moon"]),
   parts: z.array(introPart).min(1).max(4),
   note: z.array(introPart).min(1).max(4).optional(),
+  /** A 5:7 photo on the hero face card while this row is on; without it the card shows `avatar`. */
+  photo: image.optional(),
 });
 
 export const heroSchema = z.object({
@@ -299,8 +301,7 @@ export const siteSchema = z.object({
   name: z.string().min(2),
   role: words(4),
   /** A square photo of the designer, shown in the nav and beside the intro. */
-  /** `back`: an optional second photo on the back of the hero face card; without it the card shows the deck back. */
-  avatar: image.extend({ back: image.optional() }).optional(),
+  avatar: image.optional(),
   url: z.url(),
   description: words(30),
   hero: heroSchema,

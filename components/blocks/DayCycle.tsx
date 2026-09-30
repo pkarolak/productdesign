@@ -2,33 +2,22 @@
 
 import Image from "next/image";
 import { motion as m, useInView, useReducedMotion } from "motion/react";
-import { useEffect, useId, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { CompanyNote, Definition } from "@/components/ui/Definition";
 import { Icon } from "@/components/ui/Icon";
 import type { Hero } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
+import { setDaytime, useDaytime } from "./daytime";
 
 type Row = Hero["intro"][number];
 type Part = Row["parts"][number];
 
 const STEP_MS = 4200;
 
-/** The time of day on show, shared with the hero's light. */
-let time: Row["icon"] = "sun";
-const listeners = new Set<() => void>();
-const setTime = (t: Row["icon"]) => {
-  time = t;
-  listeners.forEach((l) => l());
-};
-const subscribe = (l: () => void) => {
-  listeners.add(l);
-  return () => listeners.delete(l);
-};
-
 /** A glow behind the hero that moves with the intro's time of day: warm sun, low sunset, cool moonlight. */
 export function Daylight({ className }: { className?: string }) {
-  const now = useSyncExternalStore(subscribe, () => time, () => "sun");
+  const now = useDaytime().time;
   return (
     <div aria-hidden data-time={now} className={cn("daylight", className)}>
       <span />
@@ -116,28 +105,23 @@ export function DayCycle({ rows }: { rows: Hero["intro"] }) {
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const still = useReducedMotion();
   const inView = useInView(root, { amount: 0.6 });
-  const [active, setActive] = useState(0);
+  const { time, stopped } = useDaytime();
+  const active = Math.max(0, rows.findIndex((r) => r.icon === time));
   const [steps, setSteps] = useState(0);
-  const [stopped, setStopped] = useState(false);
   const [paused, setPaused] = useState(false);
   const playing = !still && !stopped && !paused && inView && rows.length > 1 && steps < rows.length;
 
   useEffect(() => {
-    if (rows[active]) setTime(rows[active].icon);
-  }, [rows, active]);
-
-  useEffect(() => {
     if (!playing) return;
     const t = setTimeout(() => {
-      setActive((a) => (a + 1) % rows.length);
+      setDaytime(rows[(active + 1) % rows.length].icon);
       setSteps((s) => s + 1);
     }, STEP_MS);
     return () => clearTimeout(t);
-  }, [playing, active, rows.length]);
+  }, [playing, active, rows]);
 
   const pick = (i: number, focus = false) => {
-    setStopped(true);
-    setActive(i);
+    setDaytime(rows[i].icon, true);
     if (focus) tabs.current[i]?.focus();
   };
 

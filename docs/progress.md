@@ -34,6 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: a face-card deck that shuffles with the day
+
+- **Agent:** Cursor agent (Claude)
+- **Done** ([ADR 0027](decisions/0027-face-card-day-deck.md)):
+  - Intro rows take an optional `photo`. With two or more, the hero face card becomes `FaceDeck`: one P of hearts per time of day, stacked and peeking out up and to the right. When the day switch moves on, the top card is cut off to the left and tucked under, and the next photo comes up. Clicking the deck shuffles to the next time and stops the autoplay.
+  - A shared `daytime` store drives the day switch, `Daylight` and the deck. `DayCycle` no longer keeps its own active index.
+  - The hover flip and `avatar.back` are removed.
+  - With one photo, as now, the hero is unchanged: one static face card that the hand is dealt from.
+- **Verified:** lint, typecheck, build. The shuffle was tested with two temporary test photos (mirrored and greyscale copies, removed before the commit): autoplay cuts on each step, a deck click moves the switch and stops autoplay, and axe finds nothing. With the test photos removed: one static card, the deal still comes from under it, axe zero violations in dark and light.
+
 ## 2026-10-01: sport and family in the intro
 
 - **Agent:** Cursor agent (Claude)
