@@ -14,6 +14,7 @@ Navigation hub. Each fact is defined in one place and linked from everywhere els
   - [0001-stack.md](decisions/0001-stack.md): Next.js, Tailwind v4, Motion, Vercel.
   - [0002-style-direction.md](decisions/0002-style-direction.md): "Blueprint" style, Sora + Lato, Blueprint Cobalt, light and dark.
   - [0006-blueprint-v2-refinement.md](decisions/0006-blueprint-v2-refinement.md): frozen glass, dot lattice, drifting light, generous radii, slow motion, fidelity contract.
+  - [0007-lucide-icons.md](decisions/0007-lucide-icons.md): Lucide icons at stroke 1.5.
 
 ## Design
 

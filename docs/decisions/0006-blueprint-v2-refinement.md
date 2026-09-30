@@ -22,7 +22,7 @@ Blueprint v2, as specified in [../../DESIGN.md](../../DESIGN.md), with the refer
 - **Light:** three slowly drifting blurred orbs (48 to 64s) sit behind the glass, so the frost is visible. The flat single glow is gone.
 - **Background:** an isometric dot lattice (26px triangular) with a radial mask, plus a 3.5% film grain. There are no grid lines.
 - **Radii:** plates 36 and 28px, frames 32 and 24px, panels 28px, pills for all interactive elements, with a concentric inner radius rule.
-- **Type:** Sora is lighter (300, 400 and 500 only, never 600). Metric values use Sora 300, with the unit in the accent and the number in ink. Icons use the Phosphor light weight.
+- **Type:** Sora is lighter (300, 400 and 500 only, never 600). Metric values use Sora 300, with the unit in the accent and the number in ink. Icons use a thin stroke (Phosphor light at the time, now Lucide at 1.5; see ADR 0007).
 - **Motion:** a 1400ms rise with a blur-in, a 140ms stagger, a softer spring (stiffness 70, damping 20), a 12s float on the plates, and hover effects of 600 to 1200ms. Nothing decorative is faster than 400ms.
 - **Fidelity contract:**
   - Tokens are copied verbatim into `globals.css`.

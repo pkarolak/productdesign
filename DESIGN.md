@@ -7,6 +7,7 @@
 **Decision records:**
 - [ADR 0002](docs/decisions/0002-style-direction.md): the direction.
 - [ADR 0006](docs/decisions/0006-blueprint-v2-refinement.md): the v2 refinement (glass, dots, radii, slow motion, elegance).
+- [ADR 0007](docs/decisions/0007-lucide-icons.md): Lucide icons.
 
 **Reference implementation (the fidelity target):**
 - [design/preview/blueprint.html](design/preview/blueprint.html): open it in Chrome to see the motion.
@@ -182,7 +183,7 @@ box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-ha
   - the wordmark;
   - a glass divider: 1px Glass hairline plus a 1px Glass edge offset;
   - "Work" and "About" (Lato 400, 15px, Ink 2; Ink on hover);
-  - the theme toggle, a 36px round icon button with Phosphor `Moon` or `Sun`;
+  - the theme toggle, a 36px round icon button with Lucide `Moon` or `Sun`;
   - the "Get in touch" CTA pill (Accent fill, Lato 700, `11px 20px` padding, inset top highlight `rgba(255,255,255,.25)`).
 - **On scroll** past 80px, the padding tightens by 2px and the shadow deepens. It uses the slow spring from section 8.
 - **Active page:** a 4px accent dot 6px below the link.
@@ -195,7 +196,7 @@ box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--glass-ha
   - Ink fill with Canvas text, inverted in dark mode.
   - Padding `7px 7px 7px 26px`, Lato 700, 16px.
   - Shadow `0 12px 32px -12px rgba(11,18,32,.35)`.
-  - A nested 38px accent circle with the Phosphor `ArrowRight` icon.
+  - A nested 38px accent circle with the Lucide `ArrowRight` icon.
   - **Hover:** the circle drifts `translate(3px, -1px)` and scales to 1.06 over 900ms (slow ease).
   - **Active:** the button scales to 0.98.
 - **CTA pill:** Accent fill. On hover it brightens by 6% over 600ms.
@@ -235,13 +236,16 @@ Pill shape, Glass hairline border, transparent fill, Lato 400 at 13.5px, Ink 2, 
 - A glass panel with radius 28px, max 460px wide.
 - The "Password" label sits above a pill input: Core fill, Glass hairline, 52px tall, with a 2px accent focus ring at a 3px offset.
 - The "Unlock" primary button sits inline on desktop and below the input on mobile.
-- **Error:** inline, with the Phosphor `WarningCircle` in the accent and Ink text: "That password did not work."
+- **Error:** inline, with the Lucide `CircleAlert` in the accent and Ink text: "That password did not work."
 - Below the form: the text link "No password? Get in touch."
 
 ### Icons
-- Phosphor, **light** weight, to match the Sora light headings. 18px in UI, 20px in the nav.
-- The full set: `ArrowRight`, `ArrowUpRight`, `Sun`, `Moon`, `Lock`, `LockOpen`, `WarningCircle`, `List`, `X`.
-- No hand-rolled icons.
+- **[Lucide](https://lucide.dev/icons/)** via `lucide-react` (user choice, ADR 0007).
+- **`strokeWidth={1.5}` everywhere**, to match the Sora light headings. The default of 2 reads too heavy.
+- 18px in UI and 20px in the nav, with `currentColor` and `absoluteStrokeWidth` off.
+- The full set: `ArrowRight`, `ArrowUpRight`, `Sun`, `Moon`, `Lock`, `LockOpen`, `CircleAlert`, `Menu`, `X`. New icons are added to this list first.
+- One `<Icon />` wrapper sets the size and stroke, so no call site sets them ad hoc.
+- No other icon library and no hand-rolled icons. The morphing menu lines in the mobile nav are an animation, not an icon.
 
 ---
 

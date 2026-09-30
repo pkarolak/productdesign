@@ -79,7 +79,7 @@ Goal: choose a look from real visuals, not adjectives. No app code is written in
 - **Fonts:** `next/font/google`, with Sora (500, 600) for headings and Lato (400, 700, 400 italic) for body. Inter is never used.
 - **Theming:** `next-themes` (`attribute="data-theme"`), light and dark following the system, with a toggle in the nav.
 - **Visual fidelity:** Playwright (`pnpm shots`) captures pages into `design/shots/` for comparison with `design/preview/blueprint.png` (DESIGN.md section 11).
-- **Icons:** `@phosphor-icons/react`, regular weight.
+- **Icons:** `lucide-react`, `strokeWidth` 1.5 (ADR 0007).
 - **Content:** typed modules in `content/`, validated with `zod` at build time.
 - **Images:** `next/image` (AVIF/WebP), assets in `public/projects/<slug>/`.
 - **Rendering:** all routes static (`generateStaticParams` for cases).
@@ -174,7 +174,7 @@ Each placeholder case shows a different kind of senior signal:
 - Unlock form below: one password field with a visible label, a submit button ("Unlock"), and an inline error on a wrong password.
 - A second line: "No password? Get in touch."
 - Designed in the chosen direction as a real page, not a browser prompt or a generic modal.
-- Home cards for protected cases show a small lock glyph (Phosphor) next to the title. No other change.
+- Home cards for protected cases show a small Lucide `Lock` icon next to the title. No other change.
 
 ### About
 Portrait and bio (at most 80 words), experience list, principles (same data as the home Approach section, shown longer), "Get in touch."

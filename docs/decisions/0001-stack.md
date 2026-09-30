@@ -14,7 +14,7 @@ The site is a static-first portfolio with rich motion, password-gated pages and 
 - **Styling:** Tailwind CSS v4 via `@tailwindcss/postcss`, with design tokens as CSS variables sourced from `DESIGN.md`.
 - **Motion:** `motion/react`, only inside isolated `'use client'` leaf components. GSAP is added only if the chosen style direction needs pinned or scrubbed scroll (ADR 0002).
 - **Fonts:** `next/font`, never Inter.
-- **Icons:** `@phosphor-icons/react`, one weight globally.
+- **Icons:** `@phosphor-icons/react`, one weight globally. Superseded by ADR 0007 (Lucide).
 - **Content:** typed modules in `content/`, validated by `zod` at build time (budgets in ADR 0003).
 - **Images:** `next/image`; protected artifacts are the exception (ADR 0004).
 - **Gating:** Next.js request interception (`proxy.ts`), `jose`-signed cookie, Server Action unlock (ADR 0004).

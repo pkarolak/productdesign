@@ -9,7 +9,7 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [x] `direction-concepts`: 2 reference images per style direction in `design/directions/`
 - [x] `direction-lock`: user picks, `DESIGN.md` + ADR 0002
 - [ ] `section-refs`: remaining section references for the chosen direction in `design/refs/`
-- [ ] `scaffold`: Next.js + Tailwind v4 + Motion + Phosphor + zod, tokens from `DESIGN.md`, Vercel import
+- [ ] `scaffold`: Next.js + Tailwind v4 + Motion + lucide-react + zod, tokens from `DESIGN.md`, Vercel import
 - [ ] `content-model`: zod schema with budgets, `site.ts`, 4 placeholder projects, ADR 0003
 - [ ] `shell`: layout, nav, footer, motion primitives, texture layer
 - [ ] `home`: hero, selected work, approach, contact
@@ -22,6 +22,17 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [ ] `docs-final`: architecture, content guide, operations, ADR 0005, docs check, handoff entry
 
 ---
+
+## 2026-09-30: icons switched to Lucide
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-lock` (amendment)
+- **Done:**
+  - The user asked for [Lucide](https://lucide.dev/icons/). Switched from Phosphor to `lucide-react` at `strokeWidth` 1.5.
+  - Updated `DESIGN.md` (section 7 icon list: `CircleAlert` replaces `WarningCircle`, `Menu` replaces `List`).
+  - Added ADR 0007, and marked ADR 0001's icon line as superseded.
+  - Swapped the reference `design/preview/blueprint.html` to the Lucide UMD build and re-rendered `blueprint.png`.
+- **Next:** unchanged, `section-refs`.
 
 ## 2026-09-30: direction-lock, v2 refinement
 
