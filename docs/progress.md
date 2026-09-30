@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: a snappy shake when the row comes into view
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The swipe row's nudge became a quick shake (0.6s, left, overshoot, settle) that waits until the row is dealt and at least 85% in view, instead of a slow glide half a second after the deal wherever the visitor was. It comes with a light haptic tap where allowed (`lib/haptic.ts`: Vibration API, or the iOS 18 switch haptic), and tapping a suit marker gives a lighter one. New motion token `shake` in the contract and both themes (ADR 0030 amended).
+- **Verified:** lint, typecheck, `theme:check` under both themes, build; on an iPhone 13 emulation nothing plays at the top of the page, the shake starts about 250ms after scrolling the row into view and calls the vibration once, and a marker tap calls it again.
+
 ## 2026-10-01: fast taps always get the overlay on phones
 
 - **Agent:** Cursor agent (Claude)

@@ -9,6 +9,7 @@ import { SmartLink } from "@/components/ui/SmartLink";
 import { JokerEmblem, Suit, suitInk, suitText } from "@/components/ui/Suit";
 import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
+import { haptic } from "@/lib/haptic";
 import { motion } from "@theme/motion";
 
 export type Tint = "amber" | "rose" | "blue" | "green" | "violet";
@@ -228,10 +229,12 @@ function useDeal(list: RefObject<HTMLUListElement | null>, count: number, anchor
 /**
  * Where a swipe row is: the card nearest its start edge, the last one once it reaches the end, and whether it
  * scrolls at all. A card jumped to stays current until the row is swiped by hand, since the last cards cannot
- * reach the start edge. The row also gets one small nudge after the deal, so its hidden cards show they are there.
+ * reach the start edge. Once dealt and fully in view, the row shakes once with a light haptic tap, so its hidden
+ * cards show they are there.
  */
 function useRow(list: RefObject<HTMLUListElement | null>, settled: boolean) {
   const still = useReducedMotion();
+  const inView = useInView(list, { amount: 0.85 });
   const [at, setAt] = useState(0);
   const [scrolls, setScrolls] = useState(false);
   const [nudge, setNudge] = useState(false);
@@ -274,15 +277,20 @@ function useRow(list: RefObject<HTMLUListElement | null>, settled: boolean) {
   }, [list]);
 
   useEffect(() => {
-    if (!settled || still || !scrolls || moved.current) return;
-    const t = setTimeout(() => !moved.current && setNudge(true), 500);
+    if (!settled || !inView || still || !scrolls || nudge || moved.current) return;
+    const t = setTimeout(() => {
+      if (moved.current) return;
+      setNudge(true);
+      haptic();
+    }, 150);
     return () => clearTimeout(t);
-  }, [settled, still, scrolls]);
+  }, [settled, inView, still, scrolls, nudge]);
 
   const go = (i: number) => {
     const ul = list.current;
     const el = ul?.children[i] as HTMLElement | undefined;
     if (!ul || !el) return;
+    haptic(6);
     target.current = i;
     setAt(i);
     const left = el.offsetLeft - parseFloat(getComputedStyle(ul).paddingLeft);
@@ -408,8 +416,8 @@ export function CardHand({
           >
             <m.div
               initial={false}
-              animate={{ x: swipe.nudge ? [0, -64, 0] : 0 }}
-              transition={{ duration: 1.1, times: [0, 0.4, 1], ease: motion.ease, delay: i * 0.03 }}
+              animate={{ x: swipe.nudge ? motion.shake.x : 0 }}
+              transition={{ duration: motion.shake.duration, ease: motion.ease, delay: i * motion.shake.stagger }}
             >
               <m.div
                 initial={false}

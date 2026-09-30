@@ -30,6 +30,8 @@ export interface MotionTokens {
   deal: { type: "spring"; stiffness: number; damping: number; mass: number; hold: number; stagger: number };
   /** A picked card flipping and growing to fill the screen: durations in seconds and the flip's easing. */
   zoom: { open: number; close: number; flip: Easing };
+  /** A swipe row's one-time "there is more" shake: x keyframes in px, over `duration`, `stagger` per card. */
+  shake: { duration: number; x: number[]; stagger: number };
 }
 
 export const iconNames = [
