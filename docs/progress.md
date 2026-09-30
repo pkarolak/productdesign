@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: the swipe row shows it scrolls
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** On narrow screens the card row gets suit markers underneath (the current card's suit lights up in its colour; tapping one jumps to its card) and a one-time nudge after the deal that slides the row 64px and back ([ADR 0030](decisions/0030-swipe-row-hints.md)).
+- **Verified:** lint, typecheck, build; on an iPhone 13 emulation the nudge plays once, the markers track swipes to both ends, tapping Teaching scrolls there and keeps it current.
+
 ## 2026-10-01: tooltips in a narrow desktop window
 
 - **Agent:** Cursor agent (Claude)

@@ -6,7 +6,7 @@ import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { CardZoom, type CardRect } from "./CardZoom";
 import { SmartLink } from "@/components/ui/SmartLink";
-import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
+import { JokerEmblem, Suit, suitInk, suitText } from "@/components/ui/Suit";
 import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
@@ -226,6 +226,73 @@ function useDeal(list: RefObject<HTMLUListElement | null>, count: number, anchor
 }
 
 /**
+ * Where a swipe row is: the card nearest its start edge, the last one once it reaches the end, and whether it
+ * scrolls at all. A card jumped to stays current until the row is swiped by hand, since the last cards cannot
+ * reach the start edge. The row also gets one small nudge after the deal, so its hidden cards show they are there.
+ */
+function useRow(list: RefObject<HTMLUListElement | null>, settled: boolean) {
+  const still = useReducedMotion();
+  const [at, setAt] = useState(0);
+  const [scrolls, setScrolls] = useState(false);
+  const [nudge, setNudge] = useState(false);
+  const moved = useRef(false);
+  const target = useRef<number | null>(null);
+
+  useEffect(() => {
+    const ul = list.current;
+    if (!ul) return;
+    const read = () => {
+      const items = [...ul.children] as HTMLElement[];
+      const end = ul.scrollWidth - ul.clientWidth;
+      setScrolls(end > 4);
+      if (target.current !== null) return setAt(target.current);
+      if (ul.scrollLeft >= end - 2) return setAt(items.length - 1);
+      const start = ul.scrollLeft + parseFloat(getComputedStyle(ul).paddingLeft);
+      let best = 0;
+      items.forEach((el, i) => {
+        if (Math.abs(el.offsetLeft - start) < Math.abs(items[best].offsetLeft - start)) best = i;
+      });
+      setAt(best);
+    };
+    const onScroll = () => {
+      moved.current = true;
+      read();
+    };
+    const byHand = () => (target.current = null);
+    read();
+    ul.addEventListener("scroll", onScroll, { passive: true });
+    ul.addEventListener("pointerdown", byHand);
+    ul.addEventListener("wheel", byHand, { passive: true });
+    const ro = new ResizeObserver(read);
+    ro.observe(ul);
+    return () => {
+      ul.removeEventListener("scroll", onScroll);
+      ul.removeEventListener("pointerdown", byHand);
+      ul.removeEventListener("wheel", byHand);
+      ro.disconnect();
+    };
+  }, [list]);
+
+  useEffect(() => {
+    if (!settled || still || !scrolls || moved.current) return;
+    const t = setTimeout(() => !moved.current && setNudge(true), 500);
+    return () => clearTimeout(t);
+  }, [settled, still, scrolls]);
+
+  const go = (i: number) => {
+    const ul = list.current;
+    const el = ul?.children[i] as HTMLElement | undefined;
+    if (!ul || !el) return;
+    target.current = i;
+    setAt(i);
+    const left = el.offsetLeft - parseFloat(getComputedStyle(ul).paddingLeft);
+    ul.scrollTo({ left, behavior: still ? "auto" : "smooth" });
+  };
+
+  return { at, scrolls, nudge, go };
+}
+
+/**
  * Section cards held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
  * while its neighbours make room. Narrow screens get a plain swipe row.
  */
@@ -248,6 +315,7 @@ export function CardHand({
   const rowList = useRef<HTMLUListElement>(null);
   const fan = useDeal(fanList, cards.length, "middle");
   const row = useDeal(rowList, cards.length, "first");
+  const swipe = useRow(rowList, row.phase === "settled");
   if (!cards.length) return null;
   const mid = (cards.length - 1) / 2;
   const spread = cards.length > 3 ? 7 : 9;
@@ -340,26 +408,60 @@ export function CardHand({
           >
             <m.div
               initial={false}
-              animate={
-                row.phase === "stacked"
-                  ? { ...pile(i), x: row.offsets[i]?.x ?? 0 }
-                  : { rotate: tilt(i), x: 0, y: i % 2 ? 8 : 0 }
-              }
-              transition={dealing(row.phase, i)}
-              className="perspective-[1400px]"
+              animate={{ x: swipe.nudge ? [0, -64, 0] : 0 }}
+              transition={{ duration: 1.1, times: [0, 0.4, 1], ease: motion.ease, delay: i * 0.03 }}
             >
-              <Flip down={row.phase === "stacked"} delay={i * motion.deal.stagger + 0.1} back={deck?.back}>
-                <Card
-                  card={card}
-                  deck={deck}
-                  onPick={pick(i, tilt(i), 1)}
-                  className="press aspect-[5/7] w-[44vw] max-w-[200px] sm:w-[180px]"
-                />
-              </Flip>
+              <m.div
+                initial={false}
+                animate={
+                  row.phase === "stacked"
+                    ? { ...pile(i), x: row.offsets[i]?.x ?? 0 }
+                    : { rotate: tilt(i), x: 0, y: i % 2 ? 8 : 0 }
+                }
+                transition={dealing(row.phase, i)}
+                className="perspective-[1400px]"
+              >
+                <Flip down={row.phase === "stacked"} delay={i * motion.deal.stagger + 0.1} back={deck?.back}>
+                  <Card
+                    card={card}
+                    deck={deck}
+                    onPick={pick(i, tilt(i), 1)}
+                    className="press aspect-[5/7] w-[44vw] max-w-[200px] sm:w-[180px]"
+                  />
+                </Flip>
+              </m.div>
             </m.div>
           </Rise>
         ))}
       </ul>
+
+      {swipe.scrolls && (
+        <m.div
+          initial={false}
+          animate={{ opacity: row.phase === "stacked" ? 0 : 1 }}
+          transition={{ duration: 0.5, delay: row.phase === "stacked" ? 0 : dealTime, ease: motion.ease }}
+          className="relative z-20 -mt-3 mb-1 flex justify-center lg:hidden"
+        >
+          {cards.map((card, i) => (
+            <button
+              key={card.href}
+              type="button"
+              aria-label={`Show ${card.title}`}
+              aria-current={swipe.at === i || undefined}
+              onClick={() => swipe.go(i)}
+              className="focus-ring grid size-9 place-items-center rounded-pill"
+            >
+              <Suit
+                suit={card.suit}
+                className={cn(
+                  "size-3 transition-[color,scale] duration-(--t-hover) ease-slow",
+                  swipe.at === i ? cn(suitText[card.suit], "scale-125") : "text-ink-3/50",
+                )}
+              />
+            </button>
+          ))}
+        </m.div>
+      )}
 
       {note && (
         <m.div
