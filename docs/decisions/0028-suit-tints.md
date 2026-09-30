@@ -23,4 +23,5 @@ The hero face deck gave each card its own wash of colour so a shuffle reads as a
 ## Consequences
 
 - Replaces the `face-tint` utility from ADR 0027.
+- The card red is a deep, cool crimson (Dusk `#9A1F36` light, `#D9566B` dark; Blueprint `#A01E3A`, `#DE5670`), and the five washes are tuned to it: a cool rose, a muted sand rather than a bright amber, slate blue, sage and lavender, close to each other in strength.
 - Light washes stay faint (about 12 to 16% at the corner) so the cool paper reads as white. Contrast of card text passes axe in both modes.

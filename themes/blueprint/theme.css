@@ -6,11 +6,11 @@
  */
 
 :root {
-  --bp-tint-amber: rgba(240, 170, 70, 0.12);
-  --bp-tint-rose: rgba(226, 110, 110, 0.12);
-  --bp-tint-blue: rgba(60, 90, 200, 0.16);
-  --bp-tint-green: rgba(50, 150, 120, 0.14);
-  --bp-tint-violet: rgba(120, 90, 210, 0.14);
+  --bp-tint-amber: rgba(200, 160, 110, 0.16);
+  --bp-tint-rose: rgba(180, 50, 90, 0.12);
+  --bp-tint-blue: rgba(60, 90, 200, 0.14);
+  --bp-tint-green: rgba(60, 140, 124, 0.14);
+  --bp-tint-violet: rgba(112, 92, 200, 0.14);
   --bp-sun: rgba(240, 170, 70, 0.16);
   --bp-sunset: rgba(226, 110, 90, 0.15);
   --bp-sunset-2: rgba(240, 170, 70, 0.05);
@@ -47,7 +47,7 @@
 
   /* playing cards: paper, one red and one ink; the deck turns dark with the page (ADR 0015, 0018) */
   --card-face: #EEF1F7;
-  --card-red: #B8413C;
+  --card-red: #A01E3A;
   --card-ink: #0B1030;
   --pc-edge: rgba(11, 16, 48, 0.16);
   --pc-grain: rgba(11, 16, 48, 0.018);
@@ -93,17 +93,17 @@
 }
 
 [data-theme="dark"] {
-  --bp-tint-amber: rgba(240, 180, 100, 0.24);
-  --bp-tint-rose: rgba(236, 110, 120, 0.28);
-  --bp-tint-blue: rgba(120, 150, 255, 0.28);
-  --bp-tint-green: rgba(90, 200, 160, 0.24);
-  --bp-tint-violet: rgba(160, 130, 255, 0.28);
+  --bp-tint-amber: rgba(220, 180, 130, 0.22);
+  --bp-tint-rose: rgba(220, 90, 130, 0.28);
+  --bp-tint-blue: rgba(120, 150, 255, 0.26);
+  --bp-tint-green: rgba(96, 190, 164, 0.22);
+  --bp-tint-violet: rgba(156, 130, 255, 0.26);
   --bp-sun: rgba(240, 180, 100, 0.10);
   --bp-sunset: rgba(236, 122, 102, 0.11);
   --bp-sunset-2: rgba(240, 180, 100, 0.04);
   --bp-moon: rgba(120, 150, 255, 0.12);
   --card-face: #0A0B14;
-  --card-red: #EC7A66;
+  --card-red: #DE5670;
   --card-ink: #F1E6CE;
   --pc-edge: rgba(255, 240, 210, 0.14);
   --pc-grain: rgba(255, 240, 210, 0.02);

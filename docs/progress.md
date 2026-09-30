@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: cold crimson and balanced washes
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `--card-red` is a darker, colder crimson in both themes and modes (Dusk light `#9A1F36`, dark `#D9566B`, was brick and salmon). The suit washes were retuned to match: a cool rose, a muted sand, slate blue, sage and lavender at similar strength (ADR 0028 amended).
+- **Verified:** `theme:check`, build, hero and hand in light and dark, axe colour contrast in both modes.
+
 ## 2026-10-01: no shaded lettering
 
 - **Agent:** Cursor agent (Claude)
