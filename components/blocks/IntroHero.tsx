@@ -77,7 +77,7 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
             href={part.href}
             className={
               quiet
-                ? "focus-ring rounded-inset text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+                ? "focus-ring rounded-inset text-ink-2 underline decoration-ink-3/50 decoration-1 underline-offset-[0.2em] hover:decoration-accent transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
                 : "inline-pill focus-ring type-small"
             }
           >

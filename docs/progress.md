@@ -34,6 +34,14 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: dividers as a hairline
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - The scrolled filete flourish under headings became a 24px accent hairline ([ADR 0023](decisions/0023-filete-hairline.md)).
+  - The quiet Egnyte and Allegro links in the intro get a faint underline. Axe flagged them as told apart by colour alone, which an earlier scan missed because it ran before they revealed.
+- **Verified:** lint, typecheck, theme:check, build; heading and hero screenshots; axe over the fully scrolled page in dark and light, zero violations.
+
 ## 2026-09-30: the intro as a day-to-night schedule
 
 - **Agent:** Cursor agent (Claude)
