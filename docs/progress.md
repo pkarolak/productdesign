@@ -34,6 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: dictionary cards on mobile
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - Only one dictionary card is open at a time, through a shared store in `Definition`.
+  - Below 768px the card opens centred over a blurred scrim that covers the whole screen, navigation included. Any tap or Escape closes it.
+  - The overlay is portalled to `body` inside a labelled `aside`, because `main` is a stacking context below the navigation.
+  - Desktop keeps the anchored tooltip.
+- **Verified:** lint, typecheck, build; iPhone 13 dark and light: centred within 1px, a scrim tap closes it, the next term opens alone, and a tap on another term through the scrim only closes; desktop hover across two terms leaves one open; axe zero violations.
+
 ## 2026-09-30: a quieter hero
 
 - **Agent:** Cursor agent (Claude)
