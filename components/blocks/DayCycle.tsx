@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion as m, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { Definition } from "@/components/ui/Definition";
 import { Icon } from "@/components/ui/Icon";
 import { SmartLink } from "@/components/ui/SmartLink";
 import type { Hero } from "@/content/schema";
@@ -16,7 +17,7 @@ const STEP_MS = 4200;
 const leading = /^[.,;:!?)]+/;
 
 /**
- * A run of text and company links. Each link is glued to the word before it, so a logo never starts a line on its
+ * A run of text, company links and dictionary terms. Each link is glued to the word before it, so a logo never starts a line on its
  * own, and trailing punctuation stays with the link.
  */
 function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
@@ -25,13 +26,24 @@ function Parts({ parts, quiet }: { parts: Part[]; quiet?: boolean }) {
     const next = parts[i + 1];
     if (typeof part === "string") {
       let text = prev && typeof prev !== "string" ? part.replace(leading, "") : part;
-      if (next && typeof next !== "string") text = text.replace(/\s*\S+\s*$/, "");
+      if (next && typeof next !== "string" && "pill" in next) text = text.replace(/\s*\S+\s*$/, "");
       if (!text) return null;
       const space = i > 0 && !leading.test(part) ? " " : "";
       return `${space}${text}`;
     }
-    const glued = typeof prev === "string" ? (prev.trimEnd().match(/\S+$/)?.[0] ?? "") : "";
     const trailing = typeof next === "string" ? (next.match(leading)?.[0] ?? "") : "";
+    if ("term" in part) {
+      return (
+        <span key={part.term}>
+          {i > 0 && " "}
+          <span className="whitespace-nowrap">
+            <Definition entry={part}>{part.term}</Definition>
+            {trailing}
+          </span>
+        </span>
+      );
+    }
+    const glued = typeof prev === "string" ? (prev.trimEnd().match(/\S+$/)?.[0] ?? "") : "";
     return (
       <span key={part.pill}>
         {i > 0 && " "}

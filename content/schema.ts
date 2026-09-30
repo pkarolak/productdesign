@@ -106,11 +106,22 @@ const slug = z.string().regex(/^[a-z0-9-]+$/);
 
 const year = z.number().int().min(1990).max(2100);
 
-/** Plain text runs and inline company pills, read as one sentence. */
+/** A dictionary entry shown when a visitor hovers or taps a highlighted term in the tagline or the intro. */
+const glossaryEntry = z.object({
+  /** In the tagline glossary, must appear verbatim in the tagline (case-insensitive). */
+  term: z.string().min(2),
+  phonetic: z.string().min(2).optional(),
+  kind: words(3),
+  senses: z.array(words(26)).min(1).max(2),
+  origin: words(20).optional(),
+});
+
+/** Plain text runs, inline company pills and dictionary terms, read as one sentence. */
 const introPart = z.union([
   z.string().min(1),
   /** `logo`: a small square mark in `public/logos/`; without it the pill shows the name's first letter. */
   z.object({ pill: z.string().min(2), href, logo: z.string().startsWith("/logos/").optional() }),
+  glossaryEntry,
 ]);
 
 /** One line of the intro schedule: when, a short phrase with pills, and an optional quieter follow-up. */
@@ -119,16 +130,6 @@ const introRow = z.object({
   icon: z.enum(["sun", "sunset", "moon"]),
   parts: z.array(introPart).min(1).max(4),
   note: z.array(introPart).min(1).max(4).optional(),
-});
-
-/** A dictionary entry shown when a visitor hovers or taps a highlighted term in the tagline. */
-const glossaryEntry = z.object({
-  /** Must appear verbatim in the tagline (case-insensitive). */
-  term: z.string().min(2),
-  phonetic: z.string().min(2).optional(),
-  kind: words(3),
-  senses: z.array(words(26)).min(1).max(2),
-  origin: words(20).optional(),
 });
 
 export const heroSchema = z.object({
@@ -146,7 +147,7 @@ export const heroSchema = z.object({
         wordCount(
           rows
             .flatMap((r) => [...r.parts, ...(r.note ?? [])])
-            .map((p) => (typeof p === "string" ? p : p.pill))
+            .map((p) => (typeof p === "string" ? p : "pill" in p ? p.pill : p.term))
             .join(" "),
         ) <= 32,
       { message: "The intro is at most 32 words. Cut it, do not raise the limit." },

@@ -34,6 +34,15 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: night line with milongas and empanadas
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - The Night line reads "Dancing and DJ-ing at milongas, meeting people and eating empanadas 🥟". Unicode has no empanada emoji, so the line uses the dumpling, the closest match.
+  - Intro parts can now be dictionary terms: a glossary entry inside `parts` or `note` renders as a `Definition` tooltip. "milongas" gets an entry with its phonetics, two senses and its Kimbundu origin. The tagline glossary keeps its limit of 3.
+  - Fixed: text before a dictionary term keeps its last word. Only company pills take the word before them.
+- **Verified:** lint, typecheck, theme:check, build; Night line and tooltip screenshots at 1440 in dark and light, and the centred overlay on an iPhone 13; axe zero violations.
+
 ## 2026-09-30: hand caption copy
 
 - **Agent:** Cursor agent (Claude)

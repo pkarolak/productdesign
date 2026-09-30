@@ -60,7 +60,24 @@ export const site = siteSchema.parse({
         icon: "sunset",
         parts: ["Running design at", { pill: "CoNaDzielni.pl", href: "https://conadzielni.pl", logo: "/logos/conadzielni.png" }],
       },
-      { when: "Night", icon: "moon", parts: ["Behind the decks at milongas, from the first tanda to the last"] },
+      {
+        when: "Night",
+        icon: "moon",
+        parts: [
+          "Dancing and DJ-ing at",
+          {
+            term: "milongas",
+            phonetic: "miˈlon.ɡas",
+            kind: "noun, plural",
+            senses: [
+              "Social tango dances, where the music comes in sets of three or four songs and strangers share an embrace.",
+              "Also a lively, older cousin of tango, danced in quick steps.",
+            ],
+            origin: "Rioplatense Spanish, from a Kimbundu word for words or chatter.",
+          },
+          ", meeting people and eating empanadas 🥟",
+        ],
+      },
     ],
     headline: "I shape *enterprise-grade* experiences at Miro.",
   },
