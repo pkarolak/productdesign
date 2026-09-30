@@ -5,9 +5,11 @@
  */
 
 :root {
-  --dk-face-sun: rgba(214, 150, 60, 0.12);
-  --dk-face-sunset: rgba(206, 104, 96, 0.13);
-  --dk-face-moon: rgba(86, 108, 168, 0.16);
+  --dk-tint-amber: rgba(214, 150, 60, 0.12);
+  --dk-tint-rose: rgba(206, 104, 96, 0.13);
+  --dk-tint-blue: rgba(86, 108, 168, 0.16);
+  --dk-tint-green: rgba(70, 140, 110, 0.14);
+  --dk-tint-violet: rgba(130, 100, 180, 0.14);
   --dk-sun: rgba(214, 150, 60, 0.18);
   --dk-sunset: rgba(206, 104, 72, 0.17);
   --dk-sunset-2: rgba(214, 150, 60, 0.09);
@@ -85,9 +87,11 @@
 }
 
 [data-theme="dark"] {
-  --dk-face-sun: rgba(232, 178, 112, 0.26);
-  --dk-face-sunset: rgba(228, 110, 118, 0.3);
-  --dk-face-moon: rgba(140, 168, 230, 0.3);
+  --dk-tint-amber: rgba(232, 178, 112, 0.26);
+  --dk-tint-rose: rgba(228, 110, 118, 0.3);
+  --dk-tint-blue: rgba(140, 168, 230, 0.3);
+  --dk-tint-green: rgba(110, 190, 150, 0.24);
+  --dk-tint-violet: rgba(170, 140, 230, 0.28);
   --dk-sun: rgba(232, 178, 112, 0.12);
   --dk-sunset: rgba(226, 124, 94, 0.13);
   --dk-sunset-2: rgba(232, 178, 112, 0.05);
@@ -430,12 +434,14 @@
   }
 }
 
-/* A wash over a hero face card in its time of day's colour (data-time: sun, sunset, moon). */
-@utility face-tint {
+/* A wash of colour over a playing card's paper (data-tint: amber, rose, blue, green, violet). */
+@utility card-tint {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  &[data-time="sun"] { background: linear-gradient(160deg, var(--dk-face-sun), transparent 78%); }
-  &[data-time="sunset"] { background: linear-gradient(160deg, var(--dk-face-sunset), transparent 78%); }
-  &[data-time="moon"] { background: linear-gradient(160deg, var(--dk-face-moon), transparent 78%); }
+  &[data-tint="amber"] { background: linear-gradient(160deg, var(--dk-tint-amber), transparent 78%); }
+  &[data-tint="rose"] { background: linear-gradient(160deg, var(--dk-tint-rose), transparent 78%); }
+  &[data-tint="blue"] { background: linear-gradient(160deg, var(--dk-tint-blue), transparent 78%); }
+  &[data-tint="green"] { background: linear-gradient(160deg, var(--dk-tint-green), transparent 78%); }
+  &[data-tint="violet"] { background: linear-gradient(160deg, var(--dk-tint-violet), transparent 78%); }
 }

@@ -111,7 +111,7 @@
     "type-hand",
     "filete-shade",
     "daylight",
-    "face-tint"
+    "card-tint"
   ],
   "fontVariables": [
     "--theme-font-display",

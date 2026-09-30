@@ -14,7 +14,7 @@ The day switch already changed the intro line and the light behind the hero. The
 - When the time changes, the old top card is cut off to the left (away from the text), then tucked under on a 0.75s keyframed arc, its z-index dropping halfway. The others spring to their new depth. Under reduced motion the cards jump. The deck sits on the hero's top layer (above the text column), so a shuffle never slips under the headline or the day switch.
 - The deck is a button: a click shuffles to the next time and stops the day switch's autoplay, exactly like picking a tab.
 - One small store (`components/blocks/daytime.ts`) holds the time and the stopped flag for the day switch, the light and the deck.
-- Each card in the deck is its own colour: a suit per time (Day ♥, After hours ♦, Night ♠, in `card-red` or `card-ink`) and a wash over the card paper in that time's light (amber, wine, night blue) through the `face-tint` contract utility, defined in both themes for light and dark. A shuffle then reads as a new card, not the same one moving. The single static card stays the plain P of hearts.
+- Each card in the deck is its own colour: a suit per time (Day ♦, After hours ♥, Night ♠, in `card-red` or `card-ink`) and a wash over the card paper in that suit's colour (amber, rose, blue) through the `card-tint` contract utility ([ADR 0028](0028-suit-tints.md)). A shuffle then reads as a new card, not the same one moving. The single static card stays the plain P of hearts.
 - With fewer than two photos, the face card is a single static card, and the hover flip and `avatar.back` are gone.
 
 ## Alternatives considered

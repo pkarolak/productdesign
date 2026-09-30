@@ -6,20 +6,20 @@ import { useState } from "react";
 import type { Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
-import { Corner, DECK_ORIGIN } from "./CardHand";
+import { Corner, DECK_ORIGIN, suitTint } from "./CardHand";
 import { setDaytime, useDaytime, type Daytime } from "./daytime";
 
 export type Face = { time: Daytime; when: string; src: string; alt: string };
 
-/** Each time of day is its own card in the deck: a suit and a wash of that time's light. */
-const suits: Record<Daytime, SuitName> = { sun: "heart", sunset: "diamond", moon: "spade" };
+/** Each time of day is its own card in the deck, in its suit's wash. */
+const suits: Record<Daytime, SuitName> = { sun: "diamond", sunset: "heart", moon: "spade" };
 
 /** A face card: a P with the photo framed on card paper between corner marks. `tinted` in a deck of several. */
 function FaceCard({ face, preload, tinted }: { face: Face; preload?: boolean; tinted?: boolean }) {
   const suit = tinted ? suits[face.time] : "heart";
   return (
     <div className="playing-card absolute inset-0 overflow-hidden rounded-inset">
-      {tinted && <span aria-hidden data-time={face.time} className="face-tint" />}
+      {tinted && <span aria-hidden data-tint={suitTint[suit]} className="card-tint" />}
       <Corner suit={suit} rank="P" />
       <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden rounded-print border border-card-ink/15">
         <Image

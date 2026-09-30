@@ -43,7 +43,7 @@ The required files and exports are listed in [themes/contract.json](../themes/co
 
 | File | Owns |
 | --- | --- |
-| `theme.css` | Every color, shadow, radius, spacing, easing and duration token, for light and dark (`[data-theme="dark"]`). The contract utilities: `surface`, `surface-deep`, `surface-strong`, `surface-sheet`, `media`, `core`, `wash`, `divider`, the `type-*` scale, `focus-ring`, `link`, and for the blocks `card`, `inline-pill`, `type-quote`, `press`, `sheet`, `playing-card`, `type-hand`, `daylight`, `face-tint`. Route transitions: `::view-transition-*` rules for `site-header`, `.morph`, `.nav-forward` and `.nav-back`. Anything private (Blueprint's orbs, dot lattice, grain, plate float). |
+| `theme.css` | Every color, shadow, radius, spacing, easing and duration token, for light and dark (`[data-theme="dark"]`). The contract utilities: `surface`, `surface-deep`, `surface-strong`, `surface-sheet`, `media`, `core`, `wash`, `divider`, the `type-*` scale, `focus-ring`, `link`, and for the blocks `card`, `inline-pill`, `type-quote`, `press`, `sheet`, `playing-card`, `type-hand`, `daylight`, `card-tint`. Route transitions: `::view-transition-*` rules for `site-header`, `.morph`, `.nav-forward` and `.nav-back`. Anything private (Blueprint's orbs, dot lattice, grain, plate float). |
 | `fonts.ts` | The fonts, via `next/font`. Must set `--theme-font-display` and `--theme-font-body`. |
 | `motion.ts` | JS motion values: easing, spring, the entry reveal ("rise"), hover and menu timing. Used by `<Rise>`, the nav and the menu. |
 | `icons.ts` | The icon library, mapped onto the fixed icon names in `contract.ts`, plus stroke width and sizes. Swap Lucide for anything by changing this one file. |

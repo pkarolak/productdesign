@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: suit tints on the aces
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Every playing card now prints on a soft wash of its suit's colour: hearts rose, diamonds amber, spades blue, clubs green, the joker violet ([ADR 0028](decisions/0028-suit-tints.md)). `face-tint` became `card-tint` with five named tints in both themes. The face deck uses the same map, so Day is ♦ amber, After hours ♥ rose and Night ♠ blue.
+- **Verified:** lint, typecheck, `theme:check` under both themes, build, hand captures in dark and light, axe colour contrast on the home page in both modes.
+
 ## 2026-10-01: colder card paper in light mode
 
 - **Agent:** Cursor agent (Claude)

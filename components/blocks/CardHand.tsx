@@ -11,6 +11,11 @@ import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/sch
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
+export type Tint = "amber" | "rose" | "blue" | "green" | "violet";
+
+/** Each suit prints on its own wash of colour (`card-tint`). */
+export const suitTint: Record<SuitName, Tint> = { heart: "rose", diamond: "amber", spade: "blue", club: "green", joker: "violet" };
+
 export function Corner({ suit, rank = "A", flip = false }: { suit: SuitName; rank?: string; flip?: boolean }) {
   const joker = suit === "joker";
   return (
@@ -67,6 +72,7 @@ function Card({
   );
   const face = (
     <>
+      <span aria-hidden data-tint={suitTint[card.suit]} className="card-tint" />
       <Corner suit={card.suit} />
       {card.suit !== "joker" ? (
         <Suit suit={card.suit} className={cn("relative size-13 xl:size-15", suitInk[card.suit], pip)} />
