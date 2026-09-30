@@ -34,10 +34,16 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: a side-on tango invitation for Night
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Regenerated the Night stand-in (`patryk-tango-embrace`, replaces `patryk-tango-invite`): a three-quarter turn, leaning in a little, one hand raised and the other at shoulder-blade height in an open embrace, inviting someone across the room to dance. Cut out like the others.
+- **Verified:** build; the Night card in dark and light.
+
 ## 2026-10-01: the day deck is live
 
 - **Agent:** Cursor agent (Claude)
-- **Done:** Generated two stand-in photos from the arms-crossed portrait, same shirt, light and framing: After hours winks and points at the viewer (`patryk-wink-point`), Night smiles with arms open in a tango invitation (`patryk-tango-invite`). Both are cut out with Apple Vision like the main photo and set as `photo` with `cutout` on their intro rows, so the face deck now shuffles through three cards. Replace them with real shots when available (same file names or new ones in `content/site.ts`).
+- **Done:** Generated two stand-in photos from the arms-crossed portrait, same shirt, light and framing: After hours winks and points at the viewer (`patryk-wink-point`), Night smiles with arms open in a tango invitation (`patryk-tango-invite`, since replaced). Both are cut out with Apple Vision like the main photo and set as `photo` with `cutout` on their intro rows, so the face deck now shuffles through three cards. Replace them with real shots when available (same file names or new ones in `content/site.ts`).
 - **Verified:** build; the three cards in dark and light at 1440 × 900.
 
 ## 2026-10-01: cooler card backs

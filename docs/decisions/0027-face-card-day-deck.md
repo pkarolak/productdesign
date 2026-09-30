@@ -25,4 +25,4 @@ The day switch already changed the intro line and the light behind the hero. The
 
 ## Consequences
 
-- Live since 2026-10-01 with two generated stand-in photos (After hours: a wink and a point; Night: an open tango invitation), to be replaced by real shots. Before that, the feature was invisible until photos were added to the intro rows in `content/site.ts`, for example at the decks or dancing for Night, and bouldering or running for After hours.
+- Live since 2026-10-01 with two generated stand-in photos (After hours: a wink and a point; Night: a side-on open tango embrace as an invitation), to be replaced by real shots. Before that, the feature was invisible until photos were added to the intro rows in `content/site.ts`, for example at the decks or dancing for Night, and bouldering or running for After hours.

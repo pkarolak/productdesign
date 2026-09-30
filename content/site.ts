@@ -93,9 +93,9 @@ export const site = siteSchema.parse({
         when: "Night",
         icon: "moon",
         photo: {
-          src: "/about/patryk-tango-invite.jpg",
-          cutout: "/about/patryk-tango-invite-cutout.png",
-          alt: "Patryk Karolak smiling with his arms open, inviting you to a tango.",
+          src: "/about/patryk-tango-embrace.jpg",
+          cutout: "/about/patryk-tango-embrace-cutout.png",
+          alt: "Patryk Karolak turned to the side, smiling, holding an open tango embrace as an invitation to dance.",
         },
         parts: [
           "Bouldering, long runs, dancing and DJ-ing at",
