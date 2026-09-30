@@ -6,7 +6,7 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
-- [ ] `direction-concepts`: 2 reference images per style direction in `design/directions/`
+- [x] `direction-concepts`: 2 reference images per style direction in `design/directions/`
 - [ ] `direction-lock`: user picks, `DESIGN.md` + ADR 0002
 - [ ] `section-refs`: remaining section references for the chosen direction in `design/refs/`
 - [ ] `scaffold`: Next.js + Tailwind v4 + Motion + Phosphor + zod, tokens from `DESIGN.md`, Vercel import
@@ -22,6 +22,20 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [ ] `docs-final`: architecture, content guide, operations, ADR 0005, docs check, handoff entry
 
 ---
+
+## 2026-09-30: direction-concepts
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-concepts`
+- **Done:**
+  - Generated 10 concept images (5 directions, each with a hero and a metrics block) into `design/directions/<id>/`.
+  - Wrote [design/directions/README.md](../design/directions/README.md) with side-by-side notes.
+- **In progress:** waiting for the user to pick a direction.
+- **Next:** `direction-lock`.
+  - Once the user picks, write `DESIGN.md` using `stitch-design-taste`.
+  - Write ADR 0002 with the chosen direction, the rejected ones and the reasons.
+  - Then `section-refs`.
+- **Open questions:** which direction (A to E), and whether any cross-direction tweak is wanted.
 
 ## 2026-09-30: docs-foundation
 

@@ -19,7 +19,7 @@ Goal: choose a look from real visuals, not adjectives. No app code is written in
 
 **Process**
 1. For each direction, generate 2 horizontal reference images with the `GenerateImage` tool, following imagegen-frontend-web (one image per section): **Home hero** and **Case study metrics block**. The same placeholder designer and project are used across all 5 so only the style differs. That makes 10 images.
-2. Save to `design/directions/<direction-id>/hero.png` and `metrics.png`.
+2. Save to `design/directions/<direction-id>/hero.jpg` and `metrics.jpg`.
 3. Present them side by side, with a 3-line summary each: what it signals, what it risks, motion cost.
 4. You pick one direction. You can also ask for one tweak, like "B with A's motion."
 5. Lock it: write `DESIGN.md` at the repo root with stitch-design-taste. It holds palette tokens, type scale, radius system, spacing, motion curves, dials and banned patterns. Every later step reads from it.
