@@ -48,6 +48,7 @@
     "--r-frame-core",
     "--r-panel",
     "--r-inset",
+    "--r-print",
     "--r-phone",
     "--r-card",
     "--r-sheet",

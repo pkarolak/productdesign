@@ -21,7 +21,7 @@ function FaceCard({ face, preload, tinted }: { face: Face; preload?: boolean; ti
     <div className="playing-card absolute inset-0 overflow-hidden rounded-inset">
       {tinted && <span aria-hidden data-time={face.time} className="face-tint" />}
       <Corner suit={suit} rank="P" />
-      <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden border border-card-ink/15">
+      <div className="absolute inset-x-[15%] inset-y-[10%] overflow-hidden rounded-print border border-card-ink/15">
         <Image
           src={face.src}
           alt={face.alt}

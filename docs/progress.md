@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: rounded photo on the face card
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The photo on the hero face card has rounded corners through a new radius token, `--r-print` (`rounded-print`): 6px in Dusk and 10px in Blueprint, one step inside the card's `inset` corner. Added to the contract, both themes, `app/globals.css` and the radius list in `DESIGN.md`.
+- **Verified:** `theme:check` under both themes, build, a close-up of the card in dark mode.
+
 ## 2026-10-01: the shuffle plays on top
 
 - **Agent:** Cursor agent (Claude)

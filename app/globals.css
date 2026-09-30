@@ -34,6 +34,7 @@
   --radius-frame-core: var(--r-frame-core);
   --radius-panel: var(--r-panel);
   --radius-inset: var(--r-inset);
+  --radius-print: var(--r-print);
   --radius-phone: var(--r-phone);
   --radius-card: var(--r-card);
   --radius-sheet: var(--r-sheet);

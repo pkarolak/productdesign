@@ -151,6 +151,7 @@ Concentric rule: **inner radius = outer radius − padding.**
 - **Glass panels** (metrics panel, locked form, about portrait card): `28px`.
 - **Inside-core elements** (charts, small images inside a frame): `20px`.
 - **Mobile phone screens:** `32px`.
+- **Photo prints on a face card** (`rounded-print`): a small step inside the card's `inset` corner (Dusk 6px, Blueprint 10px).
 - **Skeleton bars:** `999px`.
 - Nothing is square-cornered, except full-bleed images inside a core, which inherit the core's radius through `overflow: hidden`.
 
