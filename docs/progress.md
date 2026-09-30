@@ -23,6 +23,21 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: direction-concepts, round 2
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-concepts`
+- **Done:**
+  - Round 1 (A to E) was rejected by the user.
+  - The new brief is clean and modern, with beautiful whitespace, subtle gradients and a subtle isometric grid in the backgrounds.
+  - Moved round 1 to `design/directions/round-1/`.
+  - Generated round 2 (F Mist, G Blueprint, H Daylight, I Ink) into `design/directions/round-2/`, each with a README.
+- **In progress:** waiting for the user to pick from round 2.
+- **Next:** `direction-lock`.
+  - Write `DESIGN.md`. The isometric grid and the gradient glow become first-class tokens and background components.
+  - Write ADR 0002, recording both rounds and the brief change.
+- **Open questions:** which of F, G, H or I, plus any cross-direction tweak.
+
 ## 2026-09-30: direction-concepts
 
 - **Agent:** Cursor agent (Claude)
