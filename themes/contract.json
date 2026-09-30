@@ -32,6 +32,8 @@
     "--r-panel",
     "--r-inset",
     "--r-phone",
+    "--r-card",
+    "--r-sheet",
     "--frame-pad",
     "--t-ease",
     "--t-hover",
@@ -78,7 +80,12 @@
     "type-caption",
     "type-label",
     "focus-ring",
-    "link"
+    "link",
+    "card",
+    "inline-pill",
+    "type-quote",
+    "press",
+    "sheet"
   ],
   "fontVariables": ["--theme-font-display", "--theme-font-body"]
 }

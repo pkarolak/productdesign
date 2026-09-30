@@ -71,17 +71,19 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 ## Hard rules
 
 - **Design language layer ([docs/theming.md](docs/theming.md), ADR 0008):**
-  - Every visual value lives in `themes/<name>/` (active: `blueprint`). Components use only contract names from `themes/contract.json` (`surface`, `type-h2`, `text-ink-2`, `rounded-frame`, `ease-slow`, ...).
+  - Every visual value lives in `themes/<name>/` (active: `dusk`; `blueprint` stays switchable). Components use only contract names from `themes/contract.json` (`surface`, `type-h2`, `text-ink-2`, `rounded-frame`, `ease-slow`, ...).
   - Import theme modules only via `@theme/*`, never `@/themes/blueprint/...`. Never use a theme's private names (`bp-*`, `--glass-*`, `--orb-*`, `--dot`) outside its folder.
   - No free colors, radii, shadows, fonts or easings in components; Tailwind's defaults are reset on purpose. Need something new? Add it to the theme and the contract first.
   - `pnpm theme:check` enforces this and runs before every build.
 - **Design:**
   - Read `DESIGN.md` before any UI work.
-  - `design/preview/blueprint.html` is the fidelity target. Copy its token values, glass recipe, dot lattice, orbs and motion verbatim.
-  - Run the `DESIGN.md` section 11 checklist and the `pnpm shots` comparison before marking any UI todo done.
-  - One accent (Blueprint Cobalt) and one radius system across the whole site. Use only `DESIGN.md` tokens, no free colors.
-  - Every component must work in both light and dark themes.
-  - Fonts are Sora for headings and Lato for everything else. Never Inter, never a serif or mono font.
+ - Fidelity targets per theme: Dusk follows `design/directions/round-8/`; Blueprint follows `design/preview/blueprint.html` (its tokens, glass, dots, orbs and motion verbatim).
+ - Run the `DESIGN.md` checklist and the `pnpm shots` comparison before marking any UI todo done.
+ - One accent and one radius system per theme (Dusk: pale amber; Blueprint: Cobalt). Use only theme tokens, no free colors.
+ - Every component must work in both light and dark modes, and under both themes.
+ - Fonts per theme: Dusk uses Geist; Blueprint uses Sora and Lato (ADR 0011). Never Inter, never a serif, mono or handwritten font.
+ - Page sections are blocks in `components/blocks/` (ADR 0010). A block with no content renders nothing; review blocks on `/kit`.
+ - No kudos, likes or visitor counts.
 - **Copy:**
   - No em-dashes in UI copy.
   - Never frame site copy around career level, titles or job moves. The work speaks.

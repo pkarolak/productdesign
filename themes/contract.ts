@@ -22,6 +22,10 @@ export interface MotionTokens {
   };
   hover: { duration: number; scale: number };
   menu: { duration: number; stagger: number };
+  /** Scale of a pressed button or tile. */
+  press: { scale: number };
+  /** Opening and closing of sheets and the command menu. */
+  sheet: { type: "spring"; stiffness: number; damping: number; mass: number };
 }
 
 export const iconNames = [
@@ -34,6 +38,12 @@ export const iconNames = [
   "circle-alert",
   "menu",
   "x",
+  "copy",
+  "check",
+  "search",
+  "command",
+  "quote",
+  "corner-down-left",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
@@ -50,6 +60,8 @@ export interface IconTokens {
 
 export interface ThemeMeta {
   name: string;
+  /** The colour mode a first-time visitor gets; the toggle still switches it. */
+  defaultMode: "light" | "dark" | "system";
   themeColor: { light: string; dark: string };
   og: {
     canvas: string;

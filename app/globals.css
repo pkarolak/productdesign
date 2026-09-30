@@ -32,6 +32,8 @@
   --radius-panel: var(--r-panel);
   --radius-inset: var(--r-inset);
   --radius-phone: var(--r-phone);
+  --radius-card: var(--r-card);
+  --radius-sheet: var(--r-sheet);
 
   --shadow-raised: var(--shadow);
   --shadow-button: var(--button-shadow);

@@ -23,6 +23,12 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ---
 
+## 2026-09-30: block library and Dusk, decisions and contract (`adrs-contract`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** rounds 5 to 7 explored and rejected (too hobby-led, too busy, kudos too much). Round 8 approved: a block library modelled on benshih.design's structure, styled as Dusk (subtle dark, Geist, pale amber). ADR [0010](decisions/0010-block-library.md) and [0011](decisions/0011-dusk-theme.md). Contract gains `card`, `inline-pill`, `type-quote`, `press`, `sheet`, `--r-card`, `--r-sheet`, motion `press` and `sheet`, six icons and `meta.defaultMode`; Blueprint implements them, plus the view-transition CSS. AGENTS and DESIGN rules scoped per theme.
+- **Next:** `dusk-theme`.
+
 ## 2026-09-30: Milonga direction proposed (round 4)
 
 - **Agent:** Cursor agent (Claude)

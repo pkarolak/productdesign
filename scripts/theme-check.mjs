@@ -60,7 +60,11 @@ if (existsSync(join(root, `${dir}/fonts.ts`))) {
 
 // App code must not reach into a theme folder or use a theme's private names:
 // hyphenated classes and custom properties the theme defines beyond the contract.
-const themeCss = existsSync(join(root, `${dir}/theme.css`)) ? read(`${dir}/theme.css`) : "";
+// View-transition class names are shared with app code (Link transitionTypes), so they are not private.
+const themeCss = (existsSync(join(root, `${dir}/theme.css`)) ? read(`${dir}/theme.css`) : "").replace(
+  /::view-transition-[a-z-]+\([^)]*\)/g,
+  "",
+);
 const contractVars = new Set([...contract.variables, ...contract.fontVariables]);
 const privateClasses = [...themeCss.matchAll(/\.([a-z][a-z0-9]*-[a-z0-9-]+)/g)]
   .map((m) => m[1])

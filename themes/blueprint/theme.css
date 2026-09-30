@@ -32,6 +32,8 @@
   --r-panel: 28px;
   --r-inset: 20px;
   --r-phone: 32px;
+  --r-card: 28px;
+  --r-sheet: 32px;
   --frame-pad: 8px;
 
   /* contract: motion (CSS side; the JS side is motion.ts) */
@@ -293,6 +295,69 @@
   text-decoration-color: color-mix(in srgb, var(--ink) 18%, transparent);
   transition: text-decoration-color 600ms cubic-bezier(0.16, 1, 0.3, 1);
   &:hover { text-decoration-color: var(--accent); }
+}
+
+/* contract: blocks */
+
+@utility card {
+  background: linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), inset 0 0 0 1px var(--hairline), var(--shadow);
+  transition: box-shadow var(--t-hover) var(--t-ease);
+}
+
+@utility inline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--r-pill);
+  background: var(--core);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  color: var(--ink);
+  vertical-align: baseline;
+  transition: background-color var(--t-hover-short) var(--t-ease), box-shadow var(--t-hover-short) var(--t-ease);
+  &:hover { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); }
+}
+
+@utility type-quote {
+  font-family: var(--theme-font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+@utility press {
+  transition: transform var(--t-hover-short) var(--t-ease);
+  &:active { transform: scale(0.98); }
+}
+
+@utility sheet {
+  background: linear-gradient(180deg, var(--glass-strong-top), var(--glass-strong-bottom));
+  -webkit-backdrop-filter: blur(40px) saturate(170%);
+  backdrop-filter: blur(40px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), var(--shadow-deep);
+}
+
+/* contract: route transitions (React ViewTransition classes) */
+
+::view-transition { pointer-events: none; }
+::view-transition-group(site-header) { animation: none; z-index: 100; }
+::view-transition-old(site-header) { display: none; }
+::view-transition-new(site-header) { animation: none; }
+::view-transition-group(.morph) { animation-duration: 700ms; animation-timing-function: var(--t-ease); }
+::view-transition-old(.nav-forward) { --vt-slide: -48px; animation: 240ms ease-in both vt-fade reverse, 700ms var(--t-ease) both vt-slide reverse; }
+::view-transition-new(.nav-forward) { --vt-slide: 48px; animation: 360ms ease-out 200ms both vt-fade, 700ms var(--t-ease) both vt-slide; }
+::view-transition-old(.nav-back) { --vt-slide: 48px; animation: 240ms ease-in both vt-fade reverse, 700ms var(--t-ease) both vt-slide reverse; }
+::view-transition-new(.nav-back) { --vt-slide: -48px; animation: 360ms ease-out 200ms both vt-fade, 700ms var(--t-ease) both vt-slide; }
+@keyframes vt-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vt-slide { from { translate: var(--vt-slide) 0; } to { translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 0s !important; animation-delay: 0s !important; }
 }
 
 /* private: atmosphere */

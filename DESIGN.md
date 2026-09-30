@@ -1,3 +1,22 @@
+# Design languages
+
+Two design languages implement [themes/contract.json](themes/contract.json). **Dusk is active**; Blueprint stays switchable with `pnpm theme:use blueprint` ([docs/theming.md](docs/theming.md)). Both render the same blocks ([ADR 0010](docs/decisions/0010-block-library.md)).
+
+## Dusk (active)
+
+Subtle dark, calm, crisp. Dark is the default; light stays on the toggle ([ADR 0011](docs/decisions/0011-dusk-theme.md)). Fidelity target: [design/directions/round-8/](design/directions/round-8/README.md). Implemented in `themes/dusk/`.
+
+- **Color, dark:** canvas `#0F1012`, card `#16181B` (raised `#1B1D21`), hairline `rgba(255,255,255,.07)`, Ink `#ECEDEE`, Ink 2 `#A6A9AF`, Ink 3 `#858990`, accent pale amber `#E8B270` on `#1A1206` accent ink.
+- **Color, light:** canvas `#F6F6F5`, card `#FFFFFF`, hairline `rgba(17,18,20,.08)`, Ink `#111214`, Ink 2 `#55585E`, Ink 3 `#6A6D73`, accent `#9A5B12` on white accent ink.
+- **One accent.** Amber marks the primary action, links on hover, the active dot and focus. Never on large fills beyond buttons.
+- **Type:** Geist only. Display 600 `clamp(2.5rem, 5vw, 3.75rem)`, tracking `-0.035em`, the `<em>` part in Ink 2 on its own line. H2 600 `clamp(1.75rem, 3vw, 2.25rem)`. H3 500 `1.125rem`. Body 400 `1rem` at 1.65. Small `0.875rem` Ink 2. Labels in sentence case, `0.8125rem`, Ink 3. Tabular numbers for dates and metrics. Banned: Inter, serif, mono, handwriting, all caps headings.
+- **Shape:** cards 16px, sheets 20px, frames 20px with a 6px inset, pills fully round, inline company pills 8px.
+- **Surfaces:** flat cards with a 1px hairline and a soft low shadow; no glass on content. The nav and sheets are near-opaque with a light blur so text stays legible over media. The only atmosphere is a faint top vignette.
+- **Motion:** quicker and calm. Rise 0.8s, 12px, 4px blur, stagger 0.06s. Press scale 0.97. Sheets on a stiff spring (380 / 36). Route changes: nav stays put, a case cover morphs into its header, forward and back slide 48px. Everything collapses under reduced motion.
+- **Checklist before calling Dusk UI done:** both modes pass axe; no text below 4.5:1 (Ink 3 included, on cards too); the nav, command menu and sheets work by keyboard alone; `/kit` shows every block and state; `pnpm shots` matches round 8 in spacing and hierarchy.
+
+---
+
 # Design System: Blueprint (v2)
 
 **Skills:**

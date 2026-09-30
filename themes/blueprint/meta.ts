@@ -3,6 +3,7 @@ import type { ThemeMeta } from "../contract";
 /** Plain values for places that cannot read CSS variables: browser chrome and OG images. */
 export const meta = {
   name: "Blueprint",
+  defaultMode: "system",
   themeColor: { light: "#F5F7FB", dark: "#080C17" },
   og: {
     canvas: "#F5F7FB",
