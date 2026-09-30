@@ -2,6 +2,7 @@ import { Contact } from "@/components/site/Contact";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
 import { suitFor, visibleCards } from "@/lib/blocks";
+import { AboutTeaser } from "./AboutTeaser";
 import { CardHand } from "./CardHand";
 import { IntroHero } from "./IntroHero";
 import { LetterCard } from "./LetterCard";
@@ -18,7 +19,18 @@ export function HomeBlocks({ content }: { content: Site }) {
   return (
     <>
       <IntroHero hero={content.hero} avatar={content.avatar} />
-      <CardHand cards={visibleCards(content, projects.length > 0)} note={content.handNote} deck={content.deck} />
+      <CardHand
+        cards={visibleCards(content, projects.length > 0)}
+        note={content.handNote}
+        deck={content.deck}
+        panels={{
+          about: <AboutTeaser about={content.about} id="card-about" suit={suitFor(content, "about")} />,
+          work: <WorkTimeline intro={content.work} projects={projects} id="card-work" suit={suitFor(content, "work")} />,
+          showcase: <Showcase showcase={content.showcase} id="card-side-projects" suit={suitFor(content, "showcase")} />,
+          teaching: <Teaching teaching={content.teaching} id="card-teaching" suit={suitFor(content, "teaching")} />,
+          outside: <OutsideWork outside={content.outside} id="card-my-world" suit={suitFor(content, "outside")} />,
+        }}
+      />
       <Statement statement={content.statement} />
       <WorkTimeline intro={content.work} projects={projects} suit={suitFor(content, "work")} />
       <Showcase showcase={content.showcase} id="side-projects" suit={suitFor(content, "showcase")} />

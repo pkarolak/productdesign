@@ -51,10 +51,22 @@ function Cover({
   );
 }
 
-function Detail({ item, suit, open, onClose }: { item: ShowcaseItem; suit: SuitName; open: boolean; onClose: () => void }) {
-  const titleId = `showcase-${item.id}-title`;
+function Detail({
+  item,
+  scope,
+  suit,
+  open,
+  onClose,
+}: {
+  item: ShowcaseItem;
+  scope: string;
+  suit: SuitName;
+  open: boolean;
+  onClose: () => void;
+}) {
+  const titleId = `${scope}-${item.id}-title`;
   return (
-    <Modal open={open} onClose={onClose} labelledBy={titleId} layoutId={`showcase-${item.id}`}>
+    <Modal open={open} onClose={onClose} labelledBy={titleId} layoutId={`${scope}-${item.id}`}>
       <Cover
         item={item}
         suit={suit}
@@ -109,7 +121,7 @@ export function Showcase({
         {showcase.items.map((item, i) => (
           <Rise as="li" key={item.id} i={i}>
             <m.div
-              layoutId={`showcase-${item.id}`}
+              layoutId={`${id}-${item.id}`}
               transition={motion.sheet}
               style={{ borderRadius: "var(--r-card)" }}
               className="card h-full overflow-hidden hover:surface-deep"
@@ -144,7 +156,7 @@ export function Showcase({
           </Rise>
         ))}
       </ul>
-      {shown && <Detail key={shown.id} item={shown} suit={suitOf(shownIndex)} open={open} onClose={() => setOpen(false)} />}
+      {shown && <Detail key={shown.id} item={shown} scope={id} suit={suitOf(shownIndex)} open={open} onClose={() => setOpen(false)} />}
     </section>
   );
 }

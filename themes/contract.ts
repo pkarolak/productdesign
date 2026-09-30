@@ -28,6 +28,8 @@ export interface MotionTokens {
   sheet: { type: "spring"; stiffness: number; damping: number; mass: number };
   /** The card hand spreading out of a stack: spring, pause before the spread and delay between cards, in seconds. */
   deal: { type: "spring"; stiffness: number; damping: number; mass: number; hold: number; stagger: number };
+  /** A picked card flipping and growing to fill the screen: durations in seconds and the flip's easing. */
+  zoom: { open: number; close: number; flip: Easing };
 }
 
 export const iconNames = [

@@ -4,12 +4,12 @@ import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
 
 /** Teaching roles with the topics covered. Renders nothing while empty. */
-export function Teaching({ teaching, suit }: { teaching?: TeachingData; suit?: Suit }) {
+export function Teaching({ teaching, suit, id = "teaching" }: { teaching?: TeachingData; suit?: Suit; id?: string }) {
   if (!teaching?.items.length) return null;
   const { items } = teaching;
   return (
-    <section id="teaching" aria-labelledby="teaching-title" className="container-page section-y scroll-mt-(--nav-clear)">
-      <BlockHeader id="teaching-title" title={teaching.title} note={teaching.note} suit={suit} />
+    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
+      <BlockHeader id={`${id}-title`} title={teaching.title} note={teaching.note} suit={suit} />
       <ul className={cn("grid gap-3 md:gap-4", items.length > 1 && "md:grid-cols-2")}>
         {items.map((t, i) => (
           <Rise as="li" key={t.place} i={i} className="card flex flex-col rounded-card p-6 md:p-7">

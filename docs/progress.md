@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: picking a card opens it
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** clicking or tapping a card lifts it from the fan, flips it over while it travels to the centre as a big card, then widens it to almost the whole screen (padding, rounded corners, a nine-slice fileteado frame), and the section appears on it ([ADR 0017](decisions/0017-card-pick-zoom.md)). Close, Escape or a click on the scrim fold it back into its place. `CardZoom`, a new `AboutTeaser` block for the Hi! card, `panels` on `CardHand`, `id` props on `WorkTimeline` and `Teaching`, and a new `motion.zoom` token in both themes.
+- **Verified:** lint, typecheck, theme:check (dusk and blueprint), build; open and close filmstrips on desktop dark and light and on mobile; focus on Close, then Tab into the content; case links navigate from inside the card and leave scrolling unlocked; modifier clicks still follow links; reduced motion; axe zero violations with the card open.
+
 ## 2026-09-30: a quieter deck in fileteado inks
 
 - **Agent:** Cursor agent (Claude)

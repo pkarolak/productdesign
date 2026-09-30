@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
 export type TransitionType = "nav-forward" | "nav-back";
 
@@ -20,7 +20,7 @@ export function SmartLink({
   className?: string;
   children: ReactNode;
   transition?: TransitionType;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
   "aria-label"?: string;

@@ -60,14 +60,24 @@ function Row({ project, i }: { project: Project; i: number }) {
 }
 
 /** Cases grouped by year, newest first, each row opening the case with a cover morph. */
-export function WorkTimeline({ intro, projects, suit }: { intro: WorkIntro; projects: Project[]; suit?: Suit }) {
+export function WorkTimeline({
+  intro,
+  projects,
+  suit,
+  id = "work",
+}: {
+  intro: WorkIntro;
+  projects: Project[];
+  suit?: Suit;
+  id?: string;
+}) {
   if (!projects.length) return null;
   const years = [...new Set(projects.map((p) => p.year))].sort((a, b) => b - a);
   const locked = projects.filter((p) => p.access === "protected").length;
   return (
-    <section id="work" aria-labelledby="work-title" className="container-page section-y">
+    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y">
       <BlockHeader
-        id="work-title"
+        id={`${id}-title`}
         title={intro.title}
         suit={suit}
         note={

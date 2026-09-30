@@ -1,12 +1,13 @@
 "use client";
 
 import { motion as m, useInView, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
+import { CardZoom, type CardRect } from "./CardZoom";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { FiletePip, JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
-import type { Deck, HandCard, Suit as SuitName } from "@/content/schema";
+import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 
@@ -45,39 +46,41 @@ function Corner({ suit, flip = false, framed }: { suit: SuitName; flip?: boolean
 }
 
 function Art({ art }: { art: Deck["face"] }) {
-  return <Picture src={art.src} srcDark={art.srcDark} alt="" sizes="(min-width: 1280px) 212px, 220px" dim={false} className="object-fill" />;
+  return (
+    <Picture src={art.src} srcDark={art.srcDark} alt="" sizes="(min-width: 1280px) 212px, 220px" dim={false} className="object-fill" />
+  );
 }
 
 function Card({
   card,
   deck,
   className,
+  still,
+  onPick,
   onFocus,
   onBlur,
 }: {
   card: HandCard;
   deck?: Deck;
   className?: string;
+  /** A picture of the card, not a link: the copy that flips over when the card is picked. */
+  still?: boolean;
+  onPick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }) {
   const pip = "shrink-0 transition-transform duration-(--t-hover) ease-slow group-hover/card:scale-110 group-focus-visible/card:scale-110";
   const joker = card.suit === "joker";
   const framed = Boolean(deck);
-  return (
-    <SmartLink
-      href={card.href}
-      transition={card.href.startsWith("/") ? "nav-forward" : undefined}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      className={cn(
-        "focus-ring group/card playing-card relative flex flex-col items-center overflow-hidden rounded-inset text-center backface-hidden",
-        framed && joker ? "justify-between" : "justify-center",
-        framed ? "px-[13%] py-[16%]" : "px-8 py-14",
-        framed && joker && "px-[16%] pt-[8%] pb-[6%]",
-        className,
-      )}
-    >
+  const classes = cn(
+    "focus-ring group/card playing-card relative flex flex-col items-center overflow-hidden rounded-inset text-center backface-hidden",
+    framed && joker ? "justify-between" : "justify-center",
+    framed ? "px-[13%] py-[16%]" : "px-8 py-14",
+    framed && joker && "px-[16%] pt-[8%] pb-[6%]",
+    className,
+  );
+  const face = (
+    <>
       {deck && <Art art={joker ? deck.joker : deck.face} />}
       <Corner suit={card.suit} framed={framed} />
       {framed && joker ? (
@@ -113,6 +116,19 @@ function Card({
         </>
       )}
       <Corner suit={card.suit} framed={framed} flip />
+    </>
+  );
+  if (still) return <div className={classes}>{face}</div>;
+  return (
+    <SmartLink
+      href={card.href}
+      transition={card.href.startsWith("/") ? "nav-forward" : undefined}
+      onClick={onPick}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      className={classes}
+    >
+      {face}
     </SmartLink>
   );
 }
@@ -209,8 +225,21 @@ function useDeal(list: RefObject<HTMLUListElement | null>, count: number, anchor
  * Section cards held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
  * while its neighbours make room. Narrow screens get a plain swipe row.
  */
-export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: string; deck?: Deck }) {
+export function CardHand({
+  cards,
+  note,
+  deck,
+  panels = {},
+}: {
+  cards: HandCard[];
+  note?: string;
+  deck?: Deck;
+  /** What each card opens into when picked; cards without a panel follow their link. */
+  panels?: Partial<Record<HandTarget, ReactNode>>;
+}) {
   const [hot, setHot] = useState<number | null>(null);
+  const [picked, setPicked] = useState<{ index: number; from: CardRect } | null>(null);
+  const [open, setOpen] = useState(false);
   const fanList = useRef<HTMLUListElement>(null);
   const rowList = useRef<HTMLUListElement>(null);
   const fan = useDeal(fanList, cards.length, "middle");
@@ -220,6 +249,18 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
   const spread = cards.length > 3 ? 7 : 9;
   const dealt = fan.phase !== "stacked" || row.phase !== "stacked";
   const dealTime = motion.deal.stagger * cards.length + 0.5;
+  const pick = (i: number, rotate: number, scale: number) => (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!panels[cards[i].target] || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const width = el.offsetWidth * scale;
+    const height = el.offsetHeight * scale;
+    const from = { left: r.left + r.width / 2 - width / 2, top: r.top + r.height / 2 - height / 2, width, height, rotate };
+    setHot(null);
+    setPicked({ index: i, from });
+    setOpen(true);
+  };
   const dealing = (phase: Phase, i: number) =>
     phase === "stacked"
       ? { duration: 0 }
@@ -241,7 +282,13 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
           const shift = !settled || hot === null || lifted ? 0 : (i < hot ? -1 : 1) * 30;
           const stacked = fan.phase === "stacked";
           return (
-            <Rise as="li" key={card.href} i={2} className="-ml-9 first:ml-0" style={{ zIndex: lifted ? 30 : 10 + i }}>
+            <Rise
+              as="li"
+              key={card.href}
+              i={2}
+              className={cn("-ml-9 first:ml-0", picked?.index === i && "invisible")}
+              style={{ zIndex: lifted ? 30 : 10 + i }}
+            >
               <m.div
                 onPointerEnter={() => setHot(i)}
                 initial={false}
@@ -263,6 +310,7 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
                   <Card
                     card={card}
                     deck={deck}
+                    onPick={pick(i, lifted ? 0 : d * spread, lifted ? 1.05 : 1)}
                     onFocus={() => setHot(i)}
                     onBlur={() => setHot(null)}
                     className="aspect-[5/7] w-[172px] xl:w-[212px]"
@@ -279,7 +327,7 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
         className="relative -mx-(--gutter) flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-(--gutter) px-(--gutter) pt-2 pb-4 [scrollbar-width:none] lg:hidden"
       >
         {cards.map((card, i) => (
-          <Rise as="li" key={card.href} i={2} className="shrink-0 snap-start">
+          <Rise as="li" key={card.href} i={2} className={cn("shrink-0 snap-start", picked?.index === i && "invisible")}>
             <m.div
               initial={false}
               animate={
@@ -291,7 +339,12 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
               className="perspective-[1400px]"
             >
               <Flip down={row.phase === "stacked"} delay={i * motion.deal.stagger + 0.1} back={deck?.back}>
-                <Card card={card} deck={deck} className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]" />
+                <Card
+                  card={card}
+                  deck={deck}
+                  onPick={pick(i, 0, 1)}
+                  className="press aspect-[5/7] w-[52vw] max-w-[220px] sm:w-[200px]"
+                />
               </Flip>
             </m.div>
           </Rise>
@@ -308,6 +361,20 @@ export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: stri
           <DoodleArrow play={dealt} after={dealTime} className="-mb-1 h-14 w-16 shrink-0 text-accent lg:h-22 lg:w-24" />
           <p className="type-hand -rotate-3 pb-1 lg:pb-2 lg:text-[2rem]">{note}</p>
         </m.div>
+      )}
+
+      {picked && (
+        <CardZoom
+          from={picked.from}
+          open={open}
+          title={cards[picked.index].title}
+          deck={deck}
+          front={<Card card={cards[picked.index]} deck={deck} still className="size-full" />}
+          onClose={() => setOpen(false)}
+          onClosed={() => setPicked(null)}
+        >
+          {panels[cards[picked.index].target]}
+        </CardZoom>
       )}
     </nav>
   );
