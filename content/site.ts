@@ -45,11 +45,11 @@ export const site = siteSchema.parse({
     ],
     intro: [
       {
-        when: "By day",
+        when: "Day",
         icon: "sun",
-        parts: ["Shaping enterprise-grade experiences at", { pill: "Miro", href: "https://miro.com", logo: "/logos/miro.png" }],
+        parts: ["Shaping enterprise-grade experiences at", { pill: "Miro", href: "https://miro.com", logo: "/logos/miro.png" }, ","],
         note: [
-          "Before that",
+          "before that at",
           { pill: "Egnyte", href: "https://www.egnyte.com", logo: "/logos/egnyte.png" },
           "and",
           { pill: "Allegro", href: "https://allegro.pl", logo: "/logos/allegro.png" },
@@ -60,7 +60,7 @@ export const site = siteSchema.parse({
         icon: "sunset",
         parts: ["Running design at", { pill: "CoNaDzielni.pl", href: "https://conadzielni.pl", logo: "/logos/conadzielni.png" }],
       },
-      { when: "At night", icon: "moon", parts: ["Behind the decks at milongas"] },
+      { when: "Night", icon: "moon", parts: ["Behind the decks at milongas, from the first tanda to the last"] },
     ],
     headline: "I shape *enterprise-grade* experiences at Miro.",
   },

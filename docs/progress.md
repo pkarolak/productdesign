@@ -34,6 +34,15 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-09-30: the intro as a day cycle
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - The heavy three-row schedule became `DayCycle` ([ADR 0024](decisions/0024-day-cycle-intro.md)). A pill switch (Day, After hours, Night) shows one line at a time. It plays the day through once on first view and settles on Day. Hover or focus pauses it, a pick stops it, and reduced motion keeps it still.
+  - Company links are frameless: logo, name, faint underline. `Parts` moved from `IntroHero` into `DayCycle`.
+  - Content: the switch labels are Day, After hours and Night. The Day line reads "at Miro, before that at Egnyte and Allegro". The Night line gains "from the first tanda to the last".
+- **Verified:** lint, typecheck, theme:check, build; hero screenshots at 1440 in dark and light, 1024 and iPhone 13; the cycle advances and settles on Day, and a tap stops it; axe over the fully scrolled page in dark and light, zero violations.
+
 ## 2026-09-30: new photo, clearer dictionary terms
 
 - **Agent:** Cursor agent (Claude)
