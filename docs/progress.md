@@ -7,7 +7,7 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
 - [x] `direction-concepts`: 2 reference images per style direction in `design/directions/`
-- [ ] `direction-lock`: user picks, `DESIGN.md` + ADR 0002
+- [x] `direction-lock`: user picks, `DESIGN.md` + ADR 0002
 - [ ] `section-refs`: remaining section references for the chosen direction in `design/refs/`
 - [ ] `scaffold`: Next.js + Tailwind v4 + Motion + Phosphor + zod, tokens from `DESIGN.md`, Vercel import
 - [ ] `content-model`: zod schema with budgets, `site.ts`, 4 placeholder projects, ADR 0003
@@ -22,6 +22,23 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 - [ ] `docs-final`: architecture, content guide, operations, ADR 0005, docs check, handoff entry
 
 ---
+
+## 2026-09-30: direction-lock
+
+- **Agent:** Cursor agent (Claude)
+- **Todos:** `direction-lock`
+- **Done:**
+  - The user approved round 3 and picked **Sora**, then rejected the teal accent and asked for a modern, professional color that also works in dark mode.
+  - Picked **Blueprint Cobalt** (`#2F5BEA` light, `#7A9BFF` dark).
+  - Verified it in real CSS with the pill nav, the isometric plates, and the grid and glow, in both themes: `design/preview/accent.html` / `.png`.
+  - Wrote `DESIGN.md` (locked design system) and ADR 0002.
+  - **Scope change:** dark mode is now in (system default, plus a toggle in the nav, via `next-themes`). Removed it from out of scope in `docs/plan.md`.
+- **In progress:** nothing.
+- **Next:** `section-refs`.
+  - Generate references with the cobalt palette and the name Patryk Karolak.
+  - Cover: selected work (bento), approach, contact and footer, the locked case page, and About, in light mode; plus one dark-mode case page.
+  - Save them to `design/refs/`, then analyse them per `image-to-code` before `scaffold`.
+- **Open questions:** none.
 
 ## 2026-09-30: direction-concepts, round 3
 

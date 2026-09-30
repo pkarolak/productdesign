@@ -50,15 +50,16 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 - `design-taste-frontend`: before any UI work, and run its final pre-flight checklist before calling UI done.
 - `imagegen-frontend-web`, `image-to-code`: design references are generated as images first, one image per section, then analysed, then coded.
 - `stitch-design-taste`: for writing and updating `DESIGN.md`.
-- The skill for the chosen style direction, named in `DESIGN.md` and ADR 0002.
+- `high-end-visual-design`: the style direction skill for "Blueprint" (double-bezel frames, pill nav, motion), as named in `DESIGN.md` and ADR 0002.
 - `full-output-enforcement`: no stubs, no placeholder components, no truncated files.
 
 ## Hard rules
 
 - **Design:**
   - Read `DESIGN.md` before any UI work. If it does not exist yet, do not write UI.
-  - One theme, one accent and one radius system across the whole site. Use only `DESIGN.md` tokens, no free colors.
-  - Never use Inter.
+  - One accent (Blueprint Cobalt) and one radius system across the whole site. Use only `DESIGN.md` tokens, no free colors.
+  - Every component must work in both light and dark themes.
+  - Fonts are Sora for headings and Lato for everything else. Never Inter, never a serif or mono font.
 - **Copy:**
   - No em-dashes in UI copy.
   - Never frame site copy around career level, titles or job moves. The work speaks.
@@ -77,7 +78,7 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
 ```
 AGENTS.md            this file
 CLAUDE.md            pointer to this file
-DESIGN.md            locked design system (created in Phase 0)
+DESIGN.md            locked design system "Blueprint"; read before any UI work
 docs/                plan, progress, brief, decisions, architecture, guides
 design/directions/   Phase 0 style direction concepts
 design/refs/         section references for the chosen direction

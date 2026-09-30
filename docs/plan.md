@@ -15,6 +15,8 @@
 
 ## Phase 0: Style direction gate
 
+> **Locked 2026-09-30: "Blueprint".** It was reached in 3 rounds, plus a font pick (Sora with Lato) and an accent pick (Blueprint Cobalt, light and dark). See [DESIGN.md](../DESIGN.md) and [ADR 0002](decisions/0002-style-direction.md). The round 1 directions below are kept for history.
+
 Goal: choose a look from real visuals, not adjectives. No app code is written in this phase.
 
 **Process**
@@ -73,9 +75,10 @@ Goal: choose a look from real visuals, not adjectives. No app code is written in
 
 - **Framework:** Next.js latest stable via `create-next-app@latest`, App Router, React Server Components by default, TypeScript strict, pnpm.
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/postcss`), tokens as CSS variables generated from `DESIGN.md`.
-- **Motion:** `motion/react` in isolated `'use client'` leaf components. `gsap` + `@gsap/react` are added only if direction C is picked.
-- **Fonts:** `next/font`, local or Google-hosted per direction. Inter is never used.
-- **Icons:** `@phosphor-icons/react`, one weight globally.
+- **Motion:** `motion/react` in isolated `'use client'` leaf components. No GSAP.
+- **Fonts:** `next/font/google`, with Sora (500, 600) for headings and Lato (400, 700, 400 italic) for body. Inter is never used.
+- **Theming:** `next-themes` (`attribute="data-theme"`), light and dark following the system, with a toggle in the nav.
+- **Icons:** `@phosphor-icons/react`, regular weight.
 - **Content:** typed modules in `content/`, validated with `zod` at build time.
 - **Images:** `next/image` (AVIF/WebP), assets in `public/projects/<slug>/`.
 - **Rendering:** all routes static (`generateStaticParams` for cases).
@@ -394,7 +397,6 @@ The todo list from this plan is mirrored at the top as a checklist, so status is
 ## Out of scope (v1)
 
 - CMS, MDX or blog
-- Light/dark toggle (the chosen direction defines one theme)
 - Per-person passwords, accounts or access analytics (one shared password in v1)
 - Contact form backend
 - Multi-language
