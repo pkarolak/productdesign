@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: no shaded lettering
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Removed every decorative text shadow ([ADR 0029](decisions/0029-no-lettering-shade.md)): `filete-shade` is gone from both themes and the contract, from section headings, the About teaser headline, card titles, tooltip terms and "gotan soul". `hero.shade` is removed from the schema and content. The `Filete` hairline stays.
+- **Verified:** lint, typecheck, `theme:check` under both themes, build, home hero and hand in dark and light.
+
 ## 2026-10-01: cut-out photo on the face card
 
 - **Agent:** Cursor agent (Claude)

@@ -30,7 +30,7 @@ export function BlockHeader({
           {label}
         </Rise>
       )}
-      <Rise as="h2" id={id} i={1} className="type-h2 filete-shade flex items-center gap-3 text-ink">
+      <Rise as="h2" id={id} i={1} className="type-h2 flex items-center gap-3 text-ink">
         {suit && <Suit suit={suit} className={cn("size-[0.8em] shrink-0", suitText[suit])} />}
         <span>
           <Emphasis text={title} />

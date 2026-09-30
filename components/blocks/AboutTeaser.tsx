@@ -13,7 +13,7 @@ export function AboutTeaser({ about, id, suit }: { about: Site["about"]; id: str
       <Rise as="p" className="type-label">
         About
       </Rise>
-      <Rise as="h2" id={`${id}-title`} i={1} className="type-display filete-shade mt-3 flex max-w-[18ch] items-start gap-4 text-ink">
+      <Rise as="h2" id={`${id}-title`} i={1} className="type-display mt-3 flex max-w-[18ch] items-start gap-4 text-ink">
         {suit && <Suit suit={suit} className={cn("mt-[0.2em] size-[0.6em] shrink-0", suitText[suit])} />}
         <span>
           <Emphasis text={about.headline} />

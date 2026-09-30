@@ -15,7 +15,6 @@ export const site = siteSchema.parse({
   hero: {
     greeting: "Hi, I'm Patryk.",
     tagline: "Product designer and sport freak with gotan soul.",
-    shade: "gotan soul",
     glossary: [
       {
         term: "Product designer",

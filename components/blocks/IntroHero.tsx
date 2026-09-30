@@ -31,23 +31,8 @@ function Terms({ text, glossary }: { text: string; glossary: Hero["glossary"] })
   });
 }
 
-/** The tagline, with its one shaded phrase painted like a sign. */
-function Tagline({ hero }: { hero: Hero }) {
-  const at = hero.shade ? hero.tagline.indexOf(hero.shade) : -1;
-  if (!hero.shade || at < 0) return <Terms text={hero.tagline} glossary={hero.glossary} />;
-  return (
-    <>
-      <Terms text={hero.tagline.slice(0, at)} glossary={hero.glossary} />
-      <span className="filete-shade">
-        <Terms text={hero.shade} glossary={hero.glossary} />
-      </span>
-      <Terms text={hero.tagline.slice(at + hero.shade.length)} glossary={hero.glossary} />
-    </>
-  );
-}
-
 /**
- * A small greeting over the tagline, one shaded phrase and a filete hairline, a day-cycle switch whose time of day
+ * A small greeting over the tagline and a filete hairline, a day-cycle switch whose time of day
  * sets the light behind the block, and the designer's face cards, one photo per time of day. The block centres on the same axis as the hand.
  */
 export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"] }) {
@@ -65,7 +50,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
       <div className="relative z-30">
         <Rise as="h1" id="intro-title" className="group/tagline type-display max-w-[15ch] text-ink">
           <span className="type-lede mb-4 block font-medium tracking-[-0.01em]">{hero.greeting}</span>
-          <Tagline hero={hero} />
+          <Terms text={hero.tagline} glossary={hero.glossary} />
         </Rise>
         <Rise i={1}>
           <Filete className="mt-5" />
