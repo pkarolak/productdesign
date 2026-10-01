@@ -155,9 +155,10 @@ Each placeholder case shows a different kind of senior signal:
 ## Page compositions
 
 > **Superseded for Home and About (round 8, [ADR 0010](decisions/0010-block-library.md)).** Home and About are now composed from the block library in `components/blocks/`:
-> - **Home:** IntroHero, CardHand (Hi!, Core work, Side projects, Teaching, My world; [ADR 0012](decisions/0012-card-hand-and-suits.md)), Statement, WorkTimeline (Core work), Showcase (Side projects), Teaching, OutsideWork (My world), WritingList, Testimonials, then LetterCard (id `contact`), or Contact when there is no letter.
+> - **Home (since the "Clear IA and card nav" plan, [ADR 0031](decisions/0031-chapters-and-names.md), [ADR 0032](decisions/0032-card-led-page-nav.md)):** IntroHero, CardHand as the table of contents, then five chapters, one per card: Statement ("The short version"), WorkTimeline ("The big ones", 3 featured, the rest on `/work`), Showcase ("Side quests"), Teaching ("Office hours"), OutsideWork ("Off the clock"). Then Testimonials ("Word of mouth"), LetterCard (id `letter`) and ContactForm ("Drop me a line", id `contact`, [ADR 0033](decisions/0033-contact-form.md)). A picked card flies to its chapter; HandDock keeps the hand docked at the bottom while reading. WritingList and the card zoom overlay are gone.
+> - **`/work`:** "All the big ones", every case, only while home cannot show them all.
 > - **About** no longer carries OutsideWork; it moved to Home as My world.
-> - **About:** StoryHeader with Education, Journey, Values, OutsideWork, Contact.
+> - **About ("The long version"):** StoryHeader with the optional CV button and Education ("School days"), Journey ("Where I've been"), Values ("How I work"), Contact.
 > - Every block renders nothing when its content is empty; `/kit` shows all of them filled from `content/kit.ts`. App primitives: Modal (sheet and palette), Toaster, CommandMenu (Cmd K), `press`, and view transitions between routes with a cover morph into the case header.
 > - The case, locked and 404 compositions below still apply. The original Home and About specs are kept for history.
 

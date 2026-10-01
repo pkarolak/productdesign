@@ -124,7 +124,7 @@ export function WorkTimeline({
       <div className="grid gap-8 md:gap-6">
         {years.map((year) => (
           <div key={year} className="grid gap-3 md:grid-cols-[112px_minmax(0,1fr)] md:gap-6">
-            <Rise as="h3" className="type-h3 pt-1 text-ink-3 tabular-nums md:pt-4">
+            <Rise as={header ? "h3" : "h2"} className="type-h3 pt-1 text-ink-3 tabular-nums md:pt-4">
               {year}
             </Rise>
             <ul className="grid gap-3">

@@ -34,6 +34,13 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: checks and docs for the clear IA (`verify-docs`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Last todo of the plan "Clear IA and card nav". Lint, typecheck and `theme:check` pass under Dusk and Blueprint, `docs:check` passes and the production build is green. Axe (WCAG 2.2 AA plus best practice) is clean on `/`, `/about` and `/work` at 1440 and 390 in light and dark, after making the `/work` year headings `h2` under its `h1`. Playwright flows: under reduced motion a card jumps straight to `#office-hours`, with no flight. On a phone the second card in the swipe row flies to "The big ones", the dock names it, and the back button returns to the page without a hash. The flight, the dock and the form were checked in their own todos. `pnpm shots` re-run. Updated `DESIGN.md` (playing-card uses, motion), `docs/content-guide.md` (the chapter fields, `contactForm`, `resume`), `docs/plan.md` (Home, `/work` and About compositions) and `docs/architecture.md` (routes, contact anchor). ADR 0017 is marked superseded by 0032.
+- **Owner to do:** set up Resend ([operations](operations.md)), add a CV PDF and `site.resume` if wanted, and decide which three cases lead on home (`content/projects/index.ts`).
+- **Next:** `qa` and `docs-final` from the checklist.
+
 ## 2026-10-01: "Drop me a line" (`contact-form`)
 
 - **Agent:** Cursor agent (Claude)

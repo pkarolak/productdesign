@@ -1,6 +1,6 @@
 # 0017: Picking a card flips it open to its section
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR 0032](0032-card-led-page-nav.md)
 - **Date:** 2026-09-30
 - **Todo:** card hand follow-up (owner request)
 

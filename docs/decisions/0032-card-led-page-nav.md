@@ -1,6 +1,6 @@
 # 0032: A picked card flies to its chapter; the hand is the table of contents
 
-- **Status:** Accepted. Supersedes the card zoom overlay from ADR 0027.
+- **Status:** Accepted. Supersedes the card zoom overlay ([ADR 0017](0017-card-pick-zoom.md)).
 - **Date:** 2026-10-01
 - **Todo:** `card-flight`, `hand-dock` (plan "Clear IA and card nav")
 

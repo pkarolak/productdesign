@@ -15,7 +15,8 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 
 | Route | Rendering | Notes |
 | --- | --- | --- |
-| `/` | static | Blocks: intro hero, card hand, statement, core work, side projects, teaching, my world, writing, testimonials, letter. |
+| `/` | static | Blocks: intro hero, card hand, then the chapters (the short version, the big ones, side quests, office hours, off the clock), word of mouth, letter, contact form. The docked mini-hand and the card flight layer. |
+| `/work` | static | "All the big ones": every case's cover row. 404 while home shows them all. |
 | `/about` | static | Blocks: story with education, journey, values, contact. |
 | `/kit` | static, `noindex` | Every block and primitive, filled from `content/kit.ts`. Not linked and not in the sitemap. |
 | `/work/[slug]` | static (SSG) | Full case. For protected cases the proxy serves `/locked/[slug]` instead until unlocked. |
@@ -23,7 +24,7 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 | `/work/[slug]/opengraph-image`, `/opengraph-image` | static | Built with `next/og`, colors and font from `@theme/meta`. Public fields only. |
 | `/sitemap.xml`, `/robots.txt` | static | Robots disallows `/locked/` and `/media/protected/`. |
 
-The root layout renders `Atmosphere`, `Nav`, the page, `Footer`, the `CommandMenu` and the `Toaster` region. Each page renders its own contact block with id `contact` (Home: `LetterCard`; other pages: `Contact`), so every "Get in touch" link is `#contact`. Each page wraps its content in `PageTransition`, so links tagged `nav-forward` or `nav-back` slide, and a case cover morphs from the work list into the case header (`CoverMorph`, a shared `ViewTransition` name per slug). An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
+The root layout renders `Atmosphere`, `Nav`, the page, `Footer`, the `CommandMenu` and the `Toaster` region. Each page renders its own contact block with id `contact` (Home: `ContactForm`, or `LetterCard` without a form; other pages: `Contact`), so every "Say hi" link is `#contact`. The form posts to the `sendContact` Server Action in `app/actions/contact.ts`. Each page wraps its content in `PageTransition`, so links tagged `nav-forward` or `nav-back` slide, and a case cover morphs from the work list into the case header (`CoverMorph`, a shared `ViewTransition` name per slug). An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
 
 ## Gating flow
 
@@ -40,7 +41,7 @@ flowchart LR
 
 ## Components
 
-- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides cards whose target is empty and gives each block its card's suit. `CardHand` fans the section cards on wide screens ([ADR 0012](decisions/0012-card-hand-and-suits.md)), drawn as real playing cards ([ADR 0013](decisions/0013-real-playing-cards.md)).
+- `components/blocks/`: the block library ([ADR 0010](decisions/0010-block-library.md)). One block per file, each takes its content slice and returns `null` when empty. `HomeBlocks` and `AboutBlocks` are the page compositions; `lib/blocks.ts` hides cards whose target is empty and gives each block its card's suit. `CardHand` fans the chapter cards on wide screens, and a picked card flies to its chapter's emblem (`flight.tsx`, `ChapterHeader.tsx`, [ADR 0032](decisions/0032-card-led-page-nav.md)) ([ADR 0012](decisions/0012-card-hand-and-suits.md)), drawn as real playing cards ([ADR 0013](decisions/0013-real-playing-cards.md)).
 - `components/ui/`: primitives. `SmartLink` (anchor, external or app route with a transition type), `ArrowLink`, `Modal` (native `<dialog>`, sheet or palette placement, optional `layoutId` morph), `Panel` and `Frame` (surfaces, take a `rise` index), `Button` (`PrimaryLink`, `PrimaryButton`, both with a `compact` size; the only primary style), `Chip` (static status only), `Icon`, `MetricsPanel`, `Emphasis` (`*word*` becomes the heading's one emphasised word).
 - `components/motion/Rise.tsx`: the entry reveal, timings from `@theme/motion`. Clears its filter on completion so it never becomes a backdrop root.
 - `components/media/`: `Asset` renders any content asset by `kind`, `Picture` (light and dark sources, unoptimized for protected media), `Compare`, `Video`.
