@@ -12,7 +12,6 @@ import { Statement } from "./Statement";
 import { Teaching } from "./Teaching";
 import { Testimonials } from "./Testimonials";
 import { WorkTimeline } from "./WorkTimeline";
-import { WritingList } from "./WritingList";
 
 /** The home composition. /kit renders it from fuller content, so every block shows. */
 export function HomeBlocks({ content }: { content: Site }) {
@@ -32,11 +31,10 @@ export function HomeBlocks({ content }: { content: Site }) {
         }}
       />
       <Statement statement={content.statement} />
-      <WorkTimeline intro={content.work} projects={projects} suit={suitFor(content, "work")} />
-      <Showcase showcase={content.showcase} id="side-projects" suit={suitFor(content, "showcase")} />
-      <Teaching teaching={content.teaching} suit={suitFor(content, "teaching")} />
-      <OutsideWork outside={content.outside} id="my-world" suit={suitFor(content, "outside")} />
-      <WritingList writing={content.writing} />
+      <WorkTimeline intro={content.work} projects={projects} id="big-ones" suit={suitFor(content, "work")} />
+      <Showcase showcase={content.showcase} id="side-quests" suit={suitFor(content, "showcase")} />
+      <Teaching teaching={content.teaching} id="office-hours" suit={suitFor(content, "teaching")} />
+      <OutsideWork outside={content.outside} id="off-the-clock" suit={suitFor(content, "outside")} />
       <Testimonials testimonials={content.testimonials} />
       {content.letter ? (
         <LetterCard letter={content.letter} name={content.name} links={content.links} />

@@ -7,9 +7,9 @@ export function Statement({ statement }: { statement?: StatementData }) {
   if (!statement) return null;
   const [first, second] = statement.lines;
   return (
-    <section aria-labelledby="statement-title" className="container-page section-y">
+    <section id="short-version" aria-labelledby="statement-title" className="container-page section-y scroll-mt-(--nav-clear)">
       <Rise as="p" className="type-label mb-3">
-        {statement.label}
+        {statement.title}
       </Rise>
       <Rise as="h2" id="statement-title" i={1} className="type-h2 max-w-[24ch] text-ink">
         {first}

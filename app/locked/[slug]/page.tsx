@@ -39,7 +39,7 @@ export default async function LockedCase({ params }: PageProps<"/locked/[slug]">
           <div className="mx-auto max-w-[440px]">
             <Rise>
               <Link
-                href="/#work"
+                href="/#big-ones"
                 transitionTypes={["nav-back"]}
                 className="focus-ring type-small group/back inline-flex items-center gap-1.5 rounded-pill py-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
               >

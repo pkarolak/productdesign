@@ -28,10 +28,10 @@ export async function unlock(_: UnlockState, formData: FormData): Promise<Unlock
     path: "/",
     maxAge: ACCESS_MAX_AGE,
   });
-  redirect(protectedSlugs.includes(slug) ? `/work/${slug}` : "/#work");
+  redirect(protectedSlugs.includes(slug) ? `/work/${slug}` : "/#big-ones");
 }
 
 export async function lock() {
   (await cookies()).delete(ACCESS_COOKIE);
-  redirect("/#work");
+  redirect("/#big-ones");
 }

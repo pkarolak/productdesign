@@ -176,7 +176,8 @@ export const heroSchema = z.object({
     message: "Every glossary term must appear in the tagline.",
   });
 
-export const handTargets = ["about", "work", "showcase", "teaching", "outside", "writing", "contact"] as const;
+/** The home chapters a card can lead to, one per card. */
+export const handTargets = ["about", "work", "showcase", "teaching", "outside"] as const;
 
 /** Card suits: red hearts and diamonds, ink spades and clubs, as on any deck. */
 export const suits = ["heart", "spade", "diamond", "club", "joker"] as const;
@@ -190,18 +191,23 @@ export const handSchema = z
   .array(z.object({ title: words(3), text: words(8), href, target: z.enum(handTargets), suit: z.enum(suits) }))
   .max(5);
 
+/** How many items a chapter shows on home; the rest sit behind its `more` link. */
+const featured = z.number().int().min(1).max(6).default(3);
+
 export const statementSchema = z.object({
-  label: words(5),
+  title: words(5),
   lines: z.array(words(8)).min(1).max(2),
   text: words(32),
   cta: cta.optional(),
 });
 
-export const workIntroSchema = z.object({ title: words(5), note: words(10) });
+export const workIntroSchema = z.object({ title: words(5), note: words(10), featured, more: words(4) });
 
 export const showcaseSchema = z.object({
   title: words(6),
   note: words(20),
+  featured,
+  more: words(4),
   items: z
     .array(
       z.object({
@@ -213,21 +219,6 @@ export const showcaseSchema = z.object({
         image: image.optional(),
         detail: words(60),
         link: cta.optional(),
-      }),
-    )
-    .max(6),
-});
-
-export const writingSchema = z.object({
-  title: words(6),
-  note: words(20).optional(),
-  items: z
-    .array(
-      z.object({
-        title: words(12),
-        date: z.string().regex(/^\d{4}-\d{2}(-\d{2})?$/, "Use YYYY-MM or YYYY-MM-DD."),
-        href: z.url(),
-        source: z.string().min(2).optional(),
       }),
     )
     .max(6),
@@ -260,6 +251,14 @@ export const teachingSchema = z.object({
       }),
     )
     .max(3),
+});
+
+/** The home contact form's copy. */
+export const contactFormSchema = z.object({
+  title: words(5),
+  note: words(24),
+  submit: words(3),
+  sent: words(10),
 });
 
 export const educationSchema = z
@@ -314,16 +313,20 @@ export const siteSchema = z.object({
   statement: statementSchema.optional(),
   work: workIntroSchema,
   showcase: showcaseSchema.optional(),
-  writing: writingSchema.optional(),
   testimonials: testimonialsSchema.optional(),
   letter: letterSchema.optional(),
   teaching: teachingSchema.optional(),
   about: z.object({
+    /** The page title above the headline. */
+    title: words(4),
     headline: words(12),
     story: z.array(words(70)).min(1).max(3),
     portrait: image.optional(),
   }),
   education: educationSchema.default([]),
+  educationTitle: words(4).default("Education"),
+  /** A PDF under public/; the About page offers it only when set. */
+  resume: z.object({ src: z.string().regex(/^\/.+\.pdf$/, "Use a /path to a PDF."), label: words(4) }).optional(),
   journey: journeySchema.optional(),
   values: valuesSchema.optional(),
   outside: outsideSchema.optional(),
@@ -333,6 +336,7 @@ export const siteSchema = z.object({
     calendar: z.url().optional(),
   }),
   contact: z.object({ headline: words(10), text: words(24) }),
+  contactForm: contactFormSchema.optional(),
   footnote: words(16).optional(),
 });
 
@@ -348,9 +352,9 @@ export type Statement = z.infer<typeof statementSchema>;
 export type WorkIntro = z.infer<typeof workIntroSchema>;
 export type Showcase = z.infer<typeof showcaseSchema>;
 export type ShowcaseItem = Showcase["items"][number];
-export type Writing = z.infer<typeof writingSchema>;
 export type Testimonials = z.infer<typeof testimonialsSchema>;
 export type Letter = z.infer<typeof letterSchema>;
+export type ContactFormCopy = z.infer<typeof contactFormSchema>;
 export type Teaching = z.infer<typeof teachingSchema>;
 export type Education = z.infer<typeof educationSchema>;
 export type Journey = z.infer<typeof journeySchema>;

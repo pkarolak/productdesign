@@ -13,7 +13,6 @@ import { StoryHeader } from "@/components/blocks/StoryHeader";
 import { Testimonials } from "@/components/blocks/Testimonials";
 import { Values } from "@/components/blocks/Values";
 import { WorkTimeline } from "@/components/blocks/WorkTimeline";
-import { WritingList } from "@/components/blocks/WritingList";
 import { Primitives } from "@/components/kit/Primitives";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { Contact } from "@/components/site/Contact";
@@ -81,9 +80,6 @@ export default function Kit() {
         </Specimen>
         <Specimen name="Teaching">
           <Teaching teaching={kit.teaching} suit={suitFor(kit, "teaching")} />
-        </Specimen>
-        <Specimen name="WritingList">
-          <WritingList writing={kit.writing} />
         </Specimen>
         <Specimen name="Testimonials">
           <Testimonials testimonials={kit.testimonials} />

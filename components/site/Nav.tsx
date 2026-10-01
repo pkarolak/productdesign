@@ -13,7 +13,7 @@ import { openCommandMenu } from "./CommandMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { href: "/#work", label: "Work", match: (p: string) => p.startsWith("/work") || p.startsWith("/locked") },
+  { href: "/#big-ones", label: "Work", match: (p: string) => p.startsWith("/work") || p.startsWith("/locked") },
   { href: "/about", label: "About", match: (p: string) => p === "/about" },
 ];
 

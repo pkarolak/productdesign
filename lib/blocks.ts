@@ -8,8 +8,6 @@ export function visibleCards(site: Site, hasWork: boolean): HandCard[] {
     showcase: !!site.showcase?.items.length,
     teaching: !!site.teaching?.items.length,
     outside: !!site.outside?.items.length,
-    writing: !!site.writing?.items.length,
-    contact: true,
   };
   return site.hand.filter((c) => filled[c.target]);
 }

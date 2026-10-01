@@ -121,25 +121,29 @@ export const site = siteSchema.parse({
     back: { src: "/cards/back-clean-light.jpg", srcDark: "/cards/back-clean-dark.jpg" },
   },
   hand: [
-    { title: "Hi!", text: "Who I am and how I work.", href: "/about", target: "about", suit: "heart" },
-    { title: "Core work", text: "The biggest tools I shaped.", href: "#work", target: "work", suit: "spade" },
-    { title: "Side projects", text: "Tinier gigs, quick and fun.", href: "#side-projects", target: "showcase", suit: "diamond" },
-    { title: "Teaching", text: "Years as an academic tutor.", href: "#teaching", target: "teaching", suit: "club" },
-    { title: "My world", text: "Climbing, tango and the records.", href: "#my-world", target: "outside", suit: "joker" },
+    { title: "Hi!", text: "The short version of me.", href: "#short-version", target: "about", suit: "heart" },
+    { title: "The big ones", text: "Products people lean on daily.", href: "#big-ones", target: "work", suit: "spade" },
+    { title: "Side quests", text: "Small gigs, quick and fun.", href: "#side-quests", target: "showcase", suit: "diamond" },
+    { title: "Office hours", text: "A few years of teaching.", href: "#office-hours", target: "teaching", suit: "club" },
+    { title: "Off the clock", text: "Climbing, tango and the records.", href: "#off-the-clock", target: "outside", suit: "joker" },
   ],
   statement: {
-    label: "A bit about me",
+    title: "The short version",
     lines: ["Calm interfaces for complex work.", "Numbers first, pixels second."],
     text: "I work where products get complicated: money, freight and the systems that hold them together. I lead through prototypes, numbers and a lot of listening.",
-    cta: { label: "More about me", href: "/about" },
+    cta: { label: "The long version", href: "/about" },
   },
   work: {
-    title: "Core work",
-    note: "The biggest tools I shaped. Each reads in thirty seconds.",
+    title: "The big ones",
+    note: "Products people lean on every working day.",
+    featured: 3,
+    more: "All the big ones",
   },
   showcase: {
-    title: "Side projects",
-    note: "Tinier gigs for friends, festivals and hackathons. Tap one for the story.",
+    title: "Side quests",
+    note: "Small gigs for friends, festivals and hackathons. Tap one for the story.",
+    featured: 3,
+    more: "All side quests",
     items: [
       {
         id: "crux-booking",
@@ -168,8 +172,8 @@ export const site = siteSchema.parse({
     ],
   },
   teaching: {
-    title: "Teaching",
-    note: "Before and alongside product work, I taught interaction design to students.",
+    title: "Office hours",
+    note: "A few years of teaching interaction design.",
     items: [
       {
         place: "Vistula School of Interaction",
@@ -188,7 +192,7 @@ export const site = siteSchema.parse({
     ],
   },
   testimonials: {
-    title: "What it is like to work with me",
+    title: "Word of mouth",
     items: [
       {
         quote:
@@ -222,6 +226,7 @@ export const site = siteSchema.parse({
     signoff: "Patryk",
   },
   about: {
+    title: "The long version",
     headline: "Calm interfaces for *complex* work.",
     story: [
       "I am a product designer based in Warsaw. For twelve years I have worked where products get complicated: money, freight and the systems that hold them together.",
@@ -236,8 +241,9 @@ export const site = siteSchema.parse({
     { school: "Vistula School of Interaction", degree: "MSc, Interaction Design", years: "2011 to 2013" },
     { school: "Northgate Academy of Arts", degree: "BA, Graphic Design", years: "2008 to 2011" },
   ],
+  educationTitle: "School days",
   journey: {
-    title: "My journey",
+    title: "Where I've been",
     note: "Twelve years across studio, product and platform work.",
     roles: [
       {
@@ -285,7 +291,7 @@ export const site = siteSchema.parse({
     ],
   },
   values: {
-    title: "Values I work by",
+    title: "How I work",
     items: [
       {
         title: "Price the problem first",
@@ -305,7 +311,7 @@ export const site = siteSchema.parse({
     ],
   },
   outside: {
-    title: "My world",
+    title: "Off the clock",
     note: "What fills the hours away from the screen.",
     items: [
       {
@@ -330,6 +336,12 @@ export const site = siteSchema.parse({
   contact: {
     headline: "The full story is better *in person*.",
     text: "Every case here has a longer version with the messy middle. I am happy to walk you through it.",
+  },
+  contactForm: {
+    title: "Drop me a line",
+    note: "A question, a project or a plain hello. It lands straight in my inbox.",
+    submit: "Send it",
+    sent: "Got it. I will write back soon.",
   },
   footnote: "Template content: companies, people and numbers are fictional placeholders.",
 });

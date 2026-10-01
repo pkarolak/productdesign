@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: chapters and names (`ia-copy`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** First todo of the plan "Clear IA and card nav". The five cards now name the five home chapters: "The short version", "The big ones", "Side quests", "Office hours" and "Off the clock", with matching anchors. Testimonials became "Word of mouth". The schema gained `featured` and `more` on work and showcase, `about.title`, `educationTitle`, an optional `resume` and a `contactForm` copy block. Writing is gone from the schema, the kit and the home page. Links to `/#work` now go to `/#big-ones`. ADR 0031.
+- **Next:** `chapters`, the emblem card beside each chapter heading and the new home order.
+
 ## 2026-10-01: a closer face in the nav avatar
 
 - **Agent:** Cursor agent (Claude)

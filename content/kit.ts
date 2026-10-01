@@ -1,4 +1,4 @@
-import { showcaseSchema, writingSchema, type Site } from "./schema";
+import { showcaseSchema, type Site } from "./schema";
 import { site } from "./site";
 
 /**
@@ -8,8 +8,9 @@ import { site } from "./site";
 export const kit: Site = {
   ...site,
   showcase: showcaseSchema.parse({
-    title: "Some other things I do",
+    title: "Side quests",
     note: "Small tools and rituals I keep coming back to. Tap one to open it.",
+    more: "All side quests",
     items: [
       {
         id: "crit-cards",
@@ -39,15 +40,6 @@ export const kit: Site = {
         detail:
           "One hour, one sheet, no laptop. The goal is to write down what the product must never do before drawing what it should do.",
       },
-    ],
-  }),
-  writing: writingSchema.parse({
-    title: "Writing",
-    note: "Notes on systems, research and shipping.",
-    items: [
-      { title: "What a design council is for, and what it is not", date: "2026-06", href: `${site.url}/kit`, source: "Notes" },
-      { title: "Twenty-three fields we removed from a dispatch board", date: "2025-11", href: `${site.url}/kit`, source: "Notes" },
-      { title: "Pricing the problem before the pixels", date: "2025-03-14", href: `${site.url}/kit` },
     ],
   }),
 };
