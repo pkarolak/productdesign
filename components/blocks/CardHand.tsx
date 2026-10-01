@@ -6,16 +6,11 @@ import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { CardZoom, type CardRect } from "./CardZoom";
 import { SmartLink } from "@/components/ui/SmartLink";
-import { JokerEmblem, Suit, suitInk, suitText } from "@/components/ui/Suit";
+import { JokerEmblem, Suit, suitInk, suitText, suitTint } from "@/components/ui/Suit";
 import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { haptic } from "@/lib/haptic";
 import { motion } from "@theme/motion";
-
-export type Tint = "amber" | "rose" | "blue" | "green" | "violet";
-
-/** Each suit prints on its own wash of colour (`card-tint`). */
-export const suitTint: Record<SuitName, Tint> = { heart: "rose", diamond: "amber", spade: "blue", club: "green", joker: "violet" };
 
 export function Corner({ suit, rank = "A", flip = false }: { suit: SuitName; rank?: string; flip?: boolean }) {
   const joker = suit === "joker";

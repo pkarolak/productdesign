@@ -24,6 +24,11 @@ export const suitInk: Record<SuitName, string> = {
 /** Beside section headings the black suits take the page ink, so they follow the mode like the text. */
 export const suitText: Record<SuitName, string> = { ...suitInk, spade: "text-ink", club: "text-ink" };
 
+export type Tint = "amber" | "rose" | "blue" | "green" | "violet";
+
+/** Each suit prints on its own wash of colour (`card-tint`). */
+export const suitTint: Record<SuitName, Tint> = { heart: "rose", diamond: "amber", spade: "blue", club: "green", joker: "violet" };
+
 export function Suit({ suit, className }: { suit: SuitName; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden className={cn("size-4 fill-current", className)}>

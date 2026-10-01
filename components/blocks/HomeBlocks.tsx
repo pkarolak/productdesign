@@ -30,7 +30,7 @@ export function HomeBlocks({ content }: { content: Site }) {
           outside: <OutsideWork outside={content.outside} id="card-my-world" suit={suitFor(content, "outside")} />,
         }}
       />
-      <Statement statement={content.statement} />
+      <Statement statement={content.statement} suit={suitFor(content, "about")} />
       <WorkTimeline intro={content.work} projects={projects} id="big-ones" suit={suitFor(content, "work")} />
       <Showcase showcase={content.showcase} id="side-quests" suit={suitFor(content, "showcase")} />
       <Teaching teaching={content.teaching} id="office-hours" suit={suitFor(content, "teaching")} />

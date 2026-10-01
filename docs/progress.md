@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: chapter emblems (`chapters`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Suited block headings now show the chapter's card in miniature (`ChapterEmblem` in `components/blocks/ChapterHeader.tsx`): a 40 by 56px `playing-card` with the suit's tint and glyph, tilted 5°, in place of the bare suit glyph. It listens for `hideEmblem` and `landEmblem`, so a card flying in from the hand can take its place and settle. "The short version" (the Statement block, `#short-version`) is now a chapter with the heart emblem, its two lines, two sentences and a link to "The long version". `suitTint` moved to `components/ui/Suit.tsx`. Chapter sections clear the nav when jumped to.
+- **Next:** `card-flight`.
+
 ## 2026-10-01: chapters and names (`ia-copy`)
 
 - **Agent:** Cursor agent (Claude)

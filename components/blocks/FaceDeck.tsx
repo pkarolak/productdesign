@@ -6,7 +6,8 @@ import { useState } from "react";
 import type { Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
-import { Corner, DECK_ORIGIN, suitTint } from "./CardHand";
+import { suitTint } from "@/components/ui/Suit";
+import { Corner, DECK_ORIGIN } from "./CardHand";
 import { setDaytime, useDaytime, type Daytime } from "./daytime";
 
 export type Face = { time: Daytime; when: string; src: string; cutout?: string; alt: string };
