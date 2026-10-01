@@ -18,7 +18,7 @@ export function LetterCard({
 }) {
   if (!letter) return null;
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
+    <section data-dock-hide id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
       <Rise as="article" className="card mx-auto max-w-[720px] rounded-card p-7 md:p-12">
         <h2 id={`${id}-title`} className="type-h3 text-ink">
           {letter.salutation}

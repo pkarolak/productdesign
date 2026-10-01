@@ -55,7 +55,7 @@ export function ChapterEmblem({ suit, className }: { suit: SuitName; className?:
     >
       <span data-tint={suitTint[suit]} className="card-tint" />
       {suit === "joker" ? (
-        <JokerEmblem className="relative size-6" />
+        <JokerEmblem className="relative size-6!" />
       ) : (
         <Suit suit={suit} className={cn("relative size-5", suitInk[suit])} />
       )}

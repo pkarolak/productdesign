@@ -12,7 +12,7 @@ export function Contact({ site }: { site: Site }) {
     ...(site.links.calendar ? [{ href: site.links.calendar, label: "Book 30 minutes" }] : []),
   ];
   return (
-    <section id="contact" aria-labelledby="contact-title" className="container-page relative z-10 pb-(--section-y)">
+    <section data-dock-hide id="contact" aria-labelledby="contact-title" className="container-page relative z-10 pb-(--section-y)">
       <Panel rise={0} className="grid gap-12 p-8 md:p-14 lg:grid-cols-12 lg:items-end lg:gap-8 lg:p-16">
         <div className="lg:col-span-7">
           <h2 id="contact-title" className="type-h2 max-w-[16ch] text-ink">

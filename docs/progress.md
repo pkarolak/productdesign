@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: the docked mini-hand (`hand-dock`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `components/site/HandDock.tsx`: once the hero hand has scrolled away above the viewport, a `surface-strong` pill docks at the bottom centre with the five cards in miniature (28 by 40px, tinted, 44px tap targets). It is a scrollspy: the chapter whose top has passed 40% of the viewport is raised, tilted and named (`aria-current="location"`). Hovering or focusing the dock names every chapter on wide screens. A tap runs `goToChapter`, so the mini card flies to the emblem. The dock leaves while anything marked `data-dock-hide` (the letter, the contact block) or the footer is in view. Checked in Playwright at 1440 and 390: hidden at the top, shown with "The big ones" current, a click on the joker lands on `#off-the-clock`, and it is gone over the letter.
+- **Next:** `work-index`.
+
 ## 2026-10-01: picked cards fly to their chapter (`card-flight`)
 
 - **Agent:** Cursor agent (Claude)

@@ -1,4 +1,5 @@
 import { Contact } from "@/components/site/Contact";
+import { HandDock } from "@/components/site/HandDock";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
 import { suitFor, visibleCards } from "@/lib/blocks";
@@ -15,15 +16,12 @@ import { WorkTimeline } from "./WorkTimeline";
 
 /** The home composition. /kit renders it from fuller content, so every block shows. */
 export function HomeBlocks({ content }: { content: Site }) {
+  const cards = visibleCards(content, projects.length > 0);
   return (
     <>
       <FlightLayer />
       <IntroHero hero={content.hero} avatar={content.avatar} />
-      <CardHand
-        cards={visibleCards(content, projects.length > 0)}
-        note={content.handNote}
-        deck={content.deck}
-      />
+      <CardHand cards={cards} note={content.handNote} deck={content.deck} />
       <Statement statement={content.statement} suit={suitFor(content, "about")} />
       <WorkTimeline intro={content.work} projects={projects} id="big-ones" suit={suitFor(content, "work")} />
       <Showcase showcase={content.showcase} id="side-quests" suit={suitFor(content, "showcase")} />
@@ -35,6 +33,7 @@ export function HomeBlocks({ content }: { content: Site }) {
       ) : (
         <Contact site={content} />
       )}
+      <HandDock cards={cards} />
     </>
   );
 }
