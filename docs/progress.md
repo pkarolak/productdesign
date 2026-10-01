@@ -34,6 +34,11 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: no focus ring on a chapter heading after a jump
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** After a card or the dock jumps to a chapter, focus moves to its heading so screen readers announce it. Phones drew the browser's focus outline around the heading. `goToChapter` now turns the outline off on that heading, which is not interactive, and asks for `focusVisible: false`. Checked at 390 in Playwright: focus is on `side-quests-title` with `outline: none`.
+
 ## 2026-10-01: contact form removed
 
 - **Agent:** Cursor agent (Claude)

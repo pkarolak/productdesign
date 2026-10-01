@@ -62,7 +62,8 @@ export function goToChapter({
     if (window.location.hash !== href) history.pushState(null, "", href);
     if (heading) {
       heading.tabIndex = -1;
-      heading.focus({ preventScroll: true });
+      heading.style.outline = "none";
+      heading.focus({ preventScroll: true, focusVisible: false } as FocusOptions);
     }
     onDone?.();
   };
