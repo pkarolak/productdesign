@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { CardHand } from "@/components/blocks/CardHand";
+import { ContactForm } from "@/components/blocks/ContactForm";
 import { Education } from "@/components/blocks/Education";
 import { IntroHero } from "@/components/blocks/IntroHero";
 import { Journey } from "@/components/blocks/Journey";
@@ -86,6 +87,9 @@ export default function Kit() {
         </Specimen>
         <Specimen name="LetterCard" note="Closes the home page">
           <LetterCard letter={kit.letter} name={kit.name} links={kit.links} id="letter" />
+        </Specimen>
+        <Specimen name="ContactForm" note="After the letter on home; sends through Resend">
+          <ContactForm copy={kit.contactForm} links={kit.links} id="kit-contact-form" />
         </Specimen>
         <Specimen name="StoryHeader and Education" note="About opener">
           <StoryHeader about={kit.about}>

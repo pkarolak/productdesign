@@ -34,6 +34,13 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: "Drop me a line" (`contact-form`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** A contact form after the letter on home (`components/blocks/ContactForm.tsx`), sent by the `sendContact` Server Action (`app/actions/contact.ts`) through Resend's REST API. It validates with zod, has a honeypot and a 3-second minimum, keeps values on error, focuses the first invalid field and announces success with the Toaster. Copy email and LinkedIn sit underneath. When the form shows, the letter's anchor moves to `#letter` and the form takes `#contact`. `RESEND_API_KEY`, `CONTACT_TO` and the optional `CONTACT_FROM` are in `.env.example` (names only) and in `docs/operations.md` with the Resend and Firewall setup. Also on `/kit`. Checked in Playwright at 1440 dark and 390 light without Resend keys (the development dry run): three field errors, focus on the name field, then the toast and an empty form. ADR 0033.
+- **Owner to do:** create the Resend key, set the variables in Vercel and `.env.local`, and add the rate limit rule.
+- **Next:** `verify-docs`.
+
 ## 2026-10-01: About becomes "The long version" (`about-resume`)
 
 - **Agent:** Cursor agent (Claude)
