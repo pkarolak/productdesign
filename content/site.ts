@@ -337,11 +337,5 @@ export const site = siteSchema.parse({
     headline: "The full story is better *in person*.",
     text: "Every case here has a longer version with the messy middle. I am happy to walk you through it.",
   },
-  contactForm: {
-    title: "Drop me a line",
-    note: "A question, a project or a plain hello. It lands straight in my inbox.",
-    submit: "Send it",
-    sent: "Got it. I will write back soon.",
-  },
   footnote: "Template content: companies, people and numbers are fictional placeholders.",
 });

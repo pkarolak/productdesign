@@ -15,7 +15,7 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 
 | Route | Rendering | Notes |
 | --- | --- | --- |
-| `/` | static | Blocks: intro hero, card hand, then the chapters (the short version, the big ones, side quests, office hours, off the clock), word of mouth, letter, contact form. The docked mini-hand and the card flight layer. |
+| `/` | static | Blocks: intro hero, card hand, then the chapters (the short version, the big ones, side quests, office hours, off the clock), word of mouth, letter. The docked mini-hand and the card flight layer. |
 | `/work` | static | "All the big ones": every case's cover row. 404 while home shows them all. |
 | `/about` | static | Blocks: story with education, journey, values, contact. |
 | `/kit` | static, `noindex` | Every block and primitive, filled from `content/kit.ts`. Not linked and not in the sitemap. |
@@ -24,7 +24,7 @@ Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Motion, TypeScrip
 | `/work/[slug]/opengraph-image`, `/opengraph-image` | static | Built with `next/og`, colors and font from `@theme/meta`. Public fields only. |
 | `/sitemap.xml`, `/robots.txt` | static | Robots disallows `/locked/` and `/media/protected/`. |
 
-The root layout renders `Atmosphere`, `Nav`, the page, `Footer`, the `CommandMenu` and the `Toaster` region. Each page renders its own contact block with id `contact` (Home: `ContactForm`, or `LetterCard` without a form; other pages: `Contact`), so every "Say hi" link is `#contact`. The form posts to the `sendContact` Server Action in `app/actions/contact.ts`. Each page wraps its content in `PageTransition`, so links tagged `nav-forward` or `nav-back` slide, and a case cover morphs from the work list into the case header (`CoverMorph`, a shared `ViewTransition` name per slug). An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
+The root layout renders `Atmosphere`, `Nav`, the page, `Footer`, the `CommandMenu` and the `Toaster` region. Each page renders its own contact block with id `contact` (Home: `LetterCard`; other pages: `Contact`), so every "Say hi" link is `#contact`. Each page wraps its content in `PageTransition`, so links tagged `nav-forward` or `nav-back` slide, and a case cover morphs from the work list into the case header (`CoverMorph`, a shared `ViewTransition` name per slug). An inline script adds `js` to `<html>` before paint; without it, CSS shows every reveal immediately, so the site reads without JavaScript.
 
 ## Gating flow
 

@@ -253,14 +253,6 @@ export const teachingSchema = z.object({
     .max(3),
 });
 
-/** The home contact form's copy. */
-export const contactFormSchema = z.object({
-  title: words(5),
-  note: words(24),
-  submit: words(3),
-  sent: words(10),
-});
-
 export const educationSchema = z
   .array(z.object({ school: z.string().min(3), degree: words(6), years: z.string().min(4) }))
   .max(4);
@@ -336,7 +328,6 @@ export const siteSchema = z.object({
     calendar: z.url().optional(),
   }),
   contact: z.object({ headline: words(10), text: words(24) }),
-  contactForm: contactFormSchema.optional(),
   footnote: words(16).optional(),
 });
 
@@ -354,7 +345,6 @@ export type Showcase = z.infer<typeof showcaseSchema>;
 export type ShowcaseItem = Showcase["items"][number];
 export type Testimonials = z.infer<typeof testimonialsSchema>;
 export type Letter = z.infer<typeof letterSchema>;
-export type ContactFormCopy = z.infer<typeof contactFormSchema>;
 export type Teaching = z.infer<typeof teachingSchema>;
 export type Education = z.infer<typeof educationSchema>;
 export type Journey = z.infer<typeof journeySchema>;

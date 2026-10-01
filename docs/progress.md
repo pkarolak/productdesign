@@ -34,6 +34,11 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: contact form removed
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The owner found the form a stretch. Removed `components/blocks/ContactForm.tsx`, `app/actions/contact.ts`, `site.contactForm` and its schema, the `/kit` specimen, the Resend variables in `.env.example` and the Resend section in `docs/operations.md`. Home ends on the letter again, which is `#contact`, so "Say hi" lands there. ADR 0033 is marked withdrawn, and the plan, architecture, content guide, `DESIGN.md` and ADR 0031 no longer mention the form. Typecheck, lint, `docs:check` and the build pass.
+
 ## 2026-10-01: checks and docs for the clear IA (`verify-docs`)
 
 - **Agent:** Cursor agent (Claude)

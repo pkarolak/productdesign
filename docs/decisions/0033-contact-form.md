@@ -1,6 +1,6 @@
 # 0033: A real contact form, sent through Resend from a Server Action
 
-- **Status:** Accepted
+- **Status:** Withdrawn the same day. The owner found the form a stretch; the form, the Server Action, `site.contactForm` and the Resend variables were removed, and the letter is `#contact` again. Kept for history.
 - **Date:** 2026-10-01
 - **Todo:** `contact-form` (plan "Clear IA and card nav")
 

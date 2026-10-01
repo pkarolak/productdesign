@@ -4,7 +4,6 @@ import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
 import { suitFor, visibleCards } from "@/lib/blocks";
 import { CardHand } from "./CardHand";
-import { ContactForm } from "./ContactForm";
 import { FlightLayer } from "./flight";
 import { IntroHero } from "./IntroHero";
 import { LetterCard } from "./LetterCard";
@@ -29,14 +28,11 @@ export function HomeBlocks({ content }: { content: Site }) {
       <Teaching teaching={content.teaching} id="office-hours" suit={suitFor(content, "teaching")} />
       <OutsideWork outside={content.outside} id="off-the-clock" suit={suitFor(content, "outside")} />
       <Testimonials testimonials={content.testimonials} />
-      <LetterCard
-        letter={content.letter}
-        name={content.name}
-        links={content.links}
-        id={content.contactForm ? "letter" : "contact"}
-      />
-      <ContactForm copy={content.contactForm} links={content.links} />
-      {!content.letter && !content.contactForm && <Contact site={content} />}
+      {content.letter ? (
+        <LetterCard letter={content.letter} name={content.name} links={content.links} />
+      ) : (
+        <Contact site={content} />
+      )}
       <HandDock cards={cards} />
     </>
   );

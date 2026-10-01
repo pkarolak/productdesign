@@ -10,7 +10,7 @@ import { motion } from "@theme/motion";
 
 /** The hero hand; the dock shows once it has scrolled away above the viewport. */
 const HAND = 'nav[aria-label="Sections"]';
-/** Sections the dock must not cover: the letter, the form and the footer. */
+/** Sections the dock must not cover: the letter or contact block, and the footer. */
 const HIDE = "[data-dock-hide], footer";
 
 function Mini({ suit, className }: { suit: SuitName; className?: string }) {

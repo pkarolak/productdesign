@@ -20,7 +20,7 @@ The hand of five cards opened overlays with copies of the sections below them, s
   | Club | Office hours | `#office-hours` |
   | Joker | Off the clock | `#off-the-clock` |
 
-  After the chapters come unsuited sections: "Word of mouth" (testimonials), the "Dear future teammate," letter and the "Drop me a line" form.
+  After the chapters come unsuited sections: "Word of mouth" (testimonials), and the "Dear future teammate," letter, which carries the contact actions. A form after the letter was tried and dropped (ADR 0033).
 - **Featured limits.** `work.featured` and `showcase.featured` (default 3) cap how many items a chapter shows on home. The rest sit behind the chapter's `more` label ("All the big ones", "All side quests"), which only appears when there are more items than the limit.
 - **About is "The long version"**, with "Where I've been", "How I work", "School days" and an optional `resume` PDF ("Grab the CV").
 - **Writing is dropped**, from the schema and the blocks. Nothing was filled in.

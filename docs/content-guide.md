@@ -4,7 +4,7 @@ Everything a visitor reads lives in `content/`. The build validates it against [
 
 ## Files
 
-- `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, contact form, About story, education, journey, values, resume), links, contact copy, footnote.
+- `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, About story, education, journey, values, resume), links, contact copy, footnote.
 - `content/kit.ts`: fixtures for `/kit`, the live content plus the blocks the site leaves empty. Only `/kit` reads it.
 - `content/projects/<slug>.ts`: one file per case.
 - `content/projects/index.ts`: the order. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
@@ -28,8 +28,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `teaching` | up to 3, text 30, 4 topics of 4 words | "Office hours". Place, role, years, what you taught. |
 | `outside` | up to 3, text 40 | "Off the clock". Life outside work, briefly. |
 | `testimonials` | up to 4, quote 45 words | "Word of mouth". Real people only on a real site. |
-| `letter` | 1 to 3 paragraphs of 34 words | Carries "Book a call", copy email and LinkedIn. |
-| `contactForm` | title 5, note 24, submit 3, sent 10 | "Drop me a line", after the letter. `sent` is the success toast. Needs `RESEND_API_KEY` and `CONTACT_TO` ([operations](operations.md)). |
+| `letter` | 1 to 3 paragraphs of 34 words | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. |
 | `about.title`, `about.story` | title 4; 1 to 3 paragraphs of 70 words | The page label ("The long version"); the first paragraph reads as the lede. |
 | `educationTitle` | 4 words | The education heading ("School days"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |
