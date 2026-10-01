@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: a smoother sway
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The swipe row's shake became one elegant sway: a glide 44px left with a slight tilt from the bottom edge, an eased return with a 5px overshoot and a quiet settle (1.15s, ease in and out throughout, 45ms ripple between cards). `motion.shake` gained `rotate`; Blueprint's is slower (ADR 0030 amended).
+- **Verified:** lint, typecheck, `theme:check` under both themes, build; a frame trace on an iPhone 13 emulation shows one even curve out and back with no snap.
+
 ## 2026-10-01: a snappy shake when the row comes into view
 
 - **Agent:** Cursor agent (Claude)

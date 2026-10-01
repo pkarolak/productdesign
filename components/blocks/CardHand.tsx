@@ -416,8 +416,14 @@ export function CardHand({
           >
             <m.div
               initial={false}
-              animate={{ x: swipe.nudge ? motion.shake.x : 0 }}
-              transition={{ duration: motion.shake.duration, ease: motion.ease, delay: i * motion.shake.stagger }}
+              animate={swipe.nudge ? { x: motion.shake.x, rotate: motion.shake.rotate } : { x: 0, rotate: 0 }}
+              transition={{
+                duration: motion.shake.duration,
+                times: [0, 0.42, 0.78, 1],
+                ease: motion.zoom.flip,
+                delay: i * motion.shake.stagger,
+              }}
+              style={{ transformOrigin: "50% 100%" }}
             >
               <m.div
                 initial={false}
