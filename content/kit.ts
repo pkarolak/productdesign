@@ -40,6 +40,14 @@ export const kit: Site = {
         detail:
           "One hour, one sheet, no laptop. The goal is to write down what the product must never do before drawing what it should do.",
       },
+      {
+        id: "milonga-playlists",
+        kicker: "Side project",
+        title: "Milonga playlists",
+        text: "Tandas sorted by orchestra and mood, ready for a night behind the decks.",
+        detail:
+          "A shared sheet of tandas with their orchestra, year and energy. It keeps a night of tango music varied without losing the room.",
+      },
     ],
   }),
 };

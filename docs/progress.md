@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: "All the big ones" and "All side quests" (`work-index`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The home chapter "The big ones" shows the first `work.featured` (3) cases in content order and, when there are more, ends with "All the big ones" linking to the new `/work` index (`app/work/page.tsx`). The index lists every case with its cover only, as home does, so nothing protected leaks (checked: no `/media/protected` in its HTML). It returns 404 and stays out of the sitemap when every case fits on home. The locked-cases sentence is now `LockedNote`, shared by both. "Side quests" shows `showcase.featured` items, and when there are more, an "All side quests" button reveals the rest in place (there is no side-quest page). The kit's showcase has a fourth item to show it. Today's home hides "Accessible by default" (2021, the only public case) behind the index; reorder `content/projects/index.ts` to change which three lead.
+- **Next:** `about-resume`.
+
 ## 2026-10-01: the docked mini-hand (`hand-dock`)
 
 - **Agent:** Cursor agent (Claude)

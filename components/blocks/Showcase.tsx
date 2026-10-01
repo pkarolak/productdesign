@@ -95,7 +95,10 @@ function Detail({
   );
 }
 
-/** Small cards that expand into a sheet. Renders nothing while there are no items. */
+/**
+ * Small cards that expand into a sheet. Shows the first `featured` items, the rest behind a "more" button that
+ * reveals them in place. Renders nothing while there are no items.
+ */
 export function Showcase({
   showcase,
   id = "showcase",
@@ -108,7 +111,10 @@ export function Showcase({
 }) {
   const [open, setOpen] = useState(false);
   const [shownId, setShownId] = useState<string | null>(null);
+  const [everything, setEverything] = useState(false);
   if (!showcase?.items.length) return null;
+  const hidden = showcase.items.length - showcase.featured;
+  const items = everything || hidden <= 0 ? showcase.items : showcase.items.slice(0, showcase.featured);
   const start = suit ? suits.indexOf(suit) : 0;
   const suitOf = (i: number) => suits[(start + i) % suits.length];
   const shownIndex = showcase.items.findIndex((i) => i.id === shownId);
@@ -117,8 +123,8 @@ export function Showcase({
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
       <BlockHeader id={`${id}-title`} title={showcase.title} note={showcase.note} suit={suit} />
-      <ul className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
-        {showcase.items.map((item, i) => (
+      <ul id={`${id}-list`} className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+        {items.map((item, i) => (
           <Rise as="li" key={item.id} i={i}>
             <m.div
               layoutId={`${id}-${item.id}`}
@@ -156,6 +162,23 @@ export function Showcase({
           </Rise>
         ))}
       </ul>
+      {hidden > 0 && !everything && (
+        <Rise className="mt-6">
+          <button
+            type="button"
+            aria-controls={`${id}-list`}
+            aria-expanded={false}
+            onClick={() => setEverything(true)}
+            className="focus-ring group/al type-small inline-flex cursor-pointer items-center gap-1.5 rounded-pill py-1 text-accent"
+          >
+            {showcase.more}
+            <Icon
+              name="arrow-right"
+              className="size-4 rotate-90 transition-transform duration-(--t-hover-mid) ease-slow group-hover/al:translate-y-0.5"
+            />
+          </button>
+        </Rise>
+      )}
       {shown && <Detail key={shown.id} item={shown} scope={id} suit={suitOf(shownIndex)} open={open} onClose={() => setOpen(false)} />}
     </section>
   );

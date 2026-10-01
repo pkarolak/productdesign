@@ -3,11 +3,28 @@ import { assetImage } from "@/components/media/Asset";
 import { Picture } from "@/components/media/Picture";
 import { CoverMorph } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import type { Project, Suit, WorkIntro } from "@/content/schema";
 import { BlockHeader } from "./BlockHeader";
 
 const counts = ["None", "One", "Two", "Three", "All four", "All five", "All six"];
+
+/** "Three are password protected; ask me for access." Nothing when every case is public. */
+export function LockedNote({ projects }: { projects: Project[] }) {
+  const locked = projects.filter((p) => p.access === "protected").length;
+  if (!locked) return null;
+  return (
+    <>
+      {" "}
+      {counts[locked] ?? locked} {locked === 1 ? "is" : "are"} password protected;{" "}
+      <a href="#contact" className="focus-ring link rounded-pill">
+        ask me for access
+      </a>
+      .
+    </>
+  );
+}
 
 function Row({ project, i }: { project: Project; i: number }) {
   const image = assetImage(project.cover);
@@ -59,43 +76,51 @@ function Row({ project, i }: { project: Project; i: number }) {
   );
 }
 
-/** Cases grouped by year, newest first, each row opening the case with a cover morph. */
+/**
+ * Cases grouped by year, newest first, each row opening the case with a cover morph. Only covers show, which are
+ * public, so the list is safe for locked cases. With `featured`, it shows the first `intro.featured` cases and links
+ * to the full index when there are more.
+ */
 export function WorkTimeline({
   intro,
-  projects,
+  projects: all,
   suit,
   id = "work",
+  featured = false,
+  header = true,
 }: {
   intro: WorkIntro;
   projects: Project[];
   suit?: Suit;
   id?: string;
+  featured?: boolean;
+  /** Off where the page supplies its own heading. */
+  header?: boolean;
 }) {
-  if (!projects.length) return null;
+  if (!all.length) return null;
+  const projects = featured ? all.slice(0, intro.featured) : all;
+  const more = featured && all.length > projects.length;
   const years = [...new Set(projects.map((p) => p.year))].sort((a, b) => b - a);
-  const locked = projects.filter((p) => p.access === "protected").length;
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
-      <BlockHeader
-        id={`${id}-title`}
-        title={intro.title}
-        suit={suit}
-        note={
-          <>
-            {intro.note}
-            {locked > 0 && (
-              <>
-                {" "}
-                {counts[locked] ?? locked} {locked === 1 ? "is" : "are"} password protected;{" "}
-                <a href="#contact" className="focus-ring link rounded-pill">
-                  ask me for access
-                </a>
-                .
-              </>
-            )}
-          </>
-        }
-      />
+    <section
+      id={id}
+      aria-labelledby={header ? `${id}-title` : undefined}
+      aria-label={header ? undefined : intro.title}
+      className={header ? "container-page section-y scroll-mt-(--nav-clear)" : "container-page pb-(--section-y)"}
+    >
+      {header && (
+        <BlockHeader
+          id={`${id}-title`}
+          title={intro.title}
+          suit={suit}
+          note={
+            <>
+              {intro.note}
+              <LockedNote projects={projects} />
+            </>
+          }
+        />
+      )}
       <div className="grid gap-8 md:gap-6">
         {years.map((year) => (
           <div key={year} className="grid gap-3 md:grid-cols-[112px_minmax(0,1fr)] md:gap-6">
@@ -112,6 +137,13 @@ export function WorkTimeline({
           </div>
         ))}
       </div>
+      {more && (
+        <Rise className="mt-8 md:pl-[136px]">
+          <ArrowLink href="/work" transition="nav-forward">
+            {intro.more}
+          </ArrowLink>
+        </Rise>
+      )}
     </section>
   );
 }
