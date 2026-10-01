@@ -7,6 +7,7 @@ export const site = siteSchema.parse({
   avatar: {
     src: "/about/patryk-arms-crossed.jpg",
     cutout: "/about/patryk-arms-crossed-cutout.png",
+    face: "/about/patryk-face.jpg",
     alt: "Patryk Karolak smiling with his arms crossed, in a black T-shirt.",
   },
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://patrykkarolak.vercel.app",

@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: a closer face in the nav avatar
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The nav avatar squeezed the whole arms-crossed photo into 32px. A square face crop (`public/about/patryk-face.jpg`, 240px) is now set as the new optional `avatar.face`, which the nav uses in place of `src`.
+- **Verified:** lint, typecheck, build; nav close-up in dark mode.
+
 ## 2026-10-01: a smoother sway
 
 - **Agent:** Cursor agent (Claude)

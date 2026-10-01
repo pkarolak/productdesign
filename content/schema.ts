@@ -14,8 +14,11 @@ const image = z.object({
   alt: z.string().min(8),
 });
 
-/** A photo of the designer; `cutout` is the same shot as a transparent PNG with the background removed. */
-const portrait = image.extend({ cutout: z.string().startsWith("/").optional() });
+/**
+ * A photo of the designer; `cutout` is the same shot as a transparent PNG with the background removed, and `face`
+ * a square close-up of the face for small avatars.
+ */
+const portrait = image.extend({ cutout: z.string().startsWith("/").optional(), face: z.string().startsWith("/").optional() });
 
 const ratio = z.string().regex(/^\d+(\.\d+)?\/\d+(\.\d+)?$/).optional();
 
