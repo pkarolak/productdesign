@@ -2,8 +2,8 @@ import { Contact } from "@/components/site/Contact";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
 import { suitFor, visibleCards } from "@/lib/blocks";
-import { AboutTeaser } from "./AboutTeaser";
 import { CardHand } from "./CardHand";
+import { FlightLayer } from "./flight";
 import { IntroHero } from "./IntroHero";
 import { LetterCard } from "./LetterCard";
 import { OutsideWork } from "./OutsideWork";
@@ -17,18 +17,12 @@ import { WorkTimeline } from "./WorkTimeline";
 export function HomeBlocks({ content }: { content: Site }) {
   return (
     <>
+      <FlightLayer />
       <IntroHero hero={content.hero} avatar={content.avatar} />
       <CardHand
         cards={visibleCards(content, projects.length > 0)}
         note={content.handNote}
         deck={content.deck}
-        panels={{
-          about: <AboutTeaser about={content.about} id="card-about" suit={suitFor(content, "about")} />,
-          work: <WorkTimeline intro={content.work} projects={projects} id="card-work" suit={suitFor(content, "work")} />,
-          showcase: <Showcase showcase={content.showcase} id="card-side-projects" suit={suitFor(content, "showcase")} />,
-          teaching: <Teaching teaching={content.teaching} id="card-teaching" suit={suitFor(content, "teaching")} />,
-          outside: <OutsideWork outside={content.outside} id="card-my-world" suit={suitFor(content, "outside")} />,
-        }}
       />
       <Statement statement={content.statement} suit={suitFor(content, "about")} />
       <WorkTimeline intro={content.work} projects={projects} id="big-ones" suit={suitFor(content, "work")} />

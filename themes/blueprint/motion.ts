@@ -9,6 +9,6 @@ export const motion = {
   press: { scale: 0.98 },
   sheet: { type: "spring", stiffness: 160, damping: 26, mass: 1 },
   deal: { type: "spring", stiffness: 90, damping: 20, mass: 1, hold: 0.9, stagger: 0.1 },
-  zoom: { open: 1.4, close: 1, flip: [0.65, 0, 0.35, 1] },
+  fly: { duration: 1.15, ease: [0.65, 0, 0.35, 1], lift: 40, turn: -8 },
   shake: { duration: 1.5, x: [0, -40, 4, 0], rotate: [0, -1.4, 0.25, 0], stagger: 0.06 },
 } satisfies MotionTokens;

@@ -4,13 +4,13 @@ import { motion as m, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
-import { CardZoom, type CardRect } from "./CardZoom";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { JokerEmblem, Suit, suitInk, suitText, suitTint } from "@/components/ui/Suit";
-import type { Deck, HandCard, HandTarget, Suit as SuitName } from "@/content/schema";
+import type { Deck, HandCard, Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { haptic } from "@/lib/haptic";
 import { motion } from "@theme/motion";
+import { goToChapter } from "./flight";
 
 export function Corner({ suit, rank = "A", flip = false }: { suit: SuitName; rank?: string; flip?: boolean }) {
   const joker = suit === "joker";
@@ -55,7 +55,7 @@ function Card({
   card: HandCard;
   deck?: Deck;
   className?: string;
-  /** A picture of the card, not a link: the copy that flips over when the card is picked. */
+  /** A picture of the card, not a link: the copy that flies to its chapter when the card is picked. */
   still?: boolean;
   onPick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   onFocus?: () => void;
@@ -296,24 +296,12 @@ function useRow(list: RefObject<HTMLUListElement | null>, settled: boolean) {
 }
 
 /**
- * Section cards held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
- * while its neighbours make room. Narrow screens get a plain swipe row.
+ * The home chapters held like a hand: fanned on wide screens, the hovered or focused card lifts and straightens
+ * while its neighbours make room. Narrow screens get a swipe row. A picked card flies to its chapter.
  */
-export function CardHand({
-  cards,
-  note,
-  deck,
-  panels = {},
-}: {
-  cards: HandCard[];
-  note?: string;
-  deck?: Deck;
-  /** What each card opens into when picked; cards without a panel follow their link. */
-  panels?: Partial<Record<HandTarget, ReactNode>>;
-}) {
+export function CardHand({ cards, note, deck }: { cards: HandCard[]; note?: string; deck?: Deck }) {
   const [hot, setHot] = useState<number | null>(null);
-  const [picked, setPicked] = useState<{ index: number; from: CardRect } | null>(null);
-  const [open, setOpen] = useState(false);
+  const [flying, setFlying] = useState<number | null>(null);
   const fanList = useRef<HTMLUListElement>(null);
   const rowList = useRef<HTMLUListElement>(null);
   const fan = useDeal(fanList, cards.length, "middle");
@@ -325,7 +313,8 @@ export function CardHand({
   const dealt = fan.phase !== "stacked" || row.phase !== "stacked";
   const dealTime = motion.deal.stagger * cards.length + 0.5;
   const pick = (i: number, rotate: number, scale: number) => (e: MouseEvent<HTMLAnchorElement>) => {
-    if (!panels[cards[i].target] || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const card = cards[i];
+    if (!card.href.startsWith("#") || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
     const el = e.currentTarget;
     const r = el.getBoundingClientRect();
@@ -333,8 +322,14 @@ export function CardHand({
     const height = el.offsetHeight * scale;
     const from = { left: r.left + r.width / 2 - width / 2, top: r.top + r.height / 2 - height / 2, width, height, rotate };
     setHot(null);
-    setPicked({ index: i, from });
-    setOpen(true);
+    setFlying(i);
+    goToChapter({
+      href: card.href,
+      suit: card.suit,
+      from,
+      face: <Card card={card} deck={deck} still className="size-full" />,
+      onDone: () => setFlying(null),
+    });
   };
   const dealing = (phase: Phase, i: number) =>
     phase === "stacked"
@@ -361,7 +356,7 @@ export function CardHand({
               as="li"
               key={card.href}
               i={2}
-              className={cn("-ml-9 first:ml-0", picked?.index === i && "invisible")}
+              className={cn("-ml-9 first:ml-0", flying === i && "invisible")}
               style={{ zIndex: lifted ? 30 : 10 + i }}
             >
               <m.div
@@ -406,7 +401,7 @@ export function CardHand({
             as="li"
             key={card.href}
             i={2}
-            className={cn("-ml-5 shrink-0 snap-start first:ml-0", picked?.index === i && "invisible")}
+            className={cn("-ml-5 shrink-0 snap-start first:ml-0", flying === i && "invisible")}
             style={{ zIndex: 10 + i }}
           >
             <m.div
@@ -415,7 +410,7 @@ export function CardHand({
               transition={{
                 duration: motion.shake.duration,
                 times: [0, 0.42, 0.78, 1],
-                ease: motion.zoom.flip,
+                ease: motion.fly.ease,
                 delay: i * motion.shake.stagger,
               }}
               style={{ transformOrigin: "50% 100%" }}
@@ -484,24 +479,6 @@ export function CardHand({
         </m.div>
       )}
 
-      {picked && (
-        <CardZoom
-          from={picked.from}
-          open={open}
-          title={cards[picked.index].title}
-          marks={
-            <>
-              <Corner suit={cards[picked.index].suit} />
-              <Corner suit={cards[picked.index].suit} flip />
-            </>
-          }
-          front={<Card card={cards[picked.index]} deck={deck} still className="size-full" />}
-          onClose={() => setOpen(false)}
-          onClosed={() => setPicked(null)}
-        >
-          {panels[cards[picked.index].target]}
-        </CardZoom>
-      )}
     </nav>
   );
 }

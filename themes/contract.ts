@@ -28,8 +28,11 @@ export interface MotionTokens {
   sheet: { type: "spring"; stiffness: number; damping: number; mass: number };
   /** The card hand spreading out of a stack: spring, pause before the spread and delay between cards, in seconds. */
   deal: { type: "spring"; stiffness: number; damping: number; mass: number; hold: number; stagger: number };
-  /** A picked card flipping and growing to fill the screen: durations in seconds and the flip's easing. */
-  zoom: { open: number; close: number; flip: Easing };
+  /**
+   * A picked card flying to its chapter while the page scrolls there: duration in seconds, the easing shared by the
+   * flight and the scroll, the rise (px) at the top of its arc and the extra turn (deg) it takes on the way.
+   */
+  fly: { duration: number; ease: Easing; lift: number; turn: number };
   /** A swipe row's one-time "there is more" sway: x (px) and rotate (deg) keyframes over `duration`, `stagger` per card. */
   shake: { duration: number; x: number[]; rotate: number[]; stagger: number };
 }

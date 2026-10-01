@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: picked cards fly to their chapter (`card-flight`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Picking a card no longer opens an overlay. The page scrolls to the card's chapter while the card flies along a short arc and lands on the chapter's emblem, with a haptic tap. Then the hash updates and focus moves to the heading. Reduced motion jumps instantly. Scrolling by hand mid-way stops the flight. The new `components/blocks/flight.tsx` holds `goToChapter` and `FlightLayer` (portalled to the body, so it flies above the nav). `CardZoom`, `AboutTeaser` and the hand's `panels` are gone, and the `zoom` motion token became `fly` in the contract and both themes. Checked at 1440 in Playwright: the diamond lands on "Side quests", the hash is `#side-quests` and focus is on `side-quests-title`. ADR 0032.
+- **Next:** `hand-dock`.
+
 ## 2026-10-01: chapter emblems (`chapters`)
 
 - **Agent:** Cursor agent (Claude)
