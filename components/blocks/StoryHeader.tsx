@@ -14,7 +14,7 @@ export function StoryHeader({ about, children }: { about: Site["about"]; childre
     >
       <div className={portrait ? "lg:col-span-7" : "lg:col-span-9"}>
         <Rise as="p" className="type-label">
-          About
+          {about.title}
         </Rise>
         <Rise as="h1" id="story-title" i={1} className="type-display mt-3 max-w-[16ch] text-ink">
           <Emphasis text={about.headline} />

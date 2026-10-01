@@ -34,6 +34,12 @@ Round 8 (block library and Dusk):
 
 ---
 
+## 2026-10-01: About becomes "The long version" (`about-resume`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The About opener's label reads `about.title` ("The long version"). The journey is "Where I've been", the values are "How I work", and education takes its heading from `educationTitle` ("School days"). When `site.resume` is set (a PDF under `public/`), a "Grab the CV" style primary button sits under the story and downloads it. `PrimaryLink` gained `download` for that. No PDF is in the repo yet, so the button stays hidden until the owner adds one. The nav call to action, on desktop and in the phone menu, now reads "Say hi".
+- **Next:** `contact-form`.
+
 ## 2026-10-01: "All the big ones" and "All side quests" (`work-index`)
 
 - **Agent:** Cursor agent (Claude)

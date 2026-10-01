@@ -89,7 +89,7 @@ export default function Kit() {
         </Specimen>
         <Specimen name="StoryHeader and Education" note="About opener">
           <StoryHeader about={kit.about}>
-            <Education education={kit.education} i={kit.about.story.length + 2} />
+            <Education education={kit.education} title={kit.educationTitle} i={kit.about.story.length + 2} />
           </StoryHeader>
         </Specimen>
         <Specimen name="Journey">

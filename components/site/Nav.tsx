@@ -94,7 +94,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
           );
         })}
         <PrimaryLink href="#contact" size="compact" className="max-md:hidden">
-          Get in touch
+          Say hi
         </PrimaryLink>
         <button
           ref={menuButton}
@@ -184,7 +184,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
               className="mt-auto"
             >
               <PrimaryLink href="#contact" onClick={() => setOpen(false)} className="w-full justify-between">
-                Get in touch
+                Say hi
               </PrimaryLink>
             </m.div>
           </m.div>

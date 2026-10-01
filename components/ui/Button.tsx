@@ -26,19 +26,22 @@ function Arrow({ size }: { size: Size }) {
   );
 }
 
-/** The one primary action style. Links to in-page anchors and mailto: render a plain anchor. */
+/** The one primary action style. In-page anchors, mailto: and downloads render a plain anchor. */
 export function PrimaryLink({
   href,
   children,
   className,
   size = "default",
   onClick,
+  download,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
   size?: Size;
   onClick?: () => void;
+  /** A file to save, such as a PDF. */
+  download?: boolean;
 }) {
   const classes = cn(base, sizes[size].button, className);
   const content = (
@@ -47,9 +50,9 @@ export function PrimaryLink({
       <Arrow size={size} />
     </>
   );
-  if (href.startsWith("#") || href.startsWith("mailto:")) {
+  if (download || href.startsWith("#") || href.startsWith("mailto:")) {
     return (
-      <a href={href} onClick={onClick} className={classes}>
+      <a href={href} onClick={onClick} download={download || undefined} className={classes}>
         {content}
       </a>
     );
