@@ -38,9 +38,33 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `ask-gaps`: the owner's answers, below
 - [x] `rules-schema`: real-content rule, ADR 0034, locked note counts every case
 - [x] `cases`: five real case files, fictional ones deleted
-- [ ] `visuals`, `site-content`, `verify-docs`
+- [x] `visuals`: logo covers, one real slide, labelled placeholders, leak tests
+- [ ] `site-content`, `verify-docs`
 
 ---
+
+## 2026-10-01: covers and slide placeholders (`visuals`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Covers:** neutral, as ADR 0034 asks. The company logo sits on a white tile on a suit-tinted card face, with suit glyphs in two corners, in light and dark versions (`public/projects/<slug>/cover-{light,dark}.png`, 1600 by 1000):
+    - Analytics: hearts and rose.
+    - Enterprise Guard: spades and blue.
+    - Merchant tools: diamonds and amber.
+    - Egnyte platform: clubs and green.
+    - Data Access: the joker and violet.
+
+    There is no product UI on any cover.
+  - **Figma exports:** blocked. The MCP returned the View seat call limit, so only one real slide is in: "It started super small" for Miro Analytics (`started-small.png`, 1024 wide).
+  - **Placeholders:** every other slide image is a labelled placeholder under `public/media/protected/<slug>/`. Each one names the slide and its Figma node id, so the owner knows what to export. When swapping in an export, give it a new file name and update the case file.
+  - **Leak tests** (`/`, `/work`, `/about`, every locked `/work/<slug>`, the sitemap and the OG images): no beat, caption, ask-me item or metric label appears, and no `/media/protected` path except the `robots.txt` disallow line. Protected files answer 401 without the cookie, and the image optimiser refuses them with 400.
+- **Owner to do:** export these slides at 16:9 and replace the placeholders:
+  - Analytics: 1249:14839.
+  - Enterprise Guard: 1232:1743, plus 1249:14969 split into before and after.
+  - Merchant tools: 74:1531 and 79:1222.
+  - Egnyte platform: 74:1345 and 68:1100.
+  - Data Access: 70:2086 and 70:2226.
+- **Next:** `site-content`.
 
 ## 2026-10-01: five real cases (`cases`)
 
