@@ -46,7 +46,9 @@ const commands: CommandGroup[] = [
   {
     label: "Actions",
     items: [
-      { id: "copy-email", label: "Copy email address", action: "copy-email", keywords: "contact mail" },
+      ...(site.links.email
+        ? [{ id: "copy-email", label: "Copy email address", action: "copy-email" as const, keywords: "contact mail" }]
+        : []),
       { id: "toggle-theme", label: "Switch light or dark mode", action: "toggle-theme", keywords: "theme appearance" },
     ],
   },

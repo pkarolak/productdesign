@@ -39,9 +39,29 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `rules-schema`: real-content rule, ADR 0034, locked note counts every case
 - [x] `cases`: five real case files, fictional ones deleted
 - [x] `visuals`: logo covers, one real slide, labelled placeholders, leak tests
-- [ ] `site-content`, `verify-docs`
+- [x] `site-content`: real site copy, no email, testimonials hidden
+- [ ] `verify-docs`
 
 ---
+
+## 2026-10-01: the site speaks with real content (`site-content`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** All of `content/site.ts` now traces to the Figma CV page or the owner's answers:
+  - **Short version:** research first, workshops, and prototypes that keep teams in step.
+  - **About:** the story is set in Poznań, names the companies since 2014, borrows its lessons from the decks, and closes with studies, teaching and after hours.
+  - **Education:** the three real courses ("School days").
+  - **Journey:** all eight roles, each linking to its case. `kind` names the domain, because the CV doesn't give employment types.
+  - **Teaching:** Collegium Da Vinci, plus the talks and workshops.
+  - **How I work:** four values, each backed by a real case.
+  - **Side quests:** CoNaDzielni.pl is the only one (Head of Design, 2026), with a link to the site.
+
+  Also changed:
+  - Testimonials are removed, so the block hides. `/kit` keeps a labelled sample to review it.
+  - The template footnote is gone. LinkedIn is `patkarolak`.
+  - `links.email` is optional, and the owner wants no email for now. So the letter and contact block lead with "Book a call", the copy-email actions and the command menu item hide, and `/kit` follows.
+  - Case artifacts keep their own ratio (slides are 16:9) instead of the slot's 4:3 or 1:1, which cropped the slide labels.
+- **Next:** `verify-docs`.
 
 ## 2026-10-01: covers and slide placeholders (`visuals`)
 

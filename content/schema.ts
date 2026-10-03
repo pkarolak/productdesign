@@ -323,7 +323,8 @@ export const siteSchema = z.object({
   values: valuesSchema.optional(),
   outside: outsideSchema.optional(),
   links: z.object({
-    email: z.email(),
+    /** Without it, no email action shows anywhere. */
+    email: z.email().optional(),
     linkedin: z.url(),
     calendar: z.url().optional(),
   }),

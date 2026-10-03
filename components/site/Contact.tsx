@@ -9,7 +9,7 @@ import { CopyEmail } from "./CopyEmail";
 export function Contact({ site }: { site: Site }) {
   const secondary = [
     { href: site.links.linkedin, label: "LinkedIn" },
-    ...(site.links.calendar ? [{ href: site.links.calendar, label: "Book 30 minutes" }] : []),
+    ...(site.links.calendar && site.links.email ? [{ href: site.links.calendar, label: "Book 30 minutes" }] : []),
   ];
   return (
     <section data-dock-hide id="contact" aria-labelledby="contact-title" className="container-page relative z-10 pb-(--section-y)">
@@ -21,7 +21,11 @@ export function Contact({ site }: { site: Site }) {
           <p className="type-lede mt-5 max-w-[38ch]">{site.contact.text}</p>
         </div>
         <div className="flex flex-col items-start gap-6 lg:col-span-5 lg:items-end">
-          <PrimaryLink href={`mailto:${site.links.email}`}>Email me</PrimaryLink>
+          {site.links.email ? (
+            <PrimaryLink href={`mailto:${site.links.email}`}>Email me</PrimaryLink>
+          ) : (
+            site.links.calendar && <PrimaryLink href={site.links.calendar}>Book a call</PrimaryLink>
+          )}
           <ul className="flex flex-wrap gap-x-7 gap-y-3">
             {secondary.map((l) => (
               <li key={l.href}>
@@ -40,9 +44,11 @@ export function Contact({ site }: { site: Site }) {
               </li>
             ))}
           </ul>
-          <Rise i={2}>
-            <CopyEmail email={site.links.email} />
-          </Rise>
+          {site.links.email && (
+            <Rise i={2}>
+              <CopyEmail email={site.links.email} />
+            </Rise>
+          )}
         </div>
       </Panel>
     </section>

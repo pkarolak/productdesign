@@ -15,7 +15,7 @@ const secondary =
   "focus-ring press type-small inline-flex cursor-pointer items-center gap-2 rounded-pill border border-hairline px-4 py-2 text-ink transition-colors duration-(--t-hover-short) ease-slow hover:border-ink-3";
 
 /** The app primitives in every state, for review on /kit. */
-export function Primitives({ email }: { email: string }) {
+export function Primitives({ email }: { email?: string }) {
   const toast = useToast();
   const [sheet, setSheet] = useState(false);
   const titleId = useId();
@@ -52,7 +52,7 @@ export function Primitives({ email }: { email: string }) {
             <Icon name="check" className="size-4" />
             Show a toast
           </button>
-          <CopyEmail email={email} />
+          {email && <CopyEmail email={email} />}
         </div>
       </div>
 

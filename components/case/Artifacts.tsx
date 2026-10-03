@@ -22,12 +22,13 @@ export function Artifacts({ artifacts }: { artifacts: Artifact[] }) {
       <div className="grid gap-x-7 gap-y-14 lg:grid-cols-12">
         {artifacts.map((a, i) => {
           const slot = slots[i];
+          const own = "ratio" in a ? a.ratio : undefined;
           return (
             <figure key={i} className={cn(slot.span)}>
               <Asset
                 asset={a}
                 flatIsometric
-                aspect={a.kind === "diagram" && slot === full ? "12/5" : slot.aspect}
+                aspect={own ?? (a.kind === "diagram" && slot === full ? "12/5" : slot.aspect)}
                 sizes={slot.sizes}
                 rise={i % 2}
               />

@@ -34,7 +34,7 @@ function iconFor(c: Command): IconName {
   return "arrow-right";
 }
 
-export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email: string }) {
+export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?: string }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -91,6 +91,7 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email: 
   const run = (c: Command) => {
     setOpen(false);
     if (c.action === "copy-email") {
+      if (!email) return;
       navigator.clipboard.writeText(email).then(() => toast("Email copied"));
       return;
     }

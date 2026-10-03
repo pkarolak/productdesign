@@ -1,4 +1,4 @@
-import { showcaseSchema, type Site } from "./schema";
+import { showcaseSchema, testimonialsSchema, type Site } from "./schema";
 import { site } from "./site";
 
 /**
@@ -45,6 +45,23 @@ export const kit: Site = {
         text: "Tandas sorted by orchestra and mood, ready for a night behind the decks.",
         detail:
           "A shared sheet of tandas with their orchestra, year and energy. It keeps a night of tango music varied without losing the room.",
+      },
+    ],
+  }),
+  testimonials: testimonialsSchema.parse({
+    title: "Word of mouth",
+    items: [
+      {
+        quote: "A sample quote to review the block. The live site shows testimonials only once real ones are added.",
+        name: "Sample reviewer",
+        role: "Specimen only",
+        company: "Kit",
+      },
+      {
+        quote: "A second sample, so the block shows how two quotes sit side by side.",
+        name: "Second sample",
+        role: "Specimen only",
+        company: "Kit",
       },
     ],
   }),

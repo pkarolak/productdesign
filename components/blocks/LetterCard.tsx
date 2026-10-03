@@ -31,10 +31,12 @@ export function LetterCard({
         <p className="type-body mt-6 text-ink-2">{letter.signoff}</p>
         <p className="type-h3 mt-1 text-ink">{name}</p>
         <div className="mt-8 border-t border-hairline flex flex-wrap items-center gap-x-5 gap-y-4 pt-6">
-          <PrimaryLink href={links.calendar ?? `mailto:${links.email}`}>
-            {links.calendar ? "Book a call" : "Write to me"}
-          </PrimaryLink>
-          <CopyEmail email={links.email} />
+          {links.calendar ? (
+            <PrimaryLink href={links.calendar}>Book a call</PrimaryLink>
+          ) : (
+            links.email && <PrimaryLink href={`mailto:${links.email}`}>Write to me</PrimaryLink>
+          )}
+          {links.email && <CopyEmail email={links.email} />}
           <ArrowLink href={links.linkedin}>LinkedIn</ArrowLink>
         </div>
       </Rise>
