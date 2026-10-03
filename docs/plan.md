@@ -138,12 +138,14 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 
 **Site fields** (`content/site.ts`): name, title, one-line positioning, short bio, portrait, experience list (role, company, years), 3 working principles, links.
 
-**The 4 placeholder cases**
-Each placeholder case shows a different kind of senior signal:
-1. **Design system adoption at scale:** platform leverage, influence without authority.
-2. **Core workflow redesign:** measurable efficiency, hard tradeoffs.
-3. **0 to 1 product bet:** ambiguity, research to launch, business framing.
-4. **Cross-org initiative (accessibility program):** multi-team leadership, standards.
+**The 5 real cases** (since the "Real cases from Figma" plan, [ADR 0034](decisions/0034-real-cases.md)), all password protected, in home order:
+1. **Miro Analytics** (2024): research that won over internal pushback, 1,000+ weekly visits.
+2. **Miro Enterprise Guard** (2022): 0 to 1 add-on across five PMs and four teams, above revenue expectations.
+3. **Merchant Economic Tools** (Allegro, 2021): validation research, a stakeholder clash, workshops to one vision.
+4. **Egnyte as a product platform** (2020): workshops and an 18-point audit turned into shipped platform pieces.
+5. **Data Access Management** (Egnyte, 2020): Data Owners, from eight interviews to a planned MVP.
+
+The original 4 placeholder cases (system adoption, workflow redesign, 0 to 1 bet, accessibility program) are retired.
 
 **Copy rules**
 - The designer is Patryk Karolak. Cases are his real projects at Miro, Allegro and Egnyte, written only from his Figma decks and answers (ADR 0034); no Acme or Jane Doe.
@@ -155,7 +157,7 @@ Each placeholder case shows a different kind of senior signal:
 ## Page compositions
 
 > **Superseded for Home and About (round 8, [ADR 0010](decisions/0010-block-library.md)).** Home and About are now composed from the block library in `components/blocks/`:
-> - **Home (since the "Clear IA and card nav" plan, [ADR 0031](decisions/0031-chapters-and-names.md), [ADR 0032](decisions/0032-card-led-page-nav.md)):** IntroHero, CardHand as the table of contents, then five chapters, one per card: Statement ("The short version"), WorkTimeline ("The big ones", 3 featured, the rest on `/work`), Showcase ("Side quests"), Teaching ("Office hours"), OutsideWork ("Off the clock"). Then Testimonials ("Word of mouth") and LetterCard (id `contact`). A contact form was tried and dropped ([ADR 0033](decisions/0033-contact-form.md)). A picked card flies to its chapter; HandDock keeps the hand docked at the bottom while reading. WritingList and the card zoom overlay are gone.
+> - **Home (since the "Clear IA and card nav" plan, [ADR 0031](decisions/0031-chapters-and-names.md), [ADR 0032](decisions/0032-card-led-page-nav.md)):** IntroHero, CardHand as the table of contents, then five chapters, one per card: Statement ("The short version"), WorkTimeline ("The big ones", 3 featured, the rest on `/work`), Showcase ("Side quests"), Teaching ("Office hours"), OutsideWork ("Off the clock"). Then Testimonials ("Word of mouth", hidden until real quotes exist) and LetterCard (id `contact`). A contact form was tried and dropped ([ADR 0033](decisions/0033-contact-form.md)). A picked card flies to its chapter; HandDock keeps the hand docked at the bottom while reading. WritingList and the card zoom overlay are gone.
 > - **`/work`:** "All the big ones", every case, only while home cannot show them all.
 > - **About** no longer carries OutsideWork; it moved to Home as My world.
 > - **About ("The long version"):** StoryHeader with the optional CV button and Education ("School days"), Journey ("Where I've been"), Values ("How I work"), Contact.

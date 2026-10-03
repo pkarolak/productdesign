@@ -40,9 +40,22 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `cases`: five real case files, fictional ones deleted
 - [x] `visuals`: logo covers, one real slide, labelled placeholders, leak tests
 - [x] `site-content`: real site copy, no email, testimonials hidden
-- [ ] `verify-docs`
+- [x] `verify-docs`: checks under both themes, axe, leak tests, shots, docs
 
 ---
+
+## 2026-10-01: checks and docs for the real cases (`verify-docs`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Last todo of the plan "Real cases from Figma".
+  - **Checks:** typecheck, lint and `docs:check` pass, `theme:check` passes under Dusk and Blueprint, and the production build is green.
+  - **Axe** (WCAG 2.2 AA plus best practice) is clean at 1440 and 390, in light and dark, on `/`, `/about`, `/work`, a locked case, and two unlocked cases (one with the compare slider).
+  - **Leak tests** found no protected text or media in public HTML, the sitemap or the OG images. The only hit is the `robots.txt` disallow line.
+  - **`pnpm shots`** re-ran with no overflow. `/work` replaces the old public case capture.
+  - **Docs:** the content guide now covers the real-content rule, optional email, hidden testimonials and swapping slide placeholders. The plan lists the five real cases.
+- **Tooling note:** `pnpm` is not installed globally on this machine any more, so commands ran as `npx pnpm@10.20.0 …` (the version in `packageManager`).
+- **Owner to do:** export the placeholder slides (node ids in the `visuals` entry). Add real testimonials and an email when wanted. Optionally add a CV PDF as `site.resume`.
+- **Next:** `qa` and `docs-final` from the checklist.
 
 ## 2026-10-01: the site speaks with real content (`site-content`)
 

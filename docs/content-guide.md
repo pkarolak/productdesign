@@ -4,10 +4,10 @@ Everything a visitor reads lives in `content/`. The build validates it against [
 
 ## Files
 
-- `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, About story, education, journey, values, resume), links, contact copy, footnote.
+- `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, About story, education, journey, values, resume), links, contact copy, an optional footnote.
 - `content/kit.ts`: fixtures for `/kit`, the live content plus the blocks the site leaves empty. Only `/kit` reads it.
 - `content/projects/<slug>.ts`: one file per case.
-- `content/projects/index.ts`: the order. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
+- `content/projects/index.ts`: the order, and a check for exactly five cases. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
 
 Wrap one word of a heading in `*asterisks*` to give it the single emphasis (for example `"I design the *systems* product teams build on."`). Use `\u00a0` (a non-breaking space) to keep short phrases together, like `0\u00a0to\u00a01`.
 
@@ -27,8 +27,8 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `showcase` | up to 6 items, text 14, detail 60, more 4 | "Side quests". Cards that open a sheet. `featured` (default 3) show; the `more` button reveals the rest in place. `image` is optional; without one the cover is a card face with its suit pip. Images are public. |
 | `teaching` | up to 3, text 30, 4 topics of 4 words | "Office hours". Place, role, years, what you taught. |
 | `outside` | up to 3, text 40 | "Off the clock". Life outside work, briefly. |
-| `testimonials` | up to 4, quote 45 words | "Word of mouth". Real people only on a real site. |
-| `letter` | 1 to 3 paragraphs of 34 words | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. |
+| `testimonials` | up to 4, quote 45 words | "Word of mouth". Real people only. Left out on the live site until the owner adds real ones; `/kit` shows a labelled sample. |
+| `letter` | 1 to 3 paragraphs of 34 words | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. `links.email` is optional: without it, every email action (the letter, the contact block, the command menu) hides. |
 | `about.title`, `about.story` | title 4; 1 to 3 paragraphs of 70 words | The page label ("The long version"); the first paragraph reads as the lede. |
 | `educationTitle` | 4 words | The education heading ("School days"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |
@@ -48,6 +48,8 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `artifacts` | 2 to 4 | Each with a 14-word `caption` and a real `alt`. |
 | `askMeAbout` | 2 to 3 × 10 words | Hooks for the conversation, not answers. |
 
+Every fact must trace to the owner's material: a slide in his Figma decks or an answer he gave (ADR 0034). If a deck stops before a result, say what was handed over or tracked, never an invented number.
+
 Copy rules: no em-dashes, no "elevate / seamless / passionate", no Acme or Jane Doe, no framing around titles or career moves. Let the numbers carry it.
 
 ## Assets
@@ -58,7 +60,7 @@ Dark mode: add `srcDark` to screenshots when you have a dark export. Without one
 
 | Kind | Fields | Tips |
 | --- | --- | --- |
-| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in % of the visible frame) | Desktop UI, at least 2000px wide. Frames crop from the top-left, so keep titles there. Check annotation dots after changing an image. |
+| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in % of the visible frame) | Desktop UI, at least 2000px wide. A `ratio` is kept in every artifact slot, so slides set `16/9`. Frames crop from the top-left, so keep titles there. Check annotation dots after changing an image. |
 | `isometric` | `plates`: 1 to 3 images | Rendered as the theme's signature visual in the hero and case header, as layered frames elsewhere. |
 | `mobile` | `screens`: 2 to 4 images | Portrait screens without device chrome, 9:19.5. |
 | `photo` | `src`, `alt`, optional `ratio` | Research, workshops, whiteboards. |
@@ -75,10 +77,14 @@ Dark mode: add `srcDark` to screenshots when you have a dark export. Without one
 
 Use JPEG or WebP. Public images go through the Next.js optimizer; protected ones do not (the optimizer cannot send the visitor's cookie), so export them at a sensible size (about 2400px wide, under 500 KB).
 
-## Swapping the placeholders
+## Slide placeholders
 
-1. Edit `content/site.ts` (name, hero, about, links), and remove `footnote`.
-2. Replace the four files in `content/projects/`, keeping the exports named in `index.ts`, or rename them there.
+The case slides could not all be exported from Figma yet. Each placeholder under `public/media/protected/<slug>/` names its slide and Figma node id. To swap one: export the slide at 16:9 (about 2400px wide), save it under a new file name in the same folder, and point the artifact's `src` at it. Covers are neutral logo cards (`cover-light.png`, `cover-dark.png`) and never show product UI.
+
+## Reusing the template
+
+1. Edit `content/site.ts` (name, hero, about, links).
+2. Replace the five files in `content/projects/`, keeping the exports named in `index.ts`, or rename them there.
 3. Replace the images in `public/projects/`, `public/media/protected/` and `public/about/`.
 4. Set `access: "public"` on any case that should not be gated.
 5. `pnpm build`. Fix whatever the schema reports.
