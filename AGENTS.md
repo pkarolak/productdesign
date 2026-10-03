@@ -14,7 +14,7 @@ Instructions for any coding agent (Cursor, Claude Code, Codex, Gemini, others) w
 
 ## What this is
 
-A reusable portfolio template for a product designer. It showcases 4 case studies at teaser depth: anyone gets the bottom line in about 30 seconds, and the full story is told in person. Case studies are password gated. The site is built with Next.js and hosted on Vercel. The audience is design leaders, hiring managers and cross-functional peers. The goal is to showcase senior-level strength through evidence, never through claims.
+Patryk Karolak's portfolio, built as a reusable template for a product designer. It showcases 5 real case studies at teaser depth: anyone gets the bottom line in about 30 seconds, and the full story is told in person. Case studies are password gated. The site is built with Next.js and hosted on Vercel. The audience is design leaders, hiring managers and cross-functional peers. The goal is to showcase senior-level strength through evidence, never through claims.
 
 ## Where we are
 
@@ -88,7 +88,7 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
   - No em-dashes in UI copy.
   - Never frame site copy around career level, titles or job moves. The work speaks.
   - No "elevate / seamless / passionate"-style filler, no Acme or Jane Doe placeholders.
-  - The placeholder designer name is **Patryk Karolak**. Companies and projects in case studies stay fictional; the hero intro names the owner's real employers with their logo marks (ADR 0022).
+  - The designer is **Patryk Karolak**. Case studies use the real companies and projects; every fact must trace to the owner's material (the Figma decks or his answers), never to a guess (ADR 0034). The hero intro names his employers with their logo marks (ADR 0022).
 - **Content budgets:**
   - Enforced by `content/schema.ts`. If content does not fit, cut it, never raise the limit.
   - The teaser depth is intentional (ADR 0003).

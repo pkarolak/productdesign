@@ -36,9 +36,16 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 - [x] `restore`: re-cloned into the workspace, `.env.local` kept
 - [x] `ask-gaps`: the owner's answers, below
-- [ ] `rules-schema`, `cases`, `visuals`, `site-content`, `verify-docs`
+- [x] `rules-schema`: real-content rule, ADR 0034, locked note counts every case
+- [ ] `cases`, `visuals`, `site-content`, `verify-docs`
 
 ---
+
+## 2026-10-01: real cases are the rule (`rules-schema`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `AGENTS.md` now says the cases use the real companies and projects, and that every fact must trace to the owner's material. README and the plan say the same. ADR 0034 records the switch to five real cases: all protected, neutral logo covers, slide-image placeholders until the owner exports them. `LockedNote` now counts every case, not just the three on home, and says "All five are password protected" when all are locked. The locked page already drops its "open cases" line when none is public. The check for exactly five cases lands with the case files in `cases`.
+- **Next:** `cases`.
 
 ## 2026-10-01: owner's answers for the real cases (`ask-gaps`)
 

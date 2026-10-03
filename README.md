@@ -1,8 +1,8 @@
 # Product Designer Portfolio
 
-A portfolio template for a product designer: four case studies at teaser depth, password-gated, built with Next.js 16 and deployed on Vercel. Anyone gets each case's bottom line in about 30 seconds; the full story is told in person.
+A portfolio template for a product designer: five case studies at teaser depth, password-gated, built with Next.js 16 and deployed on Vercel. Anyone gets each case's bottom line in about 30 seconds; the full story is told in person.
 
-**Status:** v1 built with placeholder content (designer "Patryk Karolak", fictional companies Ledgerline and Halden). See [docs/progress.md](docs/progress.md).
+**Status:** v1 with Patryk Karolak's real cases from Miro, Allegro and Egnyte, all password protected (ADR 0034). See [docs/progress.md](docs/progress.md).
 
 ![Home, light theme](design/shots/home-desktop-light.png)
 
@@ -14,7 +14,7 @@ cp .env.example .env.local   # set CASE_PASSWORD and AUTH_SECRET
 pnpm dev
 ```
 
-Open http://localhost:3000. Three of the four cases are protected; unlock them with your `CASE_PASSWORD`.
+Open http://localhost:3000. All five cases are protected; unlock them with your `CASE_PASSWORD`.
 
 ## Make it yours
 

@@ -146,7 +146,7 @@ Each placeholder case shows a different kind of senior signal:
 4. **Cross-org initiative (accessibility program):** multi-team leadership, standards.
 
 **Copy rules**
-- The designer is Patryk Karolak. Companies, colleagues and projects are realistic but fictional; no Acme or Jane Doe.
+- The designer is Patryk Karolak. Cases are his real projects at Miro, Allegro and Egnyte, written only from his Figma decks and answers (ADR 0034); no Acme or Jane Doe.
 - No "elevate / seamless / passionate." No em-dashes.
 - Never frame the site around career level, titles or job moves. The work speaks; the site never asks for anything.
 

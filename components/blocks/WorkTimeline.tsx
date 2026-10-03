@@ -8,16 +8,18 @@ import { Icon } from "@/components/ui/Icon";
 import type { Project, Suit, WorkIntro } from "@/content/schema";
 import { BlockHeader } from "./BlockHeader";
 
-const counts = ["None", "One", "Two", "Three", "All four", "All five", "All six"];
+const counts = ["None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
 
 /** "Three are password protected; ask me for access." Nothing when every case is public. */
 export function LockedNote({ projects }: { projects: Project[] }) {
   const locked = projects.filter((p) => p.access === "protected").length;
   if (!locked) return null;
+  const count = counts[locked] ?? String(locked);
+  const all = locked === projects.length && locked > 1;
   return (
     <>
       {" "}
-      {counts[locked] ?? locked} {locked === 1 ? "is" : "are"} password protected;{" "}
+      {all ? `All ${count.toLowerCase()}` : count} {locked === 1 ? "is" : "are"} password protected;{" "}
       <a href="#contact" className="focus-ring link rounded-pill">
         ask me for access
       </a>
@@ -116,7 +118,7 @@ export function WorkTimeline({
           note={
             <>
               {intro.note}
-              <LockedNote projects={projects} />
+              <LockedNote projects={all} />
             </>
           }
         />
