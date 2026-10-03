@@ -32,7 +32,26 @@ Round 8 (block library and Dusk):
 - [x] `verify-docs`: checks under both themes, axe, interactions, shots, docs
 - [ ] Phase 3, the personal touch: hobbies in the Showcase, personal copy. No kudos.
 
+Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
+
+- [x] `restore`: re-cloned into the workspace, `.env.local` kept
+- [x] `ask-gaps`: the owner's answers, below
+- [ ] `rules-schema`, `cases`, `visuals`, `site-content`, `verify-docs`
+
 ---
+
+## 2026-10-01: owner's answers for the real cases (`ask-gaps`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The local repo had gone missing, so I re-cloned it at `439e9a1` and kept `.env.local` (`restore`). Then I asked the owner about everything the Figma decks leave open. His answers, which the copy relies on:
+  - Years: Miro Analytics 2024, Enterprise Guard 2022, Merchant Economic Tools 2021, Egnyte as Product Platform 2020, Data Access Management 2020.
+  - Outcomes for Merchant Economic Tools and Data Access Management: "bring in some closure story that will sound reasonably... focus on what we might have measured." So the Ship beats describe what was handed over and what was tracked, with no invented launch numbers.
+  - Placeholder slides: the pasted Allegro paragraph in several Analytics and Enterprise Guard slides sits in hidden layers. Only the visible slide headings are used.
+  - Visuals: Figma export hit the View seat limit. Put placeholders where a slide image belongs; the owner fills them in later.
+  - Based in Poznań. No email on the site for now. LinkedIn is `linkedin.com/in/patkarolak`, and `cal.com/patrykkarolak` is valid.
+  - Co na dzielni: Head of Design since 2026. It is not the Glanc project.
+  - Off the clock keeps climbing, tango and DJ-ing.
+- **Next:** `rules-schema`.
 
 ## 2026-10-01: no focus ring on a chapter heading after a jump
 
