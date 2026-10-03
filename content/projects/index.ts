@@ -1,16 +1,17 @@
 import { z } from "zod";
 import { projectSchema, type Project } from "../schema";
-import { accessibleByDefault } from "./accessible-by-default";
-import { dispatchBoard } from "./dispatch-board";
-import { keelDesignSystem } from "./keel-design-system";
-import { runwayForecast } from "./runway-forecast";
+import { dataAccessManagement } from "./data-access-management";
+import { egnyteProductPlatform } from "./egnyte-product-platform";
+import { merchantEconomicTools } from "./merchant-economic-tools";
+import { miroAnalytics } from "./miro-analytics";
+import { miroEnterpriseGuard } from "./miro-enterprise-guard";
 
-/** Order matters: the first case is the lead cell on the home page. */
+/** Order matters: home shows the first `site.work.featured` cases. */
 export const projects: Project[] = z
   .array(projectSchema)
-  .length(4, "The home bento is designed for exactly 4 cases.")
+  .length(5)
   .refine((list) => new Set(list.map((p) => p.slug)).size === list.length, "Slugs must be unique.")
-  .parse([keelDesignSystem, dispatchBoard, runwayForecast, accessibleByDefault]);
+  .parse([miroAnalytics, miroEnterpriseGuard, merchantEconomicTools, egnyteProductPlatform, dataAccessManagement]);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

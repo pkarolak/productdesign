@@ -24,9 +24,9 @@ const pages = only(
   [
     { name: "home", path: "/" },
     { name: "about", path: "/about" },
-    { name: "case-public", path: "/work/accessible-by-default" },
-    { name: "case-locked", path: "/work/keel-design-system" },
-    { name: "case-unlocked", path: "/work/keel-design-system", unlock: true },
+    { name: "work", path: "/work" },
+    { name: "case-locked", path: "/work/miro-analytics" },
+    { name: "case-unlocked", path: "/work/miro-analytics", unlock: true },
     { name: "kit", path: "/kit" },
   ],
   "SHOTS_ONLY",

@@ -17,7 +17,6 @@ export const kit: Site = {
         kicker: "Workshop kit",
         title: "Crit cards",
         text: "A printed deck that keeps design reviews on the problem, not the pixels.",
-        image: { src: "/projects/accessible-by-default/workshop.jpg", alt: "A workshop table with printed cards and sticky notes." },
         detail:
           "Forty cards, one question each, sorted by stage. Teams draw three at the start of a critique and answer them before anyone mentions colour. Reviews got shorter and the notes got sharper.",
         link: { label: "Ask for a copy", href: "#contact" },
@@ -27,7 +26,6 @@ export const kit: Site = {
         kicker: "Template",
         title: "Accessibility scorecard",
         text: "A one-page scorecard that turns an audit into a weekly habit.",
-        image: { src: "/projects/accessible-by-default/scorecard.jpg", alt: "An accessibility scorecard with conformance bars per team." },
         detail:
           "Seven checks, one owner each, reviewed every Friday. It started as a spreadsheet for one team and ended up in the handbook for all of them.",
       },

@@ -37,9 +37,20 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `restore`: re-cloned into the workspace, `.env.local` kept
 - [x] `ask-gaps`: the owner's answers, below
 - [x] `rules-schema`: real-content rule, ADR 0034, locked note counts every case
-- [ ] `cases`, `visuals`, `site-content`, `verify-docs`
+- [x] `cases`: five real case files, fictional ones deleted
+- [ ] `visuals`, `site-content`, `verify-docs`
 
 ---
+
+## 2026-10-01: five real cases (`cases`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `content/projects/` now holds Miro Analytics (2024), Miro Enterprise Guard (2022), Merchant Economic Tools (Allegro, 2021), Egnyte as a product platform (2020) and Data Access Management (Egnyte, 2020). They're in that order, so the two Miro cases and the Allegro case lead on home. All are protected, and `index.ts` checks for exactly five. Every number and claim comes from a deck slide. Each Frame, Shape and Ship beat is one tension, one move and one result. Two closures were reconstructed with the owner's consent, because their decks stop before a result:
+  - Merchant Economic Tools: the Ship beat names what we set out to measure (pilot merchants using the tool, and staying on fulfillment), not a result.
+  - Data Access Management: the Ship beat states the deck's two KPIs as what we tracked.
+
+  The fictional cases (Keel, Dispatch board, Runway, Accessible by default) and their media are gone. The `/kit` side-quest fixtures that borrowed their images now show suit colour, and `pnpm shots` captures `/work` and `/work/miro-analytics` instead.
+- **Next:** `visuals`.
 
 ## 2026-10-01: real cases are the rule (`rules-schema`)
 
