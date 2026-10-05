@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { CopyEmail } from "@/components/site/CopyEmail";
 import { Rise } from "@/components/motion/Rise";
 import { PrimaryLink } from "@/components/ui/Button";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import type { Letter, Site } from "@/content/schema";
 import { cn } from "@/lib/cn";
+import { LetterPhoto } from "./LetterPhoto";
 
 /** A short personal note that closes the page and carries the contact actions. */
 export function LetterCard({
@@ -24,14 +24,8 @@ export function LetterCard({
       <Rise as="article" className="card mx-auto max-w-[800px] rounded-card p-7 md:p-12">
         <div className={cn("grid gap-7", letter.photo && "md:grid-cols-[160px_minmax(0,1fr)] md:gap-11")}>
           {letter.photo && (
-            <div className="core relative aspect-[5/7] w-28 -rotate-3 overflow-hidden rounded-inset md:mt-1 md:w-full">
-              <Image
-                src={letter.photo.src}
-                alt={letter.photo.alt}
-                fill
-                sizes="(min-width: 768px) 160px, 112px"
-                className="media object-cover object-[50%_20%]"
-              />
+            <div className="md:mt-1">
+              <LetterPhoto photo={letter.photo} calendar={links.calendar} />
             </div>
           )}
           <div>

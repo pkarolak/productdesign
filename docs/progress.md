@@ -52,6 +52,17 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: like the letter photo to book a call (ADR 0039)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Component:** `components/blocks/LetterPhoto.tsx`.
+  - **Desktop:** the card tilts toward the pointer, lifts and zooms on hover, and shows a heart button (heart suit, `card-red`, frosted pill).
+  - **Touch:** swipe right shows a "Let's talk" stamp, and past 90px or on a fling it counts as a like. The card nudges right once when it first scrolls into view, and the caption reads "Swipe right to book a call".
+  - **A like:** hearts burst, the card flies off and fades, cal.com opens in a new tab, and the card comes back with a heart badge and "It's a match!".
+  - **Reduced motion:** the heart opens the calendar straight away.
+  - **Checks:** with Playwright, the heart click on desktop and the drag on touch both open `cal.com/patrykkarolak`. axe is clean, and typecheck, lint and the build pass.
+
 ## 2026-10-05: keycaps in the command menu footer
 
 - **Agent:** Cursor agent (Claude)
