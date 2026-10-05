@@ -131,10 +131,20 @@ export function WorkTimeline({
           title={intro.title}
           suit={suit}
           note={
-            <>
-              {intro.note}
-              <LockedNote projects={all} />
-            </>
+            intro.index ? (
+              <>
+                {intro.index.note}{" "}
+                <a href="#contact" className="focus-ring link rounded-pill">
+                  {intro.index.ask.link}
+                </a>{" "}
+                {intro.index.ask.text}
+              </>
+            ) : (
+              <>
+                {intro.note}
+                <LockedNote projects={all} />
+              </>
+            )
           }
         />
       )}

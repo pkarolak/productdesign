@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Big projects opens with the access line
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the Home Big projects note reads the same as /work: "Selected cases from Miro, Allegro and Egnyte. Reach out to get access and learn more about them.", with "Reach out" linking to the contact block. It comes from `work.index`, so the two never drift; without `index` the old note and locked-cases line still show. Typecheck, lint, build pass; the link lands on Contact.
+
+---
+
 ## 2026-10-05: Espago is side work
 
 - **Agent:** Cursor agent (Claude)
