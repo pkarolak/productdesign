@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: no "Lock cases" on case pages (ADR 0040)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Removed:** "Unlocked · Lock cases" from unlocked case headers, along with `components/case/LockCases.tsx`, the `lock` server action and the `CaseHeader` `status` prop.
+  - **Unchanged:** access still expires with the signed cookie.
+  - **Checks:** typecheck, lint and the build pass. After unlocking `/work/miro-analytics`, the page has no lock text.
+
 ## 2026-10-05: like the letter photo to book a call (ADR 0039)
 
 - **Agent:** Cursor agent (Claude)

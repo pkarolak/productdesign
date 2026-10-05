@@ -30,8 +30,3 @@ export async function unlock(_: UnlockState, formData: FormData): Promise<Unlock
   });
   redirect(protectedSlugs.includes(slug) ? `/work/${slug}` : "/#big-projects");
 }
-
-export async function lock() {
-  (await cookies()).delete(ACCESS_COOKIE);
-  redirect("/#big-projects");
-}

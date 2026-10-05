@@ -7,22 +7,16 @@ import type { Project } from "@/content/schema";
 /** Shared by the full case and the locked teaser, so both lead with the bottom line. */
 export function CaseHeader({
   project,
-  status,
   children,
 }: {
   project: Project;
-  /** Shown beside the company and year, e.g. the unlocked state. */
-  status?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <header className="container-page grid items-center gap-12 pt-(--nav-clear) pb-16 md:pt-36 lg:min-h-[92dvh] lg:grid-cols-12 lg:gap-8 lg:pb-8">
       <div className="lg:col-span-7">
-        <Rise i={0} className="flex flex-wrap items-center gap-x-5 gap-y-1">
-          <p className="type-small">
-            {project.company}, {project.year}
-          </p>
-          {status}
+        <Rise as="p" i={0} className="type-small">
+          {project.company}, {project.year}
         </Rise>
         <Rise as="h1" i={1} className="type-h3 mt-2 text-ink">
           {project.title}
