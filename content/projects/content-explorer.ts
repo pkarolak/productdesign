@@ -61,8 +61,9 @@ export const contentExplorer = {
     kind: "video",
     src: "/projects/content-explorer/loop.mp4",
     poster: "/projects/content-explorer/loop.jpg",
+    dark: { src: "/projects/content-explorer/loop-dark.mp4", poster: "/projects/content-explorer/loop-dark.jpg" },
     ratio: "16/10",
-    alt: "Content Explorer in the admin console: filtering boards by classification, then the Data Discovery and Content Lifecycle views.",
+    alt: "Content Explorer in the admin console: filtering boards by classification, then searching them by name.",
   },
   story: [
     {

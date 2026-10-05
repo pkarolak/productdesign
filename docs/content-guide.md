@@ -92,7 +92,7 @@ Dark mode: add `srcDark` to screenshots when you have a dark export. Without one
 | `photo` | `src`, `alt`, optional `ratio` | Research, workshops, whiteboards. |
 | `diagram` | `layers`: 2 to 4 short labels (bottom first) | Drawn by the theme; no image needed. |
 | `compare` | `before`, `after` | Same crop and size for both. |
-| `video` | `src`, `poster`, `alt`, optional `ratio` | Muted loop, under 6 MB, with a poster frame. As a cover it plays in the listing card and the case header (ADR 0042). |
+| `video` | `src`, `poster`, `alt`, optional `ratio`, optional `dark` (`src`, `poster`) | Muted loop, under 6 MB, with a poster frame. As a cover it plays in the listing card and the case header (ADR 0042). `dark` is the same loop recorded in the product's dark theme (ADR 0045). |
 
 ### Where files go
 

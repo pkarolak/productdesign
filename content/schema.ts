@@ -40,6 +40,7 @@ export const assetSchema = z.discriminatedUnion("kind", [
     kind: z.literal("video"),
     src: z.string().startsWith("/"),
     poster: z.string().startsWith("/"),
+    dark: z.object({ src: z.string().startsWith("/"), poster: z.string().startsWith("/") }).optional(),
     alt: z.string().min(8),
     ratio,
   }),

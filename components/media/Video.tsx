@@ -4,11 +4,26 @@ import { useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
 
-/** A muted loop that plays only in view. Under reduced motion, its poster. An empty `alt` marks it decorative. */
-export function Video({ src, poster, alt, className }: { src: string; poster: string; alt: string; className?: string }) {
+type Source = { src: string; poster: string };
+
+/**
+ * A muted loop that plays only in view. Under reduced motion, its poster. An empty `alt` marks it decorative. With a
+ * `dark` recording, each colour mode shows its own loop instead of dimming the light one.
+ */
+export function Video({ src, poster, dark, alt, className }: Source & { dark?: Source; alt: string; className?: string }) {
+  const base = "absolute inset-0 h-full w-full object-cover object-[0%_0%]";
+  if (!dark) return <Loop src={src} poster={poster} alt={alt} className={cn("media", base, className)} />;
+  return (
+    <>
+      <Loop src={src} poster={poster} alt={alt} className={cn(base, "dark:hidden", className)} />
+      <Loop src={dark.src} poster={dark.poster} alt={alt} className={cn(base, "hidden dark:block", className)} />
+    </>
+  );
+}
+
+function Loop({ src, poster, alt, className }: Source & { alt: string; className: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
-  const classes = cn("media absolute inset-0 h-full w-full object-cover object-[0%_0%]", className);
 
   useEffect(() => {
     const el = ref.current;
@@ -23,7 +38,7 @@ export function Video({ src, poster, alt, className }: { src: string; poster: st
 
   if (reduced) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={poster} alt={alt} className={classes} />;
+    return <img src={poster} alt={alt} className={className} />;
   }
   return (
     <video
@@ -36,7 +51,7 @@ export function Video({ src, poster, alt, className }: { src: string; poster: st
       preload="metadata"
       aria-label={alt || undefined}
       aria-hidden={alt ? undefined : true}
-      className={classes}
+      className={className}
     />
   );
 }

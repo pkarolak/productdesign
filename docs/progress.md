@@ -52,6 +52,15 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: re-recorded loops and stills, with dark takes (ADR 0045)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Loops:** all three re-recorded at 1440×900, 2x, encoded to 1920×1200 at 30 fps. No focus rings, caret or scrollbars, calmer tags, a softer pointer and eased moves. Each loop ends where it starts. Content Explorer now filters, clears and searches instead of visiting the Content Lifecycle tab.
+  - **Dark:** each loop has a dark take from the console's own dark theme. `Video` takes `dark` and shows one per colour mode, undimmed.
+  - **Stills:** the Content Explorer views, the Analytics drill-down and use cases, and the Enterprise Guard classification were re-shot at 1440×900 with the side panel as an overlay.
+  - **Checks:** typecheck, lint and the build pass. In light and dark mode, only that mode's loop plays.
+
 ## 2026-10-05: a polished mobile menu
 
 - **Agent:** Cursor agent (Claude)

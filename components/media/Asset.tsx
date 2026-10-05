@@ -151,7 +151,7 @@ export function Asset({
 
         {asset.kind === "compare" && <Compare before={asset.before} after={asset.after} sizes={sizes} />}
 
-        {asset.kind === "video" && <Video src={asset.src} poster={asset.poster} alt={asset.alt} />}
+        {asset.kind === "video" && <Video src={asset.src} poster={asset.poster} dark={asset.dark} alt={asset.alt} />}
       </div>
     </Frame>
   );

@@ -68,6 +68,7 @@ export const miroEnterpriseGuard = {
     kind: "video",
     src: "/projects/miro-enterprise-guard/loop.mp4",
     poster: "/projects/miro-enterprise-guard/loop.jpg",
+    dark: { src: "/projects/miro-enterprise-guard/loop-dark.mp4", poster: "/projects/miro-enterprise-guard/loop-dark.jpg" },
     ratio: "16/10",
     alt: "Enterprise Guard classification in the admin console: the overview, then the configuration of levels and guardrails.",
   },

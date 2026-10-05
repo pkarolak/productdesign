@@ -62,6 +62,7 @@ export const miroAnalytics = {
     kind: "video",
     src: "/projects/miro-analytics/loop.mp4",
     poster: "/projects/miro-analytics/loop.jpg",
+    dark: { src: "/projects/miro-analytics/loop-dark.mp4", poster: "/projects/miro-analytics/loop-dark.jpg" },
     ratio: "16/10",
     alt: "Miro Analytics in the admin console: the Miro AI tab, then the Teams using AI drill-down.",
   },
