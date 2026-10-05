@@ -202,14 +202,15 @@ export const site = siteSchema.parse({
   },
   about: {
     title: "More about me",
-    headline: "All problems can be solved in an *elegant* way.",
+    headline: "All problems can be solved in an *elegant* way, even if they look ugly at a glance.",
     story: [
       "I'm Patryk, a product designer from Poznań. For over 12 years I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
       "I studied computer science in Poznań and Madrid, and I still code my own prototypes.",
     ],
     portrait: {
-      src: "/about/portrait.jpg",
-      alt: "Patryk Karolak's desk with sketches, a film camera and a laptop in soft morning light.",
+      src: "/about/patryk-monster.jpg",
+      alt: "Patryk smiling in a selfie next to a large, toothy orange monster sculpture by a window.",
+      ratio: "4/3",
     },
     facts: [
       { value: "12", unit: "+", label: "years of designing products" },

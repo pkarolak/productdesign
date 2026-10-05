@@ -31,8 +31,11 @@ export function StoryHeader({ about, children }: { about: Site["about"]; childre
         </div>
         {portrait && (
           <Rise i={3} className="card self-start rounded-card p-(--frame-pad) lg:col-span-5">
-            <div className="core relative aspect-[4/5] overflow-hidden rounded-inset">
-              <Picture {...portrait} sizes="(min-width: 1024px) 40vw, 100vw" priority className="object-cover" />
+            <div
+              className="core relative aspect-[4/5] overflow-hidden rounded-inset"
+              style={portrait.ratio ? { aspectRatio: portrait.ratio } : undefined}
+            >
+              <Picture src={portrait.src} alt={portrait.alt} sizes="(min-width: 1024px) 40vw, 100vw" priority className="object-cover" />
             </div>
           </Rise>
         )}

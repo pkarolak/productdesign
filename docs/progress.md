@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: About hero, the monster photo
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the About headline reads "All problems can be solved in an elegant way, even if they look ugly at a glance." (the headline budget is 18 words, at the owner's request). The portrait is his selfie with the orange monster, in a 4/3 frame through a new optional `portrait.ratio`. Typecheck, lint and the build pass; shots light, dark and iPhone.
+
 ## 2026-10-05: photos in Free time, and a travel tile
 
 - **Agent:** Cursor agent (Claude)
