@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: A more dramatic signature
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the letter's sign-off (`components/blocks/SignOff.tsx`) is Caveat at 700 (weight added to both themes' fonts), 3.75 to 4.5rem, tilted 6 degrees. In view it writes itself in left to right, then an accent swash draws under it; both skip under reduced motion. The reveal is triggered from the wrapper, since a fully clipped element never reports as in view. Still Caveat through `type-hand` only (ADR 0014, 0038). Typecheck, lint, theme check, build, axe pass; shots desktop and iPhone.
+
+---
+
 ## 2026-10-05: Experience, goal-oriented copy
 
 - **Agent:** Cursor agent (Claude)

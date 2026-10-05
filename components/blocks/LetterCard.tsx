@@ -5,6 +5,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import type { Letter, Site } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { LetterPhoto } from "./LetterPhoto";
+import { SignOff } from "./SignOff";
 
 /** A short personal note that closes the page and carries the contact actions. */
 export function LetterCard({
@@ -37,8 +38,8 @@ export function LetterCard({
                 <p key={p}>{p}</p>
               ))}
             </div>
-            <p className="type-hand mt-7 -rotate-3 text-[2.5rem] leading-none text-ink">{letter.signoff}</p>
-            <p className="type-small mt-2 text-ink-2">{name}</p>
+            <SignOff>{letter.signoff}</SignOff>
+            <p className="type-small mt-3 text-ink-2">{name}</p>
           </div>
         </div>
         <div className="mt-8 border-t border-hairline flex flex-wrap items-center gap-x-5 gap-y-4 pt-6">

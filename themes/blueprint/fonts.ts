@@ -18,7 +18,7 @@ const body = Lato({
 /** Handwritten doodle captions only (ADR 0014). */
 const hand = Caveat({
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["500", "600", "700"],
   variable: "--theme-font-hand",
   display: "swap",
 });
