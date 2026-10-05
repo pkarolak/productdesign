@@ -18,6 +18,9 @@ export type Command = {
   href?: string;
   action?: CommandAction;
   keywords?: string;
+  /** The id of the item it nests under, in the same group, listed right after it. */
+  parent?: string;
+  locked?: boolean;
 };
 
 export type CommandGroup = { label: string; items: Command[] };
@@ -28,6 +31,7 @@ export const OPEN_EVENT = "command-menu:open";
 export const openCommandMenu = () => window.dispatchEvent(new Event(OPEN_EVENT));
 
 function iconFor(c: Command): IconName {
+  if (c.locked) return "lock";
   if (c.action === "copy-email") return "copy";
   if (c.action === "toggle-theme") return "moon";
   if (c.href?.startsWith("http")) return "arrow-up-right";
@@ -77,11 +81,20 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
     let n = 0;
+    const matches = (c: Command) => !q || `${c.label} ${c.keywords ?? ""}`.toLowerCase().includes(q);
     return groups
-      .map((g) => ({
-        label: g.label,
-        items: g.items.filter((c) => !q || `${c.label} ${c.keywords ?? ""}`.toLowerCase().includes(q)),
-      }))
+      .map((g) => {
+        const hit = new Set(g.items.filter(matches).map((c) => c.id));
+        return {
+          label: g.label,
+          items: g.items.filter(
+            (c) =>
+              hit.has(c.id) ||
+              (c.parent !== undefined && hit.has(c.parent)) ||
+              g.items.some((child) => child.parent === c.id && hit.has(child.id)),
+          ),
+        };
+      })
       .filter((g) => g.items.length > 0)
       .map((g) => ({ label: g.label, items: g.items.map((command) => ({ command, i: n++ })) }));
   }, [groups, query]);
@@ -158,6 +171,7 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
             </p>
             {g.items.map(({ command: c, i }) => {
               const selected = i === active;
+              const nested = c.parent !== undefined;
               return (
                 <div
                   key={c.id}
@@ -167,13 +181,15 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
                   onPointerMove={() => setActive(i)}
                   onClick={() => run(c)}
                   className={cn(
-                    "type-body flex cursor-pointer items-center justify-between gap-4 rounded-inset px-3 py-2.5 text-ink-2",
+                    "flex cursor-pointer items-center justify-between gap-4 rounded-inset px-3 text-ink-2",
+                    nested ? "type-small ml-5 border-l border-hairline py-2 pl-4" : "type-body py-2.5",
                     selected && "bg-skeleton text-ink",
                   )}
                 >
                   <span className="flex items-center gap-3">
-                    <Icon name={iconFor(c)} className="size-4 text-ink-3" />
+                    <Icon name={iconFor(c)} className={cn("text-ink-3", nested ? "size-3.5" : "size-4")} />
                     {c.label}
+                    {c.locked && <span className="sr-only">, password protected</span>}
                   </span>
                   {selected && <Icon name="corner-down-left" className="size-4 text-ink-3" />}
                 </div>

@@ -52,6 +52,15 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: cases nest under "The big ones" in the command menu
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Data:** `Command` has an optional `parent` (the id of the item it nests under) and `locked`. In `app/layout.tsx` the cases sit right after "The big ones" with `parent: "work"`.
+  - **Display:** the menu indents them on a hairline in a smaller type size. Protected cases show a lock and announce ", password protected".
+  - **Search:** a matching child keeps its parent visible, and a matching parent shows all its children. "allegro" gives "The big ones" with Merchant Economic Tools under it, and "big ones" gives all six cases.
+  - **Checks:** axe is clean with the menu open. Typecheck, lint, `theme:check` and the build pass.
+
 ## 2026-10-05: no duration on Content Explorer
 
 - **Agent:** Cursor agent (Claude)
