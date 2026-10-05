@@ -123,7 +123,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: rise.duration, ease, delay: rise.delay + 0.1 }}
-        className="fixed top-(--nav-top) right-(--gutter) z-50 hidden h-14 items-center gap-1 md:flex"
+        className="surface-strong fixed top-[calc(var(--nav-top)+0.5rem)] right-(--gutter) z-50 hidden h-10 items-center gap-0.5 rounded-pill pr-0.5 pl-1 md:flex"
       >
         <button
           type="button"

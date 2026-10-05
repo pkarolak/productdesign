@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: the top-right corner sits on its own pill
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the Shortcuts hint and the theme toggle had no background, so content scrolled through them. They now sit in a `surface-strong` pill, the same frosted bar as the nav, 40px tall and centred on the nav's height. I checked scrolled `/work` screenshots in light and dark.
+
 ## 2026-10-05: explicit section names and plain home copy (ADR 0037)
 
 - **Agent:** Cursor agent (Claude)
