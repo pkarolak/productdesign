@@ -54,6 +54,7 @@ export const site = siteSchema.parse({
         parts: ["Designing analytics and security tools at", {
             pill: "Miro",
             logo: "/logos/miro.png",
+            href: "https://miro.com",
             kind: "Visual collaboration platform",
             about: "An online canvas where teams brainstorm, plan and build together, used by millions of people at companies large and small.",
           }, ","],
@@ -62,6 +63,7 @@ export const site = siteSchema.parse({
           {
             pill: "Egnyte",
             logo: "/logos/egnyte.png",
+            href: "https://www.egnyte.com",
             kind: "Secure content platform",
             about: "Cloud file sharing and governance for businesses that need their documents safe, compliant and easy to find.",
           },
@@ -69,6 +71,7 @@ export const site = siteSchema.parse({
           {
             pill: "Allegro",
             logo: "/logos/allegro.png",
+            href: "https://allegro.pl",
             kind: "Online marketplace",
             about: "The biggest e-commerce platform in Poland, where millions of people buy and sell almost anything every day.",
           },
@@ -85,6 +88,7 @@ export const site = siteSchema.parse({
         parts: ["My lovely wife and toddler, then head of design at", {
             pill: "CoNaDzielni.pl",
             logo: "/logos/conadzielni.png",
+            href: "https://conadzielni.pl",
             kind: "Local events guide",
             about: "A guide to what is happening in your city: events, places and plans nearby.",
           },

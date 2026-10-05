@@ -77,6 +77,7 @@ export const iconNames = [
   "music",
   "clapperboard",
   "palette",
+  "external-link",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

@@ -174,6 +174,8 @@ const company = z.object({
   logo: z.string().startsWith("/logos/").optional(),
   kind: words(5),
   about: words(24),
+  /** The product's website, opened in a new tab from the card's corner. */
+  href: z.url().optional(),
 });
 
 /** Plain text runs, inline company notes and dictionary terms, read as one sentence. */

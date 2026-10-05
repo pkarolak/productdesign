@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Company cards link to the product sites
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the hero company cards (Miro, Egnyte, Allegro, CoNaDzielni.pl) carry an open-in icon in the top-right corner that opens the product's website in a new tab (new `href` on company notes, new `external-link` icon; ADR 0025 amendment). Verified: the card stays open as the pointer crosses onto it and the link opens a new tab; Tab enters the card and Tab from the link moves on to the next name; on an iPhone the centred card shows the link. Typecheck, lint, build, axe pass.
+
+---
+
 ## 2026-10-05: Teaching in colour
 
 - **Agent:** Cursor agent (Claude)

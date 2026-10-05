@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { Company, GlossaryEntry } from "@/content/schema";
 import { cn } from "@/lib/cn";
+import { Icon } from "./Icon";
 import { motion } from "@theme/motion";
 
 const WIDTH = 340;
@@ -32,6 +33,7 @@ const leave = {
 };
 
 const narrow = "(max-width: 767px)";
+const tabbable = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
 /** A real mouse on a device that can hover; phones sometimes report fast taps as mouse events. */
 const hovering = (pointerType: string) => pointerType === "mouse" && window.matchMedia("(hover: hover)").matches;
 const watchNarrow = (l: () => void) => {
@@ -47,21 +49,26 @@ const watchNarrow = (l: () => void) => {
  * Tapped on a narrow screen, or opened in any way on a narrow device that cannot hover, it opens centred over a
  * blurred scrim, and any tap closes it. A mouse or keyboard gets the anchored card, since a scrim under the pointer
  * would end the hover that opened it. Fast taps do not always report themselves as touch, hence the device check.
+ * An `interactive` card holds a link: it takes the pointer, and Tab from the open trigger moves into it and on out.
  */
 export function Bubble({
   label,
   card,
   name,
+  interactive = false,
   children,
 }: {
   label: string;
   card: ReactNode;
+  interactive?: boolean;
   /** A proper name rather than a word: no highlight and no underline of its own; the name inside draws a fine one. */
   name?: boolean;
   children: ReactNode;
 }) {
   const [pos, setPos] = useState<{ left: number; top: number; above: boolean } | null>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
+  const returning = useRef(false);
   const pointer = useRef("");
   const closing = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const id = useId();
@@ -84,6 +91,42 @@ export function Bubble({
     clearTimeout(closing.current);
     closing.current = setTimeout(close, 140);
   }, [close]);
+  const keep = useCallback(() => clearTimeout(closing.current), []);
+
+  /** Tab from the trigger enters the card; Tab from the card's last stop leaves to whatever follows the trigger. */
+  const onTriggerKey = (e: React.KeyboardEvent) => {
+    const first = panel.current?.querySelector<HTMLElement>(tabbable);
+    if (!interactive || !open || e.key !== "Tab" || e.shiftKey || !first) return;
+    e.preventDefault();
+    keep();
+    first.focus();
+  };
+  const onPanelKey = (e: React.KeyboardEvent) => {
+    if (e.key !== "Tab" || !trigger.current) return;
+    e.preventDefault();
+    if (e.shiftKey) {
+      returning.current = true;
+      trigger.current.focus();
+      return;
+    }
+    const all = Array.from(document.querySelectorAll<HTMLElement>(tabbable)).filter(
+      (el) => !panel.current?.contains(el) && el.getClientRects().length > 0,
+    );
+    close();
+    all[all.indexOf(trigger.current) + 1]?.focus();
+  };
+  const panelEvents = interactive
+    ? {
+        ref: panel,
+        role: "dialog" as const,
+        "aria-label": label,
+        onKeyDown: onPanelKey,
+        onFocus: keep,
+        onBlur: hide,
+        onPointerEnter: (e: React.PointerEvent) => hovering(e.pointerType) && keep(),
+        onPointerLeave: (e: React.PointerEvent) => hovering(e.pointerType) && hide(),
+      }
+    : { role: "tooltip" as const };
 
   const place = useCallback(() => {
     const el = trigger.current;
@@ -126,12 +169,19 @@ export function Bubble({
       <button
         ref={trigger}
         type="button"
-        aria-describedby={open ? id : undefined}
+        aria-describedby={open && !interactive ? id : undefined}
+        aria-controls={open && interactive ? id : undefined}
         aria-expanded={open}
+        onKeyDown={onTriggerKey}
         onPointerEnter={(e) => hovering(e.pointerType) && show()}
         onPointerLeave={(e) => hovering(e.pointerType) && hide()}
         onPointerDown={(e) => (pointer.current = e.pointerType)}
-        onFocus={() => !pointer.current && show()}
+        onFocus={() => {
+          if (returning.current) {
+            returning.current = false;
+            keep();
+          } else if (!pointer.current) show();
+        }}
         onBlur={hide}
         onClick={() => {
           const kind = pointer.current;
@@ -164,12 +214,12 @@ export function Bubble({
               >
                 <m.div
                   id={id}
-                  role="tooltip"
+                  {...panelEvents}
                   initial={{ y: 10, scale: 0.96 }}
                   animate={{ y: 0, scale: 1 }}
                   exit={{ y: 6, scale: 0.98 }}
                   transition={{ duration: 0.26, ease: motion.ease }}
-                  className="surface surface-deep w-full max-w-[340px] rounded-card p-5 text-left"
+                  className="surface surface-deep relative w-full max-w-[340px] rounded-card p-5 text-left"
                 >
                   {card}
                 </m.div>
@@ -185,7 +235,7 @@ export function Bubble({
               <m.div
                 key="anchored"
                 id={id}
-                role="tooltip"
+                {...panelEvents}
                 initial={{ opacity: 0, y: pos.above ? 6 : -6, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 variants={leave}
@@ -199,7 +249,10 @@ export function Bubble({
                   transformOrigin: pos.above ? "0 100%" : "0 0",
                   translateY: pos.above ? "-100%" : 0,
                 }}
-                className="surface surface-deep pointer-events-none fixed z-[70] rounded-card p-5 text-left"
+                className={cn(
+                  "surface surface-deep fixed z-[70] rounded-card p-5 text-left",
+                  !interactive && "pointer-events-none",
+                )}
               >
                 {card}
               </m.div>
@@ -253,10 +306,23 @@ export function CompanyNote({ company, children }: { company: Company; children:
   return (
     <Bubble
       name
+      interactive={!!company.href}
       label={`About ${company.pill}`}
       card={
         <>
-          <div className="flex items-center gap-3">
+          {company.href && (
+            <a
+              href={company.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open the ${company.pill} website in a new tab`}
+              onClick={(e) => e.stopPropagation()}
+              className="focus-ring press absolute top-3 right-3 grid size-9 place-items-center rounded-inset text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink"
+            >
+              <Icon name="external-link" className="size-4" />
+            </a>
+          )}
+          <div className={cn("flex items-center gap-3", company.href && "pr-8")}>
             <span className="grid size-10 shrink-0 place-items-center rounded-inset border border-hairline bg-canvas">
               {company.logo ? (
                 <Image src={company.logo} alt="" width={24} height={24} className="size-6 object-contain" />
