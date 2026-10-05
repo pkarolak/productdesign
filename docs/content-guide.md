@@ -37,7 +37,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `outside` item `icon`, `photo` | optional | A glyph in the free-time card, and a photo above the text (`src`, `alt`, optional `focus` as an object-position like `50% 30%`). Photos live in `public/about/free-time/`; the glyph sits on the photo as a badge. |
 | `educationTitle` | 4 words | The education heading ("Education"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |
-| `journey.roles` | up to 8, summary 18, up to 4 points of 16, optional `logo` or `icon` | "Experience", one card per company with its roles on a rail (ADR 0047). Omit `to` while the role is current. `cases` link up to 2 case slugs. `logo` is for companies the hero intro does not name. |
+| `journey.roles` | up to 9, summary 18, up to 4 points of 16, optional `logo` or `icon`, `side` |  "Experience", one card per company with its roles on a rail (ADR 0047). Omit `to` while the role is current. `cases` link up to 2 case slugs. `logo` is for companies the hero intro does not name. `side: true` marks work alongside the main job; it lists after the main roles under `journey.alongside` (default "Alongside"). |
 | `values` | up to 4, text 30, note 24 | "How I work". `evidence` is a case slug. `note` (optional) sits under the heading; it states the working loop (discover, prototype, validate, merge). |
 
 ## Voice

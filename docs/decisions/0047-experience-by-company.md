@@ -16,6 +16,11 @@ Experience listed every role as its own card beside a year rail. Miro and Egnyte
 - **Up to four points per role**, still 16 words each, at the owner's request.
 - **The production PR count is counted, not estimated:** 19 PRs opened by `pattheux` in Miro's production repositories that touch UX (`client` 15, `ai-config` 3, `design-system` 1), as of 2026-10-05. Prototype repositories and analytics-only data repositories (`looker`, `dbt`) are excluded. 7 of the 19 are merged.
 
+## Amendment, 2026-10-05
+
+- **Side work groups last** under an "Alongside" label, in the company list and in the cards: roles with `side: true` (CoNaDzielni.pl, Freelance) follow the main roles, so a 2026 side role does not sit above Miro. The role cap is 9, raised at the owner's request to add CoNaDzielni.pl.
+- **The company list is calmer:** names in body weight ink, years in a quiet caption, small marks without a frame.
+
 ## Consequences
 
 - Re-count the PRs with `gh search prs --author pattheux` before changing the number.

@@ -343,8 +343,21 @@ export const site = siteSchema.parse({
         summary: "Multi-platform interaction design, qualitative and quantitative research, and specifications for new features.",
       },
       {
+        from: 2026,
+        company: "CoNaDzielni.pl",
+        side: true,
+        role: "Head of design",
+        kind: "City events",
+        summary: "A guide to your city's events, places and plans. I lead its design after hours.",
+        points: [
+          "New visual language for the app, designed and delivered straight in code. Shipped in 2 weeks.",
+          "Built a brand new experience for exploring your city and planning nights out.",
+        ],
+      },
+      {
         from: 2011,
         company: "Freelance",
+        side: true,
         icon: "pen-tool",
         role: "Design and research consultant",
         kind: "Various clients",

@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Experience, calmer list and CoNaDzielni.pl
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the company list leads with the names (body, medium, ink) and keeps the years quiet; the small marks lose their frames. CoNaDzielni.pl joins as Head of design (2026 to now) with the owner's two achievements, and side work (CoNaDzielni.pl, Freelance) groups last under "Alongside" (ADR 0047 amendment; role cap 9 at the owner's request). Typecheck, lint, build, axe pass; shots light and dark.
+
+---
+
 ## 2026-10-05: Side gig feature, CoNaDzielni.pl in a phone
 
 - **Agent:** Cursor agent (Claude)

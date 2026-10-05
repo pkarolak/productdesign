@@ -326,6 +326,8 @@ export const educationSchema = z
 export const journeySchema = z.object({
   title: words(5),
   note: words(24).optional(),
+  /** The label above the side work. */
+  alongside: words(3).default("Alongside"),
   roles: z
     .array(
       z
@@ -337,6 +339,8 @@ export const journeySchema = z.object({
           /** For companies the hero intro does not name; `icon` stands in where there is no mark at all. */
           logo: z.string().startsWith("/").optional(),
           icon: icon.optional(),
+          /** Work alongside the main job; listed after the main roles. */
+          side: z.boolean().default(false),
           role: words(5),
           kind: words(3),
           summary: words(18),
@@ -346,7 +350,7 @@ export const journeySchema = z.object({
         .refine((r) => r.to === undefined || r.to >= r.from, { message: "`to` must not be before `from`." }),
     )
     .min(1)
-    .max(8),
+    .max(9),
 });
 
 export const valuesSchema = z.object({
