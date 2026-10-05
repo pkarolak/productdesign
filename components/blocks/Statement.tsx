@@ -7,7 +7,7 @@ import { BlockHeader } from "./BlockHeader";
 export function Statement({
   statement,
   suit,
-  id = "short-version",
+  id = "about-me",
 }: {
   statement?: StatementData;
   suit?: Suit;

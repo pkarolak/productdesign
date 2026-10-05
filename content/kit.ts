@@ -8,9 +8,9 @@ import { site } from "./site";
 export const kit: Site = {
   ...site,
   showcase: showcaseSchema.parse({
-    title: "Side quests",
+    title: "Side gigs",
     note: "Small tools and rituals I keep coming back to. Tap one to open it.",
-    more: "All side quests",
+    more: "All side gigs",
     items: [
       {
         id: "crit-cards",

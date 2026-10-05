@@ -52,6 +52,22 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: explicit section names and plain home copy (ADR 0037)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Card deck:** the owner's own words, verbatim: Hello!, Big projects, Side gigs, Teaching, Free time.
+  - **Chapters and anchors:** they match the cards: About me `#about-me`, Big projects `#big-projects`, Side gigs `#side-gigs`, Teaching `#teaching`, Free time `#free-time`.
+  - **About headings:** "More about me", "Experience", "Education".
+  - **Command menu:** it reads its labels from the content titles.
+  - **Copy:**
+    - The intro is "Designing analytics and security tools at Miro", and the OG headline matches.
+    - The hand note is "Pick a card to jump to a section".
+    - The Big projects note is "Selected cases from Miro, Allegro and Egnyte."
+    - The Side gigs detail is trimmed, and Free time lost its design metaphors.
+  - **Voice rules:** a new "Voice" section in the content guide.
+  - **Checks:** budgets, typecheck, lint, the build and `docs:check` pass. axe is clean on home, and every card anchor resolves. I checked the screenshots at 1440px and 390px.
+
 ## 2026-10-05: the nav's command hint says "Shortcuts"
 
 - **Agent:** Cursor agent (Claude)

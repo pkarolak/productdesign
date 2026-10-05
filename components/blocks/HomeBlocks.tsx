@@ -28,13 +28,13 @@ export function HomeBlocks({ content }: { content: Site }) {
         intro={content.work}
         projects={projects}
         orgs={organizations(content)}
-        id="big-ones"
+        id="big-projects"
         suit={suitFor(content, "work")}
         featured
       />
-      <Showcase showcase={content.showcase} id="side-quests" suit={suitFor(content, "showcase")} />
-      <Teaching teaching={content.teaching} id="office-hours" suit={suitFor(content, "teaching")} />
-      <OutsideWork outside={content.outside} id="off-the-clock" suit={suitFor(content, "outside")} />
+      <Showcase showcase={content.showcase} id="side-gigs" suit={suitFor(content, "showcase")} />
+      <Teaching teaching={content.teaching} id="teaching" suit={suitFor(content, "teaching")} />
+      <OutsideWork outside={content.outside} id="free-time" suit={suitFor(content, "outside")} />
       <Testimonials testimonials={content.testimonials} />
       {content.letter ? (
         <LetterCard letter={content.letter} name={content.name} links={content.links} />

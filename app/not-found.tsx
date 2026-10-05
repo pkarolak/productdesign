@@ -11,7 +11,7 @@ export default function NotFound() {
         </h1>
         <p className="type-lede mt-6 mb-10 max-w-[38ch]">The work is, though.</p>
         <div>
-          <PrimaryLink href="/#big-ones">View work</PrimaryLink>
+          <PrimaryLink href="/#big-projects">View work</PrimaryLink>
         </div>
       </section>
       <Contact site={site} />

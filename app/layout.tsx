@@ -36,7 +36,7 @@ const commands: CommandGroup[] = [
   {
     label: "Work",
     items: [
-      { id: "work", label: "The big ones", href: "/#big-ones", keywords: "work cases projects", meta: `${projects.length} cases` },
+      { id: "work", label: site.work.title, href: "/#big-projects", keywords: "work cases projects", meta: `${projects.length} cases` },
       ...projects.map((p) => ({
         id: p.slug,
         label: p.title,
@@ -53,11 +53,13 @@ const commands: CommandGroup[] = [
     label: "Pages",
     items: [
       { id: "home", label: "Home", href: "/" },
-      { id: "short-version", label: "The short version", href: "/#short-version", keywords: "intro hello" },
-      { id: "side-quests", label: "Side quests", href: "/#side-quests", keywords: "side projects gigs freelance" },
-      { id: "office-hours", label: "Office hours", href: "/#office-hours", keywords: "teaching tutor lecturer" },
-      { id: "off-the-clock", label: "Off the clock", href: "/#off-the-clock", keywords: "hobbies climbing tango dj" },
-      { id: "about", label: "About", href: "/about", keywords: "long version journey values cv resume" },
+      ...[
+        { id: "about-me", label: site.statement?.title, keywords: "intro hello short version" },
+        { id: "side-gigs", label: site.showcase?.title, keywords: "side projects quests freelance" },
+        { id: "teaching", label: site.teaching?.title, keywords: "tutor lecturer workshops talks" },
+        { id: "free-time", label: site.outside?.title, keywords: "hobbies climbing tango dj" },
+      ].flatMap(({ label, ...c }) => (label ? [{ ...c, label, href: `/#${c.id}` }] : [])),
+      { id: "about", label: site.about.title, href: "/about", keywords: "long version experience education values cv resume" },
     ],
   },
   {

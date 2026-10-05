@@ -51,7 +51,7 @@ export const site = siteSchema.parse({
       {
         when: "Day",
         icon: "sun",
-        parts: ["Shaping enterprise-grade experiences at", {
+        parts: ["Designing analytics and security tools at", {
             pill: "Miro",
             logo: "/logos/miro.png",
             kind: "Visual collaboration platform",
@@ -113,37 +113,37 @@ export const site = siteSchema.parse({
         ],
       },
     ],
-    headline: "I shape *enterprise-grade* experiences at Miro.",
+    headline: "I design *analytics* and security tools at Miro.",
   },
-  handNote: "Pick a card to see my tricks!",
+  handNote: "Pick a card to jump to a section",
   deck: {
     joker: { src: "/cards/bandoneon-line-light.png", srcDark: "/cards/bandoneon-line-dark.png" },
     back: { src: "/cards/back-clean-light.jpg", srcDark: "/cards/back-clean-dark.jpg" },
   },
   hand: [
-    { title: "Hi!", text: "The short version of me.", href: "#short-version", target: "about", suit: "heart" },
-    { title: "The big ones", text: "Products people lean on daily.", href: "#big-ones", target: "work", suit: "spade" },
-    { title: "Side quests", text: "A guide to my city.", href: "#side-quests", target: "showcase", suit: "diamond" },
-    { title: "Office hours", text: "A few years of teaching.", href: "#office-hours", target: "teaching", suit: "club" },
-    { title: "Off the clock", text: "Climbing, tango and the records.", href: "#off-the-clock", target: "outside", suit: "joker" },
+    { title: "Hello!", text: "Get to know me a little bit", href: "#about-me", target: "about", suit: "heart" },
+    { title: "Big projects", text: "Some interesting outcomes of my work", href: "#big-projects", target: "work", suit: "spade" },
+    { title: "Side gigs", text: "More lightweight stuff I built after hours", href: "#side-gigs", target: "showcase", suit: "diamond" },
+    { title: "Teaching", text: "How I help others grow", href: "#teaching", target: "teaching", suit: "club" },
+    { title: "Free time", text: "Sport, tango, and others of my choice", href: "#free-time", target: "outside", suit: "joker" },
   ],
   statement: {
-    title: "The short version",
-    lines: ["Research first, always.", "Then a working prototype, not a picture."],
-    text: "I work where products get complicated: analytics, security and content governance for big companies. After research I build a prototype app, validate it fast and merge it when it proves right.",
-    cta: { label: "The long version", href: "/about" },
+    title: "About me",
+    lines: ["Research first, always.", "Then a working prototype instead of mockups."],
+    text: "I design analytics, security and content governance tools for big companies. After research I build a prototype app, validate it fast, and merge it if it proves right.",
+    cta: { label: "More about me", href: "/about" },
   },
   work: {
-    title: "The big ones",
-    note: "Products people lean on every working day.",
+    title: "Big projects",
+    note: "Selected cases from Miro, Allegro and Egnyte.",
     featured: 3,
-    more: "All the big ones",
+    more: "All big projects",
   },
   showcase: {
-    title: "Side quests",
-    note: "What I design after hours, close to home. Tap one for the story.",
+    title: "Side gigs",
+    note: "Lightweight stuff I build after hours. Tap one to read more.",
     featured: 3,
-    more: "All side quests",
+    more: "All side gigs",
     items: [
       {
         id: "co-na-dzielni",
@@ -151,14 +151,14 @@ export const site = siteSchema.parse({
         title: "CoNaDzielni.pl",
         text: "A guide to what is happening in your city: events, places and plans nearby.",
         detail:
-          "A side project close to my heart. CoNaDzielni.pl helps people see what is going on around them, from a gig down the street to a plan for Saturday. I lead its design after hours, right after family time and before the milonga.",
-        link: { label: "Visit the guide", href: "https://conadzielni.pl" },
+          "CoNaDzielni.pl shows what is going on in your city, from a gig down the street to plans for Saturday. I lead its design after hours.",
+        link: { label: "Visit CoNaDzielni.pl", href: "https://conadzielni.pl" },
       },
     ],
   },
   teaching: {
-    title: "Office hours",
-    note: "Teaching UX design and research, in lecture halls and workshop rooms.",
+    title: "Teaching",
+    note: "UX design and research classes, talks and workshops.",
     items: [
       {
         place: "Collegium Da Vinci, Poznań",
@@ -185,7 +185,7 @@ export const site = siteSchema.parse({
     signoff: "Patryk",
   },
   about: {
-    title: "The long version",
+    title: "More about me",
     headline: "Calm interfaces for *complex* work.",
     story: [
       "I am a product designer based in Poznań. Since 2014 I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
@@ -202,9 +202,9 @@ export const site = siteSchema.parse({
     { school: "Universidad Politécnica de Madrid", degree: "User Centered Problem Solving", years: "2014" },
     { school: "Universidad Politécnica de Madrid", degree: "Machine learning", years: "2014" },
   ],
-  educationTitle: "School days",
+  educationTitle: "Education",
   journey: {
-    title: "Where I've been",
+    title: "Experience",
     note: "Enterprise content, e-commerce, payments and collaboration, with freelance work alongside since 2011.",
     roles: [
       {
@@ -310,20 +310,20 @@ export const site = siteSchema.parse({
     ],
   },
   outside: {
-    title: "Off the clock",
-    note: "What fills the hours away from the screen.",
+    title: "Free time",
+    note: "Sport, tango, and others of my choice.",
     items: [
       {
         title: "I climb, mostly boulders.",
-        text: "Bouldering is problem solving with your whole body. You read the route, commit, fall, adjust and try again. It is the most honest usability test I know.",
+        text: "Problem solving with your whole body: read the route, try, fall, adjust and try again.",
       },
       {
         title: "I dance Argentine tango.",
-        text: "Tango is improvised and led in the moment, with constant small signals between two people. It taught me more about listening than any workshop.",
+        text: "It is improvised, with constant small signals between two people. It made me a better listener.",
       },
       {
         title: "I DJ at milongas.",
-        text: "Reading a room and changing the plan when the floor goes quiet. Picking the next track feels a lot like picking the next thing to ship.",
+        text: "I play tango music for the dancers and change the plan when the floor goes quiet.",
       },
     ],
   },
