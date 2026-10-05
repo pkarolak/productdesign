@@ -11,7 +11,7 @@
 ## Decision
 
 - **Opener:** the headline is his belief, "All problems can be solved in an elegant way." Two short paragraphs say who and where. Under it sits a band of four numbers, each traced to his material: 12+ years, 4 product companies, 2,250 prototype commits, 3 years teaching UX.
-- **What I believe:** five beliefs in his words, each with a lucide glyph that names it: toy brick (explain it to a 5-year-old), sparkles (clean UI with a spark), dashed square (no UI), ban (not building it), wand (AI and even chances). They sit on hairlines, not cards. The last one closes wider.
+- **What I believe:** five beliefs in his words, each with a lucide glyph that names it: toy brick (explain it to a 5-year-old), sparkles (clean UI with a spark), dashed square (no UI), ban (not building it), wand (AI and even chances). They sit on hairlines, not cards, as even rows: glyph and title, then the reason beside them (amended 2026-10-05; the wider closing belief read as uneven).
 - **How I work:** the loop (discover, prototype, validate, merge) is drawn as connected steps: icon tiles, hairlines and arrows, with a repeat mark after merge. On mobile it becomes a vertical rail. The principle cards stay below it.
 - **Education and Teaching:** side by side, each led by an icon tile (graduation cap, presentation).
 - **Free time:** the home cards join About, with a mountain, footprints and a record.

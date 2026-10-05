@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: even belief rows
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** "What I believe" drops the grid with a wider, larger closing card. Every belief is an even row on hairlines: glyph and title on the left, the reason on the right (stacked on phones). ADR 0044 amended. Lint and the build pass.
+
 ## 2026-10-05: beliefs that add something
 
 - **Agent:** Cursor agent (Claude)

@@ -31,7 +31,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `letter` | 1 to 3 paragraphs of 34 words, signoff 4 | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. `signoff` is the handwritten signature above `name`. `photo`: an optional 5:7 portrait `{ src, alt }` beside the text (ADR 0038). `links.email` is optional: without it, every email action (the letter, the contact block, the command menu) hides. |
 | `about.title`, `about.story` | title 4; 1 to 3 paragraphs of 70 words | The page label ("More about me"); the first paragraph reads as the lede. Keep it short: who you are and where. |
 | `about.facts` | up to 4; `value` a number (`12`, `$10M`) or one capitalised word, `unit` 3 characters, `label` 7 words | A band of plain numbers under the opener; a word value names a focus ("Enterprise"). Each must trace to the owner's material. |
-| `about.beliefs` | title 5; 2 to 6 items, title 8, text 30, one `icon` each | "What I believe", in the owner's words. Icons come from the theme's icon set (`themes/contract.ts`). With 5 items the last one closes wider. |
+| `about.beliefs` | title 5; 2 to 6 items, title 8, text 30, one `icon` each | "What I believe", in the owner's words. Icons come from the theme's icon set (`themes/contract.ts`). Each renders as an even row: glyph and title, then the text beside them. |
 | `values.loop` | 2 to 5 steps, title 2, text 16, one `icon` each | The working loop, drawn as connected steps above the principles. The last step closes it ("Repeat"); there is no return arrow. |
 | `outside` item `icon` | optional | A glyph in the free-time card. |
 | `educationTitle` | 4 words | The education heading ("Education"). |

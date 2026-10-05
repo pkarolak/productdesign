@@ -1,35 +1,31 @@
 import { Rise } from "@/components/motion/Rise";
 import { Icon } from "@/components/ui/Icon";
 import type { Site } from "@/content/schema";
-import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
 
-/** Convictions, each with a glyph, on hairlines. The last one closes wider when it would sit alone. Nothing while empty. */
+/** Convictions as even rows on hairlines: glyph and title, then the reason beside them. Nothing while empty. */
 export function Beliefs({ beliefs }: { beliefs?: Site["about"]["beliefs"] }) {
   if (!beliefs?.items.length) return null;
-  const { items } = beliefs;
-  const closing = items.length % 3 === 2;
   return (
     <section id="beliefs" aria-labelledby="beliefs-title" className="container-page section-y">
       <BlockHeader id="beliefs-title" title={beliefs.title} />
-      <ul className="grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((b, i) => {
-          const wide = closing && i === items.length - 1;
-          return (
-            <Rise
-              as="li"
-              key={b.title}
-              i={i % 3}
-              className={cn("border-t border-hairline pt-6", wide && "lg:col-span-2")}
-            >
-              <span className="card grid size-12 place-items-center rounded-inset text-ink">
+      <ul className="border-b border-hairline">
+        {beliefs.items.map((b, i) => (
+          <Rise
+            as="li"
+            key={b.title}
+            i={i}
+            className="grid gap-4 border-t border-hairline py-7 md:grid-cols-12 md:items-center md:gap-8 md:py-8"
+          >
+            <div className="flex items-center gap-4 md:col-span-5">
+              <span className="card grid size-12 shrink-0 place-items-center rounded-inset text-ink">
                 <Icon name={b.icon} size="nav" />
               </span>
-              <h3 className={cn("mt-5 text-ink", wide ? "type-h2 max-w-[22ch]" : "type-h3")}>{b.title}</h3>
-              <p className={cn("mt-2", wide ? "type-lede max-w-[52ch]" : "type-small max-w-[36ch]")}>{b.text}</p>
-            </Rise>
-          );
-        })}
+              <h3 className="type-h3 text-ink">{b.title}</h3>
+            </div>
+            <p className="type-body max-w-[60ch] text-ink-2 md:col-span-7">{b.text}</p>
+          </Rise>
+        ))}
       </ul>
     </section>
   );
