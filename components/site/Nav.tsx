@@ -15,7 +15,7 @@ import { openCommandMenu, useModKey } from "./CommandMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { href: "/#big-projects", label: "Work", match: (p: string) => p.startsWith("/work") || p.startsWith("/locked") },
+  { href: "/work", label: "Work", match: (p: string) => p.startsWith("/work") || p.startsWith("/locked") },
   { href: "/about", label: "About me", match: (p: string) => p === "/about" },
 ];
 
@@ -85,7 +85,7 @@ export function Nav({ name, avatar, sections = [] }: { name: string; avatar?: st
             <Link
               key={l.href}
               href={l.href}
-              transitionTypes={[l.href === "/about" ? "nav-forward" : "nav-back"]}
+              transitionTypes={[l.href === "/" ? "nav-back" : "nav-forward"]}
               aria-current={active ? "page" : undefined}
               className={cn(
                 "focus-ring relative hidden rounded-pill text-ink-2 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink md:block",

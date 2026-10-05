@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Nav Work opens /work
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the nav's "Work" (desktop pill and mobile menu) now opens `/work` ("Some of my most impactful projects") instead of the Big projects section on Home; it slides forward like About me, and only Home slides back. Label stays "Work". Typecheck, lint, build pass.
+
+---
+
 ## 2026-10-05: Joker hat favicon
 
 - **Agent:** Cursor agent (Claude)
