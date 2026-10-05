@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: "More big projects"
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the link under the featured cases reads "More big projects" instead of "All big projects". Typecheck passes.
+
 ## 2026-10-05: an aligned work grid, loops on hover
 
 - **Agent:** Cursor agent (Claude)
