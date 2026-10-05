@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Teaching in colour
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Teaching cards on Home get a hue wash (green, violet), an icon tile from the new optional `teaching.items[].icon`, a big faint corner glyph that swings on hover with the tile tilting, and hue dots on the topic chips. New contract utility `tint-ink` in both themes (ADR 0048 amendment). Typecheck, lint, build, axe pass; shots light, dark, iPhone.
+
+---
+
 ## 2026-10-05: Home About me aligned with the About page
 
 - **Agent:** Cursor agent (Claude)

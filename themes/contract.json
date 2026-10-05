@@ -112,7 +112,8 @@
     "type-hand",
     "daylight",
     "card-tint",
-    "icon-tint"
+    "icon-tint",
+    "tint-ink"
   ],
   "fontVariables": [
     "--theme-font-display",

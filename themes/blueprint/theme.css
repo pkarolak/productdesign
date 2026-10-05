@@ -553,3 +553,12 @@
   &[data-tint="green"] { --tile-hue: var(--bp-hue-green); }
   &[data-tint="violet"] { --tile-hue: var(--bp-hue-violet); }
 }
+
+/* A glyph or dot drawn in one hue, never text (data-tint: amber, rose, blue, green, violet). */
+@utility tint-ink {
+  &[data-tint="amber"] { color: var(--bp-hue-amber); }
+  &[data-tint="rose"] { color: var(--bp-hue-rose); }
+  &[data-tint="blue"] { color: var(--bp-hue-blue); }
+  &[data-tint="green"] { color: var(--bp-hue-green); }
+  &[data-tint="violet"] { color: var(--bp-hue-violet); }
+}

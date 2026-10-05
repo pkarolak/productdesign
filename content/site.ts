@@ -177,6 +177,7 @@ export const site = siteSchema.parse({
     items: [
       {
         place: "Collegium Da Vinci, Poznań",
+        icon: "graduation-cap",
         role: "Academic teacher",
         years: "2019 to 2022",
         text: "Lecturer and tutor of several subjects on UX design and UX research processes.",
@@ -184,6 +185,7 @@ export const site = siteSchema.parse({
       },
       {
         place: "Conferences and workshops",
+        icon: "presentation",
         role: "Speaker and workshop author",
         years: "Since 2017",
         text: "Spoke at StartUp Mash-Up, wrote a workshop series for cognitive science students at AMU Poznań, and led the Egnyte Summer UX Camp.",

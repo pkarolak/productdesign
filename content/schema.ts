@@ -308,6 +308,7 @@ export const teachingSchema = z.object({
     .array(
       z.object({
         place: z.string().min(3),
+        icon: icon.optional(),
         role: words(5),
         years: z.string().min(4),
         text: words(30),

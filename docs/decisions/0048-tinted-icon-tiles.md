@@ -14,6 +14,10 @@ About was grey from top to bottom: every glyph sat on the same white tile in ink
 - **Used through `IconTile`** on the beliefs, the How I work loop and the Education and Teaching headers. The loop runs blue, violet, green, amber, rose; the beliefs start the same cycle at amber so the two lists don't repeat side by side.
 - **The accent rule stands:** hues sit on decorative glyph tiles only, never on text, links or buttons. The amber accent stays the one interactive colour.
 
+## Amendment, 2026-10-05
+
+- **`tint-ink`** joins the contract: it draws a decorative glyph or dot in one hue (never text). Teaching on Home uses it: each card has a hue wash (`card-tint`), an `IconTile` from the item's `icon`, a large faint glyph in the corner that swings on hover, and a hue dot on each topic chip.
+
 ## Consequences
 
 - Any new glyph tile should use `IconTile` with a tint, not a plain `card` tile.
