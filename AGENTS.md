@@ -81,7 +81,7 @@ Design skills live in `.agents/skills/` and are pinned by `skills-lock.json`. Re
  - Run the `DESIGN.md` checklist and the `pnpm shots` comparison before marking any UI todo done.
  - One accent and one radius system per theme (Dusk: pale amber; Blueprint: Cobalt). Use only theme tokens, no free colors. The playing-card colours (`card-face`, `card-red`, `card-ink`) are only for card faces and suit glyphs (ADR 0013, 0015, 0018), never text accents or buttons.
  - Every component must work in both light and dark modes, and under both themes.
- - Fonts per theme: Dusk uses Geist; Blueprint uses Sora and Lato (ADR 0011). Never Inter, never a serif or mono font, and no handwritten font except Caveat through `type-hand` for doodle captions (ADR 0014).
+ - Fonts per theme: Dusk uses Geist; Blueprint uses Sora and Lato (ADR 0011). Never Inter, never a serif or mono font, and no handwritten font except Caveat through `type-hand` for doodle captions and the letter signature (ADR 0014, 0038).
  - Page sections are blocks in `components/blocks/` (ADR 0010). A block with no content renders nothing; review blocks on `/kit`.
  - No kudos, likes or visitor counts.
 - **Copy:**

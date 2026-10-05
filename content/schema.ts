@@ -234,7 +234,10 @@ export const testimonialsSchema = z.object({
 export const letterSchema = z.object({
   salutation: words(5),
   paragraphs: z.array(words(34)).min(1).max(3),
+  /** Rendered as a handwritten signature above the full name. */
   signoff: words(4),
+  /** A 5:7 photo beside the letter. */
+  photo: portrait.optional(),
 });
 
 export const teachingSchema = z.object({

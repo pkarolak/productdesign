@@ -28,7 +28,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `teaching` | up to 3, text 30, 4 topics of 4 words | "Teaching". Place, role, years, what you taught. |
 | `outside` | up to 3, text 40 | "Free time". Life outside work, briefly. |
 | `testimonials` | up to 4, quote 45 words | "Word of mouth". Real people only. Left out on the live site until the owner adds real ones; `/kit` shows a labelled sample. |
-| `letter` | 1 to 3 paragraphs of 34 words | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. `links.email` is optional: without it, every email action (the letter, the contact block, the command menu) hides. |
+| `letter` | 1 to 3 paragraphs of 34 words, signoff 4 | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. `signoff` is the handwritten signature above `name`. `photo`: an optional 5:7 portrait `{ src, alt }` beside the text (ADR 0038). `links.email` is optional: without it, every email action (the letter, the contact block, the command menu) hides. |
 | `about.title`, `about.story` | title 4; 1 to 3 paragraphs of 70 words | The page label ("More about me"); the first paragraph reads as the lede. |
 | `educationTitle` | 4 words | The education heading ("Education"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |

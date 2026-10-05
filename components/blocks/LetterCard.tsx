@@ -1,8 +1,10 @@
+import Image from "next/image";
 import { CopyEmail } from "@/components/site/CopyEmail";
 import { Rise } from "@/components/motion/Rise";
 import { PrimaryLink } from "@/components/ui/Button";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import type { Letter, Site } from "@/content/schema";
+import { cn } from "@/lib/cn";
 
 /** A short personal note that closes the page and carries the contact actions. */
 export function LetterCard({
@@ -19,17 +21,32 @@ export function LetterCard({
   if (!letter) return null;
   return (
     <section data-dock-hide id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
-      <Rise as="article" className="card mx-auto max-w-[720px] rounded-card p-7 md:p-12">
-        <h2 id={`${id}-title`} className="type-h3 text-ink">
-          {letter.salutation}
-        </h2>
-        <div className="type-body mt-5 grid gap-4 text-ink-2">
-          {letter.paragraphs.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
+      <Rise as="article" className="card mx-auto max-w-[800px] rounded-card p-7 md:p-12">
+        <div className={cn("grid gap-7", letter.photo && "md:grid-cols-[160px_minmax(0,1fr)] md:gap-11")}>
+          {letter.photo && (
+            <div className="core relative aspect-[5/7] w-28 -rotate-3 overflow-hidden rounded-inset md:mt-1 md:w-full">
+              <Image
+                src={letter.photo.src}
+                alt={letter.photo.alt}
+                fill
+                sizes="(min-width: 768px) 160px, 112px"
+                className="media object-cover object-[50%_20%]"
+              />
+            </div>
+          )}
+          <div>
+            <h2 id={`${id}-title`} className="type-h3 text-ink">
+              {letter.salutation}
+            </h2>
+            <div className="type-body mt-5 grid gap-4 text-ink-2">
+              {letter.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+            <p className="type-hand mt-7 -rotate-3 text-[2.5rem] leading-none text-ink">{letter.signoff}</p>
+            <p className="type-small mt-2 text-ink-2">{name}</p>
+          </div>
         </div>
-        <p className="type-body mt-6 text-ink-2">{letter.signoff}</p>
-        <p className="type-h3 mt-1 text-ink">{name}</p>
         <div className="mt-8 border-t border-hairline flex flex-wrap items-center gap-x-5 gap-y-4 pt-6">
           {links.calendar ? (
             <PrimaryLink href={links.calendar}>Book a call</PrimaryLink>

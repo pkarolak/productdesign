@@ -52,6 +52,17 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: the closing letter in the owner's words, with photo and signature (ADR 0038)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Copy:** "Hey there," and the owner's three paragraphs, with grammar and spelling fixed. There's no dash, and the third paragraph fits the 34-word budget exactly.
+  - **Photo:** the winking, pointing portrait sits beside the text from `md`, slightly tilted.
+  - **Signature:** "Patryk" in `type-hand` above "Patryk Karolak".
+  - **Schema:** an optional `letter.photo`.
+  - **Docs:** the font rule in AGENTS.md now allows the signature.
+  - **Checks:** budgets, typecheck, lint and the build pass. axe is clean on the letter. I checked light, dark and 390px.
+
 ## 2026-10-05: the top-right corner sits on its own pill
 
 - **Agent:** Cursor agent (Claude)

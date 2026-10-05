@@ -177,12 +177,17 @@ export const site = siteSchema.parse({
     ],
   },
   letter: {
-    salutation: "Dear future teammate,",
+    salutation: "Hey there,",
     paragraphs: [
-      "I like hard problems, kind teams and products people rely on at work.",
-      "If you are building something like that and want a designer who will sit with your users and your engineers, I would love to hear from you.",
+      "You made it to the bottom of my home page. Thanks for your interest in my little portfolio!",
+      "As you might have noticed, I like hard problems and bold ways of solving them. I'm always up for a new adventure.",
+      "If you are building something cool and need somebody to help shape the vision in a user-centered way, design a lovely interface and make sure you can actually ship it fast, it's a match!",
     ],
     signoff: "Patryk",
+    photo: {
+      src: "/about/patryk-wink.jpg",
+      alt: "Patryk Karolak winking and pointing at you with a grin.",
+    },
   },
   about: {
     title: "More about me",
