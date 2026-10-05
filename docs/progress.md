@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Experience, goal-oriented copy
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** every Experience summary and point on /about now leads with the outcome (Launched, Rebuilt, Took from 0 to 1, Enabled, Gave, Shipped) instead of describing the area. Facts unchanged; Allegro adds the owner's wording on stock fulfillment, profitability and supply chain. Within budgets; build and axe pass.
+
+---
+
 ## 2026-10-05: Home About me, lighter lead
 
 - **Agent:** Cursor agent (Claude)
