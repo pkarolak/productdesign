@@ -4,7 +4,7 @@ import { motion as m } from "motion/react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { motion } from "@theme/motion";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
@@ -37,6 +37,20 @@ export const OPEN_EVENT = "command-menu:open";
 
 /** Opens the menu from anywhere, e.g. the nav hint. */
 export const openCommandMenu = () => window.dispatchEvent(new Event(OPEN_EVENT));
+
+const isApple = () => {
+  const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+  return /mac|iphone|ipad|ipod/i.test(nav.userAgentData?.platform || nav.platform || nav.userAgent);
+};
+
+/** "⌘" on Apple devices, "Ctrl" elsewhere; null until hydrated, since the server cannot know. */
+export function useModKey(): "⌘" | "Ctrl" | null {
+  return useSyncExternalStore(
+    () => () => {},
+    () => (isApple() ? "⌘" : "Ctrl"),
+    () => null,
+  );
+}
 
 const ALL = "All";
 

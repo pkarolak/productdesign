@@ -52,6 +52,16 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: the nav's command hint says "Shortcuts"
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Hint:** the bare "⌘ K" at the top right is now "Shortcuts" plus a key chip.
+  - **Platform:** `useModKey()` in `CommandMenu.tsx` picks "⌘ K" on Apple devices and "Ctrl K" elsewhere. It uses `userAgentData.platform`, with `navigator.platform` and the user agent as fallbacks.
+  - **Hydration:** the server can't know the platform, so the chip stays transparent until hydration, and the layout doesn't shift.
+  - **Accessibility:** `aria-keyshortcuts` follows the platform. The accessible name is the visible "Shortcuts".
+  - **Checks:** with macOS and Windows emulated, the chip reads "⌘ K" and "Ctrl K", and Ctrl+K opens the menu. axe is clean, and lint and the build pass.
+
 ## 2026-10-05: work grouped by company, with tenure spans (ADR 0036)
 
 - **Agent:** Cursor agent (Claude)

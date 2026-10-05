@@ -7,9 +7,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "@theme/motion";
 import { PrimaryLink } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/cn";
-import { openCommandMenu } from "./CommandMenu";
+import { openCommandMenu, useModKey } from "./CommandMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -25,6 +24,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
   const menuButton = useRef<HTMLButtonElement>(null);
   const firstItem = useRef<HTMLAnchorElement>(null);
   const { rise, ease, spring } = motion;
+  const mod = useModKey();
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 80));
   useEffect(() => {
@@ -128,12 +128,20 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
         <button
           type="button"
           onClick={openCommandMenu}
-          aria-label="Open command menu"
-          aria-keyshortcuts="Meta+K Control+K"
-          className="focus-ring press flex h-9 cursor-pointer items-center gap-1 rounded-pill px-2.5 text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
+          aria-haspopup="dialog"
+          aria-keyshortcuts={mod === "⌘" ? "Meta+K" : "Control+K"}
+          className="focus-ring press group/keys flex h-9 cursor-pointer items-center gap-2 rounded-pill pr-1.5 pl-3 text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:text-ink"
         >
-          <Icon name="command" className="size-3.5" />
-          <span aria-hidden className="type-caption">K</span>
+          <span className="type-caption">Shortcuts</span>
+          <kbd
+            aria-hidden
+            className={cn(
+              "type-caption min-w-11 rounded-inset border border-hairline px-1.5 py-0.5 text-center transition-opacity duration-(--t-hover-short) ease-slow group-hover/keys:border-ink-3",
+              !mod && "opacity-0",
+            )}
+          >
+            {mod ?? "⌘"} K
+          </kbd>
         </button>
         <ThemeToggle quiet />
       </m.div>
