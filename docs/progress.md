@@ -52,6 +52,15 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: work grouped by company, with tenure spans (ADR 0036)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Timeline:** groups cases by company instead of by year: Miro "2022 to now", Allegro "2021 to 2022", Egnyte "2014 to 2021". Each group shows its logo tile. `lib/companies.ts` derives the logo from the hero intro and the span from the journey roles.
+  - **Rows:** timeline rows drop the company caption, and the command menu shows the company without the year.
+  - **Kept:** the case header, the locked page and the OG image still say "Company, year".
+  - **Checks:** typecheck, lint and the build pass, and axe is clean on home and `/work`. I checked the screenshots at 1440px and 390px.
+
 ## 2026-10-05: command menu polish
 
 - **Agent:** Cursor agent (Claude)

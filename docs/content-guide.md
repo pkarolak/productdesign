@@ -7,7 +7,7 @@ Everything a visitor reads lives in `content/`. The build validates it against [
 - `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, About story, education, journey, values, resume), links, contact copy, an optional footnote.
 - `content/kit.ts`: fixtures for `/kit`, the live content plus the blocks the site leaves empty. Only `/kit` reads it.
 - `content/projects/<slug>.ts`: one file per case.
-- `content/projects/index.ts`: the order, and a check for exactly six cases. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
+- `content/projects/index.ts`: the order, and a check for exactly six cases. The first `work.featured` cases lead on home; the work timeline groups them by `company`, most recent first, labelled with the company's span from `journey` (ADR 0036).
 
 Wrap one word of a heading in `*asterisks*` to give it the single emphasis (for example `"I design the *systems* product teams build on."`). Use `\u00a0` (a non-breaking space) to keep short phrases together, like `0\u00a0to\u00a01`.
 

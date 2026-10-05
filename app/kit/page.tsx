@@ -20,6 +20,7 @@ import { kit } from "@/content/kit";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { suitFor, visibleCards } from "@/lib/blocks";
+import { organizations } from "@/lib/companies";
 
 export const metadata: Metadata = {
   title: "Block library",
@@ -69,8 +70,8 @@ export default function Kit() {
         <Specimen name="Statement">
           <Statement statement={kit.statement} suit={suitFor(kit, "about")} />
         </Specimen>
-        <Specimen name="WorkTimeline" note="Cases by year, cover morphs into the case">
-          <WorkTimeline intro={kit.work} projects={projects} suit={suitFor(kit, "work")} />
+        <Specimen name="WorkTimeline" note="Cases by company with its span, cover morphs into the case">
+          <WorkTimeline intro={kit.work} projects={projects} orgs={organizations(kit)} suit={suitFor(kit, "work")} />
         </Specimen>
         <Specimen name="Showcase" note="Cards that expand into a sheet, with images">
           <Showcase showcase={kit.showcase} suit={suitFor(kit, "showcase")} />

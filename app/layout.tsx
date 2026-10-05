@@ -12,6 +12,7 @@ import { Toaster } from "@/components/site/Toaster";
 import { plain } from "@/components/ui/Emphasis";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
+import { organizations } from "@/lib/companies";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,11 +30,7 @@ export const viewport: Viewport = {
   ],
 };
 
-const logos = new Map(
-  site.hero.intro
-    .flatMap((row) => [...row.parts, ...(row.note ?? [])])
-    .flatMap((part) => (typeof part === "object" && "pill" in part && part.logo ? [[part.pill, part.logo] as const] : [])),
-);
+const orgs = organizations(site);
 
 const commands: CommandGroup[] = [
   {
@@ -47,8 +44,8 @@ const commands: CommandGroup[] = [
         keywords: "case",
         parent: "work",
         locked: p.access === "protected",
-        meta: `${p.company}, ${p.year}`,
-        logo: logos.get(p.company),
+        meta: p.company,
+        logo: orgs.get(p.company)?.logo,
       })),
     ],
   },

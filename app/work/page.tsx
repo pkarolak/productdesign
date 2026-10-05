@@ -6,6 +6,7 @@ import { Rise } from "@/components/motion/Rise";
 import { Contact } from "@/components/site/Contact";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
+import { organizations } from "@/lib/companies";
 
 const { work } = site;
 
@@ -32,7 +33,7 @@ export default function Work() {
             <LockedNote projects={projects} />
           </Rise>
         </header>
-        <WorkTimeline intro={work} projects={projects} id="all-work" header={false} />
+        <WorkTimeline intro={work} projects={projects} orgs={organizations(site)} id="all-work" header={false} />
         <Contact site={site} />
       </div>
     </PageTransition>

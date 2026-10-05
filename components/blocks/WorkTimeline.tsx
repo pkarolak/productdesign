@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { assetImage } from "@/components/media/Asset";
 import { Picture } from "@/components/media/Picture";
@@ -6,6 +7,7 @@ import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import type { Project, Suit, WorkIntro } from "@/content/schema";
+import { type Org, span } from "@/lib/companies";
 import { BlockHeader } from "./BlockHeader";
 
 const counts = ["None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
@@ -55,7 +57,6 @@ function Row({ project, i }: { project: Project; i: number }) {
         <span className="min-w-0">
           <span className="type-h3 block text-ink">{project.title}</span>
           <span className="type-small mt-1 line-clamp-2 block">{project.bottomLine}</span>
-          <span className="type-caption mt-1 block text-ink-3">{project.company}</span>
         </span>
         <span className="type-small col-span-2 flex items-center gap-1.5 px-1 md:col-span-1 md:px-0">
           {locked ? (
@@ -79,13 +80,14 @@ function Row({ project, i }: { project: Project; i: number }) {
 }
 
 /**
- * Cases grouped by year, newest first, each row opening the case with a cover morph. Only covers show, which are
- * public, so the list is safe for locked cases. With `featured`, it shows the first `intro.featured` cases and links
- * to the full index when there are more.
+ * Cases grouped by company, most recent first, each row opening the case with a cover morph. Only covers show, which
+ * are public, so the list is safe for locked cases. With `featured`, it shows the first `intro.featured` cases and
+ * links to the full index when there are more.
  */
 export function WorkTimeline({
   intro,
   projects: all,
+  orgs,
   suit,
   id = "work",
   featured = false,
@@ -93,6 +95,8 @@ export function WorkTimeline({
 }: {
   intro: WorkIntro;
   projects: Project[];
+  /** Logo and span per company; without it, groups show the name only. */
+  orgs?: Map<string, Org>;
   suit?: Suit;
   id?: string;
   featured?: boolean;
@@ -102,7 +106,7 @@ export function WorkTimeline({
   if (!all.length) return null;
   const projects = featured ? all.slice(0, intro.featured) : all;
   const more = featured && all.length > projects.length;
-  const years = [...new Set(projects.map((p) => p.year))].sort((a, b) => b - a);
+  const companies = [...new Set([...projects].sort((a, b) => b.year - a.year).map((p) => p.company))];
   return (
     <section
       id={id}
@@ -124,23 +128,40 @@ export function WorkTimeline({
         />
       )}
       <div className="grid gap-8 md:gap-6">
-        {years.map((year) => (
-          <div key={year} className="grid gap-3 md:grid-cols-[112px_minmax(0,1fr)] md:gap-6">
-            <Rise as={header ? "h3" : "h2"} className="type-h3 pt-1 text-ink-3 tabular-nums md:pt-4">
-              {year}
-            </Rise>
-            <ul className="grid gap-3">
-              {projects
-                .filter((p) => p.year === year)
-                .map((p, i) => (
-                  <Row key={p.slug} project={p} i={i} />
-                ))}
-            </ul>
-          </div>
-        ))}
+        {companies.map((company) => {
+          const org = orgs?.get(company);
+          const when = span(org);
+          return (
+            <div key={company} className="grid gap-3 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6">
+              <Rise className="flex items-center gap-3 pt-1 md:flex-col md:items-start md:gap-2 md:pt-4">
+                {org?.logo && (
+                  <span className="grid size-9 shrink-0 place-items-center rounded-inset border border-hairline bg-canvas">
+                    <Image src={org.logo} alt="" width={20} height={20} className="size-5 object-contain" />
+                  </span>
+                )}
+                <span className="grid">
+                  {header ? (
+                    <h3 className="type-h3 text-ink">{company}</h3>
+                  ) : (
+                    <h2 className="type-h3 text-ink">{company}</h2>
+                  )}
+                  {when && <span className="type-caption text-ink-3 tabular-nums">{when}</span>}
+                </span>
+              </Rise>
+              <ul className="grid gap-3">
+                {projects
+                  .filter((p) => p.company === company)
+                  .sort((a, b) => b.year - a.year)
+                  .map((p, i) => (
+                    <Row key={p.slug} project={p} i={i} />
+                  ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
       {more && (
-        <Rise className="mt-8 md:pl-[136px]">
+        <Rise className="mt-8 md:pl-[184px]">
           <ArrowLink href="/work" transition="nav-forward">
             {intro.more}
           </ArrowLink>
