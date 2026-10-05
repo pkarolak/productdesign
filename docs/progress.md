@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: "My role" in the case facts
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the first fact in the case header reads "My role" instead of "Role". Typecheck passes.
+
 ## 2026-10-05: a quiet case header (ADR 0046)
 
 - **Agent:** Cursor agent (Claude)

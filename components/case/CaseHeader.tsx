@@ -37,7 +37,7 @@ export function CaseHeader({ project, logo, children }: { project: Project; logo
         </Rise>
         <Rise i={3} className="mt-12 md:mt-14">
           <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-hairline pt-6 md:grid-cols-4">
-            <Fact label="Role">{project.role}</Fact>
+            <Fact label="My role">{project.role}</Fact>
             <Fact label="Timeline">{project.timeline}</Fact>
             <Fact label="Team">{project.team}</Fact>
             <Fact label="Partners">{project.partners}</Fact>
