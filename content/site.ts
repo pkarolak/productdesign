@@ -143,6 +143,12 @@ export const site = siteSchema.parse({
     note: "Selected cases from Miro, Allegro and Egnyte.",
     featured: 3,
     more: "More big projects",
+    index: {
+      eyebrow: "My big projects",
+      title: "Some of my most impactful projects",
+      note: "Selected cases from Miro, Allegro and Egnyte.",
+      ask: { link: "Reach out", text: "to get access and learn more about them." },
+    },
   },
   showcase: {
     title: "Side gigs",

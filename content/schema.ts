@@ -246,7 +246,21 @@ export const statementSchema = z.object({
   cta: cta.optional(),
 });
 
-export const workIntroSchema = z.object({ title: words(5), note: words(10), featured, more: words(4) });
+export const workIntroSchema = z.object({
+  title: words(5),
+  note: words(10),
+  featured,
+  more: words(4),
+  /** The /work page's own heading; `ask` ends the note with a link to the contact chapter. */
+  index: z
+    .object({
+      eyebrow: words(4),
+      title: words(8),
+      note: words(12),
+      ask: z.object({ link: words(3), text: words(10) }),
+    })
+    .optional(),
+});
 
 export const showcaseSchema = z.object({
   title: words(6),

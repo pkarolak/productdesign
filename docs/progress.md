@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: the /work page heading
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `/work` has its own heading in `site.work.index`: "My big projects", "Some of my most impactful projects", and a note ending in a "Reach out" link to contact. Home keeps "Big projects" and "More big projects". Typecheck, lint and the build pass.
+
 ## 2026-10-05: "More big projects"
 
 - **Agent:** Cursor agent (Claude)

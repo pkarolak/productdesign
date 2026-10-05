@@ -9,10 +9,11 @@ import { site } from "@/content/site";
 import { organizations } from "@/lib/companies";
 
 const { work } = site;
+const { index } = work;
 
 export const metadata: Metadata = {
-  title: work.more,
-  description: work.note,
+  title: index?.title ?? work.more,
+  description: index?.note ?? work.note,
 };
 
 /** Every case, for when home only has room for the featured ones. Lists covers only, like the home chapter. */
@@ -23,14 +24,26 @@ export default function Work() {
       <div>
         <header className="container-page pt-(--nav-clear) pb-10 md:pt-44 md:pb-12">
           <Rise as="p" className="type-label">
-            {work.title}
+            {index?.eyebrow ?? work.title}
           </Rise>
           <Rise as="h1" i={1} className="type-display mt-3 max-w-[16ch] text-ink">
-            {work.more}
+            {index?.title ?? work.more}
           </Rise>
           <Rise as="p" i={2} className="type-lede mt-4 max-w-[58ch]">
-            {work.note}
-            <LockedNote projects={projects} />
+            {index ? (
+              <>
+                {index.note}{" "}
+                <a href="#contact" className="focus-ring link rounded-pill">
+                  {index.ask.link}
+                </a>{" "}
+                {index.ask.text}
+              </>
+            ) : (
+              <>
+                {work.note}
+                <LockedNote projects={projects} />
+              </>
+            )}
           </Rise>
         </header>
         <WorkTimeline intro={work} projects={projects} orgs={organizations(site)} id="all-work" header={false} />
