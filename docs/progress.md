@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: swipe to book no longer trips the popup blocker (ADR 0039)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Cause:** mobile browsers blocked the calendar tab because it opened after the 0.7s flight, outside the gesture.
+  - **Fix:** on touch screens the tab now opens at once, inside the swipe or tap. If it is still blocked, the match caption offers a "Pick a time" link.
+  - **Checks:** lint, typecheck and the build pass.
+
 ## 2026-10-05: an editorial About page (ADR 0044)
 
 - **Agent:** Cursor agent (Claude)

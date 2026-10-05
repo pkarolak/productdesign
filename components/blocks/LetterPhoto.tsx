@@ -36,6 +36,7 @@ export function LetterPhoto({ photo, calendar }: { photo: Photo; calendar?: stri
   const inView = useInView(root, { once: true, amount: 0.8 });
   const [liked, setLiked] = useState(false);
   const [pops, setPops] = useState(0);
+  const [blocked, setBlocked] = useState(false);
   const flying = useRef(false);
 
   const x = useMotionValue(0);
@@ -59,19 +60,29 @@ export function LetterPhoto({ photo, calendar }: { photo: Photo; calendar?: stri
     );
   }
 
+  /** Without `noopener` in the features, so a blocked popup shows as null. */
+  const open = () => {
+    const tab = window.open(calendar, "_blank");
+    if (tab) tab.opener = null;
+    setBlocked(!tab);
+  };
+
   const like = async () => {
     if (flying.current) return;
     setPops((n) => n + 1);
     if (reduce) {
+      open();
       setLiked(true);
-      window.open(calendar, "_blank", "noopener");
       return;
     }
+    // Touch browsers allow a new tab only inside the gesture itself; a mouse click stays valid through the flight.
+    const now = !window.matchMedia("(hover: hover)").matches;
+    if (now) open();
     flying.current = true;
     rotateX.set(0);
     rotateY.set(0);
     await animate(x, 520, { duration: 0.45, ease: [0.4, 0, 1, 1], delay: 0.25 });
-    window.open(calendar, "_blank", "noopener");
+    if (!now) open();
     setLiked(true);
     x.jump(0);
     flying.current = false;
@@ -169,7 +180,14 @@ export function LetterPhoto({ photo, calendar }: { photo: Photo; calendar?: stri
       </div>
 
       <p aria-live="polite" className="type-caption text-ink-3 md:mt-4 md:text-center">
-        {liked ? (
+        {liked && blocked ? (
+          <>
+            It&apos;s a match!{" "}
+            <a href={calendar} target="_blank" rel="noopener noreferrer" className="focus-ring link rounded-pill py-1 text-ink">
+              Pick a time
+            </a>
+          </>
+        ) : liked ? (
           "It's a match! Pick a time in the new tab."
         ) : (
           <>

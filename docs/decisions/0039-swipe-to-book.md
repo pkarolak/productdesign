@@ -21,7 +21,8 @@ The letter that closes home ends on "it's a match!". The owner wants its photo t
   - The heart button stays visible on touch screens as the non-gesture way to like.
 - **A like:**
   - Hearts burst from the button and the card flies off to the right, fading as it goes.
-  - The calendar opens in a new tab within 0.7s of the gesture, so popup blockers allow it.
+  - The calendar opens in a new tab. On touch screens it opens at once, inside the swipe or tap, because mobile browsers block a tab opened later. With a mouse it opens after the flight, within 0.7s of the click.
+  - If a browser still blocks it, the match caption becomes a "Pick a time" link.
   - The card is dealt back with a heart badge, and the caption reads "It's a match! Pick a time in the new tab." (`aria-live`).
 - **Reduced motion:** no tilt, nudge, drag or flight. The heart opens the calendar at once.
 - **Not a like count:** nothing is stored or shown to others, so the "no kudos, likes or visitor counts" rule still holds.
