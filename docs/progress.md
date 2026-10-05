@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: beliefs that add something
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** each "What I believe" card restated its title. Every text now gives the reason or the how behind the belief, built only from the owner's own statements. The build passes.
+
 ## 2026-10-05: stronger facts, a plainer working loop
 
 - **Agent:** Cursor agent (Claude)

@@ -223,27 +223,27 @@ export const site = siteSchema.parse({
         {
           icon: "toy-brick",
           title: "Explain it to a 5-year-old",
-          text: "Most topics can be easily explained to a 5-year-old, if you first understand them well yourself.",
+          text: "If I can't explain a problem in plain words, I don't understand it well enough yet. That is my test before I design anything.",
         },
         {
           icon: "sparkles",
           title: "Clean UI with a spark",
-          text: "I love clean interfaces with a little spark in them.",
+          text: "Calm, quiet screens do most of the work. One small moment of delight, a transition or a detail, is what people remember.",
         },
         {
           icon: "square-dashed",
           title: "Sometimes no UI is best",
-          text: "Sometimes no UI is the best thing we can do.",
+          text: "A smart default, an automation or one well-placed setting can remove a whole screen. Less to learn beats a nicer screen.",
         },
         {
           icon: "ban",
           title: "Be bold enough not to build it",
-          text: "Sometimes the best way to go about a feature is to be bold enough not to build it in the first place.",
+          text: "Every feature costs maintenance, support and attention. Saying no, with evidence behind it, can be the most valuable design decision on a roadmap.",
         },
         {
           icon: "wand-sparkles",
           title: "Even chances for everyone",
-          text: "In the era of AI and vibe coding we all get even chances to test our hypotheses in no time. That's the best time ever to be a product designer.",
+          text: "AI and vibe coding let anyone test an idea in hours, not sprints. Good ideas win on evidence. The best time ever to be a product designer.",
         },
       ],
     },
