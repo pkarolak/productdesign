@@ -47,7 +47,7 @@ export function LetterCard({
           ) : (
             links.email && <PrimaryLink href={`mailto:${links.email}`}>Write to me</PrimaryLink>
           )}
-          {links.email && <CopyEmail email={links.email} />}
+          {links.email && <CopyEmail email={links.email} size="default" />}
           <ArrowLink href={links.linkedin}>LinkedIn</ArrowLink>
         </div>
       </Rise>

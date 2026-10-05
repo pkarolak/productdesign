@@ -68,7 +68,7 @@ export function ShowcaseFeature({ item, i }: { item: ShowcaseItem; i: number }) 
             </h3>
             <p className="type-body mt-4 max-w-[44ch] text-ink-2">{item.detail}</p>
             {item.link && (
-              <div className="mt-7">
+              <div className="mt-8">
                 <ArrowLink href={item.link.href}>{item.link.label}</ArrowLink>
               </div>
             )}

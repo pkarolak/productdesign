@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Button consistency pass
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** one button system (ADR 0050). New `SecondaryButton` at the primary heights (52 / 44px) replaces three hand-styled outlined pills (Copy email, the side-gig sheet's Close, /kit). Text links get 32px above them at the end of a block and 20px inside cards (feature card, Side gigs "more", hero CTA, Experience case links). The day switch tabs match the command menu filters; the company card's open-in link is round like the other icon buttons. Typecheck, lint, build, axe pass.
+
+---
+
 ## 2026-10-05: Company cards link to the product sites
 
 - **Agent:** Cursor agent (Claude)

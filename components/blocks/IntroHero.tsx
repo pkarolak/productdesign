@@ -59,7 +59,7 @@ export function IntroHero({ hero, avatar }: { hero: Hero; avatar?: Site["avatar"
           <DayCycle rows={hero.intro} />
         </Rise>
         {hero.cta && (
-          <Rise i={2} className="mt-9">
+          <Rise i={2} className="mt-8">
             <PrimaryLink href={hero.cta.href}>{hero.cta.label}</PrimaryLink>
           </Rise>
         )}

@@ -64,6 +64,33 @@ export function PrimaryLink({
   );
 }
 
+const secondaryBase =
+  "focus-ring press inline-flex cursor-pointer items-center rounded-pill border border-hairline text-ink transition-colors duration-(--t-hover-short) ease-slow hover:border-ink-3";
+
+/** Heights match the primary sizes, so the two sit level in a row. */
+const secondarySizes: Record<Size, string> = {
+  default: "h-[52px] gap-2 px-6 text-base",
+  compact: "h-11 gap-2 px-5 text-[15px]",
+};
+
+export const secondaryClass = (size: Size = "default", className?: string) =>
+  cn(secondaryBase, secondarySizes[size], className);
+
+/** The one secondary action style: an outlined pill, for actions beside or below a primary one. */
+export function SecondaryButton({
+  children,
+  className,
+  size = "default",
+  type = "button",
+  ...props
+}: ComponentPropsWithoutRef<"button"> & { size?: Size }) {
+  return (
+    <button type={type} className={secondaryClass(size, className)} {...props}>
+      {children}
+    </button>
+  );
+}
+
 export function PrimaryButton({
   children,
   className,

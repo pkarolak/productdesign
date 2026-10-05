@@ -317,7 +317,7 @@ export function CompanyNote({ company, children }: { company: Company; children:
               rel="noopener noreferrer"
               aria-label={`Open the ${company.pill} website in a new tab`}
               onClick={(e) => e.stopPropagation()}
-              className="focus-ring press absolute top-3 right-3 grid size-9 place-items-center rounded-inset text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink"
+              className="focus-ring press absolute top-3 right-3 grid size-9 place-items-center rounded-pill text-ink-3 transition-colors duration-(--t-hover-short) ease-slow hover:bg-accent/10 hover:text-ink"
             >
               <Icon name="external-link" className="size-4" />
             </a>

@@ -162,7 +162,7 @@ export function DayCycle({ rows }: { rows: Hero["intro"] }) {
             aria-controls={`${id}-panel-${i}`}
             tabIndex={i === active ? 0 : -1}
             onClick={() => pick(i)}
-            className="focus-ring type-small relative flex items-center gap-1.5 rounded-pill px-3 py-1 text-ink-3! transition-colors duration-(--t-hover-short) ease-slow hover:text-ink! aria-selected:text-ink!"
+            className="focus-ring type-small relative flex items-center gap-1.5 rounded-pill px-3.5 py-1.5 text-ink-3! transition-colors duration-(--t-hover-short) ease-slow hover:text-ink! aria-selected:text-ink!"
           >
             {i === active && (
               <m.span

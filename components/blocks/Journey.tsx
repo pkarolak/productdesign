@@ -131,7 +131,7 @@ export function Journey({ journey, projects, orgs }: { journey?: JourneyData; pr
                                 </ul>
                               )}
                               {cases.length > 0 && (
-                                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                                <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
                                   {cases.map((p) => (
                                     <li key={p.slug}>
                                       <ArrowLink href={`/work/${p.slug}`} transition="nav-forward">

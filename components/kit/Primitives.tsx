@@ -6,13 +6,12 @@ import { CopyEmail } from "@/components/site/CopyEmail";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { useToast } from "@/components/site/Toaster";
 import { ArrowLink } from "@/components/ui/ArrowLink";
-import { PrimaryButton, PrimaryLink } from "@/components/ui/Button";
+import { PrimaryButton, PrimaryLink, secondaryClass } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
 
-const secondary =
-  "focus-ring press type-small inline-flex cursor-pointer items-center gap-2 rounded-pill border border-hairline px-4 py-2 text-ink transition-colors duration-(--t-hover-short) ease-slow hover:border-ink-3";
+const secondary = secondaryClass("compact");
 
 /** The app primitives in every state, for review on /kit. */
 export function Primitives({ email }: { email?: string }) {

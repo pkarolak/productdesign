@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
+import { SecondaryButton } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
 import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
@@ -83,13 +84,9 @@ function Detail({
         <p className="type-body mt-3 text-ink-2">{item.detail}</p>
         <div className="mt-6 flex items-center justify-between gap-4">
           {item.link ? <ArrowLink href={item.link.href}>{item.link.label}</ArrowLink> : <span />}
-          <button
-            type="button"
-            onClick={onClose}
-            className="focus-ring press type-small cursor-pointer rounded-pill border border-hairline px-4 py-2 text-ink"
-          >
+          <SecondaryButton size="compact" onClick={onClose}>
             Close
-          </button>
+          </SecondaryButton>
         </div>
       </div>
     </Modal>
@@ -168,7 +165,7 @@ export function Showcase({
         )}
       </ul>
       {hidden > 0 && !everything && (
-        <Rise className="mt-6">
+        <Rise className="mt-8">
           <button
             type="button"
             aria-controls={`${id}-list`}
