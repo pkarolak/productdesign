@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { assetImage } from "@/components/media/Asset";
-import { Picture } from "@/components/media/Picture";
+import { Cover } from "@/components/media/Cover";
 import { CoverMorph } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import type { Project, Suit, WorkIntro } from "@/content/schema";
+import { cn } from "@/lib/cn";
 import { type Org, span } from "@/lib/companies";
 import { BlockHeader } from "./BlockHeader";
 
@@ -30,57 +30,63 @@ export function LockedNote({ projects }: { projects: Project[] }) {
   );
 }
 
-function Row({ project, i }: { project: Project; i: number }) {
-  const image = assetImage(project.cover);
+/** A case as a card led by its cover, the loop of the shipped UI where there is one. `wide` lays it out side by side. */
+function Card({ project, i, wide }: { project: Project; i: number; wide: boolean }) {
   const locked = project.access === "protected";
   return (
-    <Rise as="li" i={i} className="card rounded-card hover:surface-deep">
+    <Rise as="li" i={i} className={cn("card rounded-card hover:surface-deep", wide && "md:col-span-2")}>
       <Link
         href={`/work/${project.slug}`}
         transitionTypes={["nav-forward"]}
-        className="focus-ring press group/row grid grid-cols-[88px_minmax(0,1fr)] items-center gap-4 rounded-card p-3 md:grid-cols-[168px_minmax(0,1fr)_auto] md:gap-6 md:pr-6"
+        className={cn(
+          "focus-ring press group/row grid h-full content-start gap-5 rounded-card p-2.5 pb-5",
+          wide && "md:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] md:items-center md:gap-8 md:pb-2.5",
+        )}
       >
         <CoverMorph slug={project.slug}>
           <div className="core relative aspect-[16/10] overflow-hidden rounded-inset">
-            {image ? (
-              <Picture
-                src={image}
-                alt=""
-                sizes="168px"
-                className="object-cover object-[0%_0%] transition-transform duration-(--t-hover) ease-slow group-hover/row:scale-[1.04]"
-              />
-            ) : (
-              <div className="wash absolute inset-0" />
-            )}
+            <Cover
+              asset={project.cover}
+              sizes={wide ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 34vw, 100vw"}
+              className="transition-transform duration-(--t-hover) ease-slow group-hover/row:scale-[1.03]"
+            />
           </div>
         </CoverMorph>
-        <span className="min-w-0">
-          <span className="type-h3 block text-ink">{project.title}</span>
-          <span className="type-small mt-1 line-clamp-2 block">{project.bottomLine}</span>
-        </span>
-        <span className="type-small col-span-2 flex items-center gap-1.5 px-1 md:col-span-1 md:px-0">
-          {locked ? (
-            <>
-              <Icon name="lock" className="size-4 text-ink-3" />
-              <span>Password protected</span>
-            </>
-          ) : (
-            <span className="flex items-center gap-1.5 text-accent">
-              Read case
-              <Icon
-                name="arrow-right"
-                className="size-4 transition-transform duration-(--t-hover-mid) ease-slow group-hover/row:translate-x-1"
-              />
-            </span>
-          )}
+        <span className={cn("grid gap-5 px-2.5", wide && "md:pr-6")}>
+          <span className="min-w-0">
+            <span className="type-h3 block text-ink">{project.title}</span>
+            <span className="type-small mt-1.5 line-clamp-3 block max-w-[52ch]">{project.bottomLine}</span>
+          </span>
+          <Marker locked={locked} />
         </span>
       </Link>
     </Rise>
   );
 }
 
+function Marker({ locked }: { locked: boolean }) {
+  return (
+    <span className="type-small flex items-center gap-1.5">
+      {locked ? (
+        <>
+          <Icon name="lock" className="size-4 text-ink-3" />
+          <span>Password protected</span>
+        </>
+      ) : (
+        <span className="flex items-center gap-1.5 text-accent">
+          Read case
+          <Icon
+            name="arrow-right"
+            className="size-4 transition-transform duration-(--t-hover-mid) ease-slow group-hover/row:translate-x-1"
+          />
+        </span>
+      )}
+    </span>
+  );
+}
+
 /**
- * Cases grouped by company, most recent first, each row opening the case with a cover morph. Only covers show, which
+ * Cases grouped by company, most recent first, each card opening the case with a cover morph. Only covers show, which
  * are public, so the list is safe for locked cases. With `featured`, it shows the first `intro.featured` cases and
  * links to the full index when there are more.
  */
@@ -131,6 +137,7 @@ export function WorkTimeline({
         {companies.map((company) => {
           const org = orgs?.get(company);
           const when = span(org);
+          const group = projects.filter((p) => p.company === company).sort((a, b) => b.year - a.year);
           return (
             <div key={company} className="grid gap-3 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6">
               <Rise className="flex items-center gap-3 pt-1 md:flex-col md:items-start md:gap-2 md:pt-4">
@@ -148,13 +155,10 @@ export function WorkTimeline({
                   {when && <span className="type-caption text-ink-3 tabular-nums">{when}</span>}
                 </span>
               </Rise>
-              <ul className="grid gap-3">
-                {projects
-                  .filter((p) => p.company === company)
-                  .sort((a, b) => b.year - a.year)
-                  .map((p, i) => (
-                    <Row key={p.slug} project={p} i={i} />
-                  ))}
+              <ul className="grid gap-4 md:grid-cols-2">
+                {group.map((p, i) => (
+                  <Card key={p.slug} project={p} i={i} wide={i === 0 && group.length % 2 === 1} />
+                ))}
               </ul>
             </div>
           );

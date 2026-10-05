@@ -3,14 +3,15 @@ import { notFound } from "next/navigation";
 import { Artifacts } from "@/components/case/Artifacts";
 import { AskMeAbout } from "@/components/case/AskMeAbout";
 import { Beats } from "@/components/case/Beats";
-import { CaseFacts } from "@/components/case/CaseFacts";
 import { CaseHeader } from "@/components/case/CaseHeader";
 import { NextCase } from "@/components/case/NextCase";
+import { Story } from "@/components/case/Story";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { Contact } from "@/components/site/Contact";
 import { MetricsPanel } from "@/components/ui/MetricsPanel";
 import { getProject, nextProject, projects } from "@/content/projects";
 import { site } from "@/content/site";
+import { organizations } from "@/lib/companies";
 
 export const dynamicParams = false;
 
@@ -36,12 +37,17 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
     <PageTransition>
       <div>
         <article>
-          <CaseHeader project={project}>
-            <MetricsPanel metrics={project.metrics} rise={3} className="mt-12 max-w-[640px]" />
+          <CaseHeader project={project} logo={organizations(site).get(project.company)?.logo}>
+            <MetricsPanel metrics={project.metrics} rise={5} />
           </CaseHeader>
-          <CaseFacts project={project} />
-          <Beats beats={project.beats} />
-          <Artifacts artifacts={project.artifacts} />
+          {project.story ? (
+            <Story chapters={project.story} />
+          ) : (
+            <>
+              <Beats beats={project.beats} />
+              <Artifacts artifacts={project.artifacts} />
+            </>
+          )}
           <AskMeAbout prompts={project.askMeAbout} />
           <NextCase next={nextProject(project.slug)} />
         </article>

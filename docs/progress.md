@@ -52,6 +52,30 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Miro stories, editorial case top, UI loops (ADR 0041, 0042)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Stories:** Content Explorer, Miro Analytics and Enterprise Guard now tell the full story in chapters below the teaser, with a sticky "On this page" rail. The sources are the Figma deck (`fSTFAxmRFRkc2fQbRppfQ5`, page 11:379), the brag doc and the admin console. The deck's leftover Allegro placeholder text is not used.
+  - **Case top:** company mark and year, a display title, the bottom line beside the facts, then the cover full width with a scroll tilt, then the metrics. `CaseFacts` is gone.
+  - **Listing:** cards led by their cover. The Miro covers are now loops of shipped UI from `mds-admin-console` on the FlexFund demo org.
+  - **Media:**
+    - Real slide crops and 2x console stills replace the Miro placeholders under `public/media/protected/`, and slide crops got a white margin.
+    - Screenshots with their own ratio now show whole.
+    - `Video` dims in dark mode and can be decorative.
+  - **Checks:**
+    - typecheck, lint, `theme:check` and the build pass.
+    - axe is clean in light and dark at 1440 and 390.
+    - Shots in Dusk and Blueprint, light and dark, desktop and mobile.
+    - Leak test: the locked pages, `/`, `/work`, `/about` and `/kit` hold no `/media/protected` path or story text. Home only references the three `/projects/<slug>/loop.mp4` files.
+- **Open questions for the owner:**
+  - Analytics says "We rebuilt analytics": which parts of the first launch were his, given that the data platform was engineering-owned?
+  - Enterprise Guard: are the legal hold and lifecycle screens on the "other jewels" slide his designs?
+  - Analytics research: what did the product data analysis show? The story only names it as a source.
+  - Content Explorer: may visuals from the 93,000-line `vlab-csc-2026` model appear behind the password?
+  - Analytics: the use-case widget shows behind the password, captioned "designed, not shipped yet". Is that fine?
+- **Next:** stories for the Allegro and Egnyte cases from their decks.
+
 ## 2026-10-05: no "Lock cases" on case pages (ADR 0040)
 
 - **Agent:** Cursor agent (Claude)

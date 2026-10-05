@@ -56,6 +56,20 @@ Write the way the owner writes: plain, direct, first person, a little casual ("S
 | `artifacts` | 2 to 4 | Each with a 14-word `caption` and a real `alt`. |
 | `askMeAbout` | 2 to 3 × 10 words | Hooks for the conversation, not answers. |
 
+### The story (optional)
+
+A case can carry a `story`: 3 to 6 chapters below the teaser, read after unlocking, with an "On this page" rail beside them (ADR 0041). With a story, the case page shows it instead of `beats` and `artifacts`, which still back the schema and the kit.
+
+| Field | Budget | Write it as |
+| --- | --- | --- |
+| chapter `nav` | 3 words | Its line in the rail: "Why we started", "Pushback", "Results". |
+| chapter `title` | 10 words | What was found or asked at that moment, never the process step: "Nobody wanted to show admins the data", not "Stakeholder alignment". |
+| `lead` | 50 words | The situation in plain sentences. |
+| `quote` | 16 words | A line from the work itself, such as the brief's question. No people quotes. |
+| `steps` | up to 4 | Each `nav` 3, `title` 9, `text` 60 words, optional `points` (2 to 5, 16 words each) and one `artifact`. |
+
+The chapters tell the process without naming it: why, what we found, what pushed back, what we built, what happened. Ids become anchors (`#pushback`), so keep them short and unique within the case.
+
 Every fact must trace to the owner's material: a slide in his Figma decks or an answer he gave (ADR 0034). If a deck stops before a result, say what was handed over or tracked, never an invented number.
 
 Copy rules: no em-dashes, no "elevate / seamless / passionate", no Acme or Jane Doe, no framing around titles or career moves. Let the numbers carry it.
@@ -68,13 +82,13 @@ Dark mode: add `srcDark` to screenshots when you have a dark export. Without one
 
 | Kind | Fields | Tips |
 | --- | --- | --- |
-| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in % of the visible frame) | Desktop UI, at least 2000px wide. A `ratio` is kept in every artifact slot, so slides set `16/9`. Frames crop from the top-left, so keep titles there. Check annotation dots after changing an image. |
+| `screenshot` | `src`, `alt`, optional `srcDark`, `ratio`, `annotations` (x/y in % of the visible frame) | Desktop UI, at least 2000px wide. Set `ratio` to the image's own size (`1300/506`): in a story the frame then shows it whole. Artifact slots keep the ratio but crop from the top-left, so keep titles there. Give slide crops a margin so text does not touch the frame. Check annotation dots after changing an image. |
 | `isometric` | `plates`: 1 to 3 images | Rendered as the theme's signature visual in the hero and case header, as layered frames elsewhere. |
 | `mobile` | `screens`: 2 to 4 images | Portrait screens without device chrome, 9:19.5. |
 | `photo` | `src`, `alt`, optional `ratio` | Research, workshops, whiteboards. |
 | `diagram` | `layers`: 2 to 4 short labels (bottom first) | Drawn by the theme; no image needed. |
 | `compare` | `before`, `after` | Same crop and size for both. |
-| `video` | `src`, `poster`, `alt` | Muted loop, under 6 MB, with a poster frame. |
+| `video` | `src`, `poster`, `alt`, optional `ratio` | Muted loop, under 6 MB, with a poster frame. As a cover it plays in the listing card and the case header (ADR 0042). |
 
 ### Where files go
 
@@ -85,9 +99,11 @@ Dark mode: add `srcDark` to screenshots when you have a dark export. Without one
 
 Use JPEG or WebP. Public images go through the Next.js optimizer; protected ones do not (the optimizer cannot send the visitor's cookie), so export them at a sensible size (about 2400px wide, under 500 KB).
 
-## Slide placeholders
+## Covers and slide placeholders
 
-The case slides could not all be exported from Figma yet. Each placeholder under `public/media/protected/<slug>/` names its slide and Figma node id. To swap one: export the slide at 16:9 (about 2400px wide), save it under a new file name in the same folder, and point the artifact's `src` at it. Covers are neutral logo cards (`cover-light.png`, `cover-dark.png`) and never show product UI.
+A cover is either a neutral logo card (`cover-light.png`, `cover-dark.png`) or a loop of shipped UI (`loop.mp4` and `loop.jpg`, ADR 0042). Loops are public, so they show only what customers can already see, recorded on demo data (the FlexFund org in the admin console). Anything designed but not shipped stays in the story, behind the password.
+
+The three Miro cases use real slide crops and console stills. The other cases may still hold placeholders under `public/media/protected/<slug>/`, each naming its slide and Figma node id. To swap one: export the slide (about 2400px wide), save it under a new file name in the same folder, and point the artifact's `src` at it.
 
 ## Reusing the template
 

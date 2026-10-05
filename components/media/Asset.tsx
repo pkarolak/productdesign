@@ -17,6 +17,12 @@ const defaults: Record<AssetData["kind"], string> = {
   video: "16/9",
 };
 
+/** A screenshot sits inside the wash at inset-x 7% and top 9%; this frame ratio shows an image of `ratio` uncropped. */
+function insetFrame(ratio: string) {
+  const [w, h = 1] = ratio.split("/").map(Number);
+  return String(((w / h) * 0.91) / 0.86);
+}
+
 const phoneOffsets = ["translate-y-0", "translate-y-6", "translate-y-3", "translate-y-6"];
 
 export function Asset({
@@ -53,7 +59,8 @@ export function Asset({
     );
   }
 
-  const ratio = aspect ?? ("ratio" in asset && asset.ratio ? asset.ratio : defaults[asset.kind]);
+  const own = "ratio" in asset && asset.ratio ? asset.ratio : undefined;
+  const ratio = aspect ?? (asset.kind === "screenshot" && own ? insetFrame(own) : (own ?? defaults[asset.kind]));
   const box = cn("relative w-full", ratio === "auto" && "h-full");
   const style = ratio === "auto" ? undefined : { aspectRatio: ratio };
 

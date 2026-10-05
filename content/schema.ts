@@ -58,6 +58,36 @@ const artifact = z.intersection(assetSchema, z.object({ caption: words(14) }));
 
 export type Artifact = z.infer<typeof artifact>;
 
+const anchor = z.string().regex(/^[a-z0-9-]+$/);
+
+/** One thing that happened inside a chapter, titled by what was done, never "Step 1". */
+const storyStep = z.object({
+  id: anchor,
+  /** Its line under the chapter in the "On this page" rail. */
+  nav: words(3),
+  title: words(9),
+  text: words(60),
+  points: z.array(words(16)).min(2).max(5).optional(),
+  artifact: artifact.optional(),
+});
+
+/**
+ * A chapter of the full story below the teaser (ADR 0041). Titles carry the finding or the question of that moment,
+ * so the process shows without being named. `quote` is a line from the work itself, such as the brief.
+ */
+const storyChapter = z.object({
+  id: anchor,
+  nav: words(3),
+  title: words(10),
+  lead: words(50).optional(),
+  quote: words(16).optional(),
+  artifact: artifact.optional(),
+  steps: z.array(storyStep).max(4).default([]),
+});
+
+export type StoryChapter = z.infer<typeof storyChapter>;
+export type StoryStep = z.infer<typeof storyStep>;
+
 export const projectSchema = z
   .object({
     slug: z.string().regex(/^[a-z0-9-]+$/),
@@ -79,7 +109,16 @@ export const projectSchema = z
     ]),
     artifacts: z.array(artifact).min(2).max(4),
     askMeAbout: z.array(words(10)).min(2).max(3),
+    /** Public, so a video cover may only show shipped UI (ADR 0042). */
     cover: assetSchema,
+    story: z
+      .array(storyChapter)
+      .min(3)
+      .max(6)
+      .refine((cs) => new Set(cs.flatMap((c) => [c.id, ...c.steps.map((s) => s.id)])).size === cs.reduce((n, c) => n + 1 + c.steps.length, 0), {
+        message: "Chapter and step ids must be unique within a case.",
+      })
+      .optional(),
   })
   .superRefine((p, ctx) => {
     const prefix = `/media/protected/${p.slug}/`;
@@ -88,7 +127,7 @@ export const projectSchema = z
       ctx.addIssue({ code: "custom", path: ["cover"], message: "Covers are public: keep them under /projects/<slug>/." });
     }
     if (p.access === "protected") {
-      const srcs = JSON.stringify(p.artifacts).match(/"\/[^"]+"/g) ?? [];
+      const srcs = JSON.stringify([p.artifacts, p.story ?? []]).match(/"\/[^"]+"/g) ?? [];
       const leaked = srcs.filter((s) => !s.startsWith(`"${prefix}`));
       if (leaked.length) {
         ctx.addIssue({
