@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Joker hat favicon
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `app/icon.tsx` (64px, rounded tile) and `app/apple-icon.tsx` (180px, square, iOS rounds it) draw the joker's harlequin hat from `lib/favicon.tsx`: accent side panels and pompom, ink centre panel, band and side pompoms, on the canvas tile. Colours come from `@theme/meta`, so the icon follows the active design language. Build, typecheck, lint pass; head links verified.
+
+---
+
 ## 2026-10-05: A more dramatic signature
 
 - **Agent:** Cursor agent (Claude)
