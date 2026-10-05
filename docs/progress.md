@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Command menu, pages and their sections
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the command menu's Pages group lists only the three pages, Home, Work and About me, each with its sections nested under it: Home (About me "Short version", Side gigs, Teaching, Free time), Work (the six cases; it now opens the standalone /work page, not the Home section), About me (What I believe, How I work, Experience). The separate Work group is folded in. Verified: Experience lands on /about#journey and Work on /work. Typecheck, lint, build pass.
+
+---
+
 ## 2026-10-05: Photos lean toward the pointer
 
 - **Agent:** Cursor agent (Claude)

@@ -32,11 +32,21 @@ export const viewport: Viewport = {
 
 const orgs = organizations(site);
 
+const sections = (parent: string, base: string, list: { id: string; label?: string; keywords?: string; meta?: string }[]) =>
+  list.flatMap(({ label, ...c }) => (label ? [{ ...c, label, parent, href: `${base}#${c.id}` }] : []));
+
 const commands: CommandGroup[] = [
   {
-    label: "Work",
+    label: "Pages",
     items: [
-      { id: "work", label: site.work.title, href: "/#big-projects", keywords: "work cases projects", meta: `${projects.length} cases` },
+      { id: "home", label: "Home", href: "/" },
+      ...sections("home", "/", [
+        { id: "about-me", label: site.statement?.title, meta: "Short version", keywords: "intro hello" },
+        { id: "side-gigs", label: site.showcase?.title, keywords: "side projects quests freelance" },
+        { id: "teaching", label: site.teaching?.title, keywords: "tutor lecturer workshops talks" },
+        { id: "free-time", label: site.outside?.title, keywords: "hobbies climbing tango dj" },
+      ]),
+      { id: "work", label: "Work", href: "/work", keywords: "big projects cases", meta: `${projects.length} cases` },
       ...projects.map((p) => ({
         id: p.slug,
         label: p.title,
@@ -47,19 +57,12 @@ const commands: CommandGroup[] = [
         meta: p.company,
         logo: orgs.get(p.company)?.logo,
       })),
-    ],
-  },
-  {
-    label: "Pages",
-    items: [
-      { id: "home", label: "Home", href: "/" },
-      ...[
-        { id: "about-me", label: site.statement?.title, keywords: "intro hello short version" },
-        { id: "side-gigs", label: site.showcase?.title, keywords: "side projects quests freelance" },
-        { id: "teaching", label: site.teaching?.title, keywords: "tutor lecturer workshops talks" },
-        { id: "free-time", label: site.outside?.title, keywords: "hobbies climbing tango dj" },
-      ].flatMap(({ label, ...c }) => (label ? [{ ...c, label, href: `/#${c.id}` }] : [])),
-      { id: "about", label: site.about.title, href: "/about", keywords: "long version experience education values cv resume" },
+      { id: "about", label: "About me", href: "/about", keywords: "long version cv resume" },
+      ...sections("about", "/about", [
+        { id: "beliefs", label: site.about.beliefs?.title, keywords: "principles" },
+        { id: "values", label: site.values?.title, keywords: "process loop" },
+        { id: "journey", label: site.journey?.title, keywords: "experience roles companies career" },
+      ]),
     ],
   },
   {
