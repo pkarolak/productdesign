@@ -3,6 +3,7 @@ import { Contact } from "@/components/site/Contact";
 import { PrimaryLink } from "@/components/ui/Button";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
+import { organizations } from "@/lib/companies";
 import { Beliefs } from "./Beliefs";
 import { Journey } from "./Journey";
 import { Learning } from "./Learning";
@@ -25,7 +26,7 @@ export function AboutBlocks({ content }: { content: Site }) {
       </StoryHeader>
       <Beliefs beliefs={content.about.beliefs} />
       <Values values={content.values} projects={projects} />
-      <Journey journey={content.journey} projects={projects} />
+      <Journey journey={content.journey} projects={projects} orgs={organizations(content)} />
       <Learning education={content.education} educationTitle={content.educationTitle} teaching={content.teaching} />
       <OutsideWork outside={content.outside} id="free-time" />
       <Contact site={content} />

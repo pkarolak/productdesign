@@ -52,6 +52,15 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Experience by company, with logos (ADR 0047)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Layout:** one card per company with its logo, industry and span, and the roles on a rail inside (the current one in accent). A sticky list of company marks replaces the year rail.
+  - **Logos:** Espago's mark added from its favicon; Freelance uses the `pen-tool` glyph (new in the icon contract).
+  - **Miro bullets:** Content Explorer's beta week and GA, the Analytics rebuild's weekly visits, design-system contributions, and "See something, do something" with 19 production PRs (counted on GitHub). Enterprise Guard adds its $10M ARR. Up to four points per role now.
+  - **Checks:** typecheck, lint, theme:check and the build pass; axe is clean; shots light, dark and iPhone.
+
 ## 2026-10-05: even belief rows
 
 - **Agent:** Cursor agent (Claude)

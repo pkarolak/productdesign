@@ -330,10 +330,13 @@ export const journeySchema = z.object({
           /** Omit while the role is current. */
           to: year.optional(),
           company: z.string().min(2),
+          /** For companies the hero intro does not name; `icon` stands in where there is no mark at all. */
+          logo: z.string().startsWith("/").optional(),
+          icon: icon.optional(),
           role: words(5),
           kind: words(3),
           summary: words(18),
-          points: z.array(words(16)).max(2).default([]),
+          points: z.array(words(16)).max(4).default([]),
           cases: z.array(slug).max(2).default([]),
         })
         .refine((r) => r.to === undefined || r.to >= r.from, { message: "`to` must not be before `from`." }),

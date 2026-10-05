@@ -265,8 +265,10 @@ export const site = siteSchema.parse({
         kind: "Visual collaboration",
         summary: "The Miro Analytics ecosystem, content security and compliance in the age of AI, and tools for designers.",
         points: [
-          "Content Explorer, alongside Content Lifecycle, bulk actions and analytics.",
-          "FilterPill in Miro's design system, plus two production PRs.",
+          "Led Content Explorer: 480 admins in the first public-beta week, GA in September 2026.",
+          "Miro Analytics rebuilt for Enterprise admins, now over 1,000 visits a week.",
+          "Contributing to Miro's design system by creating components and patterns.",
+          "See something, do something: opened 19 production PRs fixing UX, down to the last bit.",
         ],
         cases: ["content-explorer", "miro-analytics"],
       },
@@ -277,7 +279,10 @@ export const site = siteSchema.parse({
         role: "Senior product designer",
         kind: "Visual collaboration",
         summary: "Led the 0 to 1 design of Miro Enterprise Guard, end to end.",
-        points: ["Domain control, authentication, content classification, audit logs and content lifecycle."],
+        points: [
+          "Domain control, authentication, content classification, audit logs and content lifecycle.",
+          "Miro's first add-on: about $10M ARR, above revenue expectations two years running.",
+        ],
         cases: ["miro-enterprise-guard"],
       },
       {
@@ -294,6 +299,7 @@ export const site = siteSchema.parse({
         from: 2021,
         to: 2022,
         company: "Espago",
+        logo: "/logos/espago.png",
         role: "Lead product designer",
         kind: "Online payments",
         summary: "Pay-by-link tools for merchants and their customers, from service design to a complete design system.",
@@ -328,6 +334,7 @@ export const site = siteSchema.parse({
       {
         from: 2011,
         company: "Freelance",
+        icon: "pen-tool",
         role: "Design and research consultant",
         kind: "Various clients",
         summary: "Design, research and UX strategy for the City of Poznań, NGOs, an IT conference and startups.",

@@ -19,6 +19,7 @@ export function organizations(site: Pick<Site, "hero" | "journey">): Map<string,
   }
   for (const r of site.journey?.roles ?? []) {
     const org = get(r.company);
+    if (r.logo && !org.logo) org.logo = r.logo;
     org.from = Math.min(org.from ?? r.from, r.from);
     if (r.to === undefined) org.current = true;
     else org.to = Math.max(org.to ?? r.to, r.to);
