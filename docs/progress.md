@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Home About me, rebalanced
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the lead and "More about me" share an even 6/6 row with the photo, vertically centred, and the five beliefs move below a hairline as one row of five (icon above title, balanced wrapping; a list on phones). No more lone fifth belief or wrapped title beside a floating photo. Typecheck, lint, build, axe pass; shots light, dark, iPhone.
+
+---
+
 ## 2026-10-05: Hand note copy
 
 - **Agent:** Cursor agent (Claude)
