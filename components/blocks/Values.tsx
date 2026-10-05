@@ -11,7 +11,7 @@ export function Values({ values, projects }: { values?: ValuesData; projects: Pr
   const { items } = values;
   return (
     <section id="values" aria-labelledby="values-title" className="container-page section-y">
-      <BlockHeader id="values-title" title={values.title} />
+      <BlockHeader id="values-title" title={values.title} note={values.note} />
       <ol className={cn("grid gap-3 md:gap-4", items.length > 1 && "md:grid-cols-2", items.length === 3 && "lg:grid-cols-3")}>
         {items.map((v, i) => {
           const evidence = v.evidence ? bySlug.get(v.evidence) : undefined;

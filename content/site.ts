@@ -129,8 +129,8 @@ export const site = siteSchema.parse({
   ],
   statement: {
     title: "The short version",
-    lines: ["Research first, then the pixels.", "Workshops that turn chaos into plans."],
-    text: "I work where products get complicated: analytics, security and platforms for big companies. I start with research, align people in workshops and keep teams in step with prototypes.",
+    lines: ["Research first, always.", "Then a working prototype, not a picture."],
+    text: "I work where products get complicated: analytics, security and content governance for big companies. After research I build a prototype app, validate it fast and merge it when it proves right.",
     cta: { label: "The long version", href: "/about" },
   },
   work: {
@@ -189,7 +189,7 @@ export const site = siteSchema.parse({
     headline: "Calm interfaces for *complex* work.",
     story: [
       "I am a product designer based in Poznań. Since 2014 I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
-      "I start with research, because it is the rocket fuel for everything after it. Then I get people into one room: workshops have carried me through rooms of ten stakeholders and projects with five PMs. And I test, even when I love the design.",
+      "I start with research, because it is the rocket fuel for everything after it. Then I build: a working prototype app on real data, validated fast and merged when it proves right. For deep UI explorations I push pixels in Figma, fast and cheap, but for big projects that matter my deliverable is a fully interactive prototype. Workshops keep the people around it aligned.",
       "I studied computer science in Poznań and Madrid, taught UX at Collegium Da Vinci, and still like to code my own prototypes. After hours it is climbing, tango and my family.",
     ],
     portrait: {
@@ -214,10 +214,10 @@ export const site = siteSchema.parse({
         kind: "Visual collaboration",
         summary: "The Miro Analytics ecosystem, content security and compliance in the age of AI, and tools for designers.",
         points: [
-          "Dashboards, the report center and the content analytics hub.",
-          "Figma plugins and vibe-coded prototypes for the design team.",
+          "Content Explorer, from kick-off to GA in twelve months.",
+          "FilterPill in Miro's design system, plus two production PRs.",
         ],
-        cases: ["miro-analytics"],
+        cases: ["content-explorer", "miro-analytics"],
       },
       {
         from: 2022,
@@ -285,7 +285,18 @@ export const site = siteSchema.parse({
   },
   values: {
     title: "How I work",
+    note: "Discover, prototype, validate, merge. The prototype is the spec, so decisions start from something that works.",
     items: [
+      {
+        title: "Prototype it, prove it, merge it",
+        text: "After discovery I build a working prototype app on real data, validate it fast, and merge it when it proves right. About 2,250 commits across eight prototypes so far.",
+        evidence: "content-explorer",
+      },
+      {
+        title: "Figma for pixels, prototypes for decisions",
+        text: "For deep UI explorations I push pixels in Figma, fast and cheap. For big projects that matter, my deliverable is a fully interactive prototype.",
+        evidence: "miro-enterprise-guard",
+      },
       {
         title: "Let the research win the room",
         text: "Strong internal pushback on Miro Analytics gave way once the evidence was on the table: 150 requests, 12 interviews and product data.",
@@ -295,16 +306,6 @@ export const site = siteSchema.parse({
         title: "Workshop the hard questions",
         text: "With many stakeholders, I get everyone into one room. Two days of workshops gave Egnyte a shared idea of what a platform is.",
         evidence: "egnyte-product-platform",
-      },
-      {
-        title: "Over-communicate, one on one",
-        text: "I hold a 1:1 with every stakeholder from the start, and keep them going. Three a week kept five PMs and four teams in step.",
-        evidence: "miro-enterprise-guard",
-      },
-      {
-        title: "Test even what you love",
-        text: "Six admins tested a prototype I was proud of, and their sessions changed its information architecture, labels and scheduling.",
-        evidence: "data-access-management",
       },
     ],
   },

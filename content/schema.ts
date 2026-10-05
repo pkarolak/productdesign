@@ -282,6 +282,7 @@ export const journeySchema = z.object({
 
 export const valuesSchema = z.object({
   title: words(6),
+  note: words(24).optional(),
   items: z.array(z.object({ title: words(6), text: words(30), evidence: slug.optional() })).max(4),
 });
 

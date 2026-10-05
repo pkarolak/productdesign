@@ -9,7 +9,8 @@ Brag doc into portfolio (source: the owner's brag document, 15 Sep 2026):
 - [x] `confirm-ga`: the owner confirmed GA on 25 Sep 2026 and the team line; the 82% figure stays out
 - [x] `content-explorer`: the sixth case, leading home
 - [x] `upgrade-cases`: Enterprise Guard accounts and lifecycle closure; Analytics AI chapter and staged prototype
-- [ ] `how-i-work`, `docs-verify`
+- [x] `how-i-work`: the prototype-first loop, said loudly
+- [ ] `docs-verify`
 
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
@@ -50,6 +51,21 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `verify-docs`: checks under both themes, axe, leak tests, shots, docs
 
 ---
+
+## 2026-10-05: prototype first, loud and clear (`how-i-work`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** `values` has an optional `note` (24 words), shown under the heading. It reads: "Discover, prototype, validate, merge. The prototype is the spec, so decisions start from something that works." "How I work" now leads with two values:
+  1. "Prototype it, prove it, merge it". Evidence: Content Explorer.
+  2. "Figma for pixels, prototypes for decisions". Evidence: Enterprise Guard's master prototype. It says Figma is for deep UI exploration, fast and cheap, and a fully interactive prototype is the deliverable for big projects.
+
+  Research and workshops stay. "Test even what you love" and "Over-communicate, one on one" are cut to keep four values: the loop covers testing, and the Enterprise Guard case still tells the 1:1 story.
+
+  The same loop now appears in more places:
+  - **Short version:** "Research first, always. Then a working prototype, not a picture."
+  - **About:** the second paragraph.
+  - **Journey:** the current Miro role's points (Content Explorer, FilterPill and two production PRs), with links to Content Explorer and Analytics.
+- **Next:** `docs-verify`.
 
 ## 2026-10-05: better numbers in the Miro cases (`upgrade-cases`)
 
