@@ -77,9 +77,28 @@ function segments(items: Item[]) {
 
 function Key({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="type-caption inline-grid min-w-5 place-items-center rounded-inset border border-hairline px-1.5 py-0.5 text-ink-2">
+    <kbd className="type-caption inline-grid h-6 min-w-6 place-items-center rounded-print border border-b-2 border-hairline bg-canvas px-1.5 leading-none text-ink-2">
       {children}
     </kbd>
+  );
+}
+
+const turn = { up: "-rotate-90", down: "rotate-90", left: "rotate-180", right: "" } as const;
+
+function Arrow({ to }: { to: keyof typeof turn }) {
+  return (
+    <Key>
+      <Icon name="arrow-right" className={cn("size-3", turn[to])} />
+    </Key>
+  );
+}
+
+function Hint({ keys, label }: { keys: React.ReactNode; label: string }) {
+  return (
+    <span className="flex items-center gap-2">
+      <span className="flex items-center gap-1">{keys}</span>
+      {label}
+    </span>
   );
 }
 
@@ -357,25 +376,38 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
 
       <div
         aria-hidden
-        className="wash type-caption flex shrink-0 items-center gap-5 border-t border-hairline px-5 py-3 text-ink-3 max-md:hidden"
+        className="wash type-caption flex shrink-0 items-center gap-4 border-t border-hairline px-4 py-2.5 text-ink-3 max-md:hidden"
       >
-        <span className="flex items-center gap-1.5">
-          <Key>↑</Key>
-          <Key>↓</Key>
-          Select
-        </span>
-        <span className="flex items-center gap-1.5">
-          <Key>↵</Key>
-          Open
-        </span>
-        <span className="flex items-center gap-1.5">
-          <Key>←</Key>
-          <Key>→</Key>
-          Change filter
-        </span>
-        <span className="ml-auto flex items-center gap-1.5">
-          <Key>esc</Key>
-          Close
+        <Hint
+          keys={
+            <>
+              <Arrow to="up" />
+              <Arrow to="down" />
+            </>
+          }
+          label="Select"
+        />
+        <span className="divider h-3.5" />
+        <Hint
+          keys={
+            <Key>
+              <Icon name="corner-down-left" className="size-3" />
+            </Key>
+          }
+          label="Open"
+        />
+        <span className="divider h-3.5" />
+        <Hint
+          keys={
+            <>
+              <Arrow to="left" />
+              <Arrow to="right" />
+            </>
+          }
+          label="Filter"
+        />
+        <span className="ml-auto">
+          <Hint keys={<Key>esc</Key>} label="Close" />
         </span>
       </div>
     </Modal>

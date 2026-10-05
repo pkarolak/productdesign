@@ -52,6 +52,16 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: keycaps in the command menu footer
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Keycaps:** the footer hints are matching 24px keycaps (`rounded-print`, hairline border, a thicker bottom edge, canvas fill) instead of mixed round chips.
+  - **Arrows and Enter:** the arrows are one icon rotated, so all four match, and Enter uses the `corner-down-left` icon.
+  - **Layout:** hairline dividers separate the hint groups. "Change filter" is now "Filter".
+  - **Nav:** the "⌘ K" chip uses the same keycap style.
+  - **Checks:** axe is clean, and lint and the build pass. I checked light and dark.
+
 ## 2026-10-05: the closing letter in the owner's words, with photo and signature (ADR 0038)
 
 - **Agent:** Cursor agent (Claude)

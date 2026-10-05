@@ -136,7 +136,7 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
           <kbd
             aria-hidden
             className={cn(
-              "type-caption min-w-11 rounded-inset border border-hairline px-1.5 py-0.5 text-center transition-opacity duration-(--t-hover-short) ease-slow group-hover/keys:border-ink-3",
+              "type-caption min-w-11 rounded-print border border-b-2 border-hairline bg-canvas px-1.5 py-0.5 text-center transition-opacity duration-(--t-hover-short) ease-slow",
               !mod && "opacity-0",
             )}
           >
