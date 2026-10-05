@@ -119,7 +119,7 @@ export const site = siteSchema.parse({
     ],
     headline: "I design *analytics* and security tools at Miro.",
   },
-  handNote: "Pick a card to jump to a section",
+  handNote: "Pick a card and jump right there",
   deck: {
     joker: { src: "/cards/bandoneon-line-light.png", srcDark: "/cards/bandoneon-line-dark.png" },
     back: { src: "/cards/back-clean-light.jpg", srcDark: "/cards/back-clean-dark.jpg" },

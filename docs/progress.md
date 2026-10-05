@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Hand note copy
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the note under the card hand reads "Pick a card and jump right there", at the owner's request. Build passes.
+
+---
+
 ## 2026-10-05: Big projects opens with the access line
 
 - **Agent:** Cursor agent (Claude)
