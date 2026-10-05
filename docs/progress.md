@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: $10M ARR without the product attribution
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** on /about the fact reads "$10M, ARR from the feature suite I designed" and the Miro Senior point reads "$10M ARR from the feature suite I designed end to end, above expectations two years running." Neither names the add-on any more. The figure stays inside the password-gated Enterprise Guard case only. Home never showed it. Build passes; public HTML checked.
+
+---
+
 ## 2026-10-05: Home in the mobile menu
 
 - **Agent:** Cursor agent (Claude)

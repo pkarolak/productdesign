@@ -225,7 +225,7 @@ export const site = siteSchema.parse({
     facts: [
       { value: "12", unit: "+", label: "years of designing products" },
       { value: "Enterprise", label: "delightful products for the world's biggest orgs" },
-      { value: "$10M", label: "ARR from Miro's first add-on I designed" },
+      { value: "$10M", label: "ARR from the feature suite I designed" },
       { value: "3", label: "years teaching UX at Collegium Da Vinci" },
     ],
     beliefs: {
@@ -292,7 +292,7 @@ export const site = siteSchema.parse({
         summary: "Took Miro Enterprise Guard from 0 to 1, end to end.",
         points: [
           "Gave admins control over domains, authentication, content classification, audit logs and content lifecycle.",
-          "Made it Miro's first add-on: about $10M ARR, above revenue expectations two years running.",
+          "$10M ARR from the feature suite I designed end to end, above expectations two years running.",
         ],
         cases: ["miro-enterprise-guard"],
       },
