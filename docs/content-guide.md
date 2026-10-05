@@ -7,7 +7,7 @@ Everything a visitor reads lives in `content/`. The build validates it against [
 - `content/site.ts`: name, the content of every block (hero, hand, the five chapters, testimonials, letter, About story, education, journey, values, resume), links, contact copy, an optional footnote.
 - `content/kit.ts`: fixtures for `/kit`, the live content plus the blocks the site leaves empty. Only `/kit` reads it.
 - `content/projects/<slug>.ts`: one file per case.
-- `content/projects/index.ts`: the order, and a check for exactly five cases. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
+- `content/projects/index.ts`: the order, and a check for exactly six cases. The first `work.featured` cases lead on home; the work timeline groups them by `year`, newest first.
 
 Wrap one word of a heading in `*asterisks*` to give it the single emphasis (for example `"I design the *systems* product teams build on."`). Use `\u00a0` (a non-breaking space) to keep short phrases together, like `0\u00a0to\u00a01`.
 
@@ -33,7 +33,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `educationTitle` | 4 words | The education heading ("School days"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |
 | `journey.roles` | up to 8, summary 18, 2 points of 16 | "Where I've been". Omit `to` while the role is current. `cases` link up to 2 case slugs. |
-| `values` | up to 4, text 30 | "How I work". `evidence` is a case slug. |
+| `values` | up to 4, text 30, note 24 | "How I work". `evidence` is a case slug. `note` (optional) sits under the heading; it states the working loop (discover, prototype, validate, merge). |
 
 ## Writing a case
 
@@ -84,7 +84,7 @@ The case slides could not all be exported from Figma yet. Each placeholder under
 ## Reusing the template
 
 1. Edit `content/site.ts` (name, hero, about, links).
-2. Replace the five files in `content/projects/`, keeping the exports named in `index.ts`, or rename them there.
+2. Replace the six files in `content/projects/`, keeping the exports named in `index.ts`, or rename them there.
 3. Replace the images in `public/projects/`, `public/media/protected/` and `public/about/`.
 4. Set `access: "public"` on any case that should not be gated.
 5. `pnpm build`. Fix whatever the schema reports.

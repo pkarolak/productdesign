@@ -10,7 +10,7 @@ Brag doc into portfolio (source: the owner's brag document, 15 Sep 2026):
 - [x] `content-explorer`: the sixth case, leading home
 - [x] `upgrade-cases`: Enterprise Guard accounts and lifecycle closure; Analytics AI chapter and staged prototype
 - [x] `how-i-work`: the prototype-first loop, said loudly
-- [ ] `docs-verify`
+- [x] `docs-verify`: ADR 0035, docs, checks, axe, leak test, shots
 
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
@@ -51,6 +51,21 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `verify-docs`: checks under both themes, axe, leak tests, shots, docs
 
 ---
+
+## 2026-10-05: checks and docs for the brag-doc update (`docs-verify`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Last todo of the plan "Brag doc into portfolio".
+  - **Docs:** ADR 0035 covers the six cases, the prototype-first loop, and allowing numbers but not customer names. It amends ADR 0034. The content guide covers the six cases and `values.note`. The plan, README and `AGENTS.md` now say six cases.
+  - **Checks:** lint, typecheck, `docs:check` and the build pass, and `theme:check` passes under Dusk and Blueprint.
+  - **Axe** (WCAG 2.2 AA plus best practice) is clean at 1440 and 390, light and dark, on `/`, `/about`, `/work`, a locked case and three unlocked cases, Content Explorer included.
+  - **Leak test:** nothing protected in public HTML, the sitemap or the six OG images.
+  - **`pnpm shots`** re-ran with no overflow.
+- **Owner to do:** export these and swap the placeholders, using new file names:
+  - Content Explorer: the four views, the working model and FilterPill.
+  - Analytics: the staged prototype (Skateboard, Bike, Ferrari).
+  - The Figma slides listed in the 2026-10-01 `visuals` entry.
+- **Next:** `qa` and `docs-final` from the checklist.
 
 ## 2026-10-05: prototype first, loud and clear (`how-i-work`)
 

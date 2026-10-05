@@ -138,12 +138,13 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 
 **Site fields** (`content/site.ts`): name, title, one-line positioning, short bio, portrait, experience list (role, company, years), 3 working principles, links.
 
-**The 5 real cases** (since the "Real cases from Figma" plan, [ADR 0034](decisions/0034-real-cases.md)), all password protected, in home order:
-1. **Miro Analytics** (2024): research that won over internal pushback, 1,000+ weekly visits.
-2. **Miro Enterprise Guard** (2022): 0 to 1 add-on across five PMs and four teams, above revenue expectations.
-3. **Merchant Economic Tools** (Allegro, 2021): validation research, a stakeholder clash, workshops to one vision.
-4. **Egnyte as a product platform** (2020): workshops and an 18-point audit turned into shipped platform pieces.
-5. **Data Access Management** (Egnyte, 2020): Data Owners, from eight interviews to a planned MVP.
+**The 6 real cases** ([ADR 0034](decisions/0034-real-cases.md), [ADR 0035](decisions/0035-content-explorer-and-prototype-first.md)), all password protected, in home order:
+1. **Content Explorer** (Miro, 2026): the admin console's first content-management surface, kick-off to GA in twelve months, built on a prototype-first loop.
+2. **Miro Analytics** (2024): research that won over internal pushback, 1,000+ weekly visits.
+3. **Miro Enterprise Guard** (2022): 0 to 1 add-on across five PMs and four teams, above revenue expectations.
+4. **Merchant Economic Tools** (Allegro, 2021): validation research, a stakeholder clash, workshops to one vision.
+5. **Egnyte as a product platform** (2020): workshops and an 18-point audit turned into shipped platform pieces.
+6. **Data Access Management** (Egnyte, 2020): Data Owners, from eight interviews to a planned MVP.
 
 The original 4 placeholder cases (system adoption, workflow redesign, 0 to 1 bet, accessibility program) are retired.
 

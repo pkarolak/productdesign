@@ -14,7 +14,7 @@ Instructions for any coding agent (Cursor, Claude Code, Codex, Gemini, others) w
 
 ## What this is
 
-Patryk Karolak's portfolio, built as a reusable template for a product designer. It showcases 5 real case studies at teaser depth: anyone gets the bottom line in about 30 seconds, and the full story is told in person. Case studies are password gated. The site is built with Next.js and hosted on Vercel. The audience is design leaders, hiring managers and cross-functional peers. The goal is to showcase senior-level strength through evidence, never through claims.
+Patryk Karolak's portfolio, built as a reusable template for a product designer. It showcases 6 real case studies at teaser depth: anyone gets the bottom line in about 30 seconds, and the full story is told in person. Case studies are password gated. The site is built with Next.js and hosted on Vercel. The audience is design leaders, hiring managers and cross-functional peers. The goal is to showcase senior-level strength through evidence, never through claims.
 
 ## Where we are
 
