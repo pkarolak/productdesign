@@ -4,6 +4,12 @@ Status log and handoff. Newest entry on top. Every todo ends with an entry here,
 
 ## Checklist
 
+Brag doc into portfolio (source: the owner's brag document, 15 Sep 2026):
+
+- [x] `confirm-ga`: the owner confirmed GA on 25 Sep 2026 and the team line; the 82% figure stays out
+- [x] `content-explorer`: the sixth case, leading home
+- [ ] `upgrade-cases`, `how-i-work`, `docs-verify`
+
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
 - [x] `direction-concepts`: 2 reference images per style direction in `design/directions/`
@@ -43,6 +49,17 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `verify-docs`: checks under both themes, axe, leak tests, shots, docs
 
 ---
+
+## 2026-10-05: Content Explorer leads (`confirm-ga`, `content-explorer`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The owner confirmed that Content Explorer reached GA on 25 Sep 2026, and approved the team line. The brag doc's 82% figure stays out because its denominator is unclear. `content/projects/content-explorer.ts` (2026, protected) is first in `index.ts`, which now checks for six cases, so home shows Content Explorer, Miro Analytics and Enterprise Guard.
+  - **Numbers:** 46 organisations asked for the private beta, 480 admins used it in the first public-beta week across 100+ enterprises, and 15 of 22 pilot organisations came back on four or more days.
+  - **Beats:** about 2,000 manual requests a quarter and 80,000-board organisations, then the Available, In trash, Retained vocabulary and the full-stack prototype, then GA.
+  - **Artifacts:** the four views, the admin roles diagram, the 93,000-line working model and FilterPill. Three of them are placeholders.
+
+  No customer names. The cover is the Miro logo on an amber card.
+- **Next:** `upgrade-cases`.
 
 ## 2026-10-01: checks and docs for the real cases (`verify-docs`)
 

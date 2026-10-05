@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { projectSchema, type Project } from "../schema";
+import { contentExplorer } from "./content-explorer";
 import { dataAccessManagement } from "./data-access-management";
 import { egnyteProductPlatform } from "./egnyte-product-platform";
 import { merchantEconomicTools } from "./merchant-economic-tools";
@@ -9,9 +10,9 @@ import { miroEnterpriseGuard } from "./miro-enterprise-guard";
 /** Order matters: home shows the first `site.work.featured` cases. */
 export const projects: Project[] = z
   .array(projectSchema)
-  .length(5)
+  .length(6)
   .refine((list) => new Set(list.map((p) => p.slug)).size === list.length, "Slugs must be unique.")
-  .parse([miroAnalytics, miroEnterpriseGuard, merchantEconomicTools, egnyteProductPlatform, dataAccessManagement]);
+  .parse([contentExplorer, miroAnalytics, miroEnterpriseGuard, merchantEconomicTools, egnyteProductPlatform, dataAccessManagement]);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
