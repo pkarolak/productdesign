@@ -1,8 +1,11 @@
 "use client";
 
+import { motion as m } from "motion/react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { motion } from "@theme/motion";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
 import { cn } from "@/lib/cn";
@@ -23,6 +26,8 @@ export type Command = {
   locked?: boolean;
   /** Quiet detail on the right, e.g. the company or the domain. */
   meta?: string;
+  /** A company mark from /logos/, shown instead of the icon. */
+  logo?: string;
 };
 
 /** Each group is also a filter tab. */
@@ -41,6 +46,19 @@ function iconFor(c: Command): IconName {
   if (c.action === "toggle-theme") return "moon";
   if (c.href?.startsWith("http")) return "arrow-up-right";
   return "arrow-right";
+}
+
+type Item = { command: Command; i: number };
+
+/** Each top-level item with the nested items listed right after it. */
+function segments(items: Item[]) {
+  const out: { head: Item; kids: Item[] }[] = [];
+  for (const item of items) {
+    const last = out.at(-1);
+    if (item.command.parent !== undefined && last?.head.command.id === item.command.parent) last.kids.push(item);
+    else out.push({ head: item, kids: [] });
+  }
+  return out;
 }
 
 function Key({ children }: { children: React.ReactNode }) {
@@ -174,6 +192,62 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
     }
   };
 
+  const row = ({ command: c, i }: Item) => {
+    const selected = i === active;
+    const nested = c.parent !== undefined;
+    return (
+      <div
+        key={c.id}
+        id={optionId(i)}
+        role="option"
+        aria-selected={selected}
+        onPointerMove={() => setActive(i)}
+        onClick={() => run(c)}
+        className={cn(
+          "relative isolate flex cursor-pointer items-center justify-between gap-4 rounded-inset px-2.5 transition-colors duration-(--t-hover-short) ease-slow",
+          nested ? "type-small py-1.5" : "type-body py-2",
+          selected ? "text-ink" : "text-ink-2",
+        )}
+      >
+        {selected && (
+          <m.span
+            layoutId={`${listId}-active`}
+            transition={motion.spring}
+            className="absolute inset-0 -z-10 rounded-inset bg-skeleton"
+          />
+        )}
+        <span className="flex min-w-0 items-center gap-3">
+          <span
+            className={cn(
+              "grid shrink-0 place-items-center rounded-inset border border-hairline bg-canvas transition-colors duration-(--t-hover-short) ease-slow",
+              nested ? "size-7" : "size-8",
+              selected ? "text-accent" : "text-ink-3",
+            )}
+          >
+            {c.logo ? (
+              <Image src={c.logo} alt="" width={16} height={16} className="size-4 object-contain" />
+            ) : (
+              <Icon name={iconFor(c)} className={nested ? "size-3.5" : "size-4"} />
+            )}
+          </span>
+          <span className="truncate">{c.label}</span>
+          {c.locked && <span className="sr-only">, password protected</span>}
+        </span>
+        <span className="flex shrink-0 items-center gap-2.5 text-ink-3">
+          {c.meta && <span className={cn("type-small", c.logo && "max-sm:hidden")}>{c.meta}</span>}
+          {c.locked && c.logo && <Icon name="lock" className="size-3.5" />}
+          <Icon
+            name="corner-down-left"
+            className={cn(
+              "size-4 transition-opacity duration-(--t-hover-short) ease-slow max-sm:hidden",
+              !selected && "opacity-0",
+            )}
+          />
+        </span>
+      </div>
+    );
+  };
+
   return (
     <Modal open={open} onClose={close} labelledBy={titleId} placement="palette" initialFocus={input}>
       <h2 id={titleId} className="sr-only">
@@ -200,7 +274,8 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
         />
       </div>
 
-      <div
+      <m.div
+        layoutScroll
         role="group"
         aria-label="Filter"
         className="flex shrink-0 gap-1 overflow-x-auto border-b border-hairline px-4 pb-3"
@@ -216,64 +291,59 @@ export function CommandMenu({ groups, email }: { groups: CommandGroup[]; email?:
               input.current?.focus();
             }}
             className={cn(
-              "focus-ring type-small shrink-0 cursor-pointer rounded-pill px-3.5 py-1.5 transition-colors duration-(--t-hover-short) ease-slow",
-              f === filter ? "bg-skeleton text-ink" : "text-ink-2 hover:text-ink",
+              "focus-ring type-small relative isolate shrink-0 cursor-pointer rounded-pill px-3.5 py-1.5 transition-colors duration-(--t-hover-short) ease-slow",
+              f === filter ? "text-ink" : "text-ink-2 hover:text-ink",
             )}
           >
+            {f === filter && (
+              <m.span
+                layoutId={`${listId}-filter`}
+                transition={motion.spring}
+                className="absolute inset-0 -z-10 rounded-pill border border-hairline bg-skeleton"
+              />
+            )}
             {f}
           </button>
         ))}
-      </div>
+      </m.div>
 
-      <div
+      <m.div
+        layoutScroll
         ref={list}
         id={listId}
         role="listbox"
         aria-label="Commands"
         className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2"
       >
-        {visible.length === 0 && <p className="type-small px-3 py-8 text-center">Nothing matches “{query}”.</p>}
+        {visible.length === 0 && (
+          <div className="grid place-items-center gap-1 px-6 py-12 text-center">
+            <span className="mb-3 grid size-10 place-items-center rounded-inset border border-hairline bg-canvas text-ink-3">
+              <Icon name="search" className="size-4" />
+            </span>
+            <p className="type-body text-ink">Nothing matches “{query}”</p>
+            <p className="type-small text-ink-3">
+              {filter === ALL ? "Try a company, a case or a chapter." : "Try another word, or look in All."}
+            </p>
+          </div>
+        )}
         {visible.map((g) => (
-          <div key={g.label} role="group" aria-label={g.label} className="py-1">
-            <p aria-hidden className="type-small px-3 pt-2 pb-1.5 text-ink-3">
+          <div key={g.label} role="group" aria-label={g.label} className="pb-1">
+            <p aria-hidden className="type-caption px-3 pt-3 pb-2 text-ink-3">
               {g.label}
             </p>
-            {g.items.map(({ command: c, i }) => {
-              const selected = i === active;
-              const nested = c.parent !== undefined;
-              return (
-                <div
-                  key={c.id}
-                  id={optionId(i)}
-                  role="option"
-                  aria-selected={selected}
-                  onPointerMove={() => setActive(i)}
-                  onClick={() => run(c)}
-                  className={cn(
-                    "flex cursor-pointer items-center justify-between gap-4 rounded-inset px-3 text-ink-2",
-                    nested ? "type-small ml-5 border-l border-hairline py-2 pl-4" : "type-body py-2.5",
-                    selected && "bg-skeleton text-ink",
-                  )}
-                >
-                  <span className="flex min-w-0 items-center gap-3">
-                    <Icon name={iconFor(c)} className={cn("shrink-0 text-ink-3", nested ? "size-3.5" : "size-4")} />
-                    <span className="truncate">{c.label}</span>
-                    {c.locked && <span className="sr-only">, password protected</span>}
-                  </span>
-                  <span className="flex shrink-0 items-center gap-3">
-                    {c.meta && <span className="type-small text-ink-3">{c.meta}</span>}
-                    {selected && <Icon name="corner-down-left" className="size-4 text-ink-3" />}
-                  </span>
-                </div>
-              );
-            })}
+            {segments(g.items).map(({ head, kids }) => (
+              <div key={head.command.id}>
+                {row(head)}
+                {kids.length > 0 && <div className="ml-7 border-l border-hairline pl-2">{kids.map(row)}</div>}
+              </div>
+            ))}
           </div>
         ))}
-      </div>
+      </m.div>
 
       <div
         aria-hidden
-        className="type-caption flex shrink-0 items-center gap-5 border-t border-hairline px-5 py-3 text-ink-3 max-md:hidden"
+        className="wash type-caption flex shrink-0 items-center gap-5 border-t border-hairline px-5 py-3 text-ink-3 max-md:hidden"
       >
         <span className="flex items-center gap-1.5">
           <Key>↑</Key>

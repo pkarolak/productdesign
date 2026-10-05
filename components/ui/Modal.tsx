@@ -73,7 +73,7 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-canvas/75"
+            className={cn("fixed inset-0", placement === "sheet" ? "bg-canvas/75" : "surface-sheet")}
           />
         )}
         {open && (

@@ -29,6 +29,12 @@ export const viewport: Viewport = {
   ],
 };
 
+const logos = new Map(
+  site.hero.intro
+    .flatMap((row) => [...row.parts, ...(row.note ?? [])])
+    .flatMap((part) => (typeof part === "object" && "pill" in part && part.logo ? [[part.pill, part.logo] as const] : [])),
+);
+
 const commands: CommandGroup[] = [
   {
     label: "Work",
@@ -42,6 +48,7 @@ const commands: CommandGroup[] = [
         parent: "work",
         locked: p.access === "protected",
         meta: `${p.company}, ${p.year}`,
+        logo: logos.get(p.company),
       })),
     ],
   },

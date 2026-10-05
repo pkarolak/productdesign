@@ -52,6 +52,18 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: command menu polish
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Rows:** every row has an icon tile (`rounded-inset`, hairline, canvas fill). The cases show their company's logo mark in the tile, taken from the hero intro, and the lock moves to the right. The selected row tints its tile icon with the accent.
+  - **Motion:** the selection highlight and the active filter pill slide between rows and pills with a shared `layoutId` on the theme spring. `MotionConfig reducedMotion="user"` turns this off for reduced motion.
+  - **Nesting:** the cases sit on one hairline guide under "The big ones" instead of a border on every row.
+  - **Backdrop:** the palette's backdrop uses `surface-sheet` (blurred veil); the sheet placement keeps its plain scrim.
+  - **Empty state:** an icon tile, "Nothing matches", and a hint that depends on the filter.
+  - **Mobile:** below `sm`, the company and year text and the Enter hint are hidden, since the logo already says the company, so case titles fit.
+  - **Checks:** axe is clean in light and dark under Dusk and Blueprint. Typecheck, lint, `theme:check` and the build pass.
+
 ## 2026-10-05: command menu with filters on top, like Cursor's
 
 - **Agent:** Cursor agent (Claude)
