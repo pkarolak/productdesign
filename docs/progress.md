@@ -52,6 +52,15 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: a polished mobile menu
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Sheet:** the mobile menu is solid canvas, so the page no longer bleeds through.
+  - **Content:** Work and About are hairline rows with an arrow, and the current page has the accent dot. The home chapters follow as suit-marked tiles ("On the home page"). The theme toggle and "Say hi" share the bottom bar.
+  - **Nav:** takes `sections` from `site.hand`.
+  - **Checks:** typecheck, lint and the build pass. axe is clean on the open menu in light and dark. Shots of `/` and `/about`.
+
 ## 2026-10-05: swipe to book no longer trips the popup blocker (ADR 0039)
 
 - **Agent:** Cursor agent (Claude)

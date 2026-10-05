@@ -98,7 +98,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Skip to content
             </a>
             <Atmosphere />
-            <Nav name={site.name} avatar={site.avatar?.face ?? site.avatar?.src} />
+            <Nav
+              name={site.name}
+              avatar={site.avatar?.face ?? site.avatar?.src}
+              sections={site.hand.map(({ title, href, suit }) => ({ title, href, suit }))}
+            />
             <main id="main" className="relative z-10">
               {children}
             </main>

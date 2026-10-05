@@ -7,6 +7,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "@theme/motion";
 import { PrimaryLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
+import { Suit, suitText } from "@/components/ui/Suit";
+import type { Suit as SuitName } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { openCommandMenu, useModKey } from "./CommandMenu";
 import { ThemeToggle } from "./ThemeToggle";
@@ -16,7 +19,10 @@ const links = [
   { href: "/about", label: "About", match: (p: string) => p === "/about" },
 ];
 
-export function Nav({ name, avatar }: { name: string; avatar?: string }) {
+type Section = { title: string; href: string; suit: SuitName };
+
+/** `sections` are the home chapters, listed in the mobile menu. */
+export function Nav({ name, avatar, sections = [] }: { name: string; avatar?: string; sections?: Section[] }) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -155,43 +161,68 @@ export function Nav({ name, avatar }: { name: string; avatar?: string }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: motion.menu.duration * 0.6, ease }}
-            className="surface-sheet fixed inset-0 z-40 flex flex-col px-(--gutter) pt-36 pb-10 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-canvas px-(--gutter) pt-28 pb-8 md:hidden"
           >
-            <ul className="flex flex-col gap-3">
-              {links.map((l, i) => (
-                <m.li
-                  key={l.href}
-                  initial={{ opacity: 0, y: rise.y }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: motion.menu.duration, ease, delay: 0.1 + i * motion.menu.stagger }}
-                >
-                  <Link
-                    ref={i === 0 ? firstItem : undefined}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="focus-ring type-menu block rounded-pill py-1 text-ink"
+            <ul className="border-t border-hairline">
+              {links.map((l, i) => {
+                const active = l.match(pathname);
+                return (
+                  <m.li
+                    key={l.href}
+                    initial={{ opacity: 0, y: rise.y }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: motion.menu.duration, ease, delay: 0.08 + i * motion.menu.stagger }}
+                    className="border-b border-hairline"
                   >
-                    {l.label}
-                  </Link>
-                </m.li>
-              ))}
+                    <Link
+                      ref={i === 0 ? firstItem : undefined}
+                      href={l.href}
+                      aria-current={active ? "page" : undefined}
+                      onClick={() => setOpen(false)}
+                      className="focus-ring type-menu flex items-center gap-3 rounded-inset py-4 text-ink"
+                    >
+                      {l.label}
+                      {active && <span aria-hidden className="size-1.5 rounded-full bg-accent" />}
+                      <Icon name="arrow-right" size="nav" className="ml-auto text-ink-3" />
+                    </Link>
+                  </m.li>
+                );
+              })}
             </ul>
+
+            {sections.length > 0 && (
+              <m.div
+                initial={{ opacity: 0, y: rise.y }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: motion.menu.duration, ease, delay: 0.08 + links.length * motion.menu.stagger }}
+                className="mt-9"
+              >
+                <p className="type-label">On the home page</p>
+                <ul className="mt-3 grid grid-cols-2 gap-2">
+                  {sections.map((s) => (
+                    <li key={s.href} className="odd:last:col-span-2">
+                      <Link
+                        href={s.href.startsWith("#") ? `/${s.href}` : s.href}
+                        onClick={() => setOpen(false)}
+                        className="focus-ring press card type-small flex items-center gap-2.5 rounded-card px-3.5 py-3 text-ink"
+                      >
+                        <Suit suit={s.suit} className={cn("size-3.5 shrink-0", suitText[s.suit])} />
+                        {s.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </m.div>
+            )}
+
             <m.div
               initial={{ opacity: 0, y: rise.y }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motion.menu.duration, ease, delay: 0.1 + links.length * motion.menu.stagger }}
-              className="mt-8 flex items-center gap-3 text-ink-2"
+              transition={{ duration: motion.menu.duration, ease, delay: 0.08 + (links.length + 1) * motion.menu.stagger }}
+              className="mt-auto flex items-center gap-2 pt-10"
             >
-              <ThemeToggle className="-ml-2 size-11" />
-              <span className="type-small">Theme</span>
-            </m.div>
-            <m.div
-              initial={{ opacity: 0, y: rise.y }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motion.menu.duration, ease, delay: 0.1 + (links.length + 1) * motion.menu.stagger }}
-              className="mt-auto"
-            >
-              <PrimaryLink href="#contact" onClick={() => setOpen(false)} className="w-full justify-between">
+              <ThemeToggle className="surface-strong size-12 shrink-0 text-ink" />
+              <PrimaryLink href="#contact" onClick={() => setOpen(false)} className="flex-1 justify-between">
                 Say hi
               </PrimaryLink>
             </m.div>
