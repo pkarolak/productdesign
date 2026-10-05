@@ -74,6 +74,9 @@ export const iconNames = [
   "handshake",
   "pen-tool",
   "plane",
+  "music",
+  "clapperboard",
+  "palette",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

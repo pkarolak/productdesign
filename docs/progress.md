@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Side gig feature, CoNaDzielni.pl in a phone
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** CoNaDzielni.pl is a full-width feature on Home: copy and link beside a 21 s loop of the live product in a phone that deals in on scroll, with three drifting category chips (ADR 0049). New schema fields `showcase.items[].loop` and `tags`; icons `music`, `clapperboard`, `palette`. The Side gigs note drops "Tap one to read more". Typecheck, lint, build, axe pass; the loop plays in view; shots light, dark, iPhone.
+
+---
+
 ## 2026-10-05: Colour on About, tinted icon tiles
 
 - **Agent:** Cursor agent (Claude)

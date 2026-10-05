@@ -152,7 +152,7 @@ export const site = siteSchema.parse({
   },
   showcase: {
     title: "Side gigs",
-    note: "Lightweight stuff I build after hours. Tap one to read more.",
+    note: "Lightweight stuff I build after hours.",
     featured: 3,
     more: "All side gigs",
     items: [
@@ -164,6 +164,16 @@ export const site = siteSchema.parse({
         detail:
           "CoNaDzielni.pl shows what is going on in your city, from a gig down the street to plans for Saturday. I lead its design after hours.",
         link: { label: "Visit CoNaDzielni.pl", href: "https://conadzielni.pl" },
+        loop: {
+          src: "/showcase/co-na-dzielni/loop.mp4",
+          poster: "/showcase/co-na-dzielni/loop.jpg",
+          alt: "CoNaDzielni.pl on a phone: picking music, film and art as interests, scrolling the events nearby, then the city map.",
+        },
+        tags: [
+          { icon: "music", label: "Music" },
+          { icon: "clapperboard", label: "Film and theatre" },
+          { icon: "palette", label: "Art" },
+        ],
       },
     ],
   },

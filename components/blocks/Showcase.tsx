@@ -8,10 +8,16 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
 import { JokerEmblem, Suit, suitInk } from "@/components/ui/Suit";
-import { suits, type Showcase as ShowcaseData, type ShowcaseItem, type Suit as SuitName } from "@/content/schema";
+import {
+  suits,
+  type Showcase as ShowcaseData,
+  type ShowcaseItem,
+  type Suit as SuitName,
+} from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { motion } from "@theme/motion";
 import { BlockHeader } from "./BlockHeader";
+import { ShowcaseFeature } from "./ShowcaseFeature";
 
 /** The item's image, or a suit-coloured panel when it has none. */
 function Cover({
@@ -39,9 +45,16 @@ function Cover({
         />
       </span>
     );
-  const pip = "transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-110 group-hover/sc:rotate-12";
+  const pip =
+    "transition-transform duration-(--t-hover) ease-slow group-hover/sc:scale-110 group-hover/sc:rotate-12";
   return (
-    <span className={cn("playing-card relative grid place-items-center overflow-hidden", suitInk[suit], className)}>
+    <span
+      className={cn(
+        "playing-card relative grid place-items-center overflow-hidden",
+        suitInk[suit],
+        className,
+      )}
+    >
       {suit === "joker" ? (
         <JokerEmblem className={cn("size-[34%]", pip)} />
       ) : (
@@ -66,7 +79,12 @@ function Detail({
 }) {
   const titleId = `${scope}-${item.id}-title`;
   return (
-    <Modal open={open} onClose={onClose} labelledBy={titleId} layoutId={`${scope}-${item.id}`}>
+    <Modal
+      open={open}
+      onClose={onClose}
+      labelledBy={titleId}
+      layoutId={`${scope}-${item.id}`}
+    >
       <Cover
         item={item}
         suit={suit}
@@ -81,7 +99,11 @@ function Detail({
         </h3>
         <p className="type-body mt-3 text-ink-2">{item.detail}</p>
         <div className="mt-6 flex items-center justify-between gap-4">
-          {item.link ? <ArrowLink href={item.link.href}>{item.link.label}</ArrowLink> : <span />}
+          {item.link ? (
+            <ArrowLink href={item.link.href}>{item.link.label}</ArrowLink>
+          ) : (
+            <span />
+          )}
           <button
             type="button"
             onClick={onClose}
@@ -114,53 +136,74 @@ export function Showcase({
   const [everything, setEverything] = useState(false);
   if (!showcase?.items.length) return null;
   const hidden = showcase.items.length - showcase.featured;
-  const items = everything || hidden <= 0 ? showcase.items : showcase.items.slice(0, showcase.featured);
+  const items =
+    everything || hidden <= 0
+      ? showcase.items
+      : showcase.items.slice(0, showcase.featured);
   const start = suit ? suits.indexOf(suit) : 0;
   const suitOf = (i: number) => suits[(start + i) % suits.length];
   const shownIndex = showcase.items.findIndex((i) => i.id === shownId);
   const shown = showcase.items[shownIndex];
 
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
-      <BlockHeader id={`${id}-title`} title={showcase.title} note={showcase.note} suit={suit} />
-      <ul id={`${id}-list`} className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
-        {items.map((item, i) => (
-          <Rise as="li" key={item.id} i={i}>
-            <m.div
-              layoutId={`${id}-${item.id}`}
-              transition={motion.sheet}
-              style={{ borderRadius: "var(--r-card)" }}
-              className="card h-full overflow-hidden hover:surface-deep"
-            >
-              <button
-                type="button"
-                onClick={() => {
-                  setShownId(item.id);
-                  setOpen(true);
-                }}
-                aria-haspopup="dialog"
-                className="focus-ring press group/sc flex h-full w-full cursor-pointer flex-col text-left"
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className="container-page section-y scroll-mt-(--nav-clear)"
+    >
+      <BlockHeader
+        id={`${id}-title`}
+        title={showcase.title}
+        note={showcase.note}
+        suit={suit}
+      />
+      <ul
+        id={`${id}-list`}
+        className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3"
+      >
+        {items.map((item, i) =>
+          item.loop ? (
+            <ShowcaseFeature key={item.id} item={item} i={i} />
+          ) : (
+            <Rise as="li" key={item.id} i={i}>
+              <m.div
+                layoutId={`${id}-${item.id}`}
+                transition={motion.sheet}
+                style={{ borderRadius: "var(--r-card)" }}
+                className="card h-full overflow-hidden hover:surface-deep"
               >
-                <Cover
-                  item={item}
-                  suit={suitOf(i)}
-                  alt=""
-                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                  className="aspect-[16/10]"
-                />
-                <span className="flex flex-1 flex-col p-5">
-                  <span className="type-label">{item.kicker}</span>
-                  <span className="type-h3 mt-1.5 text-ink">{item.title}</span>
-                  <span className="type-small mt-1.5">{item.text}</span>
-                  <span className="type-small mt-auto flex items-center gap-1.5 pt-5 text-ink">
-                    Open
-                    <Icon name="arrow-up-right" className="size-4" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShownId(item.id);
+                    setOpen(true);
+                  }}
+                  aria-haspopup="dialog"
+                  className="focus-ring press group/sc flex h-full w-full cursor-pointer flex-col text-left"
+                >
+                  <Cover
+                    item={item}
+                    suit={suitOf(i)}
+                    alt=""
+                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                    className="aspect-[16/10]"
+                  />
+                  <span className="flex flex-1 flex-col p-5">
+                    <span className="type-label">{item.kicker}</span>
+                    <span className="type-h3 mt-1.5 text-ink">
+                      {item.title}
+                    </span>
+                    <span className="type-small mt-1.5">{item.text}</span>
+                    <span className="type-small mt-auto flex items-center gap-1.5 pt-5 text-ink">
+                      Open
+                      <Icon name="arrow-up-right" className="size-4" />
+                    </span>
                   </span>
-                </span>
-              </button>
-            </m.div>
-          </Rise>
-        ))}
+                </button>
+              </m.div>
+            </Rise>
+          ),
+        )}
       </ul>
       {hidden > 0 && !everything && (
         <Rise className="mt-6">
@@ -179,7 +222,16 @@ export function Showcase({
           </button>
         </Rise>
       )}
-      {shown && <Detail key={shown.id} item={shown} scope={id} suit={suitOf(shownIndex)} open={open} onClose={() => setOpen(false)} />}
+      {shown && (
+        <Detail
+          key={shown.id}
+          item={shown}
+          scope={id}
+          suit={suitOf(shownIndex)}
+          open={open}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </section>
   );
 }

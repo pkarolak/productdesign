@@ -276,6 +276,10 @@ export const showcaseSchema = z.object({
         text: words(14),
         /** Without an image the card shows its suit colour instead. */
         image: image.optional(),
+        /** A 9:19.5 phone recording; the item then renders as a full-width feature with the loop in a phone. */
+        loop: z.object({ src: z.string().startsWith("/"), poster: z.string().startsWith("/"), alt: z.string().min(8) }).optional(),
+        /** Up to three chips that float beside the phone, each a glyph and a short label. */
+        tags: z.array(z.object({ icon, label: words(3) })).max(3).optional(),
         detail: words(60),
         link: cta.optional(),
       }),
