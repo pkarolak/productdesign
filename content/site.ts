@@ -214,7 +214,7 @@ export const site = siteSchema.parse({
     title: "More about me",
     headline: "All problems can be solved in an *elegant* way, even if they look ugly at a glance.",
     story: [
-      "I'm Patryk, a product designer from Poznań. For over 12 years I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
+      "I'm Patryk, a product designer from Poznań. For over 12 years I have designed for Egnyte, Allegro and now Miro, where I work on analytics, and on content security and compliance in the age of AI. Alongside, I designed for Espago and now lead design at CoNaDzielni.pl.",
       "I studied computer science in Poznań and Madrid, and I still code my own prototypes.",
     ],
     portrait: {
@@ -267,7 +267,7 @@ export const site = siteSchema.parse({
   educationTitle: "Education",
   journey: {
     title: "Experience",
-    note: "Enterprise content, e-commerce, payments and collaboration, with freelance work alongside since 2011.",
+    note: "Enterprise content, e-commerce, payments and collaboration, with side gigs and freelance work alongside since 2011.",
     roles: [
       {
         from: 2024,
@@ -310,6 +310,7 @@ export const site = siteSchema.parse({
         from: 2021,
         to: 2022,
         company: "Espago",
+        side: true,
         logo: "/logos/espago.png",
         role: "Lead product designer",
         kind: "Online payments",

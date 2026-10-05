@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Espago is side work
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** Espago moves under "Alongside" in Experience (`side: true`), after CoNaDzielni.pl and before Freelance. The About story names Egnyte, Allegro and Miro as the main line and adds "Alongside, I designed for Espago and now lead design at CoNaDzielni.pl."; the Experience note reads "with side gigs and freelance work alongside since 2011". Build passes; shots of the About hero and Experience.
+
+---
+
 ## 2026-10-05: Button consistency pass
 
 - **Agent:** Cursor agent (Claude)
