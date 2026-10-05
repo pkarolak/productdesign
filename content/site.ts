@@ -196,15 +196,50 @@ export const site = siteSchema.parse({
   },
   about: {
     title: "More about me",
-    headline: "Calm interfaces for *complex* work.",
+    headline: "All problems can be solved in an *elegant* way.",
     story: [
-      "I am a product designer based in Poznań. Since 2014 I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
-      "I start with research, because it is the rocket fuel for everything after it. Then I build: a working prototype app on real data, validated fast and merged when it proves right. For deep UI explorations I push pixels in Figma, fast and cheap, but for big projects that matter my deliverable is a fully interactive prototype. Workshops keep the people around it aligned.",
-      "I studied computer science in Poznań and Madrid, taught UX at Collegium Da Vinci, and still like to code my own prototypes. After hours it is climbing, tango and my family.",
+      "I'm Patryk, a product designer from Poznań. For over 12 years I have designed for Egnyte, Allegro, Espago and now Miro, where I work on analytics, and on content security and compliance in the age of AI.",
+      "I studied computer science in Poznań and Madrid, and I still code my own prototypes.",
     ],
     portrait: {
       src: "/about/portrait.jpg",
       alt: "Patryk Karolak's desk with sketches, a film camera and a laptop in soft morning light.",
+    },
+    facts: [
+      { value: "12", unit: "+", label: "years of designing products" },
+      { value: "4", label: "product companies, from Egnyte to Miro" },
+      { value: "2,250", label: "commits across eight prototypes" },
+      { value: "3", label: "years teaching UX at Collegium Da Vinci" },
+    ],
+    beliefs: {
+      title: "What I believe",
+      items: [
+        {
+          icon: "toy-brick",
+          title: "Explain it to a 5-year-old",
+          text: "Most topics can be easily explained to a 5-year-old, if you first understand them well yourself.",
+        },
+        {
+          icon: "sparkles",
+          title: "Clean UI with a spark",
+          text: "I love clean interfaces with a little spark in them.",
+        },
+        {
+          icon: "square-dashed",
+          title: "Sometimes no UI is best",
+          text: "Sometimes no UI is the best thing we can do.",
+        },
+        {
+          icon: "ban",
+          title: "Be bold enough not to build it",
+          text: "Sometimes the best way to go about a feature is to be bold enough not to build it in the first place.",
+        },
+        {
+          icon: "wand-sparkles",
+          title: "Even chances for everyone",
+          text: "In the era of AI and vibe coding we all get even chances to test our hypotheses in no time. That's the best time ever to be a product designer.",
+        },
+      ],
     },
   },
   education: [
@@ -295,7 +330,13 @@ export const site = siteSchema.parse({
   },
   values: {
     title: "How I work",
-    note: "Discover, prototype, validate, merge. The prototype is the spec, so decisions start from something that works.",
+    note: "The prototype is the spec, so decisions start from something that works.",
+    loop: [
+      { icon: "search", title: "Discover", text: "Research first, always. It is the rocket fuel for everything after it." },
+      { icon: "code-xml", title: "Prototype", text: "A working prototype app on real data. Figma for deep UI explorations." },
+      { icon: "flask-conical", title: "Validate", text: "Test it fast. Workshops keep the people around it aligned." },
+      { icon: "git-merge", title: "Merge", text: "Merge it when it proves right, then start the loop again." },
+    ],
     items: [
       {
         title: "Prototype it, prove it, merge it",
@@ -325,14 +366,17 @@ export const site = siteSchema.parse({
     items: [
       {
         title: "I climb, mostly boulders.",
+        icon: "mountain",
         text: "Problem solving with your whole body: read the route, try, fall, adjust and try again.",
       },
       {
         title: "I dance Argentine tango.",
+        icon: "footprints",
         text: "It is improvised, with constant small signals between two people. It made me a better listener.",
       },
       {
         title: "I DJ at milongas.",
+        icon: "disc-3",
         text: "I play tango music for the dancers and change the plan when the floor goes quiet.",
       },
     ],

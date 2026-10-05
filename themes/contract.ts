@@ -54,6 +54,20 @@ export const iconNames = [
   "command",
   "quote",
   "corner-down-left",
+  "toy-brick",
+  "sparkles",
+  "square-dashed",
+  "ban",
+  "wand-sparkles",
+  "code-xml",
+  "flask-conical",
+  "git-merge",
+  "mountain",
+  "footprints",
+  "disc-3",
+  "graduation-cap",
+  "presentation",
+  "repeat",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

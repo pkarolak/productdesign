@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { iconNames } from "../themes/contract";
 
 export const wordCount = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
@@ -7,6 +8,8 @@ const words = (max: number) =>
     .string()
     .min(1)
     .refine((s) => wordCount(s) <= max, { message: `At most ${max} words. Cut it, do not raise the limit.` });
+
+const icon = z.enum(iconNames);
 
 const image = z.object({
   src: z.string().startsWith("/"),
@@ -327,13 +330,15 @@ export const journeySchema = z.object({
 export const valuesSchema = z.object({
   title: words(6),
   note: words(24).optional(),
+  /** The working loop, drawn as connected steps above the principles. */
+  loop: z.array(z.object({ icon, title: words(2), text: words(16) })).min(2).max(5).optional(),
   items: z.array(z.object({ title: words(6), text: words(30), evidence: slug.optional() })).max(4),
 });
 
 export const outsideSchema = z.object({
   title: words(6),
   note: words(20).optional(),
-  items: z.array(z.object({ title: words(8), text: words(40) })).max(3),
+  items: z.array(z.object({ title: words(8), text: words(40), icon: icon.optional() })).max(3),
 });
 
 export const siteSchema = z.object({
@@ -359,6 +364,17 @@ export const siteSchema = z.object({
     headline: words(12),
     story: z.array(words(70)).min(1).max(3),
     portrait: image.optional(),
+    /** A band of plain numbers under the opener. */
+    facts: z
+      .array(z.object({ value: z.string().regex(/^[\d.,]+$/, "Digits only; put the unit in `unit`."), unit: z.string().max(3).optional(), label: words(7) }))
+      .max(4)
+      .default([]),
+    beliefs: z
+      .object({
+        title: words(5),
+        items: z.array(z.object({ icon, title: words(8), text: words(30) })).min(2).max(6),
+      })
+      .optional(),
   }),
   education: educationSchema.default([]),
   educationTitle: words(4).default("Education"),

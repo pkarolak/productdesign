@@ -3,8 +3,10 @@ import { Contact } from "@/components/site/Contact";
 import { PrimaryLink } from "@/components/ui/Button";
 import { projects } from "@/content/projects";
 import type { Site } from "@/content/schema";
-import { Education } from "./Education";
+import { Beliefs } from "./Beliefs";
 import { Journey } from "./Journey";
+import { Learning } from "./Learning";
+import { OutsideWork } from "./OutsideWork";
 import { StoryHeader } from "./StoryHeader";
 import { Values } from "./Values";
 
@@ -20,10 +22,12 @@ export function AboutBlocks({ content }: { content: Site }) {
             </PrimaryLink>
           </Rise>
         )}
-        <Education education={content.education} title={content.educationTitle} i={content.about.story.length + 3} />
       </StoryHeader>
-      <Journey journey={content.journey} projects={projects} />
+      <Beliefs beliefs={content.about.beliefs} />
       <Values values={content.values} projects={projects} />
+      <Journey journey={content.journey} projects={projects} />
+      <Learning education={content.education} educationTitle={content.educationTitle} teaching={content.teaching} />
+      <OutsideWork outside={content.outside} id="free-time" />
       <Contact site={content} />
     </>
   );

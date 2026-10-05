@@ -52,6 +52,17 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: an editorial About page (ADR 0044)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Rewritten:** `/about` is now an opener with his elegant-way headline and a band of four numbers, then "What I believe" with five icon beliefs, then "How I work" as a connected loop above the principles, then experience, education and teaching side by side, and free time.
+  - **Schema:** `about.facts`, `about.beliefs`, `values.loop` and an optional free-time `icon`. Icons are checked against the theme's `iconNames`, and 14 glyphs were added to both themes.
+  - **Checks:**
+    - typecheck, lint and the build pass.
+    - axe is clean on `/about` in light and dark at 1440 and 390.
+    - Shots in Dusk and Blueprint.
+
 ## 2026-10-05: "About me" in the owner's words (ADR 0043)
 
 - **Agent:** Cursor agent (Claude)

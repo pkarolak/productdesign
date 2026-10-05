@@ -1,4 +1,5 @@
 import { Rise } from "@/components/motion/Rise";
+import { Icon } from "@/components/ui/Icon";
 import type { Outside, Suit } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
@@ -13,6 +14,11 @@ export function OutsideWork({ outside, id = "outside", suit }: { outside?: Outsi
       <ul className={cn("grid gap-3 md:gap-4", items.length > 1 && "md:grid-cols-2", items.length === 3 && "lg:grid-cols-3")}>
         {items.map((o, i) => (
           <Rise as="li" key={o.title} i={i} className="card rounded-card p-6 md:p-7">
+            {o.icon && (
+              <span className="mb-5 grid size-11 place-items-center rounded-inset border border-hairline bg-canvas text-ink">
+                <Icon name={o.icon} />
+              </span>
+            )}
             <h3 className="type-h3 text-ink">{o.title}</h3>
             <p className="type-small mt-2">{o.text}</p>
           </Rise>
