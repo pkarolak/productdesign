@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: stronger facts, a plainer working loop
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Facts:** "4 product companies" and "2,250 commits" are replaced by "Enterprise: delightful products for the world's biggest orgs" (the owner's words) and "$10M ARR from Miro's first add-on I designed" (the Enterprise Guard case). A fact value may now be `$10M` or one word. The commit count is also gone from the first principle.
+  - **Loop:** plain copy for the note and every step. Discover now reads "understand the gaps and learn before proposing anything". A fifth step, Repeat, replaces the return arrows.
+  - **Checks:** typecheck, lint and the build pass; no overflow on desktop or iPhone.
+
 ## 2026-10-05: the /work page heading
 
 - **Agent:** Cursor agent (Claude)

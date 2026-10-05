@@ -213,8 +213,8 @@ export const site = siteSchema.parse({
     },
     facts: [
       { value: "12", unit: "+", label: "years of designing products" },
-      { value: "4", label: "product companies, from Egnyte to Miro" },
-      { value: "2,250", label: "commits across eight prototypes" },
+      { value: "Enterprise", label: "delightful products for the world's biggest orgs" },
+      { value: "$10M", label: "ARR from Miro's first add-on I designed" },
       { value: "3", label: "years teaching UX at Collegium Da Vinci" },
     ],
     beliefs: {
@@ -336,17 +336,18 @@ export const site = siteSchema.parse({
   },
   values: {
     title: "How I work",
-    note: "The prototype is the spec, so decisions start from something that works.",
+    note: "The loop I follow on big projects: learn first, build something that works, test it, ship it, and go again.",
     loop: [
-      { icon: "search", title: "Discover", text: "Research first, always. It is the rocket fuel for everything after it." },
-      { icon: "code-xml", title: "Prototype", text: "A working prototype app on real data. Figma for deep UI explorations." },
-      { icon: "flask-conical", title: "Validate", text: "Test it fast. Workshops keep the people around it aligned." },
-      { icon: "git-merge", title: "Merge", text: "Merge it when it proves right, then start the loop again." },
+      { icon: "search", title: "Discover", text: "Understand the gaps and learn before proposing anything. Discovery is the homework good design starts from." },
+      { icon: "code-xml", title: "Prototype", text: "A working app on real data that people can click through. Figma for detailed UI." },
+      { icon: "flask-conical", title: "Validate", text: "Test it with users fast, and run workshops to keep stakeholders aligned." },
+      { icon: "git-merge", title: "Merge", text: "Once it proves right, it gets merged into the product." },
+      { icon: "repeat", title: "Repeat", text: "Back to discovery, with what the last release taught us." },
     ],
     items: [
       {
         title: "Prototype it, prove it, merge it",
-        text: "After discovery I build a working prototype app on real data, validate it fast, and merge it when it proves right. About 2,250 commits across eight prototypes so far.",
+        text: "After discovery I build a working prototype app on real data, validate it fast, and merge it when it proves right.",
         evidence: "content-explorer",
       },
       {

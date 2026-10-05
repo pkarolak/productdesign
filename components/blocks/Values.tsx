@@ -5,6 +5,8 @@ import type { Project, Values as ValuesData } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
 
+const columns: Record<number, string> = { 2: "md:grid-cols-2", 3: "md:grid-cols-3", 4: "md:grid-cols-4", 5: "md:grid-cols-5" };
+
 /** Working principles, each backed by the case that shows it. Renders nothing while empty. */
 export function Values({ values, projects }: { values?: ValuesData; projects: Project[] }) {
   if (!values?.items.length) return null;
@@ -14,7 +16,7 @@ export function Values({ values, projects }: { values?: ValuesData; projects: Pr
     <section id="values" aria-labelledby="values-title" className="container-page section-y">
       <BlockHeader id="values-title" title={values.title} note={values.note} />
       {values.loop && (
-        <ol aria-label="The working loop" className="mb-12 grid md:mb-16 md:grid-cols-4">
+        <ol aria-label="The working loop" className={cn("mb-12 grid md:mb-16", columns[values.loop.length])}>
           {values.loop.map((s, i, all) => {
             const last = i === all.length - 1;
             return (
@@ -23,11 +25,12 @@ export function Values({ values, projects }: { values?: ValuesData; projects: Pr
                   <span className="card grid size-12 shrink-0 place-items-center rounded-inset text-ink">
                     <Icon name={s.icon} size="nav" />
                   </span>
-                  <span
-                    aria-hidden
-                    className={cn("w-px flex-1 bg-hairline max-md:my-2 md:h-px md:w-auto", last && "max-md:hidden")}
-                  />
-                  <Icon name={last ? "repeat" : "arrow-right"} className="shrink-0 text-ink-3 max-md:hidden" />
+                  {!last && (
+                    <>
+                      <span aria-hidden className="w-px flex-1 bg-hairline max-md:my-2 md:h-px md:w-auto" />
+                      <Icon name="arrow-right" className="shrink-0 text-ink-3 max-md:hidden" />
+                    </>
+                  )}
                 </div>
                 <div className={cn("pt-2.5 md:pt-4", !last && "max-md:pb-8")}>
                   <h3 className="type-h3 text-ink">{s.title}</h3>

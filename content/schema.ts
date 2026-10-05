@@ -381,7 +381,7 @@ export const siteSchema = z.object({
     portrait: image.optional(),
     /** A band of plain numbers under the opener. */
     facts: z
-      .array(z.object({ value: z.string().regex(/^[\d.,]+$/, "Digits only; put the unit in `unit`."), unit: z.string().max(3).optional(), label: words(7) }))
+      .array(z.object({ value: z.string().regex(/^(\$?[\d.,]+[KMB]?|[A-Z][a-z]{1,11})$/, "A number (`12`, `2,250`, `$10M`) or one word; put the unit in `unit`."), unit: z.string().max(3).optional(), label: words(7) }))
       .max(4)
       .default([]),
     beliefs: z
