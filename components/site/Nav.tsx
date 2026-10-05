@@ -19,6 +19,8 @@ const links = [
   { href: "/about", label: "About me", match: (p: string) => p === "/about" },
 ];
 
+const menuLinks = [{ href: "/", label: "Home", match: (p: string) => p === "/" }, ...links];
+
 type Section = { title: string; href: string; suit: SuitName };
 
 /** `sections` are the home chapters, listed in the mobile menu. */
@@ -164,7 +166,7 @@ export function Nav({ name, avatar, sections = [] }: { name: string; avatar?: st
             className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-canvas px-(--gutter) pt-28 pb-8 md:hidden"
           >
             <ul className="border-t border-hairline">
-              {links.map((l, i) => {
+              {menuLinks.map((l, i) => {
                 const active = l.match(pathname);
                 return (
                   <m.li

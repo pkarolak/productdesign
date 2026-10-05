@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Home in the mobile menu
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the mobile menu lists Home first, above Work and About me, with the same active dot; the desktop pill keeps the name as the home link. Typecheck, lint, build pass; iPhone shot.
+
+---
+
 ## 2026-10-05: Nav Work opens /work
 
 - **Agent:** Cursor agent (Claude)
