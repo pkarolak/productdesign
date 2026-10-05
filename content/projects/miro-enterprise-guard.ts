@@ -14,7 +14,7 @@ export const miroEnterpriseGuard = {
   metrics: [
     { value: "50", unit: "%+", label: "of ARR from the top 500", context: "all of them on the Enterprise plan" },
     { value: "2", label: "years above revenue expectations", context: "for Miro's very first add-on" },
-    { value: "4", label: "development teams kept in step", context: "by one designer and a master prototype" },
+    { value: "199", label: "paying accounts on the add-on", context: "about $10M ARR since launch" },
   ],
   beats: [
     {
@@ -27,7 +27,7 @@ export const miroEnterpriseGuard = {
     },
     {
       label: "Ship",
-      text: "We launched and partied. Two more designers joined. It made more money than expected two years running, and now grows into data discovery and integrations.",
+      text: "We launched, then two more designers joined. It beat revenue expectations two years running, and grows into content lifecycle, data discovery and integrations.",
     },
   ],
   artifacts: [
@@ -59,7 +59,7 @@ export const miroEnterpriseGuard = {
     },
   ],
   askMeAbout: [
-    "Keeping five PMs and four dev teams in step",
+    "How one designer kept five PMs in step",
     "What the design sprint's holy grail turned out to be",
     "Where Enterprise Guard goes next: data discovery and integrations",
   ],

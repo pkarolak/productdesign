@@ -27,7 +27,7 @@ export const miroAnalytics = {
     },
     {
       label: "Ship",
-      text: "New analytics launched to all Enterprise admins, with other plans next. Over 1,000 visits a week, 4 out of 5 satisfaction, and a full backlog.",
+      text: "Launched to all Enterprise admins: 1,000+ visits a week, 4 out of 5 satisfaction. Since then I designed use-case and AI analytics, gated by role.",
     },
   ],
   artifacts: [
@@ -46,16 +46,16 @@ export const miroAnalytics = {
     },
     {
       kind: "screenshot",
-      src: "/media/protected/miro-analytics/actionability.png",
+      src: "/media/protected/miro-analytics/staged-prototype.png",
       ratio: "16/9",
-      alt: "Placeholder for the slide With actionability, still to be exported from Figma.",
-      caption: "With actionability: the step that came after a trustworthy data set.",
+      alt: "Placeholder for the staged analytics prototype, still to be exported.",
+      caption: "Skateboard, Bike, Ferrari: one prototype grown in stages, with a colour-blind-safe chart palette.",
     },
   ],
   askMeAbout: [
     "How research turned strong internal pushback into support",
     "Why trustworthy data came before any new chart",
-    "What the satisfaction poll in 30 organisations told us",
+    "Why Company Admins see the numbers but not the boards",
   ],
   cover: {
     kind: "photo",

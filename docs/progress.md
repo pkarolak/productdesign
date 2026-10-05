@@ -8,7 +8,8 @@ Brag doc into portfolio (source: the owner's brag document, 15 Sep 2026):
 
 - [x] `confirm-ga`: the owner confirmed GA on 25 Sep 2026 and the team line; the 82% figure stays out
 - [x] `content-explorer`: the sixth case, leading home
-- [ ] `upgrade-cases`, `how-i-work`, `docs-verify`
+- [x] `upgrade-cases`: Enterprise Guard accounts and lifecycle closure; Analytics AI chapter and staged prototype
+- [ ] `how-i-work`, `docs-verify`
 
 - [x] `repo-setup`: branch `main`, `.gitignore`, origin, first push
 - [x] `docs-foundation`: AGENTS.md, CLAUDE.md, docs hub, plan, progress, brief, ADR 0000 + 0001
@@ -49,6 +50,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 - [x] `verify-docs`: checks under both themes, axe, leak tests, shots, docs
 
 ---
+
+## 2026-10-05: better numbers in the Miro cases (`upgrade-cases`)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Enterprise Guard:** the "4 development teams" metric is now "199 paying accounts on the add-on, about $10M ARR since launch". That is the product's number, from the brag doc. The Ship beat closes on the add-on growing into content lifecycle, data discovery and integrations. Ask me about: "How one designer kept five PMs in step".
+  - **Miro Analytics:** the Ship beat adds that use-case and AI analytics are designed and gated by role. They are not claimed as shipped. The "With actionability" placeholder is replaced by the staged prototype (Skateboard, Bike, Ferrari) with its colour-blind-safe palette, which is also a placeholder for now. A new ask-me-about item covers the permission rule from the September review: Company Admins see the numbers, not the boards.
+- **Next:** `how-i-work`.
 
 ## 2026-10-05: Content Explorer leads (`confirm-ga`, `content-explorer`)
 
