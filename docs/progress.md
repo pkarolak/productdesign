@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Home About me, lighter lead
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the lead drops the bold heading style for `type-standfirst` in ink; the five beliefs move into the text column as a hairline list under it, with "More about me" after; the photo sits beside the whole column, so the block reads top to bottom instead of breaking into a separate row. The belief "Even chances for everyone" reads "AI brings even chances for everyone" (on About too). Typecheck, lint, build, axe pass; shots light, iPhone.
+
+---
+
 ## 2026-10-05: Command menu, pages and their sections
 
 - **Agent:** Cursor agent (Claude)

@@ -253,7 +253,7 @@ export const site = siteSchema.parse({
         },
         {
           icon: "wand-sparkles",
-          title: "Even chances for everyone",
+          title: "AI brings even chances for everyone",
           text: "AI and vibe coding let anyone test an idea in hours, not sprints. Good ideas win on evidence. The best time ever to be a product designer.",
         },
       ],
