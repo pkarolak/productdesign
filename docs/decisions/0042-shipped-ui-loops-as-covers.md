@@ -14,7 +14,7 @@ Covers are public: they show on the home listing, `/work` and the case header. U
 - **Only shipped UI.** Content Explorer: the classification filter, Data Discovery and Content Lifecycle. Analytics: the Miro AI tab and the Teams using AI drill-down. Enterprise Guard: the classification overview and configuration. Unshipped UI (the use-case column, filter and drawer section, the use-case widget) is hidden while recording, and no customer data appears.
 - **Listing:** each case is a card led by its cover in a 16/10 frame, title, bottom line and lock marker. Cards sit two to a row per company; a company with an odd count leads with one wide card, side by side.
 - **Case header:** the cover runs full width under the title and facts. It tilts back in perspective and stands up as it scrolls in (transform only, through `useScroll`). Logo-card covers use a 21/9 frame.
-- **Playback:** loops play only in view (IntersectionObserver) and show the poster under reduced motion. They dim in dark mode like light images, unless they have a dark take ([ADR 0045](0045-loop-recording-standard.md)). In cards they are decorative (`aria-hidden`); the title names the link.
+- **Playback:** in listing cards, loops play on hover or keyboard focus on screens that can hover, and rewind to the first frame on leave; on touch screens they play once 60% of the cover is in view. In the case header they play whenever in view. All show the poster under reduced motion. They dim in dark mode like light images, unless they have a dark take ([ADR 0045](0045-loop-recording-standard.md)). In cards they are decorative (`aria-hidden`); the title names the link.
 
 ## Consequences
 

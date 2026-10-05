@@ -38,26 +38,31 @@ function Card({ project, i, wide }: { project: Project; i: number; wide: boolean
       <Link
         href={`/work/${project.slug}`}
         transitionTypes={["nav-forward"]}
+        data-loop-root
         className={cn(
-          "focus-ring press group/row grid h-full content-start gap-5 rounded-card p-2.5 pb-5",
-          wide && "md:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] md:items-center md:gap-8 md:pb-2.5",
+          "focus-ring press group/row grid h-full grid-rows-[auto_1fr] gap-5 rounded-card p-2.5 pb-5",
+          // The column gap is the list gap plus both card paddings, so the wide card's cover and text line up with the cards below.
+          wide && "md:grid-cols-2 md:grid-rows-1 md:items-center md:gap-x-9 md:pb-2.5",
         )}
       >
         <CoverMorph slug={project.slug}>
           <div className="core relative aspect-[16/10] overflow-hidden rounded-inset">
             <Cover
               asset={project.cover}
+              play="hover"
               sizes={wide ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 34vw, 100vw"}
               className="transition-transform duration-(--t-hover) ease-slow group-hover/row:scale-[1.03]"
             />
           </div>
         </CoverMorph>
-        <span className={cn("grid gap-5 px-2.5", wide && "md:pr-6")}>
+        <span className={cn("flex flex-col gap-5 px-2.5", wide && "md:pr-6")}>
           <span className="min-w-0">
             <span className="type-h3 block text-ink">{project.title}</span>
             <span className="type-small mt-1.5 line-clamp-3 block max-w-[52ch]">{project.bottomLine}</span>
           </span>
-          <Marker locked={locked} />
+          <span className="mt-auto">
+            <Marker locked={locked} />
+          </span>
         </span>
       </Link>
     </Rise>

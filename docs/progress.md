@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: an aligned work grid, loops on hover
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Grid:** the wide card splits into two equal columns with a gap of the list gap plus both card paddings, so its cover lines up with the card below and its text with the right card's text. The lock line sits at the foot of every card, level across a row.
+  - **Loops:** in listing cards, `play="hover"` plays on hover or focus on hover-capable screens and rewinds on leave; touch screens play once 60% is in view (ADR 0042 updated).
+  - **Checks:** typecheck, lint and the build pass; playback checked on desktop and an emulated iPhone; axe is clean.
+
 ## 2026-10-05: icons on the case facts
 
 - **Agent:** Cursor agent (Claude)
