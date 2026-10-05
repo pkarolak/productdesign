@@ -42,7 +42,7 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `bottomLine` | 30 words | What changed and why it mattered, with one number. The only thing a busy reader must see. |
 | `metrics` | 2 to 3 | `value` digits only, `unit` separate (`%`, `x`, `s`, `k`), `label` 6 words, `context` 8 words (baseline or time window). |
 | `beats` | 3 × 25 words | Frame (the real problem), Shape (the key move), Ship (how it landed). |
-| `role`, `team`, `timeline` | 5, 10, 3 words | Facts, no adjectives. |
+| `role`, `team`, `timeline` | 5, 10, 3 words | Facts, no adjectives. Prefer a date ("GA Sep 2026") to a duration, which reads as personal effort. |
 | `partners` | 18 words | Who you worked with and led across functions. |
 | `scope` | 2 to 3 items | Areas, not skills. |
 | `artifacts` | 2 to 4 | Each with a 14-word `caption` and a real `alt`. |

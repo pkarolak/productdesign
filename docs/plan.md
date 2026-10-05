@@ -139,7 +139,7 @@ A zod schema in `content/schema.ts` fails the build if a case exceeds its readin
 **Site fields** (`content/site.ts`): name, title, one-line positioning, short bio, portrait, experience list (role, company, years), 3 working principles, links.
 
 **The 6 real cases** ([ADR 0034](decisions/0034-real-cases.md), [ADR 0035](decisions/0035-content-explorer-and-prototype-first.md)), all password protected, in home order:
-1. **Content Explorer** (Miro, 2026): the admin console's first content-management surface, kick-off to GA in twelve months, built on a prototype-first loop.
+1. **Content Explorer** (Miro, 2026): the admin console's first content-management surface, designed alongside Content Lifecycle, bulk actions and analytics, built on a prototype-first loop.
 2. **Miro Analytics** (2024): research that won over internal pushback, 1,000+ weekly visits.
 3. **Miro Enterprise Guard** (2022): 0 to 1 add-on across five PMs and four teams, above revenue expectations.
 4. **Merchant Economic Tools** (Allegro, 2021): validation research, a stakeholder clash, workshops to one vision.

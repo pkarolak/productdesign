@@ -5,11 +5,11 @@ export const contentExplorer = {
   year: 2026,
   access: "protected",
   bottomLine:
-    "Admins could manage users and teams, but not content, so support handled about 2,000 bulk-change requests a quarter. I designed Content Explorer from kick-off to GA in twelve months.",
+    "Admins could manage users and teams, but not content: support handled about 2,000 bulk-change requests a quarter. I designed Content Explorer; 480 admins used it in the first public-beta week.",
   role: "Lead and only designer",
   team: "1 PM, engineering lead, the Content Lifecycle team",
-  timeline: "Twelve months",
-  partners: "Worked with the PM, the engineering lead, the design-system team and the bulk-actions platform team.",
+  timeline: "GA Sep 2026",
+  partners: "Designed alongside Content Lifecycle, bulk actions and analytics, with the PM, the engineering lead and the design-system team.",
   scope: ["Information architecture", "Permission model", "Prototyping"],
   metrics: [
     { value: "46", label: "organisations asked for the private beta", context: "one of the most demanded admin capabilities" },

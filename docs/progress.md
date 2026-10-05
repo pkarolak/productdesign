@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: no duration on Content Explorer
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** The owner pointed out that "kick-off to GA in twelve months" reads as a year of his own time, when it was the product's calendar and he was designing other initiatives in parallel. The bottom line now ends on adoption: 480 admins in the first public-beta week. The timeline fact is "GA Sep 2026". The partners line and the journey point say he designed it alongside Content Lifecycle, bulk actions and analytics. Rule for case copy: give dates, never durations that could be read as personal effort.
+
 ## 2026-10-05: checks and docs for the brag-doc update (`docs-verify`)
 
 - **Agent:** Cursor agent (Claude)

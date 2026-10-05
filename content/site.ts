@@ -214,7 +214,7 @@ export const site = siteSchema.parse({
         kind: "Visual collaboration",
         summary: "The Miro Analytics ecosystem, content security and compliance in the age of AI, and tools for designers.",
         points: [
-          "Content Explorer, from kick-off to GA in twelve months.",
+          "Content Explorer, alongside Content Lifecycle, bulk actions and analytics.",
           "FilterPill in Miro's design system, plus two production PRs.",
         ],
         cases: ["content-explorer", "miro-analytics"],
