@@ -68,6 +68,10 @@ export const iconNames = [
   "graduation-cap",
   "presentation",
   "repeat",
+  "user-round",
+  "calendar-range",
+  "users-round",
+  "handshake",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

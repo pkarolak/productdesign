@@ -4,12 +4,17 @@ import { Asset } from "@/components/media/Asset";
 import { CoverMorph } from "@/components/motion/PageTransition";
 import { Rise } from "@/components/motion/Rise";
 import { TiltIn } from "@/components/motion/TiltIn";
+import { Icon } from "@/components/ui/Icon";
 import type { Project } from "@/content/schema";
+import type { IconName } from "@/themes/contract";
 
-function Fact({ label, children }: { label: string; children: ReactNode }) {
+function Fact({ label, icon, children }: { label: string; icon: IconName; children: ReactNode }) {
   return (
     <div>
-      <dt className="type-label">{label}</dt>
+      <dt className="type-label flex items-center gap-1.5">
+        <Icon name={icon} className="size-3.5 shrink-0" />
+        {label}
+      </dt>
       <dd className="type-small mt-1.5 text-ink">{children}</dd>
     </div>
   );
@@ -37,10 +42,10 @@ export function CaseHeader({ project, logo, children }: { project: Project; logo
         </Rise>
         <Rise i={3} className="mt-12 md:mt-14">
           <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-hairline pt-6 md:grid-cols-4">
-            <Fact label="My role">{project.role}</Fact>
-            <Fact label="Timeline">{project.timeline}</Fact>
-            <Fact label="Team">{project.team}</Fact>
-            <Fact label="Partners">{project.partners}</Fact>
+            <Fact label="My role" icon="user-round">{project.role}</Fact>
+            <Fact label="Timeline" icon="calendar-range">{project.timeline}</Fact>
+            <Fact label="Team" icon="users-round">{project.team}</Fact>
+            <Fact label="Partners" icon="handshake">{project.partners}</Fact>
           </dl>
         </Rise>
       </div>

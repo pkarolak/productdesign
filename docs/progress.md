@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: icons on the case facts
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** My role, Timeline, Team and Partners each lead with a small icon in the label colour (`user-round`, `calendar-range`, `users-round`, `handshake`, added to the icon contract and both themes). Typecheck, lint, theme:check and the build pass; axe is clean.
+
 ## 2026-10-05: "My role" in the case facts
 
 - **Agent:** Cursor agent (Claude)
