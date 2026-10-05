@@ -52,6 +52,16 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: command menu with filters on top, like Cursor's
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Layout:** the palette is wider (680px) and lays out as a column. A large search field sits on top, then a row of filter pills (All, Work, Pages, Actions, Links), then the results, which scroll on their own. A footer lists the keys: ↑↓ Select, ↵ Open, ←→ Change filter, esc Close. The footer is hidden below `md`.
+  - **Filters:** each group is a filter. Left and Right switch filters when the caret is at the edge of the query, so they still move the caret mid-text. The pills are `aria-pressed` buttons and keep focus in the search field.
+  - **Rows:** an optional `meta` adds quiet detail on the right: company and year for cases, the case count for "The big ones", and the domain for links. Search matches the meta too, so "allegro" still finds Merchant Economic Tools.
+  - **Groups:** "Go to" is now "Work" (The big ones plus the nested cases) and "Pages".
+  - **Checks:** axe is clean with the menu open, in light and dark. Typecheck, lint, `theme:check` and the build pass. I checked the screenshots at 1440px and 390px.
+
 ## 2026-10-05: cases nest under "The big ones" in the command menu
 
 - **Agent:** Cursor agent (Claude)

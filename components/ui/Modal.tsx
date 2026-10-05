@@ -22,7 +22,7 @@ export function Modal({
   open: boolean;
   onClose: () => void;
   labelledBy: string;
-  /** "sheet": bottom sheet on mobile, centred panel from md. "palette": near the top, for the command menu. */
+  /** "sheet": bottom sheet on mobile, centred panel from md. "palette": near the top, for the command menu; its children lay out as a column and scroll themselves. */
   placement?: "sheet" | "palette";
   layoutId?: string;
   initialFocus?: RefObject<HTMLElement | null>;
@@ -86,10 +86,10 @@ export function Modal({
             transition={motion.sheet}
             style={{ borderRadius: "var(--r-sheet)" }}
             className={cn(
-              "sheet relative z-10 w-full overflow-y-auto overscroll-contain",
+              "sheet relative z-10 w-full overscroll-contain",
               placement === "sheet"
-                ? "max-h-[88dvh] md:max-w-[560px]"
-                : "max-h-[70dvh] max-w-[560px]",
+                ? "max-h-[88dvh] overflow-y-auto md:max-w-[560px]"
+                : "flex max-h-[min(76dvh,640px)] max-w-[680px] flex-col overflow-hidden",
               className,
             )}
           >
