@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: "About me" in the owner's words (ADR 0043)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Copy:** the home "About me" now says what he believes, from his own text, trimmed to the budgets.
+  - **Beliefs:** a new optional `statement.beliefs` field (up to 4 × 16 words), shown as three columns on desktop and stacked on mobile.
+  - **Checks:** typecheck, lint and the build pass. Shots in light and dark at 1440, and at 390.
+
 ## 2026-10-05: Miro stories, editorial case top, UI loops (ADR 0041, 0042)
 
 - **Agent:** Cursor agent (Claude)

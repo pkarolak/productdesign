@@ -25,8 +25,17 @@ export function Statement({
       <Rise as="p" i={3} className="type-body mt-4 max-w-[60ch] text-ink-2">
         {statement.text}
       </Rise>
+      {statement.beliefs.length > 0 && (
+        <ul className="mt-8 grid max-w-[960px] gap-x-8 gap-y-5 md:grid-cols-3">
+          {statement.beliefs.map((b, i) => (
+            <Rise as="li" key={b} i={4 + i} className="type-body border-t border-hairline pt-4 text-ink">
+              {b}
+            </Rise>
+          ))}
+        </ul>
+      )}
       {statement.cta && (
-        <Rise i={4} className="mt-5">
+        <Rise i={4 + statement.beliefs.length} className="mt-8">
           <ArrowLink href={statement.cta.href} transition="nav-forward">
             {statement.cta.label}
           </ArrowLink>

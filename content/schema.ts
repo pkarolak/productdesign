@@ -237,6 +237,8 @@ export const statementSchema = z.object({
   title: words(5),
   lines: z.array(words(8)).min(1).max(2),
   text: words(32),
+  /** Short convictions, one sentence or two each, set as columns under the text. */
+  beliefs: z.array(words(16)).max(4).default([]),
   cta: cta.optional(),
 });
 
