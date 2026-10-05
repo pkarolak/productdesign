@@ -73,6 +73,7 @@ export const iconNames = [
   "users-round",
   "handshake",
   "pen-tool",
+  "plane",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

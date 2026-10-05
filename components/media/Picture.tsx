@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 /**
@@ -14,6 +15,7 @@ export function Picture({
   sizes,
   priority,
   className,
+  style,
   dim = true,
 }: {
   src: string;
@@ -22,6 +24,7 @@ export function Picture({
   sizes: string;
   priority?: boolean;
   className?: string;
+  style?: CSSProperties;
   /** Tone down a light-only image in dark mode. Off when the caller sets its own filter. */
   dim?: boolean;
 }) {
@@ -33,6 +36,7 @@ export function Picture({
       sizes={sizes}
       preload={priority}
       unoptimized={isProtected(src)}
+      style={style}
       className={cn(className, srcDark ? "dark:hidden" : dim && "media")}
     />
   );
@@ -47,6 +51,7 @@ export function Picture({
         sizes={sizes}
         preload={priority}
         unoptimized={isProtected(srcDark)}
+        style={style}
         className={cn(className, "hidden dark:block")}
       />
     </>

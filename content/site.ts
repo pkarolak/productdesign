@@ -376,22 +376,47 @@ export const site = siteSchema.parse({
   },
   outside: {
     title: "Free time",
-    note: "Sport, tango, and others of my choice.",
+    note: "Climbing, tango and travel with my family.",
     items: [
       {
         title: "I climb, mostly boulders.",
         icon: "mountain",
         text: "Problem solving with your whole body: read the route, try, fall, adjust and try again.",
+        photo: {
+          src: "/about/free-time/climbing.jpg",
+          alt: "Patryk on a bouldering wall at a climbing gym, with friends watching from below.",
+          focus: "55% 30%",
+        },
       },
       {
         title: "I dance Argentine tango.",
         icon: "footprints",
         text: "It is improvised, with constant small signals between two people. It made me a better listener.",
+        photo: {
+          src: "/about/free-time/tango.jpg",
+          alt: "Black-and-white photo of Patryk dancing tango with a partner on a city street.",
+          focus: "50% 25%",
+        },
       },
       {
         title: "I DJ at milongas.",
         icon: "disc-3",
         text: "I play tango music for the dancers and change the plan when the floor goes quiet.",
+        photo: {
+          src: "/about/free-time/milonga.jpg",
+          alt: "Patryk sitting by the floor at an evening milonga, lit by warm stage light.",
+          focus: "32% 50%",
+        },
+      },
+      {
+        title: "I travel with my family.",
+        icon: "plane",
+        text: "With my wife and our little one, the best travel crew I know.",
+        photo: {
+          src: "/about/free-time/travel.jpg",
+          alt: "Patryk and his wife smiling in a selfie in front of snowy granite peaks and a glacial lake.",
+          focus: "50% 45%",
+        },
       },
     ],
   },

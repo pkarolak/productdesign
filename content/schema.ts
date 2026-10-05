@@ -356,7 +356,17 @@ export const valuesSchema = z.object({
 export const outsideSchema = z.object({
   title: words(6),
   note: words(20).optional(),
-  items: z.array(z.object({ title: words(8), text: words(40), icon: icon.optional() })).max(3),
+  items: z
+    .array(
+      z.object({
+        title: words(8),
+        text: words(40),
+        icon: icon.optional(),
+        /** `focus` is the CSS object-position that keeps the subject in frame when the photo is cropped. */
+        photo: image.extend({ focus: z.string().regex(/^\d{1,3}% \d{1,3}%$/).optional() }).optional(),
+      }),
+    )
+    .max(4),
 });
 
 export const siteSchema = z.object({

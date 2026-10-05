@@ -52,6 +52,11 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: photos in Free time, and a travel tile
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the owner's photos lead the Free time tiles (climbing, tango, the milonga, travel), with the glyph as a badge on the photo. A fourth tile, "I travel with my family", with the `plane` glyph (new in the icon contract). Up to four items now; the note reads "Climbing, tango and travel with my family." `Picture` takes a `style` for the focal point. Typecheck, lint, theme:check and the build pass; axe is clean; shots light, dark and iPhone.
+
 ## 2026-10-05: Experience by company, with logos (ADR 0047)
 
 - **Agent:** Cursor agent (Claude)

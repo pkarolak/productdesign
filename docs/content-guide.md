@@ -26,14 +26,14 @@ Every block is optional in practice: leave its field out, or its `items` empty, 
 | `work` | title 5, note 10, more 4 | "Big projects". `featured` (default 3) cases show on home, in the order of `content/projects/index.ts`; with more, `more` links to `/work`. Optional `index` (eyebrow 4, title 8, note 12, `ask` link 3 and text 10) is the `/work` page heading; `ask` links to the contact chapter. |
 | `showcase` | up to 6 items, text 14, detail 60, more 4 | "Side gigs". Cards that open a sheet. `featured` (default 3) show; the `more` button reveals the rest in place. `image` is optional; without one the cover is a card face with its suit pip. Images are public. |
 | `teaching` | up to 3, text 30, 4 topics of 4 words | "Teaching". Place, role, years, what you taught. |
-| `outside` | up to 3, text 40 | "Free time". Life outside work, briefly. |
+| `outside` | up to 4, text 40 | "Free time". Life outside work, briefly. |
 | `testimonials` | up to 4, quote 45 words | "Word of mouth". Real people only. Left out on the live site until the owner adds real ones; `/kit` shows a labelled sample. |
 | `letter` | 1 to 3 paragraphs of 34 words, signoff 4 | Closes Home (id `contact`) and carries "Book a call", copy email and LinkedIn. `signoff` is the handwritten signature above `name`. `photo`: an optional 5:7 portrait `{ src, alt }` beside the text (ADR 0038). `links.email` is optional: without it, every email action (the letter, the contact block, the command menu) hides. |
 | `about.title`, `about.story` | title 4; 1 to 3 paragraphs of 70 words | The page label ("More about me"); the first paragraph reads as the lede. Keep it short: who you are and where. |
 | `about.facts` | up to 4; `value` a number (`12`, `$10M`) or one capitalised word, `unit` 3 characters, `label` 7 words | A band of plain numbers under the opener; a word value names a focus ("Enterprise"). Each must trace to the owner's material. |
 | `about.beliefs` | title 5; 2 to 6 items, title 8, text 30, one `icon` each | "What I believe", in the owner's words. Icons come from the theme's icon set (`themes/contract.ts`). Each renders as an even row: glyph and title, then the text beside them. |
 | `values.loop` | 2 to 5 steps, title 2, text 16, one `icon` each | The working loop, drawn as connected steps above the principles. The last step closes it ("Repeat"); there is no return arrow. |
-| `outside` item `icon` | optional | A glyph in the free-time card. |
+| `outside` item `icon`, `photo` | optional | A glyph in the free-time card, and a photo above the text (`src`, `alt`, optional `focus` as an object-position like `50% 30%`). Photos live in `public/about/free-time/`; the glyph sits on the photo as a badge. |
 | `educationTitle` | 4 words | The education heading ("Education"). |
 | `resume` | optional `{ src, label 4 }` | A PDF in `public/`, e.g. `/patryk-karolak-cv.pdf`. Shows a download button ("Grab the CV") on About. |
 | `journey.roles` | up to 8, summary 18, up to 4 points of 16, optional `logo` or `icon` | "Experience", one card per company with its roles on a rail (ADR 0047). Omit `to` while the role is current. `cases` link up to 2 case slugs. `logo` is for companies the hero intro does not name. |
