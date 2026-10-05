@@ -111,7 +111,8 @@
     "playing-card",
     "type-hand",
     "daylight",
-    "card-tint"
+    "card-tint",
+    "icon-tint"
   ],
   "fontVariables": [
     "--theme-font-display",

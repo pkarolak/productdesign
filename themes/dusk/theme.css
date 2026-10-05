@@ -10,6 +10,11 @@
   --dk-tint-blue: rgba(64, 124, 246, 0.11);
   --dk-tint-green: rgba(32, 184, 142, 0.11);
   --dk-tint-violet: rgba(138, 96, 246, 0.11);
+  --dk-hue-amber: #A0600F;
+  --dk-hue-rose: #C2336B;
+  --dk-hue-blue: #2D5FD6;
+  --dk-hue-green: #0F8566;
+  --dk-hue-violet: #6C47D6;
   --dk-sun: rgba(214, 150, 60, 0.18);
   --dk-sunset: rgba(206, 104, 72, 0.17);
   --dk-sunset-2: rgba(214, 150, 60, 0.09);
@@ -92,6 +97,11 @@
   --dk-tint-blue: rgba(128, 156, 218, 0.28);
   --dk-tint-green: rgba(108, 176, 158, 0.22);
   --dk-tint-violet: rgba(156, 136, 220, 0.26);
+  --dk-hue-amber: #F0B770;
+  --dk-hue-rose: #F28CB0;
+  --dk-hue-blue: #93B1FF;
+  --dk-hue-green: #72D2B3;
+  --dk-hue-violet: #BBA6FF;
   --dk-sun: rgba(232, 178, 112, 0.12);
   --dk-sunset: rgba(226, 124, 94, 0.13);
   --dk-sunset-2: rgba(232, 178, 112, 0.05);
@@ -450,4 +460,18 @@
   &[data-tint="blue"] { background: linear-gradient(160deg, var(--dk-tint-blue), transparent 78%); }
   &[data-tint="green"] { background: linear-gradient(160deg, var(--dk-tint-green), transparent 78%); }
   &[data-tint="violet"] { background: linear-gradient(160deg, var(--dk-tint-violet), transparent 78%); }
+}
+
+/* An icon tile washed in one hue, the glyph in its deeper shade (data-tint: amber, rose, blue, green, violet). */
+@utility icon-tint {
+  --tile-hue: var(--ink);
+  color: var(--tile-hue);
+  background: color-mix(in srgb, var(--tile-hue) 11%, var(--dk-card));
+  border: 1px solid color-mix(in srgb, var(--tile-hue) 20%, transparent);
+  box-shadow: var(--shadow);
+  &[data-tint="amber"] { --tile-hue: var(--dk-hue-amber); }
+  &[data-tint="rose"] { --tile-hue: var(--dk-hue-rose); }
+  &[data-tint="blue"] { --tile-hue: var(--dk-hue-blue); }
+  &[data-tint="green"] { --tile-hue: var(--dk-hue-green); }
+  &[data-tint="violet"] { --tile-hue: var(--dk-hue-violet); }
 }

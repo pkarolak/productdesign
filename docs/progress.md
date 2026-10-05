@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Colour on About, tinted icon tiles
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** a new contract utility `icon-tint` and `components/ui/IconTile.tsx` put the five card hues on the About glyph tiles: beliefs, the How I work loop, Education and Teaching (ADR 0048). Both themes define it. Typecheck, lint, build and axe pass; shots light and dark.
+
+---
+
 ## 2026-10-05: About hero, the monster photo
 
 - **Agent:** Cursor agent (Claude)

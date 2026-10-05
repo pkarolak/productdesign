@@ -11,6 +11,11 @@
   --bp-tint-blue: rgba(48, 104, 246, 0.11);
   --bp-tint-green: rgba(32, 184, 142, 0.11);
   --bp-tint-violet: rgba(128, 90, 246, 0.11);
+  --bp-hue-amber: #A0600F;
+  --bp-hue-rose: #C2336B;
+  --bp-hue-blue: #2D5FD6;
+  --bp-hue-green: #0F8566;
+  --bp-hue-violet: #6C47D6;
   --bp-sun: rgba(240, 170, 70, 0.16);
   --bp-sunset: rgba(226, 110, 90, 0.15);
   --bp-sunset-2: rgba(240, 170, 70, 0.05);
@@ -98,6 +103,11 @@
   --bp-tint-blue: rgba(120, 150, 255, 0.26);
   --bp-tint-green: rgba(96, 190, 164, 0.22);
   --bp-tint-violet: rgba(156, 130, 255, 0.26);
+  --bp-hue-amber: #F0B770;
+  --bp-hue-rose: #F28CB0;
+  --bp-hue-blue: #93B1FF;
+  --bp-hue-green: #72D2B3;
+  --bp-hue-violet: #BBA6FF;
   --bp-sun: rgba(240, 180, 100, 0.10);
   --bp-sunset: rgba(236, 122, 102, 0.11);
   --bp-sunset-2: rgba(240, 180, 100, 0.04);
@@ -528,4 +538,18 @@
   &[data-tint="blue"] { background: linear-gradient(160deg, var(--bp-tint-blue), transparent 78%); }
   &[data-tint="green"] { background: linear-gradient(160deg, var(--bp-tint-green), transparent 78%); }
   &[data-tint="violet"] { background: linear-gradient(160deg, var(--bp-tint-violet), transparent 78%); }
+}
+
+/* An icon tile washed in one hue, the glyph in its deeper shade (data-tint: amber, rose, blue, green, violet). */
+@utility icon-tint {
+  --tile-hue: var(--ink);
+  color: var(--tile-hue);
+  background: color-mix(in srgb, var(--tile-hue) 11%, var(--core));
+  border: 1px solid color-mix(in srgb, var(--tile-hue) 20%, transparent);
+  box-shadow: var(--shadow);
+  &[data-tint="amber"] { --tile-hue: var(--bp-hue-amber); }
+  &[data-tint="rose"] { --tile-hue: var(--bp-hue-rose); }
+  &[data-tint="blue"] { --tile-hue: var(--bp-hue-blue); }
+  &[data-tint="green"] { --tile-hue: var(--bp-hue-green); }
+  &[data-tint="violet"] { --tile-hue: var(--bp-hue-violet); }
 }

@@ -1,5 +1,5 @@
 import { Rise } from "@/components/motion/Rise";
-import { Icon } from "@/components/ui/Icon";
+import { IconTile, tints } from "@/components/ui/IconTile";
 import type { Site } from "@/content/schema";
 import { BlockHeader } from "./BlockHeader";
 
@@ -18,9 +18,7 @@ export function Beliefs({ beliefs }: { beliefs?: Site["about"]["beliefs"] }) {
             className="grid gap-4 border-t border-hairline py-7 md:grid-cols-12 md:items-center md:gap-8 md:py-8"
           >
             <div className="flex items-center gap-4 md:col-span-5">
-              <span className="card grid size-12 shrink-0 place-items-center rounded-inset text-ink">
-                <Icon name={b.icon} size="nav" />
-              </span>
+              <IconTile icon={b.icon} tint={tints[(i + 3) % tints.length]} />
               <h3 className="type-h3 text-ink">{b.title}</h3>
             </div>
             <p className="type-body max-w-[60ch] text-ink-2 md:col-span-7">{b.text}</p>

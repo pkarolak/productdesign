@@ -1,6 +1,7 @@
 import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Icon } from "@/components/ui/Icon";
+import { IconTile, tints } from "@/components/ui/IconTile";
 import type { Project, Values as ValuesData } from "@/content/schema";
 import { cn } from "@/lib/cn";
 import { BlockHeader } from "./BlockHeader";
@@ -22,9 +23,7 @@ export function Values({ values, projects }: { values?: ValuesData; projects: Pr
             return (
               <Rise as="li" key={s.title} i={i} className="grid grid-cols-[3rem_minmax(0,1fr)] gap-x-4 md:block md:pr-6">
                 <div className="flex flex-col items-center md:flex-row md:gap-3">
-                  <span className="card grid size-12 shrink-0 place-items-center rounded-inset text-ink">
-                    <Icon name={s.icon} size="nav" />
-                  </span>
+                  <IconTile icon={s.icon} tint={tints[i % tints.length]} />
                   {!last && (
                     <>
                       <span aria-hidden className="w-px flex-1 bg-hairline max-md:my-2 md:h-px md:w-auto" />
