@@ -52,6 +52,14 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: a quiet case header (ADR 0046)
+
+- **Agent:** Cursor agent (Claude)
+- **Done:**
+  - **Mocks:** three header layouts on Content Explorer, desktop and mobile, light and dark. The owner picked the quiet lede.
+  - **Header:** the bottom line is a standfirst (`type-standfirst`, new in the contract and both themes) under the title. The facts run in one row of four under a hairline.
+  - **Checks:** typecheck, lint, theme:check and the build pass. axe is clean on every case page at 1440 and 390. Shots in Dusk and Blueprint.
+
 ## 2026-10-05: re-recorded loops and stills, with dark takes (ADR 0045)
 
 - **Agent:** Cursor agent (Claude)

@@ -6,16 +6,16 @@ import { Rise } from "@/components/motion/Rise";
 import { TiltIn } from "@/components/motion/TiltIn";
 import type { Project } from "@/content/schema";
 
-function Fact({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
+function Fact({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className={className}>
+    <div>
       <dt className="type-label">{label}</dt>
       <dd className="type-small mt-1.5 text-ink">{children}</dd>
     </div>
   );
 }
 
-/** The 30-second read: who and when, the title, the bottom line beside the facts, then the cover, then `children`. */
+/** The 30-second read: who and when, the title, the bottom line as a standfirst, the facts in a row, then the cover, then `children`. */
 export function CaseHeader({ project, logo, children }: { project: Project; logo?: string; children?: ReactNode }) {
   const loop = project.cover.kind === "video";
   return (
@@ -32,23 +32,17 @@ export function CaseHeader({ project, logo, children }: { project: Project; logo
         <Rise as="h1" i={1} className="type-display mt-5 max-w-[16ch] text-ink">
           {project.title}
         </Rise>
-        <div className="mt-8 grid gap-10 md:mt-10 lg:grid-cols-12 lg:gap-8">
-          <Rise as="p" i={2} className="type-bottomline max-w-[34ch] text-ink lg:col-span-7">
-            {project.bottomLine}
-          </Rise>
-          <Rise i={3} className="self-end lg:col-span-4 lg:col-start-9">
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-hairline pt-5">
-              <Fact label="Role">{project.role}</Fact>
-              <Fact label="Timeline">{project.timeline}</Fact>
-              <Fact label="Team" className="col-span-2">
-                {project.team}
-              </Fact>
-              <Fact label="Partners" className="col-span-2">
-                {project.partners}
-              </Fact>
-            </dl>
-          </Rise>
-        </div>
+        <Rise as="p" i={2} className="type-standfirst mt-6 max-w-[46ch]">
+          {project.bottomLine}
+        </Rise>
+        <Rise i={3} className="mt-12 md:mt-14">
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-hairline pt-6 md:grid-cols-4">
+            <Fact label="Role">{project.role}</Fact>
+            <Fact label="Timeline">{project.timeline}</Fact>
+            <Fact label="Team">{project.team}</Fact>
+            <Fact label="Partners">{project.partners}</Fact>
+          </dl>
+        </Rise>
       </div>
       <div className="container-page mt-12 md:mt-16">
         <TiltIn>
