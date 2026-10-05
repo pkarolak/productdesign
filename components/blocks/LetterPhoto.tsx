@@ -174,7 +174,7 @@ export function LetterPhoto({ photo, calendar }: { photo: Photo; calendar?: stri
         ) : (
           <>
             <span className="[@media(hover:hover)]:hidden">Swipe right to book a call</span>
-            <span className="hidden [@media(hover:hover)]:inline">Like me to book a call</span>
+            <span className="hidden [@media(hover:hover)]:inline">Like me? Book a call!</span>
           </>
         )}
       </p>
