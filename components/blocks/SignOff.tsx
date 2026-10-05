@@ -8,23 +8,23 @@ export function SignOff({ children }: { children: string }) {
   const still = useReducedMotion();
   return (
     <m.div
-      className="relative mt-8 inline-block -rotate-6 pr-3"
+      className="relative mt-6 inline-block -rotate-6 pr-2 pb-4"
       initial={still ? false : "off"}
       whileInView="on"
       viewport={{ once: true, amount: 0.6 }}
     >
       <m.p
-        className="type-hand text-[3.75rem] leading-[0.9] font-[700] text-ink md:text-[4.5rem]"
+        className="type-hand text-[2.75rem] leading-[0.9] font-[700] text-ink md:text-[3.25rem]"
         variants={{ off: { clipPath: "inset(0 100% 0 0)" }, on: { clipPath: "inset(0 0% 0 0)" } }}
         transition={{ duration: 1.1, ease: motion.ease, delay: 0.2 }}
       >
         {children}
       </m.p>
-      <svg aria-hidden viewBox="0 0 240 28" className="-mt-1 ml-[4%] block h-auto w-[92%] overflow-visible">
+      <svg aria-hidden viewBox="0 0 240 28" className="absolute bottom-0 left-[4%] w-[104%] overflow-visible">
         <m.path
           d="M4 20 C 60 8, 150 4, 232 12 C 214 14, 196 18, 182 25"
           className="fill-none stroke-accent"
-          strokeWidth={4}
+          strokeWidth={3.5}
           strokeLinecap="round"
           strokeLinejoin="round"
           variants={{ off: { pathLength: 0 }, on: { pathLength: 1 } }}
