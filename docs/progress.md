@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Home About me aligned with the About page
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the Home "About me" block is now a short version of /about: the owner's lead ("I've been a product designer for over 12 years, and I strongly believe this is the best time for product design, ever.") beside the About portrait, then the five About beliefs by title with their tinted tiles, then "More about me". `statement` drops `lines`, `text` and its own beliefs for `lead`, so the beliefs live in one place. The nav and the page title read "About me". Typecheck, lint, build, axe pass; shots light, dark, iPhone.
+
+---
+
 ## 2026-10-05: Experience, calmer list and CoNaDzielni.pl
 
 - **Agent:** Cursor agent (Claude)

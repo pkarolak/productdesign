@@ -129,13 +129,7 @@ export const site = siteSchema.parse({
   ],
   statement: {
     title: "About me",
-    lines: ["A product designer for over 12 years.", "Now is the best time to be one."],
-    text: "I believe all problems can be solved in an elegant way, and that most topics can be explained to a 5-year-old once you understand them well.",
-    beliefs: [
-      "I love clean UI with a spark in it. But sometimes no UI is best.",
-      "And sometimes the best feature is the one you are bold enough not to build.",
-      "With AI and vibe coding we all get even chances to test ideas in no time.",
-    ],
+    lead: "I've been a product designer for over 12 years, and I strongly believe this is the best time for product design, ever.",
     cta: { label: "More about me", href: "/about" },
   },
   work: {

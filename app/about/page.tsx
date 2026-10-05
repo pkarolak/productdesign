@@ -4,7 +4,7 @@ import { PageTransition } from "@/components/motion/PageTransition";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About me",
   description: site.about.story[0].split(". ")[0] + ".",
 };
 

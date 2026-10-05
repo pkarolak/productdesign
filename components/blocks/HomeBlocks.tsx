@@ -23,7 +23,7 @@ export function HomeBlocks({ content }: { content: Site }) {
       <FlightLayer />
       <IntroHero hero={content.hero} avatar={content.avatar} />
       <CardHand cards={cards} note={content.handNote} deck={content.deck} />
-      <Statement statement={content.statement} suit={suitFor(content, "about")} />
+      <Statement statement={content.statement} about={content.about} suit={suitFor(content, "about")} />
       <WorkTimeline
         intro={content.work}
         projects={projects}

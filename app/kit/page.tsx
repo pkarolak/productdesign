@@ -68,7 +68,7 @@ export default function Kit() {
           </div>
         </Specimen>
         <Specimen name="Statement">
-          <Statement statement={kit.statement} suit={suitFor(kit, "about")} />
+          <Statement statement={kit.statement} about={kit.about} suit={suitFor(kit, "about")} />
         </Specimen>
         <Specimen name="WorkTimeline" note="Cases by company with its span, cover morphs into the case">
           <WorkTimeline intro={kit.work} projects={projects} orgs={organizations(kit)} suit={suitFor(kit, "work")} />

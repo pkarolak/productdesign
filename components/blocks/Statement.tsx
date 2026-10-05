@@ -1,46 +1,63 @@
+import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
 import { ArrowLink } from "@/components/ui/ArrowLink";
-import type { Statement as StatementData, Suit } from "@/content/schema";
+import { IconTile } from "@/components/ui/IconTile";
+import type { Site, Statement as StatementData, Suit } from "@/content/schema";
+import { beliefTint } from "./Beliefs";
 import { BlockHeader } from "./BlockHeader";
 
-/** The short version: a heading, a one or two line statement (the second in Ink 2), a short text and a link. */
+/** The short version of About: the lead beside the About portrait, the About beliefs by title, and a link. */
 export function Statement({
   statement,
+  about,
   suit,
   id = "about-me",
 }: {
   statement?: StatementData;
+  about: Site["about"];
   suit?: Suit;
   id?: string;
 }) {
   if (!statement) return null;
-  const [first, second] = statement.lines;
+  const { portrait } = about;
+  const beliefs = about.beliefs?.items ?? [];
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
-      <BlockHeader id={`${id}-title`} title={statement.title} suit={suit} className="mb-6 md:mb-8" />
-      <Rise as="p" i={2} className="type-h3 max-w-[30ch] text-ink">
-        {first}
-        {second && <em className="block text-ink-2">{second}</em>}
-      </Rise>
-      <Rise as="p" i={3} className="type-body mt-4 max-w-[60ch] text-ink-2">
-        {statement.text}
-      </Rise>
-      {statement.beliefs.length > 0 && (
-        <ul className="mt-8 grid max-w-[960px] gap-x-8 gap-y-5 md:grid-cols-3">
-          {statement.beliefs.map((b, i) => (
-            <Rise as="li" key={b} i={4 + i} className="type-body border-t border-hairline pt-4 text-ink">
-              {b}
+      <BlockHeader id={`${id}-title`} title={statement.title} suit={suit} className="mb-8 md:mb-10" />
+      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className={portrait ? "lg:col-span-7" : "lg:col-span-9"}>
+          <Rise as="p" i={2} className="type-h2 max-w-[24ch] text-ink">
+            {statement.lead}
+          </Rise>
+          {beliefs.length > 0 && (
+            <ul aria-label={about.beliefs?.title} className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+              {beliefs.map((b, i) => (
+                <Rise as="li" key={b.title} i={3 + i} className="flex items-center gap-3">
+                  <IconTile icon={b.icon} tint={beliefTint(i)} />
+                  <span className="type-body text-ink">{b.title}</span>
+                </Rise>
+              ))}
+            </ul>
+          )}
+          {statement.cta && (
+            <Rise i={3 + beliefs.length} className="mt-8">
+              <ArrowLink href={statement.cta.href} transition="nav-forward">
+                {statement.cta.label}
+              </ArrowLink>
             </Rise>
-          ))}
-        </ul>
-      )}
-      {statement.cta && (
-        <Rise i={4 + statement.beliefs.length} className="mt-8">
-          <ArrowLink href={statement.cta.href} transition="nav-forward">
-            {statement.cta.label}
-          </ArrowLink>
-        </Rise>
-      )}
+          )}
+        </div>
+        {portrait && (
+          <Rise i={3} className="card rounded-card p-(--frame-pad) lg:col-span-5">
+            <div
+              className="core relative aspect-[4/5] overflow-hidden rounded-inset"
+              style={portrait.ratio ? { aspectRatio: portrait.ratio } : undefined}
+            >
+              <Picture src={portrait.src} alt={portrait.alt} sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
+            </div>
+          </Rise>
+        )}
+      </div>
     </section>
   );
 }

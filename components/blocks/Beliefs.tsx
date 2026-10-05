@@ -3,6 +3,8 @@ import { IconTile, tints } from "@/components/ui/IconTile";
 import type { Site } from "@/content/schema";
 import { BlockHeader } from "./BlockHeader";
 
+export const beliefTint = (i: number) => tints[(i + 3) % tints.length];
+
 /** Convictions as even rows on hairlines: glyph and title, then the reason beside them. Nothing while empty. */
 export function Beliefs({ beliefs }: { beliefs?: Site["about"]["beliefs"] }) {
   if (!beliefs?.items.length) return null;
@@ -18,7 +20,7 @@ export function Beliefs({ beliefs }: { beliefs?: Site["about"]["beliefs"] }) {
             className="grid gap-4 border-t border-hairline py-7 md:grid-cols-12 md:items-center md:gap-8 md:py-8"
           >
             <div className="flex items-center gap-4 md:col-span-5">
-              <IconTile icon={b.icon} tint={tints[(i + 3) % tints.length]} />
+              <IconTile icon={b.icon} tint={beliefTint(i)} />
               <h3 className="type-h3 text-ink">{b.title}</h3>
             </div>
             <p className="type-body max-w-[60ch] text-ink-2 md:col-span-7">{b.text}</p>

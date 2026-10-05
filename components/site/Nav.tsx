@@ -16,7 +16,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/#big-projects", label: "Work", match: (p: string) => p.startsWith("/work") || p.startsWith("/locked") },
-  { href: "/about", label: "About", match: (p: string) => p === "/about" },
+  { href: "/about", label: "About me", match: (p: string) => p === "/about" },
 ];
 
 type Section = { title: string; href: string; suit: SuitName };

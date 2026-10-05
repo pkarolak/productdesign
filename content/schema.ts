@@ -237,12 +237,10 @@ export const handSchema = z
 /** How many items a chapter shows on home; the rest sit behind its `more` link. */
 const featured = z.number().int().min(1).max(6).default(3);
 
+/** The home teaser of About: a lead beside the About portrait, then the About beliefs by title. */
 export const statementSchema = z.object({
   title: words(5),
-  lines: z.array(words(8)).min(1).max(2),
-  text: words(32),
-  /** Short convictions, one sentence or two each, set as columns under the text. */
-  beliefs: z.array(words(16)).max(4).default([]),
+  lead: words(24),
   cta: cta.optional(),
 });
 
