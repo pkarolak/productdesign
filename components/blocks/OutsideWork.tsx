@@ -1,5 +1,7 @@
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
+import { Tilt } from "@/components/motion/Tilt";
+import { tiltZoom } from "@/components/motion/tiltZoom";
 import { Icon } from "@/components/ui/Icon";
 import type { Outside, Suit } from "@/content/schema";
 import { cn } from "@/lib/cn";
@@ -27,24 +29,26 @@ export function OutsideWork({ outside, id = "outside", suit }: { outside?: Outsi
             </span>
           );
           return (
-            <Rise as="li" key={o.title} i={i} className={cn("card flex flex-col rounded-card", o.photo ? "p-2.5 pb-6" : "p-6 md:p-7")}>
-              {o.photo && (
-                <div className="core relative aspect-[4/5] overflow-hidden rounded-inset md:aspect-[4/3] lg:aspect-[4/5]">
-                  <Picture
-                    src={o.photo.src}
-                    alt={o.photo.alt}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                    style={o.photo.focus ? { objectPosition: o.photo.focus } : undefined}
-                  />
-                  {badge}
+            <Rise as="li" key={o.title} i={i} className="flex">
+              <Tilt className={cn("card flex w-full flex-col rounded-card", o.photo ? "p-2.5 pb-6" : "p-6 md:p-7")}>
+                {o.photo && (
+                  <div className="core relative aspect-[4/5] overflow-hidden rounded-inset md:aspect-[4/3] lg:aspect-[4/5]">
+                    <Picture
+                      src={o.photo.src}
+                      alt={o.photo.alt}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className={cn("object-cover", tiltZoom)}
+                      style={o.photo.focus ? { objectPosition: o.photo.focus } : undefined}
+                    />
+                    {badge}
+                  </div>
+                )}
+                <div className={cn(o.photo && "px-3.5 pt-5")}>
+                  {!o.photo && badge}
+                  <h3 className="type-h3 text-ink">{o.title}</h3>
+                  <p className="type-small mt-2">{o.text}</p>
                 </div>
-              )}
-              <div className={cn(o.photo && "px-3.5 pt-5")}>
-                {!o.photo && badge}
-                <h3 className="type-h3 text-ink">{o.title}</h3>
-                <p className="type-small mt-2">{o.text}</p>
-              </div>
+              </Tilt>
             </Rise>
           );
         })}

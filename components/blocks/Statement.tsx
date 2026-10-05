@@ -1,5 +1,7 @@
 import { Picture } from "@/components/media/Picture";
 import { Rise } from "@/components/motion/Rise";
+import { Tilt } from "@/components/motion/Tilt";
+import { tiltZoom } from "@/components/motion/tiltZoom";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { IconTile } from "@/components/ui/IconTile";
 import type { Site, Statement as StatementData, Suit } from "@/content/schema";
@@ -38,13 +40,20 @@ export function Statement({
           )}
         </div>
         {portrait && (
-          <Rise i={3} className="card rounded-card p-(--frame-pad) lg:col-span-6">
-            <div
-              className="core relative aspect-[4/5] overflow-hidden rounded-inset"
-              style={portrait.ratio ? { aspectRatio: portrait.ratio } : undefined}
-            >
-              <Picture src={portrait.src} alt={portrait.alt} sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
-            </div>
+          <Rise i={3} className="lg:col-span-6">
+            <Tilt className="card rounded-card p-(--frame-pad)">
+              <div
+                className="core relative aspect-[4/5] overflow-hidden rounded-inset"
+                style={portrait.ratio ? { aspectRatio: portrait.ratio } : undefined}
+              >
+                <Picture
+                  src={portrait.src}
+                  alt={portrait.alt}
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className={`object-cover ${tiltZoom}`}
+                />
+              </div>
+            </Tilt>
           </Rise>
         )}
       </div>

@@ -52,6 +52,13 @@ Real cases from Figma (file `fSTFAxmRFRkc2fQbRppfQ5`, "Patryk's Playground"):
 
 ---
 
+## 2026-10-05: Photos lean toward the pointer
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** the About portrait, the Home About me portrait and the four Free time tiles lean up to 4° toward a mouse pointer on a spring and zoom the image a touch, settling on leave; still on touch and under reduced motion (ADR 0051). Verified the transform on hover and its reset on leave. Typecheck, lint, build, axe pass.
+
+---
+
 ## 2026-10-05: Home About me, rebalanced
 
 - **Agent:** Cursor agent (Claude)
