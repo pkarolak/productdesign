@@ -89,6 +89,10 @@ const storyChapter = z.object({
   steps: z.array(storyStep).max(4).default([]),
 });
 
+/** A choice made in the case and where it led. Closes every case page (ADR 0053). */
+const decision = z.object({ decision: words(9), outcome: words(16) });
+
+export type Decision = z.infer<typeof decision>;
 export type StoryChapter = z.infer<typeof storyChapter>;
 export type StoryStep = z.infer<typeof storyStep>;
 
@@ -112,6 +116,7 @@ export const projectSchema = z
       z.object({ label: z.literal("Ship"), text: words(25) }),
     ]),
     artifacts: z.array(artifact).min(2).max(4),
+    decisions: z.array(decision).min(2).max(3).optional(),
     askMeAbout: z.array(words(10)).min(2).max(3),
     /** Public, so a video cover may only show shipped UI (ADR 0042). */
     cover: assetSchema,

@@ -53,6 +53,20 @@ export const miroAnalytics = {
       caption: "Shared chart components, and the Figma plugin that generates charts from them.",
     },
   ],
+  decisions: [
+    {
+      decision: "I let the research do the arguing.",
+      outcome: "150 Salesforce requests and 12 interviews eased the churn fear. We started seeing admins as allies.",
+    },
+    {
+      decision: "We started with one honest chart.",
+      outcome: "A user history admins could trust came first. Dashboards, drill-downs and actions grew from there.",
+    },
+    {
+      decision: "Company Admins see totals. Boards need Content Admin.",
+      outcome: "That came from my argument in the permissions review, so use cases never leak a board.",
+    },
+  ],
   askMeAbout: [
     "How research turned strong internal pushback into support",
     "Why trustworthy data came before any new chart",
@@ -213,17 +227,6 @@ export const miroAnalytics = {
             alt: "Use-case analytics: shares per use-case category and their history by quarter.",
             caption: "Use-case analytics, designed and scoped with engineering, not shipped yet.",
           },
-        },
-        {
-          id: "lessons",
-          nav: "What I learned",
-          title: "What I took from it",
-          text: "Three notes I wrote down at the end of the project.",
-          points: [
-            "It's possible to change org culture and mindset if you have solid arguments.",
-            "Always partner with your key users. They are your allies.",
-            "Automation and vibe coding are making design better.",
-          ],
         },
       ],
     },

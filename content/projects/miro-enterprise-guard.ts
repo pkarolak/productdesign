@@ -59,6 +59,20 @@ export const miroEnterpriseGuard = {
       caption: "Board classification, before and after.",
     },
   ],
+  decisions: [
+    {
+      decision: "We shipped one bundle, not five features.",
+      outcome: "Everything circled around protecting sensitive content. Today it has 199 paying accounts.",
+    },
+    {
+      decision: "I kept five PMs in step with one prototype.",
+      outcome: "Constant sync was a burden, but it kept four teams moving together.",
+    },
+    {
+      decision: "Legal holds came right after the core.",
+      outcome: "Deals depended on them. I also rebuilt classification as a guided setup.",
+    },
+  ],
   askMeAbout: [
     "How one designer kept five PMs in step",
     "What the design sprint's holy grail turned out to be",
@@ -206,17 +220,6 @@ export const miroEnterpriseGuard = {
             alt: "Classification overview in the admin console: boards by classification level, with configuration tabs.",
             caption: "Classification today: every board's level at a glance.",
           },
-        },
-        {
-          id: "lessons",
-          nav: "What I learned",
-          title: "What I took from it",
-          text: "Three notes I wrote down at the end of the project.",
-          points: [
-            "It turned out that I love working on high-profile projects.",
-            "Constant sync is a burden, but it helps drive a big project with tons of dependencies.",
-            "It feels great to work on an almost greenfield project.",
-          ],
         },
       ],
     },

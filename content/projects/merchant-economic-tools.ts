@@ -52,6 +52,20 @@ export const merchantEconomicTools = {
       caption: "The map I used to tell the story of how the tool works.",
     },
   ],
+  decisions: [
+    {
+      decision: "I tested the inherited ideas before drawing anything.",
+      outcome: "8 interviews and 68 surveyed merchants checked each one against the stakeholders' list.",
+    },
+    {
+      decision: "I answered 'no logic' with workshops.",
+      outcome: "24 hours of workshops ended with a vision every stakeholder accepted.",
+    },
+    {
+      decision: "I drew a map of how the tool works.",
+      outcome: "It became how I explained the logic of the design.",
+    },
+  ],
   askMeAbout: [
     "What I learnt from the clash with the Director",
     "Why I now hold a 1:1 with every stakeholder first",

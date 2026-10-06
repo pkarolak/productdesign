@@ -52,6 +52,20 @@ export const contentExplorer = {
       caption: "FilterPill, merged into Miro's design system after three teams hand-rolled it.",
     },
   ],
+  decisions: [
+    {
+      decision: "We say Available, not active.",
+      outcome: "The lifecycle word beat the launch copy. The PM fixed it, and customers read it today.",
+    },
+    {
+      decision: "One table, one FilterPill.",
+      outcome: "Three teams had built their own filter. I built the shared one into the design system.",
+    },
+    {
+      decision: "I built a working model first.",
+      outcome: "Scope was settled before engineering started. I merged two production PRs. 480 admins used it.",
+    },
+  ],
   askMeAbout: [
     "Why the boards are Available, not active",
     "Keeping a table usable at 80,000 boards",

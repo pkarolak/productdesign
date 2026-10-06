@@ -52,6 +52,20 @@ export const egnyteProductPlatform = {
       caption: "One top bar across five web apps, each keeping its local needs.",
     },
   ],
+  decisions: [
+    {
+      decision: "I moderated two days to pick App Suite.",
+      outcome: "Ten people, from the CPO down, left with a five-step vision.",
+    },
+    {
+      decision: "We audited before we redesigned.",
+      outcome: "Four designers, two weeks, 18 recommendations. Five made it to the backlog.",
+    },
+    {
+      decision: "One top bar for five apps.",
+      outcome: "Each app kept its own needs. Billing and self-served migration followed.",
+    },
+  ],
   askMeAbout: [
     "Why the App Suite won over the monolith",
     "Why a real platform needs the whole organisation to change",

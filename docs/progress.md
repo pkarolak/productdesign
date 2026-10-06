@@ -2,6 +2,15 @@
 
 Status log and handoff. Newest entry on top. Every todo ends with an entry here, then a commit and a push.
 
+## 2026-10-06: Cases close with "Decisions and outcome"
+
+- **Agent:** Cursor agent (Claude)
+- **Done:** every case page ends with "Decisions and outcome", three rows of a decision and where it led, written first person from facts already in each case. The personal "What I took from it" steps are gone from Enterprise Guard and Analytics. New `decisions` field (9 and 16 words), `components/case/Decisions.tsx`, content guide row, ADR 0053. Typecheck, lint and `theme:check` pass; content validated for all six cases; checked at 1440 in both themes, on an Enterprise Guard story case and on a phone (no overflow).
+- **Not run:** axe and `pnpm shots` for the new block.
+- **Next:** the second task, using Taste Skill more deliberately across the site's design.
+
+---
+
 ## 2026-10-06: Home beliefs say what they mean
 
 - **Agent:** Cursor agent (Grok)

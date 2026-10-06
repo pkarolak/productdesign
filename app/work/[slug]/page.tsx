@@ -4,6 +4,7 @@ import { Artifacts } from "@/components/case/Artifacts";
 import { AskMeAbout } from "@/components/case/AskMeAbout";
 import { Beats } from "@/components/case/Beats";
 import { CaseHeader } from "@/components/case/CaseHeader";
+import { Decisions } from "@/components/case/Decisions";
 import { NextCase } from "@/components/case/NextCase";
 import { Story } from "@/components/case/Story";
 import { PageTransition } from "@/components/motion/PageTransition";
@@ -48,6 +49,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
               <Artifacts artifacts={project.artifacts} />
             </>
           )}
+          <Decisions decisions={project.decisions} />
           <AskMeAbout prompts={project.askMeAbout} />
           <NextCase next={nextProject(project.slug)} />
         </article>

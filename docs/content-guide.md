@@ -59,6 +59,7 @@ Write the way the owner writes: plain, direct, first person, a little casual ("S
 | `partners` | 18 words | Who you worked with and led across functions. |
 | `scope` | 2 to 3 items | Areas, not skills. |
 | `artifacts` | 2 to 4 | Each with a 14-word `caption` and a real `alt`. |
+| `decisions` | 2 to 3, `decision` 9 words, `outcome` 16 words | "Decisions and outcome" closes the case, after the story or the beats. Each is a choice you made, said as "I" or "we", and where it led. Plain words, no feelings or lessons that no decision stands behind (ADR 0053). |
 | `askMeAbout` | 2 to 3 × 10 words | Hooks for the conversation, not answers. |
 
 ### The story (optional)

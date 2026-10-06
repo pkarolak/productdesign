@@ -52,6 +52,20 @@ export const dataAccessManagement = {
       caption: "The hi-fi prototype: assigning and managing Data Owners, reviews and auditing.",
     },
   ],
+  decisions: [
+    {
+      decision: "I interviewed before I named anything.",
+      outcome: "Eight admins would share the job if audits came with it. That became Data Owners.",
+    },
+    {
+      decision: "I tested the prototype with six admins.",
+      outcome: "They changed the IA, labels and scheduling before we planned the MVP.",
+    },
+    {
+      decision: "We tracked two goals for the MVP.",
+      outcome: "As many Data Owners as admins in two months, and 10% less permission work.",
+    },
+  ],
   askMeAbout: [
     "Why solid research was the rocket fuel here",
     "What the developers spotted that changed our plan",
