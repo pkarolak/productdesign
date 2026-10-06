@@ -8,7 +8,7 @@ import type { Site, Statement as StatementData, Suit } from "@/content/schema";
 import { beliefTint } from "./Beliefs";
 import { BlockHeader } from "./BlockHeader";
 
-/** The short version of About: the lead beside the About portrait, the About beliefs by title, and a link. */
+/** The short version of About: the lead beside the portrait, then the beliefs with the same title and text as on About. */
 export function Statement({
   statement,
   about,
@@ -26,23 +26,31 @@ export function Statement({
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="container-page section-y scroll-mt-(--nav-clear)">
       <BlockHeader id={`${id}-title`} title={statement.title} suit={suit} className="mb-8 md:mb-10" />
-      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+      <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
         <div className={portrait ? "lg:col-span-6" : "lg:col-span-8"}>
           <Rise as="p" i={2} className="type-standfirst max-w-[44ch] text-ink!">
             {statement.lead}
           </Rise>
-          {beliefs.length > 0 && (
-            <ul aria-label={about.beliefs?.title} className="mt-8 border-t border-hairline">
-              {beliefs.map((b, i) => (
-                <Rise as="li" key={b.title} i={3 + i} className="flex items-center gap-4 border-b border-hairline py-3">
-                  <IconTile icon={b.icon} tint={beliefTint(i)} />
-                  <span className="type-body text-ink-2">{b.title}</span>
-                </Rise>
-              ))}
-            </ul>
+          {beliefs.length > 0 && about.beliefs && (
+            <div className="mt-10">
+              <Rise as="h3" id={`${id}-beliefs`} i={3} className="type-h3 mb-4 text-ink">
+                {about.beliefs.title}
+              </Rise>
+              <ul aria-labelledby={`${id}-beliefs`} className="border-t border-hairline">
+                {beliefs.map((b, i) => (
+                  <Rise as="li" key={b.title} i={4 + i} className="flex items-start gap-4 border-b border-hairline py-4">
+                    <IconTile icon={b.icon} tint={beliefTint(i)} />
+                    <div className="min-w-0 pt-1">
+                      <p className="type-h3 text-ink">{b.title}</p>
+                      <p className="type-small mt-1">{b.text}</p>
+                    </div>
+                  </Rise>
+                ))}
+              </ul>
+            </div>
           )}
           {statement.cta && (
-            <Rise i={3 + beliefs.length} className="mt-8">
+            <Rise i={4 + beliefs.length} className="mt-8">
               <ArrowLink href={statement.cta.href} transition="nav-forward">
                 {statement.cta.label}
               </ArrowLink>

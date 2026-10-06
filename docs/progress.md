@@ -2,6 +2,13 @@
 
 Status log and handoff. Newest entry on top. Every todo ends with an entry here, then a commit and a push.
 
+## 2026-10-06: Home beliefs say what they mean
+
+- **Agent:** Cursor agent (Grok)
+- **Done:** Home "About me" keeps its heading, lead, portrait and "More about me". The belief list now carries the About heading "What I believe" and each row shows the same text as on `/about`, so the rows read as statements. ADR 0052. Content guide updated.
+
+---
+
 ## Checklist
 
 Brag doc into portfolio (source: the owner's brag document, 15 Sep 2026):
